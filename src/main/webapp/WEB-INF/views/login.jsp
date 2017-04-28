@@ -3,7 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
+<head>
 <jsp:include page="fragments/headTag.jsp" />
+</head>
 <body class="app flex-row align-items-center">
     <div class="container">
         <div class="row justify-content-center">
