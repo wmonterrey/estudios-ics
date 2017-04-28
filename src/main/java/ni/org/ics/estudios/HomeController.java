@@ -16,6 +16,7 @@ public class HomeController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
+    	logger.info("Estudios ICS Iniciados...");
     	return "home";
     }
     
@@ -44,12 +45,6 @@ public class HomeController {
 	public String noEncontrado() { 
 		return "404";
 	}
-    
-    @RequestMapping(value = "/movil/ingreso", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody String getMessage() {
-    	logger.info("Accessando a la aplicacion");
-    	return "Acceso a la aplicación concedido por el servidor.";
-    }
     
 	@RequestMapping( value="keepsession")
 	public @ResponseBody String keepSession()
