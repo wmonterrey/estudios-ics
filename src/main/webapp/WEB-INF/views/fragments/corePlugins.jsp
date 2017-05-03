@@ -10,4 +10,7 @@
 <!-- Bootstrap-->
 <spring:url value="/resources/js/libs/bootstrap.min.js" var="Bootstrap" />
 <script src="${Bootstrap}" type="text/javascript"></script>
+<!-- Bootstrap-->
+<spring:url value="/resources/js/libs/pace.min.js" var="Pace" />
+<script src="${Pace}" type="text/javascript"></script>
 <!-- END CORE PLUGINS -->

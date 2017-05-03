@@ -13,13 +13,6 @@
         <jsp:include page="fragments/sideBar.jsp" />
         <!-- Main content -->
         <div class="main">
-        	<!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><spring:message code="home" /></li>
-                <li class="breadcrumb-item"><a href="#">Admin</a>
-                </li>
-                <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
             <div class="container-fluid">
             </div>
             <!-- /.conainer-fluid -->

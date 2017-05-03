@@ -1,7 +1,7 @@
 <!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <jsp:include page="fragments/headTag.jsp" />
@@ -64,7 +64,7 @@
 	                            </div>
 	                            <div class="row">
 	                            	<div class="col-12 text-right">
-	                            		<a href="<spring:url value="/" htmlEscape="true "/>" class="actEng"> English </a>|<a href="<spring:url value="/" htmlEscape="true "/>" class="actEsp"> Español </a>
+	                            		<a href="<spring:url value="/" htmlEscape="true "/>" class="actEng"> English </a>|<a href="<spring:url value="/" htmlEscape="true "/>" class="actEsp"> EspaÃ±ol </a>
 	                            	</div>
 	                            </div>
 							</form>
