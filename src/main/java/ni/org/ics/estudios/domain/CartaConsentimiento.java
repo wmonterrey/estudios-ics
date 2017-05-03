@@ -29,6 +29,7 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     private char participadoCohortePediatrica;
     private String cohortePediatrica; //Dengue, Influenza, Ambas (dengue/influenza)
     private char codigoReactivado;
+    private char emancipado;
     private char asentimientoVerbal; //Para Niños de 6 a 17 años
     private String nombre1Tutor;
     private String nombre2Tutor;
@@ -92,6 +93,15 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     public void setCodigoReactivado(char codigoReactivado) {
         this.codigoReactivado = codigoReactivado;
+    }
+
+    @Column(name = "EMANCIPADO", length = 1)
+    public char getEmancipado() {
+        return emancipado;
+    }
+
+    public void setEmancipado(char emancipado) {
+        this.emancipado = emancipado;
     }
 
     @Column(name = "ASENTIMIENTO_VERBAL", length = 1)

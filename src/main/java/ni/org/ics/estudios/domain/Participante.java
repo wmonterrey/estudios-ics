@@ -40,7 +40,6 @@ public class Participante extends BaseMetaData implements Auditable {
     private String nombre2Madre;
     private String apellido1Madre;
     private String apellido2Madre;
-    private char emancipado;
     private Casa casa;
 
 	@Id
@@ -177,15 +176,6 @@ public class Participante extends BaseMetaData implements Auditable {
 
     public void setApellido2Madre(String apellido2Madre) {
         this.apellido2Madre = apellido2Madre;
-    }
-
-    @Column(name = "EMANCIPADO", length = 1)
-    public char getEmancipado() {
-        return emancipado;
-    }
-
-    public void setEmancipado(char emancipado) {
-        this.emancipado = emancipado;
     }
 
     @ManyToOne
