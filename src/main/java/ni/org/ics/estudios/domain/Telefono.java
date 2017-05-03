@@ -5,6 +5,8 @@ import ni.org.ics.estudios.domain.catalogs.Operadora;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ForeignKey;
+
 /**
  * Objeto que representa un número telefónico asociado a una casa o participante
  * Created by Miguel Salinas on 4/28/2017.
@@ -14,7 +16,11 @@ import javax.persistence.*;
 @Table(name = "telefonos", catalog = "estudios_ics")
 public class Telefono extends BaseMetaData implements Auditable {
 
-    private Integer id;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Integer id;
     private String numero;
     private Operadora operadora;
     private Casa casa;
@@ -41,7 +47,8 @@ public class Telefono extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne(optional = true)
-    @JoinColumn(name="CODIGO_CASA", nullable = true, foreignKey = @ForeignKey(name = "FK_CASA_TELEFONO"))
+    @JoinColumn(name="CODIGO_CASA", nullable = true)
+    @ForeignKey(name = "FK_CASA_TELEFONO")
     public Casa getCasa() {
         return casa;
     }
@@ -51,7 +58,8 @@ public class Telefono extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne(optional = true)
-    @JoinColumn(name="CODIGO_PARTICIPANTE", nullable = true, foreignKey = @ForeignKey(name = "FK_PARTICIPANTE_TELEFONO"))
+    @JoinColumn(name="CODIGO_PARTICIPANTE", nullable = true)
+    @ForeignKey(name = "FK_PARTICIPANTE_TELEFONO")
     public Participante getParticipante() {
         return participante;
     }
@@ -61,7 +69,8 @@ public class Telefono extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne(optional = true)
-    @JoinColumn(name="CODIGO_OPERADORA", nullable = true, foreignKey = @ForeignKey(name = "FK_OPERADORA_TELEFONO"))
+    @JoinColumn(name="CODIGO_OPERADORA", nullable = true)
+    @ForeignKey(name = "FK_OPERADORA_TELEFONO")
     public Operadora getOperadora() {
         return operadora;
     }

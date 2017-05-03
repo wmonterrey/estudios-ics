@@ -1,21 +1,25 @@
 package ni.org.ics.estudios.web.listener;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
+
 
 import ni.org.ics.estudios.domain.audit.AuditTrail;
 import ni.org.ics.estudios.domain.audit.Auditable;
 
+import org.hibernate.EntityMode;
 import org.hibernate.HibernateException;
 import org.hibernate.StatelessSession;
-import org.hibernate.event.spi.PostDeleteEvent;
-import org.hibernate.event.spi.PostDeleteEventListener;
-import org.hibernate.event.spi.PostInsertEvent;
-import org.hibernate.event.spi.PostInsertEventListener;
-import org.hibernate.event.spi.PostUpdateEvent;
-import org.hibernate.event.spi.PostUpdateEventListener;
-import org.hibernate.persister.entity.EntityPersister;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.event.Initializable;
+import org.hibernate.event.PostDeleteEvent;
+import org.hibernate.event.PostDeleteEventListener;
+import org.hibernate.event.PostInsertEvent;
+import org.hibernate.event.PostInsertEventListener;
+import org.hibernate.event.PostUpdateEvent;
+import org.hibernate.event.PostUpdateEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -28,7 +32,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * @author whoover 
  */  
 public final class HibernateAuditLogListener implements  
-PostDeleteEventListener, PostInsertEventListener, PostUpdateEventListener { 
+PostDeleteEventListener, PostInsertEventListener, PostUpdateEventListener,  
+Initializable { 
 	
 	
 	private static final long serialVersionUID = 1L;  
@@ -36,6 +41,13 @@ PostDeleteEventListener, PostInsertEventListener, PostUpdateEventListener {
     public static final String OPERATION_TYPE_UPDATE = "UPDATE";    
   
 
+    /** 
+     * {@inheritDoc} 
+     */  
+    @Override  
+    public final void initialize(final Configuration cfg) {  
+        //  
+    }  
     
 	/** 
      * Log updates made to the current model in the the Audit Trail. 
@@ -45,14 +57,15 @@ PostDeleteEventListener, PostInsertEventListener, PostUpdateEventListener {
      */
 	@Override
 	public void onPostUpdate(PostUpdateEvent event) {
-		try {  
-            final Serializable entityId = event.getPersister().hasIdentifierProperty() ? event.getPersister().getIdentifier(event.getEntity(), event.getSession())  
-                    : null;  
+		try {
+            final Serializable entityId = event.getId();
             final String entityClass = event.getEntity().getClass().toString();
             final String entityName = event.getEntity().toString();
-            final Date transTime = new Date(); // new Date(event.getSource().getTimestamp());   
+            final Date transTime = new Date(); // new Date(event.getSource().getTimestamp());  
+            final EntityMode entityMode = event.getPersister().guessEntityMode(event.getEntity());  
             Object oldPropValue = null;  
             Object newPropValue = null; 
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
             
             if (event.getEntity() instanceof Auditable){
               	Auditable obj = (Auditable) event.getEntity();
@@ -68,12 +81,18 @@ PostDeleteEventListener, PostInsertEventListener, PostUpdateEventListener {
 	            // cycle through property names, extract corresponding property values and insert new entry in audit trail  
 	            for (String propertyName : event.getPersister().getPropertyNames()) {  
 	            	if (obj.isFieldAuditable(propertyName)){
-		                newPropValue = event.getPersister().getPropertyValue(event.getEntity(), propertyName);  
+		                newPropValue = event.getPersister().getPropertyValue(event.getEntity(), propertyName, entityMode);  
 		                if (newPropValue != null) {  
 			                // collections will fire their own events  
 		                    if (!(newPropValue instanceof Collection)) {  
-		                        oldPropValue = event.getPersister().getPropertyValue(existingEntity, propertyName);
+		                        oldPropValue = event.getPersister().getPropertyValue(existingEntity, propertyName, entityMode);
 		                        if(oldPropValue != null){
+		                        	if(oldPropValue instanceof Date){
+		                        		oldPropValue = formatter.format((Date) oldPropValue);
+		                        	}
+		                        	if(newPropValue instanceof Date){
+		                        		newPropValue = formatter.format((Date) newPropValue);
+		                        	}
 			                        if(!newPropValue.equals(oldPropValue)){
 				                        if (LOG.isDebugEnabled()) {  
 				                            LOG.debug("{} for: {}, ID: {}, property: {}, old value: {}, new value: {}, actor: {}, date: {}", new Object[] { OPERATION_TYPE_UPDATE, entityName, entityId, propertyName, oldPropValue, newPropValue, actorId, transTime });  
@@ -105,11 +124,5 @@ PostDeleteEventListener, PostInsertEventListener, PostUpdateEventListener {
 	public void onPostDelete(PostDeleteEvent event) {
 		// TODO Auto-generated method stub
 		LOG.debug("PostDeleteEvent");
-	}
-
-	@Override
-	public boolean requiresPostCommitHanding(EntityPersister arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}   
+	}     
 }

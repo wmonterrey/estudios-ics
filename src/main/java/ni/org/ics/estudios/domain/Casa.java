@@ -5,6 +5,8 @@ import ni.org.ics.estudios.domain.catalogs.Barrio;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ForeignKey;
+
 /**
  * Simple objeto de dominio que representa los datos demograficos de la casa
  * donde habitan 1 o mas participantes de los estudios
@@ -16,6 +18,10 @@ import javax.persistence.*;
 @Table(name = "casas", catalog = "estudios_ics")
 public class Casa extends BaseMetaData implements Auditable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
@@ -103,7 +109,8 @@ public class Casa extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-	@JoinColumn(name="CODIGO_BARRIO", updatable = false, foreignKey = @ForeignKey(name = "FK_BARRIO_CASA"))
+	@JoinColumn(name="CODIGO_BARRIO", updatable = false)
+    @ForeignKey(name = "FK_BARRIO_CASA")
     public Barrio getBarrio() {
         return barrio;
     }

@@ -3,6 +3,9 @@ package ni.org.ics.estudios.domain;
 import ni.org.ics.estudios.domain.audit.Auditable;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.ForeignKey;
+
 import java.util.Date;
 
 /**
@@ -15,6 +18,10 @@ import java.util.Date;
 @Table(name = "participantes", catalog = "estudios_ics", uniqueConstraints = { @UniqueConstraint(columnNames = "codigo") })
 public class Participante extends BaseMetaData implements Auditable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
@@ -182,7 +189,8 @@ public class Participante extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CODIGO_CASA", nullable = false, foreignKey = @ForeignKey(name = "FK_CASA_PARTICIPANTE"))
+    @JoinColumn(name = "CODIGO_CASA", nullable = false)
+    @ForeignKey(name = "FK_CASA_PARTICIPANTE")
     public Casa getCasa() {
         return casa;
     }

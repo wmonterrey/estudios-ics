@@ -5,6 +5,8 @@ import ni.org.ics.estudios.domain.catalogs.RazonNoParticipa;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.ForeignKey;
+
 /**
  * Created by FIRSTICT on 4/28/2017.
  * V1.0
@@ -13,7 +15,11 @@ import javax.persistence.*;
 @Table(name = "pre_tamizajes", catalog = "estudios_ics")
 public class PreTamizaje extends BaseMetaData implements Auditable {
 
-    private String codigo;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigo;
     private char aceptaTamizaje;
     private RazonNoParticipa razonNoParticipa;
     private Casa casa;
@@ -38,7 +44,8 @@ public class PreTamizaje extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne(optional = true)
-    @JoinColumn(name="RAZON_NO_PARTICIPA", nullable = true, foreignKey = @ForeignKey(name = "FK_RAZON_NOPARTICIPA_PRETAMIZAJE"))
+    @JoinColumn(name="RAZON_NO_PARTICIPA", nullable = true)
+    @ForeignKey(name = "FK_RAZON_NOPARTICIPA_PRETAMIZAJE")
     public RazonNoParticipa getRazonNoParticipa() {
         return razonNoParticipa;
     }
@@ -48,7 +55,8 @@ public class PreTamizaje extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-    @JoinColumn(name="CODIGO_CASA", nullable = false, foreignKey = @ForeignKey(name = "FK_CASA_PRETAMIZAJE"))
+    @JoinColumn(name="CODIGO_CASA", nullable = false)
+    @ForeignKey(name = "FK_CASA_PRETAMIZAJE")
     public Casa getCasa() {
         return casa;
     }

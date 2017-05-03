@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -50,6 +52,7 @@ public class UserSistema implements Auditable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name = "FECHA_REGISTRO", nullable = false)
 	public Date getCreated() {
 		return created;
@@ -57,6 +60,7 @@ public class UserSistema implements Auditable {
 	public void setCreated(Date created) {
 		this.created = created;
 	}
+	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name = "FECHA_ULTMOD", nullable = true)
 	public Date getModified() {
 		return modified;
@@ -64,6 +68,7 @@ public class UserSistema implements Auditable {
 	public void setModified(Date modified) {
 		this.modified = modified;
 	}
+	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name = "FECHA_ULTACC", nullable = true)
 	public Date getLastAccess() {
 		return lastAccess;
@@ -71,6 +76,7 @@ public class UserSistema implements Auditable {
 	public void setLastAccess(Date lastAccess) {
 		this.lastAccess = lastAccess;
 	}
+	@Temporal( TemporalType.TIMESTAMP)
 	@Column(name = "FECHA_ULTMODCRED", nullable = true)
 	public Date getLastCredentialChange() {
 		return lastCredentialChange;

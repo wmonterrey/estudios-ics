@@ -6,7 +6,6 @@ import org.hibernate.annotations.*;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.Table;
 
 /**
@@ -17,7 +16,11 @@ import javax.persistence.Table;
 @Table(name = "tamizajes", catalog = "estudios_ics")
 public class Tamizaje extends BaseMetaData implements Auditable {
 
-    private String codigo;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigo;
     private Participante participante;
     private char aceptaTamizaje;
     private RazonNoParticipa razonNoParticipa;
@@ -49,7 +52,8 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-    @JoinColumn(name="CODIGO_PARTICIPANTE", nullable = false, foreignKey = @ForeignKey(name = "FK_PARTICIPANTE_TAMIZAJE"))
+    @JoinColumn(name="CODIGO_PARTICIPANTE", nullable = false)
+    @ForeignKey(name = "FK_PARTICIPANTE_TAMIZAJE")
     public Participante getParticipante() {
         return participante;
     }
@@ -68,7 +72,8 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne(optional = true)
-    @JoinColumn(name="RAZON_NO_PARTICIPA", nullable = true, foreignKey = @ForeignKey(name = "FK_RAZON_NO_PARTICIPA_TAMIZAJE"))
+    @JoinColumn(name="RAZON_NO_PARTICIPA", nullable = true)
+    @ForeignKey(name = "FK_RAZON_NO_PARTICIPA_TAMIZAJE")
     public RazonNoParticipa getRazonNoParticipa() {
         return razonNoParticipa;
     }

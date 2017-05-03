@@ -5,6 +5,9 @@ import ni.org.ics.estudios.domain.catalogs.Estudio;
 import ni.org.ics.estudios.domain.catalogs.RelacionFamiliar;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.ForeignKey;
+
 import java.util.Date;
 
 /**
@@ -15,7 +18,11 @@ import java.util.Date;
 @Table(name = "cartas_consentimientos", catalog = "estudios_ics")
 public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
-    private String codigo;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigo;
     private Date fechaFirma;
     private Tamizaje tamizaje;
     private Estudio estudio;
@@ -232,7 +239,8 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CODIGO_TAMIZAJE", nullable = false, foreignKey = @ForeignKey(name = "FK_TAMIZAJE_CARTACON"))
+    @JoinColumn(name = "CODIGO_TAMIZAJE", nullable = false)
+    @ForeignKey(name = "FK_TAMIZAJE_CARTACON")
     public Tamizaje getTamizaje() {
         return tamizaje;
     }
@@ -242,7 +250,8 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CODIGO_ESTUDIO", nullable = false, foreignKey = @ForeignKey(name = "FK_ESTUDIO_CARTACON"))
+    @JoinColumn(name = "CODIGO_ESTUDIO", nullable = false)
+    @ForeignKey(name = "FK_ESTUDIO_CARTACON")
     public Estudio getEstudio() {
         return estudio;
     }
@@ -253,7 +262,8 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
 
     @ManyToOne(optional = true)
-    @JoinColumn(name = "CODIGO_RELACFAM", nullable = true, foreignKey = @ForeignKey(name = "FK_RELACION_FAM_TUTOR_CARTACON"))
+    @JoinColumn(name = "CODIGO_RELACFAM", nullable = true)
+    @ForeignKey(name = "FK_RELACION_FAM_TUTOR_CARTACON")
     public RelacionFamiliar getRelacionFamiliarTutor() {
         return relacionFamiliarTutor;
     }
