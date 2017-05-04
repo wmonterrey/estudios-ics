@@ -19,6 +19,8 @@ public class BaseMetaData implements Serializable
 	private Date recordDate;
 	private String recordUser;
 	private char pasive = '0';
+	private char estado='0';
+	private String deviceid;
 	
 	public BaseMetaData() {
 
@@ -57,5 +59,25 @@ public class BaseMetaData implements Serializable
 	public void setPasive(char pasive) {
 		this.pasive = pasive;
 	}
+
+	@Column(name="ESTADO", nullable = false, length = 1)
+	public char getEstado() {
+		return estado;
+	}
+
+	public void setEstado(char estado) {
+		this.estado = estado;
+	}
+
+	@Column(name="IDENTIFICADOR_EQUIPO", length = 100)
+	public String getDeviceid() {
+		return deviceid;
+	}
+
+	public void setDeviceid(String deviceid) {
+		this.deviceid = deviceid;
+	}
+	
+	
 
 }  

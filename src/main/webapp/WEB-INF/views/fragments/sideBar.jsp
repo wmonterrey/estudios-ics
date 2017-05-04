@@ -5,16 +5,19 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="<spring:url value="/" htmlEscape="true "/>"><i class="icon-speedometer"></i> <spring:message code="dashboard" /></a>
+                <a class="nav-link" href="<spring:url value="/" htmlEscape="true "/>"><i class="icon-speedometer"></i><spring:message code="dashboard" /></a>
             </li>
             <li class="nav-item nav-dropdown">
-	            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wrench"></i> <spring:message code="admin" /></a>
+	            <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wrench"></i><spring:message code="admin" /></a>
 	            <ul class="nav-dropdown-items">
 	                <li class="nav-item">
-	                    <a class="nav-link" href="<spring:url value="/admin/users/" htmlEscape="true "/>"><i class="icon-people"></i> <spring:message code="users" /></a>
+	                    <a class="nav-link" href="<spring:url value="/admin/users/" htmlEscape="true "/>"><i class="icon-people"></i><spring:message code="users" /></a>
 	                </li>
 	            </ul>
 	        </li>
+	        <li class="nav-item">
+                <a class="nav-link" href="<spring:url value="/logout" htmlEscape="true" />"><i class="icon-lock"></i><spring:message code="logout" /></a>
+            </li>
         </ul>
     </nav>
 </div>
