@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.domain.encuestas;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
+import ni.org.ics.estudios.domain.Casa;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class AreaAmbiente extends BaseMetaData {
     private Double ancho;
     private Double totalM2;
     private Integer numVentanas;
-    private EncuestaCasa encuestaCasa;
+    private Casa casa;
 
     @Id
     @Column(name = "CODIGO", length = 50)
@@ -70,13 +71,13 @@ public class AreaAmbiente extends BaseMetaData {
     }
 
     @ManyToOne(optional = true)
-    @JoinColumn(name = "CODIGO_ENCUESTA", nullable = true)
-    @ForeignKey(name = "FK_AREAAMBIENTE_ENCUESTACASA")
-    public EncuestaCasa getEncuestaCasa() {
-        return encuestaCasa;
+    @JoinColumn(name = "CODIGO_CASA", nullable = true)
+    @ForeignKey(name = "FK_AREAAMBIENTE_CASA")
+    public Casa getCasa() {
+        return casa;
     }
 
-    public void setEncuestaCasa(EncuestaCasa encuestaCasa) {
-        this.encuestaCasa = encuestaCasa;
+    public void setCasa(Casa casa) {
+        this.casa = casa;
     }
 }

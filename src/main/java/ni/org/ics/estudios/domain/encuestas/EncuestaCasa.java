@@ -2,6 +2,7 @@ package ni.org.ics.estudios.domain.encuestas;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Casa;
+import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -13,9 +14,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "encuestas_casa", catalog = "estudios_ics")
-public class EncuestaCasa extends BaseMetaData {
+public class EncuestaCasa extends BaseMetaData implements Auditable {
 
-    private String codigoEncuesta;
     private Casa casa;
     private int cantidadCuartos;
     private int cantidadCuartosDormir;
@@ -92,15 +92,6 @@ public class EncuestaCasa extends BaseMetaData {
     private Integer cantidadCigarrillosOtros; // diarios
 
     @Id
-    @Column(name = "CODIGO", length = 36)
-    public String getCodigoEncuesta() {
-        return codigoEncuesta;
-    }
-
-    public void setCodigoEncuesta(String codigoEncuesta) {
-        this.codigoEncuesta = codigoEncuesta;
-    }
-
     @ManyToOne
     @JoinColumn(name = "CODIGO_CASA", nullable = false)
     @ForeignKey(name = "FK_CASA_ENCUESTACASA")
@@ -229,7 +220,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.otrosRecipientes = otrosRecipientes;
     }
 
-    @Column(name = "NUMERO_BARRILES")
+    @Column(name = "NUMERO_BARRILES", length = 3)
     public Integer getNumBarriles() {
         return numBarriles;
     }
@@ -238,7 +229,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numBarriles = numBarriles;
     }
 
-    @Column(name = "NUMERO_TANQUES")
+    @Column(name = "NUMERO_TANQUES", length = 3)
     public Integer getNumTanques() {
         return numTanques;
     }
@@ -247,7 +238,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numTanques = numTanques;
     }
 
-    @Column(name = "NUMERO_PILAS")
+    @Column(name = "NUMERO_PILAS", length = 3)
     public Integer getNumPilas() {
         return numPilas;
     }
@@ -256,7 +247,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numPilas = numPilas;
     }
 
-    @Column(name = "NUMERO_OTROS_RECIPIENTES")
+    @Column(name = "NUMERO_OTROS_RECIPIENTES", length = 3)
     public Integer getNumOtrosRecipientes() {
         return numOtrosRecipientes;
     }
@@ -454,7 +445,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.aireAcondicionadoFuncionando = aireAcondicionadoFuncionando;
     }
 
-    @Column(name = "CANTIDAD_ABANICOS")
+    @Column(name = "CANTIDAD_ABANICOS", length = 2)
     public Integer getNumAbanicos() {
         return numAbanicos;
     }
@@ -463,7 +454,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numAbanicos = numAbanicos;
     }
 
-    @Column(name = "CANTIDAD_TELEVISORES")
+    @Column(name = "CANTIDAD_TELEVISORES", length = 2)
     public Integer getNumTelevisores() {
         return numTelevisores;
     }
@@ -472,7 +463,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numTelevisores = numTelevisores;
     }
 
-    @Column(name = "CANTIDAD_REFRIGERADORES")
+    @Column(name = "CANTIDAD_REFRIGERADORES", length = 2)
     public Integer getNumRefrigeradores() {
         return numRefrigeradores;
     }
@@ -571,7 +562,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.periodicidadCocinaLenia = periodicidadCocinaLenia;
     }
 
-    @Column(name = "NUM_DIARIO_COCINA_LENIA")
+    @Column(name = "NUM_DIARIO_COCINA_LENIA", length = 2)
     public Integer getNumDiarioCocinaLenia() {
         return numDiarioCocinaLenia;
     }
@@ -580,7 +571,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numDiarioCocinaLenia = numDiarioCocinaLenia;
     }
 
-    @Column(name = "NUM_SEMANAL_COCINA_LENIA")
+    @Column(name = "NUM_SEMANAL_COCINA_LENIA", length = 2)
     public Integer getNumSemanalCocinaLenia() {
         return numSemanalCocinaLenia;
     }
@@ -589,7 +580,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numSemanalCocinaLenia = numSemanalCocinaLenia;
     }
 
-    @Column(name = "NUM_QUINCENAL_COCINA_LENIA")
+    @Column(name = "NUM_QUINCENAL_COCINA_LENIA", length = 2)
     public Integer getNumQuincenalCocinaLenia() {
         return numQuincenalCocinaLenia;
     }
@@ -598,7 +589,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.numQuincenalCocinaLenia = numQuincenalCocinaLenia;
     }
 
-    @Column(name = "NUM_MENSUAL_COCINA_LENIA")
+    @Column(name = "NUM_MENSUAL_COCINA_LENIA", length = 2)
     public Integer getNumMensualCocinaLenia() {
         return numMensualCocinaLenia;
     }
@@ -643,7 +634,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.tieneCerdos = tieneCerdos;
     }
 
-    @Column(name = "CANT_GALLINAS")
+    @Column(name = "CANT_GALLINAS", length = 3)
     public Integer getCantidadGallinas() {
         return cantidadGallinas;
     }
@@ -652,7 +643,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.cantidadGallinas = cantidadGallinas;
     }
 
-    @Column(name = "CANT_PATOS")
+    @Column(name = "CANT_PATOS", length = 3)
     public Integer getCantidadPatos() {
         return cantidadPatos;
     }
@@ -661,7 +652,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.cantidadPatos = cantidadPatos;
     }
 
-    @Column(name = "CANT_CERDOS")
+    @Column(name = "CANT_CERDOS", length = 3)
     public Integer getCantidadCerdos() {
         return cantidadCerdos;
     }
@@ -742,7 +733,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.cantidadOtrosFuman = cantidadOtrosFuman;
     }
 
-    @Column(name = "CANT_CIGARRILLOS_MADRE")
+    @Column(name = "CANT_CIGARRILLOS_MADRE", length = 3)
     public Integer getCantidadCigarrilosMadre() {
         return cantidadCigarrilosMadre;
     }
@@ -751,7 +742,7 @@ public class EncuestaCasa extends BaseMetaData {
         this.cantidadCigarrilosMadre = cantidadCigarrilosMadre;
     }
 
-    @Column(name = "CANT_CIGARRILLOS_PADRE")
+    @Column(name = "CANT_CIGARRILLOS_PADRE", length = 3)
     public Integer getCantidadCigarrillosPadre() {
         return cantidadCigarrillosPadre;
     }
@@ -760,12 +751,38 @@ public class EncuestaCasa extends BaseMetaData {
         this.cantidadCigarrillosPadre = cantidadCigarrillosPadre;
     }
 
-    @Column(name = "CANT_CIGARRILLOS_OTROS")
+    @Column(name = "CANT_CIGARRILLOS_OTROS", length = 3)
     public Integer getCantidadCigarrillosOtros() {
         return cantidadCigarrillosOtros;
     }
 
     public void setCantidadCigarrillosOtros(Integer cantidadCigarrillosOtros) {
         this.cantidadCigarrillosOtros = cantidadCigarrillosOtros;
+    }
+
+    @Override
+    public boolean isFieldAuditable(String fieldname) {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "EncuestaCasa{" + casa.getCodigo() +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EncuestaCasa)) return false;
+
+        EncuestaCasa that = (EncuestaCasa) o;
+
+        return  (!casa.equals(that.casa));
+    }
+
+    @Override
+    public int hashCode() {
+        return casa.hashCode();
     }
 }
