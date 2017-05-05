@@ -58,7 +58,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
         this.participante = participante;
     }
 
-	@Column(name = "tipoParto", nullable = true, length = 1)
+	@Column(name = "TIPO_PARTO", nullable = true, length = 1)
 	public String getTipoParto() {
 		return tipoParto;
 	}
@@ -67,7 +67,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.tipoParto = tipoParto;
 	}
 
-	@Column(name = "tiempoEmb_sndr", nullable = true, length = 1)
+	@Column(name = "TIEMPO_EMB_SNDR", nullable = true, length = 1)
 	public String getTiempoEmb_sndr() {
 		return tiempoEmb_sndr;
 	}
@@ -76,7 +76,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.tiempoEmb_sndr = tiempoEmb_sndr;
 	}
 
-	@Column(name = "tiempoEmbSemana", nullable = true, length = 2)
+	@Column(name = "TIEMPO_EMB_SEMANA", nullable = true, length = 2)
 	public Integer getTiempoEmbSemana() {
 		return tiempoEmbSemana;
 	}
@@ -85,7 +85,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.tiempoEmbSemana = tiempoEmbSemana;
 	}
 
-	@Column(name = "docMedTiempoEmb_sn", nullable = true, length = 1)
+	@Column(name = "DOC_MED_TIEMPO_EMB_SN", nullable = true, length = 1)
 	public String getDocMedTiempoEmb_sn() {
 		return docMedTiempoEmb_sn;
 	}
@@ -94,7 +94,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.docMedTiempoEmb_sn = docMedTiempoEmb_sn;
 	}
 
-	@Column(name = "docMedTiempoEmb", nullable = true, length = 1)
+	@Column(name = "DOC_MED_TIEMPO_EMB", nullable = true, length = 1)
 	public String getDocMedTiempoEmb() {
 		return docMedTiempoEmb;
 	}
@@ -103,7 +103,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.docMedTiempoEmb = docMedTiempoEmb;
 	}
 
-	@Column(name = "otroDocMedTiempoEmb", nullable = true, length = 500)
+	@Column(name = "OTRO_DOC_MED_TIEMPO_EMB", nullable = true, length = 500)
 	public String getOtroDocMedTiempoEmb() {
 		return otroDocMedTiempoEmb;
 	}
@@ -112,7 +112,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.otroDocMedTiempoEmb = otroDocMedTiempoEmb;
 	}
 
-	@Column(name = "fum", nullable = true)
+	@Column(name = "FUM", nullable = true)
 	public Date getFum() {
 		return fum;
 	}
@@ -121,7 +121,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.fum = fum;
 	}
 
-	@Column(name = "sg", nullable = true, length = 2)
+	@Column(name = "SG", nullable = true, length = 2)
 	public Integer getSg() {
 		return sg;
 	}
@@ -130,7 +130,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.sg = sg;
 	}
 
-	@Column(name = "edadGest", nullable = true, length = 2)
+	@Column(name = "EDAD_GEST", nullable = true, length = 2)
 	public Integer getEdadGest() {
 		return edadGest;
 	}
@@ -139,7 +139,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.edadGest = edadGest;
 	}
 
-	@Column(name = "docMedEdadGest_sn", nullable = true, length = 1)
+	@Column(name = "DOC_MED_EDAD_GEST_SN", nullable = true, length = 1)
 	public String getDocMedEdadGest_sn() {
 		return docMedEdadGest_sn;
 	}
@@ -148,7 +148,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.docMedEdadGest_sn = docMedEdadGest_sn;
 	}
 
-	@Column(name = "docMedEdadGest", nullable = true, length = 1)
+	@Column(name = "DOC_MED_EDAD_GEST", nullable = true, length = 1)
 	public String getDocMedEdadGest() {
 		return docMedEdadGest;
 	}
@@ -157,7 +157,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.docMedEdadGest = docMedEdadGest;
 	}
 
-	@Column(name = "OtroDocMedEdadGest", nullable = true, length = 500)
+	@Column(name = "OTRO_DOC_MED_EDAD_GEST", nullable = true, length = 500)
 	public String getOtroDocMedEdadGest() {
 		return OtroDocMedEdadGest;
 	}
@@ -166,7 +166,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		OtroDocMedEdadGest = otroDocMedEdadGest;
 	}
 
-	@Column(name = "prematuro_sndr", nullable = true, length = 1)
+	@Column(name = "PREMATURO_SNDR", nullable = true, length = 1)
 	public String getPrematuro_sndr() {
 		return prematuro_sndr;
 	}
@@ -175,7 +175,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.prematuro_sndr = prematuro_sndr;
 	}
 
-	@Column(name = "pesoBB_sndr", nullable = true, length = 1)
+	@Column(name = "PESO_BB_SNDR", nullable = true, length = 1)
 	public String getPesoBB_sndr() {
 		return pesoBB_sndr;
 	}
@@ -184,7 +184,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.pesoBB_sndr = pesoBB_sndr;
 	}
 
-	@Column(name = "pesoBB", nullable = true, length = 5)
+	@Column(name = "PESO_BB", nullable = true, length = 5)
 	public String getPesoBB() {
 		return pesoBB;
 	}
@@ -193,7 +193,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.pesoBB = pesoBB;
 	}
 
-	@Column(name = "docMedPesoBB_sn", nullable = true, length = 1)
+	@Column(name = "DOC_MED_PESO_BB_SN", nullable = true, length = 1)
 	public String getDocMedPesoBB_sn() {
 		return docMedPesoBB_sn;
 	}
@@ -202,7 +202,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.docMedPesoBB_sn = docMedPesoBB_sn;
 	}
 
-	@Column(name = "docMedPesoBB", nullable = true, length = 1)
+	@Column(name = "DOC_MED_PESO_BB", nullable = true, length = 1)
 	public String getDocMedPesoBB() {
 		return docMedPesoBB;
 	}
@@ -211,7 +211,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.docMedPesoBB = docMedPesoBB;
 	}
 
-	@Column(name = "otroDocMedPesoBB", nullable = true, length = 500)
+	@Column(name = "OTRO_DOC_MED_PESO_BB", nullable = true, length = 500)
 	public String getOtroDocMedPesoBB() {
 		return otroDocMedPesoBB;
 	}
@@ -220,7 +220,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.otroDocMedPesoBB = otroDocMedPesoBB;
 	}
 
-	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
 	public Integer getOtrorecurso1() {
 		return otrorecurso1;
 	}
@@ -229,7 +229,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.otrorecurso1 = otrorecurso1;
 	}
 
-	@Column(name = "otrorecurso2", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO2", nullable = true, length = 10)
 	public Integer getOtrorecurso2() {
 		return otrorecurso2;
 	}
@@ -238,7 +238,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.otrorecurso2 = otrorecurso2;
 	}
 
-	@Column(name = "fumFueraRango_sn", nullable = true, length = 2)
+	@Column(name = "FUM_FUERA_RANGO_SN", nullable = true, length = 2)
 	public String getFumFueraRango_sn() {
 		return fumFueraRango_sn;
 	}
@@ -247,7 +247,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.fumFueraRango_sn = fumFueraRango_sn;
 	}
 
-	@Column(name = "fumFueraRango_razon", nullable = true, length = 750)
+	@Column(name = "FUM_FUERARANGO_RAZON", nullable = true, length = 750)
 	public String getFumFueraRango_razon() {
 		return fumFueraRango_razon;
 	}

@@ -132,5 +132,75 @@ public class AreaAmbienteService {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(ventana);
     }
+
+    public List<Banio> getBaniosByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select b from Banio b where b.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<Cama> getCamasByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Cama c where c.habitacion.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<Cocina> getCocinasByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from Cocina c where c.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<Comedor> getComedoresByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from Comedor c where c.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<Habitacion> getHabitacionesByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select h from Habitacion h where h.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<Sala> getSalasByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select s from Sala s where s.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<Ventana> getVentanasByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Ventana v where v.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
 }
 

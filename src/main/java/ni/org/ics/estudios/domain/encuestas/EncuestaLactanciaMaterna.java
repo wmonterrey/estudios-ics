@@ -53,7 +53,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
         this.participante = participante;
     }
 
-	@Column(name = "edad", nullable = true, length = 2)
+	@Column(name = "EDAD", nullable = true, length = 2)
 	public Integer getEdad() {
 		return edad;
 	}
@@ -62,8 +62,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.edad = edad;
 	}
 
-	
-	@Column(name = "diopecho", nullable = true, length = 1)
+	@Column(name = "DIO_PECHO", nullable = true, length = 1)
 	public Integer getDioPecho() {
 		return dioPecho;
 	}
@@ -72,7 +71,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.dioPecho = dioPecho;
 	}
 
-	@Column(name = "tiempecho", nullable = true, length = 1)
+	@Column(name = "TIEMPO_PECHO", nullable = true, length = 1)
 	public Integer getTiemPecho() {
 		return tiemPecho;
 	}
@@ -81,7 +80,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.tiemPecho = tiemPecho;
 	}
 
-	@Column(name = "mesdiopecho", nullable = true, length = 1)
+	@Column(name = "MES_DIO_PECHO", nullable = true, length = 1)
 	public Integer getMesDioPecho() {
 		return mesDioPecho;
 	}
@@ -90,7 +89,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioPecho = mesDioPecho;
 	}
 
-	@Column(name = "pechoexc", nullable = true, length = 1)
+	@Column(name = "PECHO_EXCLU", nullable = true, length = 1)
 	public Integer getPechoExc() {
 		return pechoExc;
 	}
@@ -99,7 +98,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.pechoExc = pechoExc;
 	}
 
-	@Column(name = "pechoexcantes", nullable = true, length = 1)
+	@Column(name = "PECHO_EXCLU_ANTES", nullable = true, length = 1)
 	public Integer getPechoExcAntes() {
 		return pechoExcAntes;
 	}
@@ -108,7 +107,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.pechoExcAntes = pechoExcAntes;
 	}
 
-	@Column(name = "tiempopechoexcantes", nullable = true, length = 1)
+	@Column(name = "TIEMPO_PECHO_EXCLU_ANTES", nullable = true, length = 1)
 	public Integer getTiempPechoExcAntes() {
 		return tiempPechoExcAntes;
 	}
@@ -117,7 +116,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.tiempPechoExcAntes = tiempPechoExcAntes;
 	}
 
-	@Column(name = "mespechoexcantes", nullable = true)
+	@Column(name = "MES_PECHO_EXCLU_ANTES", nullable = true)
 	public Integer getMestPechoExc() {
 		return mestPechoExc;
 	}
@@ -126,7 +125,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mestPechoExc = mestPechoExc;
 	}
 
-	@Column(name = "formalim", nullable = true, length = 1)
+	@Column(name = "FORMA_ALIMENTA", nullable = true, length = 1)
 	public Integer getFormAlim() {
 		return formAlim;
 	}
@@ -135,7 +134,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.formAlim = formAlim;
 	}
 
-	@Column(name = "otraalim", nullable = true, length = 50)
+	@Column(name = "OTRA_ALIMENTACION", nullable = true, length = 50)
 	public String getOtraAlim() {
 		return otraAlim;
 	}
@@ -144,7 +143,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.otraAlim = otraAlim;
 	}
 
-	@Column(name = "edadliqdistpecho", nullable = true)
+	@Column(name = "EDAD_LIQUIDO_DIST_PECHO", nullable = true)
 	public Integer getEdadLiqDistPecho() {
 		return edadLiqDistPecho;
 	}
@@ -153,7 +152,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.edadLiqDistPecho = edadLiqDistPecho;
 	}
 
-	@Column(name = "mesdioliqdispecho", nullable = true)
+	@Column(name = "MES_DIO_LIQ_DIST_PECHO", nullable = true)
 	public Integer getMesDioLiqDisPecho() {
 		return mesDioLiqDisPecho;
 	}
@@ -162,7 +161,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioLiqDisPecho = mesDioLiqDisPecho;
 	}
 
-	@Column(name = "edadliqdistleche", nullable = true)
+	@Column(name = "EDAD_LIQUIDO_DIST_LECHE", nullable = true)
 	public Integer getEdadLiqDistLeche() {
 		return edadLiqDistLeche;
 	}
@@ -171,7 +170,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.edadLiqDistLeche = edadLiqDistLeche;
 	}
 	
-	@Column(name = "mesdioliqdisleche", nullable = true)
+	@Column(name = "MES_DIO_LIQ_DIST_LECHE", nullable = true)
 	public Integer getMesDioLiqDisLeche() {
 		return mesDioLiqDisLeche;
 	}
@@ -180,7 +179,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioLiqDisLeche = mesDioLiqDisLeche;
 	}
 
-	@Column(name = "edalimsolidos", nullable = true)
+	@Column(name = "EDAD_ALIMEN_SOLIDOS", nullable = true)
 	public Integer getEdAlimSolidos() {
 		return edAlimSolidos;
 	}
@@ -189,7 +188,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.edAlimSolidos = edAlimSolidos;
 	}
 
-	@Column(name = "mesdioalimsol", nullable = true)
+	@Column(name = "MES_DIO_ALIMEN_SOLIDOS", nullable = true)
 	public Integer getMesDioAlimSol() {
 		return mesDioAlimSol;
 	}
@@ -198,7 +197,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioAlimSol = mesDioAlimSol;
 	}
 
-	@Column(name = "otrorecurso1", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
 	public Integer getOtrorecurso1() {
 		return otrorecurso1;
 	}
@@ -207,7 +206,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.otrorecurso1 = otrorecurso1;
 	}
 
-	@Column(name = "otrorecurso2", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO2", nullable = true, length = 10)
 	public Integer getOtrorecurso2() {
 		return otrorecurso2;
 	}

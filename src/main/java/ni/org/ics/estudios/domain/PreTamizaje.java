@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.domain;
 
 import ni.org.ics.estudios.domain.audit.Auditable;
+import ni.org.ics.estudios.domain.catalogs.Estudio;
 import ni.org.ics.estudios.domain.catalogs.RazonNoParticipa;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class PreTamizaje extends BaseMetaData implements Auditable {
     private char aceptaTamizaje;
     private RazonNoParticipa razonNoParticipa;
     private Casa casa;
+    private Estudio estudio;
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -63,6 +65,17 @@ public class PreTamizaje extends BaseMetaData implements Auditable {
 
     public void setCasa(Casa casa) {
         this.casa = casa;
+    }
+
+    @ManyToOne
+    @JoinColumn(name="CODIGO_ESTUDIO", nullable = false)
+    @ForeignKey(name = "FK_ESTUDIO_PRETAMIZAJE")
+    public Estudio getEstudio() {
+        return estudio;
+    }
+
+    public void setEstudio(Estudio estudio) {
+        this.estudio = estudio;
     }
 
     @Override
