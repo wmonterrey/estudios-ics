@@ -28,6 +28,16 @@ public class EncuestaCasaService {
         return  query.list();
     }
 
+    public List<EncuestaCasa> getEncuestasCasaByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from EncuestaCasa ec where ec.pasive = false and ec.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return  query.list();
+    }
+
     public void saveOrUpdate(EncuestaCasa encuestaCasa){
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(encuestaCasa);

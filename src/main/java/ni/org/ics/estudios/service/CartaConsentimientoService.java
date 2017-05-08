@@ -36,6 +36,14 @@ public class CartaConsentimientoService {
         return (CartaConsentimiento)query.uniqueResult();
     }
 
+    public List<CartaConsentimiento> getCartasConsentimientoByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from CartaConsentimiento cc where cc.pasive = false and cc.estudio.codigo in ( select estudio.codigo from UserStudy where usuario.username = :username) ");
+        query.setParameter("username", username);
+        return query.list();
+    }
+
     public void saveOrUpdateCartaConsentimiento(CartaConsentimiento cartaConsentimiento)
     {
         Session session = sessionFactory.getCurrentSession();

@@ -28,6 +28,15 @@ public class PreTamizajeService {
         return query.list();
     }
 
+    public List<PreTamizaje> getPreTamizajesByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select pt from PreTamizaje pt where pt.pasive = false" +
+                " and pt.estudio.codigo in (select us.estudio.codigo from UserStudy us where us.usuario.username = :username) ");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
     public PreTamizaje getPreTamizajeByCodigo(String codigo)
     {
         Session session = sessionFactory.getCurrentSession();

@@ -28,7 +28,7 @@ public class CasaService {
         return query.list();
     }
 
-    private Casa getCasaByCodigo(Integer codigo)
+    public Casa getCasaByCodigo(Integer codigo)
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Casa where codigo = :codigo");
@@ -36,7 +36,16 @@ public class CasaService {
         return (Casa)query.uniqueResult();
     }
 
-    private void saveOrUpdateCasa(Casa casa)
+    public List<Casa> getCasasByUser(String username)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from Casa c where c.pasive = false and c.codigo in (select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                "  select us.estudio.codigo  from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
+    public void saveOrUpdateCasa(Casa casa)
     {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(casa);

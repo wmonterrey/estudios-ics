@@ -27,6 +27,15 @@ public class EncuestaVacunaService {
         return query.list();
     }
 
+    public List<EncuestaVacuna> getEncuestasVacunaByUser(String username){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from EncuestaVacuna ec where ec.pasive = false and ec.participante.casa.codigo in (" +
+                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+                " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
+        query.setParameter("username",username);
+        return query.list();
+    }
+
     public EncuestaVacuna getEncuestaVacunaByCodigo(Integer codigo){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from EncuestaVacuna where participante.codigo = :codigo");
