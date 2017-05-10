@@ -86,7 +86,7 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     private char madreFuma;
     private char padreFuma;
     private char otrosFuman;
-    private char cantidadOtrosFuman;
+    private Integer cantidadOtrosFuman;
     private Integer cantidadCigarrilosMadre; // diarios
     private Integer cantidadCigarrillosPadre; // diarios
     private Integer cantidadCigarrillosOtros; // diarios
@@ -724,12 +724,12 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
         this.otrosFuman = otrosFuman;
     }
 
-    @Column(name = "CANT_OTROS_FUMAN", length = 1)
-    public char getCantidadOtrosFuman() {
+    @Column(name = "CANT_OTROS_FUMAN", length = 3)
+    public Integer getCantidadOtrosFuman() {
         return cantidadOtrosFuman;
     }
 
-    public void setCantidadOtrosFuman(char cantidadOtrosFuman) {
+    public void setCantidadOtrosFuman(Integer cantidadOtrosFuman) {
         this.cantidadOtrosFuman = cantidadOtrosFuman;
     }
 
