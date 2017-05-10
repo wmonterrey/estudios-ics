@@ -2,6 +2,7 @@ package ni.org.ics.estudios.domain.encuestas;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Casa;
+import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE", length = 50, discriminatorType=DiscriminatorType.STRING)
 @DiscriminatorValue(value="area_ambiente")
-public class AreaAmbiente extends BaseMetaData {
+public class AreaAmbiente extends BaseMetaData implements Auditable {
 
     private String codigo;
     private Double largo;
@@ -79,5 +80,31 @@ public class AreaAmbiente extends BaseMetaData {
 
     public void setCasa(Casa casa) {
         this.casa = casa;
+    }
+
+    @Override
+    public boolean isFieldAuditable(String fieldname) {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "AreaAmbiente{" + codigo + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof AreaAmbiente)) return false;
+
+        AreaAmbiente that = (AreaAmbiente) o;
+
+        return (!codigo.equals(that.codigo));
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo.hashCode();
     }
 }

@@ -1,7 +1,6 @@
 package ni.org.ics.estudios.domain;
 
 import ni.org.ics.estudios.domain.audit.Auditable;
-import ni.org.ics.estudios.domain.catalogs.Operadora;
 
 import javax.persistence.*;
 
@@ -13,8 +12,8 @@ import org.hibernate.annotations.ForeignKey;
  * V1.0
  */
 @Entity
-@Table(name = "telefonos", catalog = "estudios_ics")
-public class Telefono extends BaseMetaData implements Auditable {
+@Table(name = "telefonos_contacto", catalog = "estudios_ics")
+public class TelefonoContacto extends BaseMetaData implements Auditable {
 
     /**
 	 * 
@@ -22,7 +21,7 @@ public class Telefono extends BaseMetaData implements Auditable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;
     private String numero;
-    private Operadora operadora;
+    private String operadora;
     private Casa casa;
     private Participante participante;
 
@@ -68,14 +67,12 @@ public class Telefono extends BaseMetaData implements Auditable {
         this.participante = participante;
     }
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name="CODIGO_OPERADORA", nullable = true)
-    @ForeignKey(name = "FK_OPERADORA_TELEFONO")
-    public Operadora getOperadora() {
+    @Column(name="CODIGO_OPERADORA", nullable = true, length = 50)
+    public String getOperadora() {
         return operadora;
     }
 
-    public void setOperadora(Operadora operadora) {
+    public void setOperadora(String operadora) {
         this.operadora = operadora;
     }
 
@@ -92,11 +89,11 @@ public class Telefono extends BaseMetaData implements Auditable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Telefono)) return false;
+        if (!(o instanceof TelefonoContacto)) return false;
 
-        Telefono telefono = (Telefono) o;
+        TelefonoContacto telefonoContacto = (TelefonoContacto) o;
 
-        return  (!id.equals(telefono.id));
+        return  (!id.equals(telefonoContacto.id));
     }
 
     @Override

@@ -2,7 +2,6 @@ package ni.org.ics.estudios.domain;
 
 import ni.org.ics.estudios.domain.audit.Auditable;
 import ni.org.ics.estudios.domain.catalogs.Estudio;
-import ni.org.ics.estudios.domain.catalogs.RelacionFamiliar;
 
 import javax.persistence.*;
 
@@ -35,7 +34,7 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     private String nombre2Tutor;
     private String apellido1Tutor;
     private String apellido2Tutor;
-    private RelacionFamiliar relacionFamiliarTutor;
+    private String relacionFamiliarTutor;
     private char participanteOTutorAlfabeto;
     private char testigoPresente;
     private String nombre1Testigo;
@@ -271,14 +270,12 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "CODIGO_RELACFAM", nullable = true)
-    @ForeignKey(name = "FK_RELACION_FAM_TUTOR_CARTACON")
-    public RelacionFamiliar getRelacionFamiliarTutor() {
+    @Column(name = "RELACION_FAMILIAR", nullable = true, length = 50)
+    public String getRelacionFamiliarTutor() {
         return relacionFamiliarTutor;
     }
 
-    public void setRelacionFamiliarTutor(RelacionFamiliar relacionFamiliar) {
+    public void setRelacionFamiliarTutor(String relacionFamiliar) {
         this.relacionFamiliarTutor = relacionFamiliar;
     }
 

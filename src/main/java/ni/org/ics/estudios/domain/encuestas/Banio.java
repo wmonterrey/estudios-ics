@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.domain.encuestas;
 
+import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;

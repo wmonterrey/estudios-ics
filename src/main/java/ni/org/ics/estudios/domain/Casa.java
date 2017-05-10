@@ -28,6 +28,7 @@ public class Casa extends BaseMetaData implements Auditable {
 	private Integer codigo;
 	private Barrio barrio;
 	private String direccion;
+    private String manzana;
 	private Double latitud;
 	private Double longitud;
     private String nombre1JefeFamilia;
@@ -106,6 +107,15 @@ public class Casa extends BaseMetaData implements Auditable {
 
     public void setApellido2JefeFamilia(String apellido2JefeFamilia) {
         this.apellido2JefeFamilia = apellido2JefeFamilia;
+    }
+
+    @Column(name = "MANZANA", nullable = false, length = 4)
+    public String getManzana() {
+        return manzana;
+    }
+
+    public void setManzana(String manzana) {
+        this.manzana = manzana;
     }
 
     @ManyToOne

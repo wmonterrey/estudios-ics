@@ -1,6 +1,8 @@
 package ni.org.ics.estudios.domain.encuestas;
 
+import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Participante;
+import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -11,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "persona_cama", catalog = "estudios_ics")
-public class PersonaCama {
+public class PersonaCama extends BaseMetaData implements Auditable {
 
     private String codigoPersona;
     private char estaEnEstudio; //0 No, 1 Si
@@ -77,5 +79,31 @@ public class PersonaCama {
 
     public void setCama(Cama cama) {
         this.cama = cama;
+    }
+
+    @Override
+    public boolean isFieldAuditable(String fieldname) {
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonaCama{" + codigoPersona + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PersonaCama)) return false;
+
+        PersonaCama that = (PersonaCama) o;
+
+        return  (!codigoPersona.equals(that.codigoPersona));
+    }
+
+    @Override
+    public int hashCode() {
+        return codigoPersona.hashCode();
     }
 }

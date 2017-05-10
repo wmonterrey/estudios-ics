@@ -1,7 +1,6 @@
 package ni.org.ics.estudios.domain;
 
 import ni.org.ics.estudios.domain.audit.Auditable;
-import ni.org.ics.estudios.domain.catalogs.RazonNoParticipa;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
@@ -23,7 +22,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 	private String codigo;
     private Participante participante;
     private char aceptaTamizaje;
-    private RazonNoParticipa razonNoParticipa;
+    private String razonNoParticipa;
     private char areaCovertura;
     private char ninoMenor12Anios;
     private char intencionPermanecerArea;
@@ -71,14 +70,12 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.aceptaTamizaje = aceptaTamizaje;
     }
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name="RAZON_NO_PARTICIPA", nullable = true)
-    @ForeignKey(name = "FK_RAZON_NO_PARTICIPA_TAMIZAJE")
-    public RazonNoParticipa getRazonNoParticipa() {
+    @Column(name="RAZON_NO_PARTICIPA", nullable = true, length = 50)
+    public String getRazonNoParticipa() {
         return razonNoParticipa;
     }
 
-    public void setRazonNoParticipa(RazonNoParticipa razonNoParticipa) {
+    public void setRazonNoParticipa(String razonNoParticipa) {
         this.razonNoParticipa = razonNoParticipa;
     }
 
