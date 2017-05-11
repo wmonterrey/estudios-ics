@@ -37,7 +37,7 @@ public class CasaController {
 
     @RequestMapping(value = "casas", method = RequestMethod.POST, consumes = "application/json")
     public @ResponseBody String saveCasas(@RequestBody Casa[] objetos){
-        logger.debug("Insertando/Actualizando cartas de casas");
+        logger.debug("Insertando/Actualizando casas");
         if (objetos == null){
             logger.debug("Nulo");
             return "No recibi nada!";
