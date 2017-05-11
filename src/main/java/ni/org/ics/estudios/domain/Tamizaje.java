@@ -7,6 +7,7 @@ import org.hibernate.annotations.*;
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * Created by FIRSTICT on 4/28/2017.
@@ -22,6 +23,8 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 	private static final long serialVersionUID = 1L;
 	private String codigo;
     private Estudio estudio;
+    private String sexo;
+    private Date fechaNacimiento;
     private char aceptaTamizaje;
     private String razonNoParticipa;
     private char areaCobertura;
@@ -61,6 +64,23 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.estudio = estudio;
     }
 
+    @Column(name = "SEXO", length = 50)
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    @Column(name = "FECHA_NACIMIENTO", nullable = false)
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
 
     @Column(name="ACEPTA_TAMIZAJE", nullable = false, length = 1)
     public char getAceptaTamizaje() {
