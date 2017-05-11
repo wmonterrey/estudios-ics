@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.domain;
 
 import ni.org.ics.estudios.domain.audit.Auditable;
+import ni.org.ics.estudios.domain.catalogs.Estudio;
 import org.hibernate.annotations.*;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String codigo;
-    private Participante participante;
+    private Estudio estudio;
     private char aceptaTamizaje;
     private String razonNoParticipa;
     private char areaCovertura;
@@ -29,7 +30,6 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private char tieneTarjetaVacunaOIdentificacion;
     private char enfermedadAgudaCronica;
     private char elegible;
-    private char aceptaSeroprevalenciaZik;
     private String dondeAsisteProblemasSalud;
     private char asisteCSSF;
     private String otroCentroSalud;
@@ -51,15 +51,16 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     }
 
     @ManyToOne
-    @JoinColumn(name="CODIGO_PARTICIPANTE", nullable = false)
-    @ForeignKey(name = "FK_PARTICIPANTE_TAMIZAJE")
-    public Participante getParticipante() {
-        return participante;
+    @JoinColumn(name = "CODIGO_ESTUDIO", nullable = false)
+    @ForeignKey(name = "FK_ESTUDIO_TAMIZAJE")
+    public Estudio getEstudio() {
+        return estudio;
     }
 
-    public void setParticipante(Participante participante) {
-        this.participante = participante;
+    public void setEstudio(Estudio estudio) {
+        this.estudio = estudio;
     }
+
 
     @Column(name="ACEPTA_TAMIZAJE", nullable = false, length = 1)
     public char getAceptaTamizaje() {
@@ -131,15 +132,6 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setElegible(char elegible) {
         this.elegible = elegible;
-    }
-
-    @Column(name="ACEPTA_ESTUDIO_SEROPREVALENCIA_ZIK", nullable = false, length = 1)
-    public char getAceptaSeroprevalenciaZik() {
-        return aceptaSeroprevalenciaZik;
-    }
-
-    public void setAceptaSeroprevalenciaZik(char aceptaSeroprevalenciaZik) {
-        this.aceptaSeroprevalenciaZik = aceptaSeroprevalenciaZik;
     }
 
     @Column(name="DONDE_ASISTE_PROBLEMAS_SALUD", nullable = true)
