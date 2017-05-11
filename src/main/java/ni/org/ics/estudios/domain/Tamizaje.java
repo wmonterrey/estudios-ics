@@ -24,7 +24,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private Estudio estudio;
     private char aceptaTamizaje;
     private String razonNoParticipa;
-    private char areaCovertura;
+    private char areaCobertura;
     private char ninoMenor12Anios;
     private char intencionPermanecerArea;
     private char tieneTarjetaVacunaOIdentificacion;
@@ -80,13 +80,13 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.razonNoParticipa = razonNoParticipa;
     }
 
-    @Column(name="EN_AREA_COVERTURA", nullable = false, length = 1)
-    public char getAreaCovertura() {
-        return areaCovertura;
+    @Column(name="EN_AREA_COBERTURA", nullable = false, length = 1)
+    public char getAreaCobertura() {
+        return areaCobertura;
     }
 
-    public void setAreaCovertura(char areaCovertura) {
-        this.areaCovertura = areaCovertura;
+    public void setAreaCobertura(char areaCobertura) {
+        this.areaCobertura = areaCobertura;
     }
 
     @Column(name="VIVE_NINO_MENOS_12ANIOS", nullable = false, length = 1)
