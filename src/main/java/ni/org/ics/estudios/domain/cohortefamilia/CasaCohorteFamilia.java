@@ -3,6 +3,7 @@ package ni.org.ics.estudios.domain.cohortefamilia;
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Casa;
 import ni.org.ics.estudios.domain.audit.Auditable;
+import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
 
@@ -33,6 +34,7 @@ public class CasaCohorteFamilia extends BaseMetaData implements Auditable {
 
     @ManyToOne
     @JoinColumn(name = "CODIGO_CASA", nullable = false)
+    @ForeignKey(name = "FK_CASA_CHF")
     public Casa getCasa() {
         return casa;
     }
