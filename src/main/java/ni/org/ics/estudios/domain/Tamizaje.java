@@ -26,12 +26,9 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String sexo;
     private Date fechaNacimiento;
     private char aceptaTamizaje;
-    private String razonNoParticipa;
-    private char areaCobertura;
-    private char ninoMenor12Anios;
-    private char intencionPermanecerArea;
-    private char tieneTarjetaVacunaOIdentificacion;
-    private char enfermedadAgudaCronica;
+    private String razonNoAceptaTamizaje;
+    private String criteriosInclusion;
+    private String tienePadecimiento;
     private char elegible;
     private String dondeAsisteProblemasSalud;
     private char asisteCSSF;
@@ -91,61 +88,26 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.aceptaTamizaje = aceptaTamizaje;
     }
 
-    @Column(name="RAZON_NO_PARTICIPA", nullable = true, length = 50)
-    public String getRazonNoParticipa() {
-        return razonNoParticipa;
+    @Column(name="RAZON_NO_ACEPTA_TAMIZAJE", nullable = true, length = 50)
+    public String getRazonNoAceptaTamizaje() {
+        return razonNoAceptaTamizaje;
     }
 
-    public void setRazonNoParticipa(String razonNoParticipa) {
-        this.razonNoParticipa = razonNoParticipa;
+    public void setRazonNoAceptaTamizaje(String razonNoAceptaTamizaje) {
+        this.razonNoAceptaTamizaje = razonNoAceptaTamizaje;
     }
 
-    @Column(name="EN_AREA_COBERTURA", nullable = false, length = 1)
-    public char getAreaCobertura() {
-        return areaCobertura;
-    }
+    
+    @Column(name="CRITERIOS_INCLUSION", nullable = true, length = 50)
+    public String getCriteriosInclusion() {
+		return criteriosInclusion;
+	}
 
-    public void setAreaCobertura(char areaCobertura) {
-        this.areaCobertura = areaCobertura;
-    }
+	public void setCriteriosInclusion(String criteriosInclusion) {
+		this.criteriosInclusion = criteriosInclusion;
+	}
 
-    @Column(name="VIVE_NINO_MENOS_12ANIOS", nullable = false, length = 1)
-    public char getNinoMenor12Anios() {
-        return ninoMenor12Anios;
-    }
-
-    public void setNinoMenor12Anios(char ninoMenor12Anios) {
-        this.ninoMenor12Anios = ninoMenor12Anios;
-    }
-
-    @Column(name="INTENCION_PERMANECER_AREA", nullable = false, length = 1)
-    public char getIntencionPermanecerArea() {
-        return intencionPermanecerArea;
-    }
-
-    public void setIntencionPermanecerArea(char intencionPermanecerArea) {
-        this.intencionPermanecerArea = intencionPermanecerArea;
-    }
-
-    @Column(name="TIENE_TARJETA_O_IDENTIFICACION", nullable = false, length = 1)
-    public char getTieneTarjetaVacunaOIdentificacion() {
-        return tieneTarjetaVacunaOIdentificacion;
-    }
-
-    public void setTieneTarjetaVacunaOIdentificacion(char tieneTarjetaVacunaOIdentificacion) {
-        this.tieneTarjetaVacunaOIdentificacion = tieneTarjetaVacunaOIdentificacion;
-    }
-
-    @Column(name="TIENE_ENFERMEDAD_AGUDACRONICA", nullable = false, length = 1)
-    public char getEnfermedadAgudaCronica() {
-        return enfermedadAgudaCronica;
-    }
-
-    public void setEnfermedadAgudaCronica(char enfermedadAgudaCronica) {
-        this.enfermedadAgudaCronica = enfermedadAgudaCronica;
-    }
-
-    @Column(name="ELEGIBLE", nullable = false, length = 1)
+	@Column(name="ELEGIBLE", nullable = false, length = 1)
     public char getElegible() {
         return elegible;
     }

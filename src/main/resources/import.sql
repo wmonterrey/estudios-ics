@@ -32,3 +32,15 @@ INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUE
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'logout', 'Salir','0','0',0);
 
 
+/*Catalogos*/
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_SINO', NULL, NULL, NULL, '1', 0, '0', 'Catalogo Si No CHF');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_SINO_SI', 'S', 'CHF_CAT_SINO', NULL, '0', 1, '0', 'Si');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_SINO_NO', 'N', 'CHF_CAT_SINO', NULL, '0', 2, '0', 'Si');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_SEXO', NULL, NULL, NULL, '1', 0, '0', 'Catalogo Sexo CHF');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_SEXO_M', 'M', 'CHF_CAT_SEXO', NULL, '0', 1, '0', 'Masculino');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_SEXO_F', 'F', 'CHF_CAT_SEXO', NULL, '0', 2, '0', 'Femenino');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP', NULL, NULL, NULL, '1', 0, '0', 'Catalogo no participa CHF');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_01', '1', 'CHF_CAT_NP', NULL, '0', 1, '0', 'No desea participar en el estudio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_02', '2', 'CHF_CAT_NP', NULL, '0', 1, '0', 'Cambiara de Domicilio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_03', '3', 'CHF_CAT_NP', NULL, '0', 1, '0', 'No se ubica el domicilio');            
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_04', '4', 'CHF_CAT_NP', NULL, '0', 1, '0', 'Tiene seguro médico');

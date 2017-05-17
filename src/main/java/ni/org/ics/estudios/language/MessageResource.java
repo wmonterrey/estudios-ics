@@ -12,7 +12,7 @@ import ni.org.ics.estudios.domain.audit.Auditable;
 
 
 @Entity
-@Table(name = "mensajes", catalog = "estudios_ics", uniqueConstraints = @UniqueConstraint(columnNames = "catKey"))
+@Table(name = "mensajes", catalog = "estudios_ics", uniqueConstraints={@UniqueConstraint(columnNames = {"catRoot" , "catKey"})})
 public class MessageResource implements Serializable, Auditable{
 
 	/**

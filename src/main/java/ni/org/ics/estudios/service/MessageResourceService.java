@@ -78,6 +78,17 @@ public class MessageResourceService {
 		return  query.list();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<MessageResource> getCatalogos() {
+		// Retrieve session from Hibernate
+		Session session = sessionFactory.getCurrentSession();
+		// Create a Hibernate query (HQL)
+		Query query = session.createQuery("FROM MessageResource mens where (mens.isCat ='1'" +
+				" or mens.catKey is not null) and mens.pasive = '0' order by mens.order");
+		// Retrieve all
+		return  query.list();
+	}
+	
 	
 	public MessageResource getMensaje(String idMensaje) {
 		// Retrieve session from Hibernate
