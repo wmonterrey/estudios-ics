@@ -6,10 +6,7 @@ import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -18,6 +15,8 @@ import java.io.Serializable;
  * @author William Aviles
  **/
 
+@Entity
+@Table(name = "chf_participante_cohorte_familia", catalog = "estudios_ics")
 public class ParticipanteCohorteFamilia extends BaseMetaData implements Auditable, Serializable {
 
 	/**

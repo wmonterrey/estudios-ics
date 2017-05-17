@@ -92,7 +92,7 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     private Integer cantidadCigarrillosOtros; // diarios
 
     @Id
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "CODIGO_CASACHF", nullable = false)
     @ForeignKey(name = "FK_CASA_ENCUESTACASA")
     public CasaCohorteFamilia getCasa() {

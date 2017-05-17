@@ -47,7 +47,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 	private Integer otrorecurso2;
 
     @Id
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "CODIDO_PARTICIPANTE")
     @ForeignKey(name = "FK_PARTICIPANTE_DATOSPARTOBB")
     public Participante getParticipante() {
