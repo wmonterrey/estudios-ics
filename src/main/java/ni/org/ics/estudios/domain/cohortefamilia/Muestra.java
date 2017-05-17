@@ -13,7 +13,7 @@ import java.io.Serializable;
  * V1.0
  */
 @Entity
-@Table(name = "muestras", catalog = "estudios_ics")
+@Table(name = "chf_muestras", catalog = "estudios_ics")
 public class Muestra extends BaseMetaData implements Auditable, Serializable {
 
     private static final long serialVersionUID = 1L;
