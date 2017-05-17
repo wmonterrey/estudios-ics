@@ -21,6 +21,7 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
     private String codigo;
     private String codigoMx;
     private String hora;
+    private String horaFin;
     private Double volumen;
     private String observacion;
     private String descOtraObservacion;
@@ -59,6 +60,15 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    @Column(name = "HORA_FIN", length = 20, nullable = false)
+    public String getHoraFin() {
+        return horaFin;
+    }
+
+    public void setHoraFin(String horaFin) {
+        this.horaFin = horaFin;
     }
 
     @Column(name = "VOLUMEN", nullable = false)
