@@ -89,11 +89,49 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NV_998', '998', 'CHF_CAT_NV', NULL, '0', 5, '0', 'Otro');
 
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT', NULL, NULL, NULL, '1', 0, '0', 'Catalogo no participa CHF');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_01', '1', 'CHF_CAT_NPT', NULL, '0', 1, '0', 'No desea que su casa participe en el estudio');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_02', '2', 'CHF_CAT_NPT', NULL, '0', 2, '0', 'Cambiará de Domicilio');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_03', '3', 'CHF_CAT_NPT', NULL, '0', 3, '0', 'No desean que sus niños sean muestreados');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_04', '4', 'CHF_CAT_NPT', NULL, '0', 4, '0', 'No considera que tiene beneficios en el estudio');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NP_998', '998', 'CHF_CAT_NPT', NULL, '0', 5, '0', 'Otro');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT_01', '1', 'CHF_CAT_NPT', NULL, '0', 1, '0', 'No desea que su casa participe en el estudio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT_02', '2', 'CHF_CAT_NPT', NULL, '0', 2, '0', 'Cambiará de Domicilio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT_03', '3', 'CHF_CAT_NPT', NULL, '0', 3, '0', 'No desean que sus niños sean muestreados');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT_04', '4', 'CHF_CAT_NPT', NULL, '0', 4, '0', 'No considera que tiene beneficios en el estudio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT_998', '998', 'CHF_CAT_NPT', NULL, '0', 5, '0', 'Otro');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPP', NULL, NULL, NULL, '1', 0, '0', 'Catalogo no acepta tamizaje persona');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPP_01', '1', 'CHF_CAT_NPP', NULL, '0', 1, '0', 'No desea participar en el estudio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPP_02', '2', 'CHF_CAT_NPP', NULL, '0', 2, '0', 'Cambiará de Domicilio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPP_03', '3', 'CHF_CAT_NPP', NULL, '0', 3, '0', 'Tiene seguro médico');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPP_04', '4', 'CHF_CAT_NPP', NULL, '0', 4, '0', 'No considera que tiene beneficios en el estudio');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPT_05', '5', 'CHF_CAT_NPP', NULL, '0', 5, '0', 'No desean que sus niños sean muestreados');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_NPP_998', '998', 'CHF_CAT_NPP', NULL, '0', 6, '0', 'Otro');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CI', NULL, NULL, NULL, '1', 0, '0', 'Catalogo criterios de inclusion');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CI_01', '1', 'CHF_CAT_CI', NULL, '0', 1, '0', '1) Vivir en área de cobertura del CSSFV.');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CI_02', '2', 'CHF_CAT_CI', NULL, '0', 2, '0', '2) Vivir en un hogar con al menos 1 niño/a menor de 12 años.');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CI_03', '3', 'CHF_CAT_CI', NULL, '0', 3, '0', '3) Tener la intención de permanecer en el área durante el estudio.');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CI_04', '4', 'CHF_CAT_CI', NULL, '0', 4, '0', '4) Tener una tarjeta de vacunación (niños/as) o un documento de identificación (adultos) para confirmar la edad y la residencia');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE', NULL, NULL, NULL, '1', 0, '0', 'Catalogo no acepta tamizaje persona');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_01', '1', 'CHF_CAT_DONDEASISTE', NULL, '0', 1, '0', 'Centro de Salud Sócrates Flores');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_02', '2', 'CHF_CAT_DONDEASISTE', NULL, '0', 2, '0', 'Otro centro de salud');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_03', '3', 'CHF_CAT_DONDEASISTE', NULL, '0', 3, '0', 'Puesto de Salud');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_04', '4', 'CHF_CAT_DONDEASISTE', NULL, '0', 4, '0', 'Hospital Público');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_05', '5', 'CHF_CAT_DONDEASISTE', NULL, '0', 5, '0', 'Médico Privado');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_06', '6', 'CHF_CAT_DONDEASISTE', NULL, '0', 6, '0', 'Seguro Social');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_07', '7', 'CHF_CAT_DONDEASISTE', NULL, '0', 7, '0', 'Curandero');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_08', '8', 'CHF_CAT_DONDEASISTE', NULL, '0', 8, '0', 'Farmacia');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_DONDEASISTE_998', '998', 'CHF_CAT_DONDEASISTE', NULL, '0', 9, '0', 'Otro');
+
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PUESTO', NULL, NULL, NULL, '1', 0, '0', 'Catalogo puesto de salud');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PUESTO_01', '1', 'CHF_CAT_PUESTO', NULL, '0', 1, '0', 'P/S Cristo del Rosario');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PUESTO_02', '2', 'CHF_CAT_PUESTO', NULL, '0', 2, '0', 'P/S San Sebastian');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR', NULL, NULL, NULL, '1', 0, '0', 'Catalogo relacion familiar tutor');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR_01', '1', 'CHF_CAT_RFTUTOR', NULL, '0', 1, '0', 'Madre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR_02', '2', 'CHF_CAT_RFTUTOR', NULL, '0', 2, '0', 'Padre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR_03', '3', 'CHF_CAT_RFTUTOR', NULL, '0', 3, '0', 'Abuelo (a)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR_04', '4', 'CHF_CAT_RFTUTOR', NULL, '0', 4, '0', 'Tío (a)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR_05', '5', 'CHF_CAT_RFTUTOR', NULL, '0', 5, '0', 'Hermano (a)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RFTUTOR_998', '998', 'CHF_CAT_RFTUTOR', NULL, '0', 6, '0', 'Otra relación familiar');
 
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_PARTO', NULL, NULL, NULL, '1', 0, '0', 'Catalogo tipos de parto CHF');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_PARTO_01', '1', 'CHF_CAT_TIPO_PARTO', NULL, '0', 1, '0', 'Vaginal / Natural');
