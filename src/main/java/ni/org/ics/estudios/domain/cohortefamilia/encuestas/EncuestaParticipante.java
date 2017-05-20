@@ -1,8 +1,8 @@
 package ni.org.ics.estudios.domain.cohortefamilia.encuestas;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
-import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.audit.Auditable;
+import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -16,11 +16,11 @@ import javax.persistence.*;
 @Table(name = "chf_encuestas_participante", catalog = "estudios_ics")
 public class EncuestaParticipante extends BaseMetaData implements Auditable {
 
-    private Participante participante;
+    private ParticipanteCohorteFamilia participante;
     //Adulto   (Mayores o igual a 18 años; Mujeres menores de 18 años con niños o embarazadas)
-    private char emancipado;
-    private String motivoEmacipacion;
-    private String otroMotivoEmancipacion;
+    //private char emancipado;
+    //private String motivoEmacipacion;
+    //private String otroMotivoEmancipacion;
     private char estaEmbarazada;
     private Integer semanasEmbarazo;
     private char esAlfabeto;
@@ -41,13 +41,13 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     private String conQuienViveNino;
     private String descOtroViveNino;
     private char padreEnEstudio;
-    private Integer codigoPadreEstudio;
+    private String codigoPadreEstudio;
     private char padreAlfabeto;
     private String nivelEducacionPadre;
     private char trabajaPadre;
     private String tipoTrabajoPadre;
     private char madreEnEstudio;
-    private Integer codigoMadreEstudio;
+    private String codigoMadreEstudio;
     private char madreAlfabeto;
     private String nivelEducacionMadre;
     private char trabajaMadre;
@@ -64,6 +64,7 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     private char completoTratamientoTubPulActual;
     private char tuberculosisPulmonarPasado;
     private String fechaDiagnosticoTubPulPasado;
+    private char fechaDiagnosticoTubPulPasadoDes;//fecha de diagnóstico desconocida
     private char tomaTratamientoTubPulPasado;
     private char completoTratamientoTubPulPasado;
     private char alergiaRespiratoria;
@@ -72,7 +73,7 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     private char diabetes;
     private char presionAlta;
     private char asma;
-    private char silvidoRespirarPechoApretado;
+    private char silbidoRespirarPechoApretado;
     private char tosSinFiebreResfriado;
     private char usaInhaladoresSpray;
     private char crisisAsma;
@@ -82,44 +83,20 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     private String descOtrasEnfermedades;
     private char vacunaInfluenza;
     private Integer anioVacunaInfluenza;
+    private String recurso1;
+    private String otrorecurso1;
+
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTE")
-    @ForeignKey(name = "FK_PARTICIPANTE_ENCUESTAPARTICIPANTE")
-    public Participante getParticipante() {
+    @JoinColumn(name = "CODIDO_PARTICIPANTECHF")
+    @ForeignKey(name = "FK_PARTICIPANTECHF_ENCUESTAPARTICIPANTE")
+    public ParticipanteCohorteFamilia getParticipante() {
         return participante;
     }
 
-    public void setParticipante(Participante participante) {
+    public void setParticipante(ParticipanteCohorteFamilia participante) {
         this.participante = participante;
-    }
-
-    @Column(name = "ENMANCIPADO", length = 1)
-    public char getEmancipado() {
-        return emancipado;
-    }
-
-    public void setEmancipado(char enmancipado) {
-        this.emancipado = enmancipado;
-    }
-
-    @Column(name = "MOTIVO_ENMANCIPADO")
-    public String getMotivoEmacipacion() {
-        return motivoEmacipacion;
-    }
-
-    public void setMotivoEmacipacion(String motivoEnmacipacion) {
-        this.motivoEmacipacion = motivoEnmacipacion;
-    }
-
-    @Column(name = "OTRO_MOTIVO_ENMANCIPADO")
-    public String getOtroMotivoEmancipacion() {
-        return otroMotivoEmancipacion;
-    }
-
-    public void setOtroMotivoEmancipacion(String otroMotivoEmancipacion) {
-        this.otroMotivoEmancipacion = otroMotivoEmancipacion;
     }
 
     @Column(name = "ENBARAZADA", length = 1)
@@ -284,12 +261,12 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.padreEnEstudio = padreEnEstudio;
     }
 
-    @Column(name = "CODIGO_PADRE_ESTUDIO", length = 6)
-    public Integer getCodigoPadreEstudio() {
+    @Column(name = "CODIGO_PADRE_ESTUDIO", length = 50, nullable = true)
+    public String getCodigoPadreEstudio() {
         return codigoPadreEstudio;
     }
 
-    public void setCodigoPadreEstudio(Integer codigoPadreEstudio) {
+    public void setCodigoPadreEstudio(String codigoPadreEstudio) {
         this.codigoPadreEstudio = codigoPadreEstudio;
     }
 
@@ -338,12 +315,12 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.madreEnEstudio = madreEnEstudio;
     }
 
-    @Column(name = "CODIGO_MADRE_ESTUDIO", length = 6)
-    public Integer getCodigoMadreEstudio() {
+    @Column(name = "CODIGO_MADRE_ESTUDIO", length = 50, nullable = true)
+    public String getCodigoMadreEstudio() {
         return codigoMadreEstudio;
     }
 
-    public void setCodigoMadreEstudio(Integer codigoMadreEstudio) {
+    public void setCodigoMadreEstudio(String codigoMadreEstudio) {
         this.codigoMadreEstudio = codigoMadreEstudio;
     }
 
@@ -473,6 +450,15 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.fechaDiagnosticoTubPulPasado = fechaDiagnosticoTPPasado;
     }
 
+    @Column(name = "FECHA_DIAG_TUBPUL_PASADO_DES", length = 1, nullable = true)
+    public char getFechaDiagnosticoTubPulPasadoDes() {
+        return fechaDiagnosticoTubPulPasadoDes;
+    }
+
+    public void setFechaDiagnosticoTubPulPasadoDes(char fechaDiagnosticoTubPulPasadoDes) {
+        this.fechaDiagnosticoTubPulPasadoDes = fechaDiagnosticoTubPulPasadoDes;
+    }
+
     @Column(name = "TRATAMIENTO_TUBBUL_PASADO", length = 1)
     public char getTomaTratamientoTubPulPasado() {
         return tomaTratamientoTubPulPasado;
@@ -545,13 +531,13 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.asma = asma;
     }
 
-    @Column(name = "SILVIDO_RESPIRAR_PECHO_APRETADO", length = 1)
-    public char getSilvidoRespirarPechoApretado() {
-        return silvidoRespirarPechoApretado;
+    @Column(name = "SILBIDO_RESPIRAR_PECHO_APRETADO", length = 1)
+    public char getSilbidoRespirarPechoApretado() {
+        return silbidoRespirarPechoApretado;
     }
 
-    public void setSilvidoRespirarPechoApretado(char silvidoRespirarPechoApretado) {
-        this.silvidoRespirarPechoApretado = silvidoRespirarPechoApretado;
+    public void setSilbidoRespirarPechoApretado(char silbidoRespirarPechoApretado) {
+        this.silbidoRespirarPechoApretado = silbidoRespirarPechoApretado;
     }
 
     @Column(name = "TOS_SIN_FIEBRE_RESFRIADO", length = 1)
@@ -635,6 +621,24 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.anioVacunaInfluenza = anioVacunaInfluenza;
     }
 
+    @Column(name = "RECURSO1", nullable = true, length = 10)
+    public String getRecurso1() {
+        return recurso1;
+    }
+
+    public void setRecurso1(String recurso1) {
+        this.recurso1 = recurso1;
+    }
+
+    @Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
+    public String getOtrorecurso1() {
+        return otrorecurso1;
+    }
+
+    public void setOtrorecurso1(String otrorecurso1) {
+        this.otrorecurso1 = otrorecurso1;
+    }
+
     @Override
     public boolean isFieldAuditable(String fieldname) {
         return true;
@@ -642,7 +646,7 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "EncuestaParticipante{" + participante.getCodigo() +
+        return "EncuestaParticipante{" + participante.getParticipanteCHF() +
                 '}';
     }
 

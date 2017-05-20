@@ -2,7 +2,6 @@ package ni.org.ics.estudios.domain.cohortefamilia;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.audit.Auditable;
-import org.hibernate.annotations.Entity;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -19,6 +18,7 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
     private static final long serialVersionUID = 1L;
 
     private String codigo;
+    private String tomaMxSn;
     private String codigoMx;
     private String hora;
     private String horaFin;
@@ -42,6 +42,15 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    @Column(name = "TOMAMX_SN", length = 1, nullable = false)
+    public String getTomaMxSn() {
+        return tomaMxSn;
+    }
+
+    public void setTomaMxSn(String tomaMxSn) {
+        this.tomaMxSn = tomaMxSn;
     }
 
     @Column(name = "CODIGO_MX", length = 50, nullable = false)

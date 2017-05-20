@@ -3,6 +3,7 @@ package ni.org.ics.estudios.domain.cohortefamilia.encuestas;
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.audit.Auditable;
+import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -22,7 +23,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 	/**
 	 * 
 	 */
-    private Participante participante;
+    private ParticipanteCohorteFamilia participante;
 	private String tipoParto;
 	private String tiempoEmb_sndr;
 	private Integer tiempoEmbSemana;
@@ -39,22 +40,22 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 	private String OtroDocMedEdadGest;
 	private String prematuro_sndr;
 	private String pesoBB_sndr;
-	private String pesoBB;
+	private Integer pesoBB;
 	private String docMedPesoBB_sn;
 	private String docMedPesoBB;
 	private String otroDocMedPesoBB;
-	private Integer otrorecurso1;
-	private Integer otrorecurso2;
+	private String recurso1;
+	private String otrorecurso1;
 
     @Id
     @OneToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTE")
-    @ForeignKey(name = "FK_PARTICIPANTE_DATOSPARTOBB")
-    public Participante getParticipante() {
+    @JoinColumn(name = "CODIDO_PARTICIPANTECHF")
+    @ForeignKey(name = "FK_PARTICIPANTECHF_DATOSPARTOBB")
+    public ParticipanteCohorteFamilia getParticipante() {
         return participante;
     }
 
-    public void setParticipante(Participante participante) {
+    public void setParticipante(ParticipanteCohorteFamilia participante) {
         this.participante = participante;
     }
 
@@ -185,11 +186,11 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 	}
 
 	@Column(name = "PESO_BB", nullable = true, length = 5)
-	public String getPesoBB() {
+	public Integer getPesoBB() {
 		return pesoBB;
 	}
 
-	public void setPesoBB(String pesoBB) {
+	public void setPesoBB(Integer pesoBB) {
 		this.pesoBB = pesoBB;
 	}
 
@@ -220,22 +221,22 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 		this.otroDocMedPesoBB = otroDocMedPesoBB;
 	}
 
+	@Column(name = "RECURSO1", nullable = true, length = 10)
+	public String getRecurso1() {
+		return recurso1;
+	}
+
+	public void setRecurso1(String otrorecurso1) {
+		this.recurso1 = otrorecurso1;
+	}
+
 	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
-	public Integer getOtrorecurso1() {
+	public String getOtrorecurso1() {
 		return otrorecurso1;
 	}
 
-	public void setOtrorecurso1(Integer otrorecurso1) {
-		this.otrorecurso1 = otrorecurso1;
-	}
-
-	@Column(name = "OTRO_RECURSO2", nullable = true, length = 10)
-	public Integer getOtrorecurso2() {
-		return otrorecurso2;
-	}
-
-	public void setOtrorecurso2(Integer otrorecurso2) {
-		this.otrorecurso2 = otrorecurso2;
+	public void setOtrorecurso1(String otrorecurso2) {
+		this.otrorecurso1 = otrorecurso2;
 	}
 
 	@Column(name = "FUM_FUERA_RANGO_SN", nullable = true, length = 2)
@@ -263,7 +264,7 @@ public class EncuestaDatosPartoBB extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "EncuestaDatosPartoBB{" + participante.getCodigo() +
+        return "EncuestaDatosPartoBB{" + participante.getParticipanteCHF() +
                 '}';
     }
 

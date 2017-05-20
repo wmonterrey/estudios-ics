@@ -23,7 +23,7 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     private String encuestador;
     private int hrsSinServicioAgua;
     private String ubicacionLlaveAgua;
-    private char llaveCompartida;
+    private String llaveCompartida;
     private char almacenaAgua;
     private char almacenaEnBarriles;
     private char almacenaEnTanques;
@@ -157,12 +157,12 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
         this.ubicacionLlaveAgua = ubicacionLlaveAgua;
     }
 
-    @Column(name = "LLAVEAGUA_COMPARTIDA", length = 1)
-    public char getLlaveCompartida() {
+    @Column(name = "LLAVEAGUA_COMPARTIDA", length = 50)
+    public String getLlaveCompartida() {
         return llaveCompartida;
     }
 
-    public void setLlaveCompartida(char llaveCompartida) {
+    public void setLlaveCompartida(String llaveCompartida) {
         this.llaveCompartida = llaveCompartida;
     }
 

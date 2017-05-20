@@ -3,6 +3,7 @@ package ni.org.ics.estudios.domain.cohortefamilia.encuestas;
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.audit.Auditable;
+import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -21,66 +22,56 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 	 * 
 	 */
 
-    private Participante participante;
-    private Integer edad;
-	private Integer dioPecho;
-	private Integer tiemPecho;
-	private Integer mesDioPecho;
-	private Integer pechoExc;
-	private Integer pechoExcAntes;
-	private Integer tiempPechoExcAntes;
-	private Integer mestPechoExc;
-	private Integer formAlim;
-	private String otraAlim;
-	private Integer edadLiqDistPecho;
-	private Integer mesDioLiqDisPecho;
-	private Integer edadLiqDistLeche;
-	private Integer mesDioLiqDisLeche;
-	private Integer edAlimSolidos;
-	private Integer mesDioAlimSol;
-	private Integer otrorecurso1;
-	private Integer otrorecurso2;
+    private ParticipanteCohorteFamilia participante;
+    private String dioPecho;
+    private String tiemPecho;
+    private Integer mesDioPecho;
+    private String pechoExc;
+    private String formAlim;
+    private String pechoExcAntes;
+    private String tiempPechoExcAntes;
+    private Integer mestPechoExc;
+    private String otraAlim;
+    private String edadLiqDistPecho;
+    private Integer mesDioLiqDisPecho;
+    private String edadLiqDistLeche;
+    private Integer mesDioLiqDisLeche;
+    private String edAlimSolidos;
+    private Integer mesDioAlimSol;
+    private String recurso1;
+    private String otrorecurso1;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTE")
-    @ForeignKey(name = "FK_PARTICIPANTE_LACTANCIAMAT")
-    public Participante getParticipante() {
+    @JoinColumn(name = "CODIDO_PARTICIPANTECHF")
+    @ForeignKey(name = "FK_PARTICIPANTECHF_LACTANCIAMAT")
+    public ParticipanteCohorteFamilia getParticipante() {
         return participante;
     }
 
-    public void setParticipante(Participante participante) {
+    public void setParticipante(ParticipanteCohorteFamilia participante) {
         this.participante = participante;
     }
 
-	@Column(name = "EDAD", nullable = true, length = 2)
-	public Integer getEdad() {
-		return edad;
-	}
-
-	public void setEdad(Integer edad) {
-		this.edad = edad;
-	}
-
 	@Column(name = "DIO_PECHO", nullable = true, length = 1)
-	public Integer getDioPecho() {
+	public String getDioPecho() {
 		return dioPecho;
 	}
 
-	public void setDioPecho(Integer dioPecho) {
+	public void setDioPecho(String dioPecho) {
 		this.dioPecho = dioPecho;
 	}
 
-	@Column(name = "TIEMPO_PECHO", nullable = true, length = 1)
-	public Integer getTiemPecho() {
+	@Column(name = "TIEMPO_PECHO", nullable = true, length = 50)
+	public String getTiemPecho() {
 		return tiemPecho;
 	}
 
-	public void setTiemPecho(Integer tiemPecho) {
+	public void setTiemPecho(String tiemPecho) {
 		this.tiemPecho = tiemPecho;
 	}
 
-	@Column(name = "MES_DIO_PECHO", nullable = true, length = 1)
+	@Column(name = "MES_DIO_PECHO", nullable = true)
 	public Integer getMesDioPecho() {
 		return mesDioPecho;
 	}
@@ -89,30 +80,30 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioPecho = mesDioPecho;
 	}
 
-	@Column(name = "PECHO_EXCLU", nullable = true, length = 1)
-	public Integer getPechoExc() {
+	@Column(name = "PECHO_EXCLU", nullable = true, length = 50)
+	public String getPechoExc() {
 		return pechoExc;
 	}
 
-	public void setPechoExc(Integer pechoExc) {
+	public void setPechoExc(String pechoExc) {
 		this.pechoExc = pechoExc;
 	}
 
-	@Column(name = "PECHO_EXCLU_ANTES", nullable = true, length = 1)
-	public Integer getPechoExcAntes() {
+	@Column(name = "PECHO_EXCLU_ANTES", nullable = true, length = 50)
+	public String getPechoExcAntes() {
 		return pechoExcAntes;
 	}
 
-	public void setPechoExcAntes(Integer pechoExcAntes) {
+	public void setPechoExcAntes(String pechoExcAntes) {
 		this.pechoExcAntes = pechoExcAntes;
 	}
 
-	@Column(name = "TIEMPO_PECHO_EXCLU_ANTES", nullable = true, length = 1)
-	public Integer getTiempPechoExcAntes() {
+	@Column(name = "TIEMPO_PECHO_EXCLU_ANTES", nullable = true, length = 50)
+	public String getTiempPechoExcAntes() {
 		return tiempPechoExcAntes;
 	}
 
-	public void setTiempPechoExcAntes(Integer tiempPechoExcAntes) {
+	public void setTiempPechoExcAntes(String tiempPechoExcAntes) {
 		this.tiempPechoExcAntes = tiempPechoExcAntes;
 	}
 
@@ -125,12 +116,12 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mestPechoExc = mestPechoExc;
 	}
 
-	@Column(name = "FORMA_ALIMENTA", nullable = true, length = 1)
-	public Integer getFormAlim() {
+	@Column(name = "FORMA_ALIMENTA", nullable = true, length = 50)
+	public String getFormAlim() {
 		return formAlim;
 	}
 
-	public void setFormAlim(Integer formAlim) {
+	public void setFormAlim(String formAlim) {
 		this.formAlim = formAlim;
 	}
 
@@ -143,12 +134,12 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.otraAlim = otraAlim;
 	}
 
-	@Column(name = "EDAD_LIQUIDO_DIST_PECHO", nullable = true)
-	public Integer getEdadLiqDistPecho() {
+	@Column(name = "EDAD_LIQUIDO_DIST_PECHO", nullable = true, length = 50)
+	public String getEdadLiqDistPecho() {
 		return edadLiqDistPecho;
 	}
 
-	public void setEdadLiqDistPecho(Integer edadLiqDistPecho) {
+	public void setEdadLiqDistPecho(String edadLiqDistPecho) {
 		this.edadLiqDistPecho = edadLiqDistPecho;
 	}
 
@@ -161,12 +152,12 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioLiqDisPecho = mesDioLiqDisPecho;
 	}
 
-	@Column(name = "EDAD_LIQUIDO_DIST_LECHE", nullable = true)
-	public Integer getEdadLiqDistLeche() {
+	@Column(name = "EDAD_LIQUIDO_DIST_LECHE", nullable = true, length = 50)
+	public String getEdadLiqDistLeche() {
 		return edadLiqDistLeche;
 	}
 
-	public void setEdadLiqDistLeche(Integer edadLiqDistLeche) {
+	public void setEdadLiqDistLeche(String edadLiqDistLeche) {
 		this.edadLiqDistLeche = edadLiqDistLeche;
 	}
 	
@@ -179,12 +170,12 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioLiqDisLeche = mesDioLiqDisLeche;
 	}
 
-	@Column(name = "EDAD_ALIMEN_SOLIDOS", nullable = true)
-	public Integer getEdAlimSolidos() {
+	@Column(name = "EDAD_ALIMEN_SOLIDOS", nullable = true, length = 50)
+	public String getEdAlimSolidos() {
 		return edAlimSolidos;
 	}
 
-	public void setEdAlimSolidos(Integer edAlimSolidos) {
+	public void setEdAlimSolidos(String edAlimSolidos) {
 		this.edAlimSolidos = edAlimSolidos;
 	}
 
@@ -197,22 +188,22 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioAlimSol = mesDioAlimSol;
 	}
 
+	@Column(name = "RECURSO1", nullable = true, length = 10)
+	public String getRecurso1() {
+		return recurso1;
+	}
+
+	public void setRecurso1(String recurso1) {
+		this.recurso1 = recurso1;
+	}
+
 	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
-	public Integer getOtrorecurso1() {
+	public String getOtrorecurso1() {
 		return otrorecurso1;
 	}
 
-	public void setOtrorecurso1(Integer otrorecurso1) {
+	public void setOtrorecurso1(String otrorecurso1) {
 		this.otrorecurso1 = otrorecurso1;
-	}
-
-	@Column(name = "OTRO_RECURSO2", nullable = true, length = 10)
-	public Integer getOtrorecurso2() {
-		return otrorecurso2;
-	}
-
-	public void setOtrorecurso2(Integer otrorecurso2) {
-		this.otrorecurso2 = otrorecurso2;
 	}
 
     @Override
@@ -222,7 +213,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 
     @Override
     public String toString() {
-        return "EncuestaLactanciaMaterna{" + participante.getCodigo() +
+        return "EncuestaLactanciaMaterna{" + participante.getParticipanteCHF() +
                 '}';
     }
 
