@@ -268,14 +268,16 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX', NULL, NULL, NULL, '1', 0, '0', 'Catalogo razón no se toma muestra CHF');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_01', '1', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 1, '0', 'Muestra difícil');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_02', '2', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 2, '0', 'No estaba en casa');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_03', '3', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 3, '0', 'Padre/niño no aceptó tomar muestra');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_998', '998', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 4, '0', 'Otra razón');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_02', '2', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 2, '0', 'Se descanalizó');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_03', '3', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 3, '0', 'Se pinchó mas de 2 veces');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_04', '4', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 4, '0', 'Padre/niño no aceptó tomar muestra');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_05', '5', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 5, '0', 'Padre o tutor después de pinchadazo no desea que se le tome mx al niño');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_RAZON_NO_MX_998', '998', 'CHF_CAT_RAZON_NO_MX', NULL, '0', 6, '0', 'Otra razon');
 
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_OBSERV_MX', NULL, NULL, NULL, '1', 0, '0', 'Catalogo razón no se toma muestra CHF');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_OBSERV_MX', NULL, NULL, NULL, '1', 0, '0', 'Catalogo observaciones toma muestra CHF');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_OBSERV_MX_01', '1', 'CHF_CAT_OBSERV_MX', NULL, '0', 1, '0', 'Muestra difícil');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_OBSERV_MX_02', '2', 'CHF_CAT_OBSERV_MX', NULL, '0', 2, '0', 'Ninguna');
-INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_OBSERV_MX_998', '998', 'CHF_CAT_OBSERV_MX', NULL, '0', 3, '0', 'Otra razón');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_OBSERV_MX_998', '998', 'CHF_CAT_OBSERV_MX', NULL, '0', 3, '0', 'Otra razon');
 
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PINCH_MX', NULL, NULL, NULL, '1', 0, '0', 'Catalogo tipos de muestra CHF');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PINCH_MX_01', '0', 'CHF_CAT_PINCH_MX', NULL, '0', 1, '0', '0');
