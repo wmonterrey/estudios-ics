@@ -21,7 +21,9 @@ public class CasaService {
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
-    private List<Casa> getCasas()
+    
+	@SuppressWarnings("unchecked")
+	public List<Casa> getCasas()
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Casa ");
@@ -36,7 +38,8 @@ public class CasaService {
         return (Casa)query.uniqueResult();
     }
 
-    public List<Casa> getCasasByUser(String username)
+    @SuppressWarnings("unchecked")
+	public List<Casa> getCasasByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select c from Casa c where c.pasive = false and c.codigo in (select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +

@@ -20,9 +20,10 @@ public class ParticipanteService {
     @Resource(name="sessionFactory")
     private SessionFactory sessionFactory;
 
-    public List<Participante> getParticipantes(){
+    @SuppressWarnings("unchecked")
+	public List<Participante> getParticipantes(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Participante ");
+        Query query = session.createQuery("from Participante");
         return query.list();
     }
 

@@ -24,11 +24,11 @@ public class CasaController {
     @Resource(name = "casaService")
     private CasaService casaService;
 
-    @RequestMapping(value = "casas/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "casas", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Casa> getCasas(@PathVariable String username){
-        logger.info("Descargando toda la informacion de los datos de las casas para el usuario " +username);
-        List<Casa> casas = casaService.getCasasByUser(username);
+    List<Casa> getCasas(){
+        logger.info("Descargando toda la informacion de los datos de las casas");
+        List<Casa> casas = casaService.getCasas();
         if (casas == null){
             logger.debug("Nulo");
         }

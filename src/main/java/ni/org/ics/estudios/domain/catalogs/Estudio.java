@@ -16,6 +16,10 @@ import javax.persistence.*;
 
 public class Estudio extends BaseMetaData implements Auditable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer codigo;
 	private String nombre;
 

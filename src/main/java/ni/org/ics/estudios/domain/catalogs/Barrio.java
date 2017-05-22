@@ -15,6 +15,10 @@ import javax.persistence.*;
 @Table(name = "barrios", catalog = "estudios_ics")
 public class Barrio extends BaseMetaData implements Auditable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer codigo;
 	private String nombre;
 

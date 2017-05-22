@@ -28,10 +28,10 @@ public class ParticipanteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "participantes/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "participantes", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Participante> getParticipantes(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de Participante" +username);
+    List<Participante> getParticipantes() {
+        logger.info("Descargando toda la informacion de Participante" );
         List<Participante> respuestaList = participanteService.getParticipantes();
         if (respuestaList == null){
             logger.debug("Nulo");
