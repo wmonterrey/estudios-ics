@@ -25,18 +25,18 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private Estudio estudio;
     private String sexo;
     private Date fechaNacimiento;
-    private char aceptaTamizajePersona;
+    private String aceptaTamizajePersona;
     private String razonNoAceptaTamizajePersona;
     private String criteriosInclusion;
     private String enfermedad;
     private String dondeAsisteProblemasSalud;
     private String otroCentroSalud;
     private String puestoSalud;
-    private char aceptaAtenderCentro;
-    private char esElegible;
-    private char aceptaParticipar;
-    private char razonNoAceptaParticipar;
-    private char asentimientoVerbal;
+    private String aceptaAtenderCentro;
+    private String esElegible;
+    private String aceptaParticipar;
+    private String razonNoAceptaParticipar;
+    private String asentimientoVerbal;
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -78,11 +78,11 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     }
 
     @Column(name="ACEPTA_TAMIZAJE", nullable = false, length = 1)
-    public char getAceptaTamizajePersona() {
+    public String getAceptaTamizajePersona() {
         return aceptaTamizajePersona;
     }
 
-    public void setAceptaTamizajePersona(char aceptaTamizajePersona) {
+    public void setAceptaTamizajePersona(String aceptaTamizajePersona) {
         this.aceptaTamizajePersona = aceptaTamizajePersona;
     }
 
@@ -141,47 +141,47 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     }
 
     @Column(name="ASISTIR_CSSF", nullable = true, length = 1)
-    public char getAceptaAtenderCentro() {
+    public String getAceptaAtenderCentro() {
         return aceptaAtenderCentro;
     }
 
-    public void setAceptaAtenderCentro(char aceptaAtenderCentro) {
+    public void setAceptaAtenderCentro(String aceptaAtenderCentro) {
         this.aceptaAtenderCentro = aceptaAtenderCentro;
     }
 
     @Column(name="ELEGIBLE", nullable = true, length = 1)
-    public char getEsElegible() {
+    public String getEsElegible() {
         return esElegible;
     }
 
-    public void setEsElegible(char esElegible) {
+    public void setEsElegible(String esElegible) {
         this.esElegible = esElegible;
     }
 
     @Column(name="ACEPTA_PARTICIPAR", nullable = true, length = 1)
-    public char getAceptaParticipar() {
+    public String getAceptaParticipar() {
         return aceptaParticipar;
     }
 
-    public void setAceptaParticipar(char aceptaParticipar) {
+    public void setAceptaParticipar(String aceptaParticipar) {
         this.aceptaParticipar = aceptaParticipar;
     }
 
     @Column(name="RAZON_NO_ACEPTA_PARTICIPAR", nullable = true, length = 1)
-    public char getRazonNoAceptaParticipar() {
+    public String getRazonNoAceptaParticipar() {
         return razonNoAceptaParticipar;
     }
 
-    public void setRazonNoAceptaParticipar(char razonNoAceptaParticipar) {
+    public void setRazonNoAceptaParticipar(String razonNoAceptaParticipar) {
         this.razonNoAceptaParticipar = razonNoAceptaParticipar;
     }
 
     @Column(name="ASENTIMIENTO_VERBAL", nullable = true, length = 1)
-    public char getAsentimientoVerbal() {
+    public String getAsentimientoVerbal() {
         return asentimientoVerbal;
     }
 
-    public void setAsentimientoVerbal(char asentimientoVerbal) {
+    public void setAsentimientoVerbal(String asentimientoVerbal) {
         this.asentimientoVerbal = asentimientoVerbal;
     }
 

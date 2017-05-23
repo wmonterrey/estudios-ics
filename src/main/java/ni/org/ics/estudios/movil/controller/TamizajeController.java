@@ -2,6 +2,7 @@ package ni.org.ics.estudios.movil.controller;
 
 import ni.org.ics.estudios.domain.Tamizaje;
 import ni.org.ics.estudios.service.TamizajeService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,36 +29,37 @@ public class TamizajeController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "tamizajes/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "tamizajes", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Tamizaje> getTamizajes(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de formularios Tamizaje" +username);
-        List<Tamizaje> respuestaList = tamizajeService.getTamizajesByUser(username);
+    List<Tamizaje> getTamizajes() {
+        logger.info("Descargando toda la informacion de formularios Tamizaje" );
+        List<Tamizaje> respuestaList = tamizajeService.getTamizajes();
         if (respuestaList == null){
             logger.debug("Nulo");
         }
         return respuestaList;
     }
 
+
     /**
      * Acepta una solicitud POST con un par�metro JSON
-     * @param tamizajesArr Objeto serializado de Tamizaje
+     * @param envio Objeto serializado de Tamizaje
      * @return String con el resultado
      */
     @RequestMapping(value = "tamizajes", method = RequestMethod.POST, consumes = "application/json")
-    public @ResponseBody String saveTamizaje(@RequestBody Tamizaje[] tamizajesArr){
+    public @ResponseBody String saveTamizajes(@RequestBody Tamizaje[] envio) {
         logger.debug("Insertando/Actualizando formularios Tamizaje");
-        if (tamizajesArr == null){
+        if (envio == null){
             logger.debug("Nulo");
             return "No recibi nada!";
-        }else{
-            List<Tamizaje> tamizajeList = Arrays.asList(tamizajesArr);
-            for (Tamizaje tamizaje : tamizajeList){
-                tamizajeService.saveOrUpdateTamizaje(tamizaje);
+        }
+        else{
+            List<Tamizaje> tamizaje = Arrays.asList(envio);
+            for (Tamizaje zp00Screening : tamizaje){
+            	tamizajeService.saveOrUpdateTamizaje(zp00Screening);
             }
         }
         return "Datos recibidos!";
     }
-
 
 }
