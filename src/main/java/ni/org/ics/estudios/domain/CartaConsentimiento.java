@@ -24,11 +24,7 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     private Date fechaFirma;
     private Tamizaje tamizaje;
     private Participante participante;
-    private char participadoCohortePediatrica;
-    private String cohortePediatrica; //Dengue, Influenza, Ambas (dengue/influenza)
-    private char codigoReactivado;
     private char emancipado;
-    private char asentimientoVerbal; //Para Niños de 6 a 17 años
     private String nombre1Tutor;
     private String nombre2Tutor;
     private String apellido1Tutor;
@@ -66,33 +62,6 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
         this.fechaFirma = fechaFirma;
     }
 
-    @Column(name = "PARTICIPADO_CH_PEDIATRICA", length = 1)
-    public char getParticipadoCohortePediatrica() {
-        return participadoCohortePediatrica;
-    }
-
-    public void setParticipadoCohortePediatrica(char participadoCohortePediatrica) {
-        this.participadoCohortePediatrica = participadoCohortePediatrica;
-    }
-
-    @Column(name = "COHORTE_PEDIATRICA")
-    public String getCohortePediatrica() {
-        return cohortePediatrica;
-    }
-
-    public void setCohortePediatrica(String cohortePediatrica) {
-        this.cohortePediatrica = cohortePediatrica;
-    }
-
-    @Column(name = "CODIGO_REACTIVADO", length = 1)
-    public char getCodigoReactivado() {
-        return codigoReactivado;
-    }
-
-    public void setCodigoReactivado(char codigoReactivado) {
-        this.codigoReactivado = codigoReactivado;
-    }
-
     @Column(name = "EMANCIPADO", length = 1)
     public char getEmancipado() {
         return emancipado;
@@ -100,15 +69,6 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     public void setEmancipado(char emancipado) {
         this.emancipado = emancipado;
-    }
-
-    @Column(name = "ASENTIMIENTO_VERBAL", length = 1)
-    public char getAsentimientoVerbal() {
-        return asentimientoVerbal;
-    }
-
-    public void setAsentimientoVerbal(char asentimientoVerbal) {
-        this.asentimientoVerbal = asentimientoVerbal;
     }
 
     @Column(name = "NOMBRE1_TUTOR", length = 100)

@@ -22,8 +22,8 @@ public class PreTamizaje extends BaseMetaData implements Auditable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String codigo;
-    private char aceptaTamizaje;
-    private String razonNoParticipa;
+    private char aceptaTamizajeCasa;
+    private String razonNoAceptaTamizajeCasa;
     private Casa casa;
     private Estudio estudio;
 
@@ -38,21 +38,21 @@ public class PreTamizaje extends BaseMetaData implements Auditable {
     }
 
     @Column(name="ACEPTA_TAMIZAJE", nullable = false, length = 1)
-    public char getAceptaTamizaje() {
-        return aceptaTamizaje;
+    public char getAceptaTamizajeCasa() {
+        return aceptaTamizajeCasa;
     }
 
-    public void setAceptaTamizaje(char aceptaTamizaje) {
-        this.aceptaTamizaje = aceptaTamizaje;
+    public void setAceptaTamizajeCasa(char aceptaTamizaje) {
+        this.aceptaTamizajeCasa = aceptaTamizaje;
     }
 
-    @Column(name="RAZON_NO_PARTICIPA", nullable = true, length = 50)
-    public String getRazonNoParticipa() {
-        return razonNoParticipa;
+    @Column(name="RAZON_NO_ACEPTA", nullable = true, length = 50)
+    public String getRazonNoAceptaTamizajeCasa() {
+        return razonNoAceptaTamizajeCasa;
     }
 
-    public void setRazonNoParticipa(String razonNoParticipa) {
-        this.razonNoParticipa = razonNoParticipa;
+    public void setRazonNoAceptaTamizajeCasa(String razonNoParticipa) {
+        this.razonNoAceptaTamizajeCasa = razonNoParticipa;
     }
 
     @ManyToOne

@@ -189,6 +189,16 @@ public class Participante extends BaseMetaData implements Auditable {
         this.casa = casa;
     }
 
+    @Transient
+    public String getEdad(){
+        return "";
+    }
+
+    @Transient
+    public String getNombreCompleto(){
+        return "";
+    }
+
 
     @Override
     public boolean isFieldAuditable(String fieldname) {

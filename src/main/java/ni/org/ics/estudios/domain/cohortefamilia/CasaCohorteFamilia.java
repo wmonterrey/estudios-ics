@@ -21,6 +21,8 @@ public class CasaCohorteFamilia extends BaseMetaData implements Auditable {
     private String nombre2JefeFamilia;
     private String apellido1JefeFamilia;
     private String apellido2JefeFamilia;
+    private Double latitud;
+    private Double longitud;
 
     @Id
     @Column(name = "CODIGO_CHF", nullable = false, length = 50)
@@ -52,7 +54,7 @@ public class CasaCohorteFamilia extends BaseMetaData implements Auditable {
         this.nombre1JefeFamilia = nombre1JefeFamilia;
     }
 
-    @Column(name = "NOMBRE2_JEFE", nullable = false)
+    @Column(name = "NOMBRE2_JEFE", nullable = true)
     public String getNombre2JefeFamilia() {
         return nombre2JefeFamilia;
     }
@@ -70,13 +72,31 @@ public class CasaCohorteFamilia extends BaseMetaData implements Auditable {
         this.apellido1JefeFamilia = apellido1JefeFamilia;
     }
 
-    @Column(name = "APELLIDO2_JEFE", nullable = false)
+    @Column(name = "APELLIDO2_JEFE", nullable = true)
     public String getApellido2JefeFamilia() {
         return apellido2JefeFamilia;
     }
 
     public void setApellido2JefeFamilia(String apellido2JefeFamilia) {
         this.apellido2JefeFamilia = apellido2JefeFamilia;
+    }
+
+    @Column(name = "LATITUD", nullable = true)
+    public Double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(Double latitud) {
+        this.latitud = latitud;
+    }
+
+    @Column(name = "LONGITUD", nullable = true)
+    public Double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(Double longitud) {
+        this.longitud = longitud;
     }
 
     @Override

@@ -21,24 +21,22 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private String codigo;
+    private String codigo;
     private Estudio estudio;
     private String sexo;
     private Date fechaNacimiento;
-    private char aceptaTamizaje;
-    private String razonNoAceptaTamizaje;
+    private char aceptaTamizajePersona;
+    private String razonNoAceptaTamizajePersona;
     private String criteriosInclusion;
-    private String tienePadecimiento;
-    private char elegible;
+    private String enfermedad;
     private String dondeAsisteProblemasSalud;
-    private char asisteCSSF;
     private String otroCentroSalud;
     private String puestoSalud;
-    private char siEnfermaSoloAsistirCSSF;
-    private char tomaPuntoGPSCasa;
-    private String razonNoGeoreferenciacion;
-    private String otraRazonNoGeoreferenciacion;
-
+    private char aceptaAtenderCentro;
+    private char esElegible;
+    private char aceptaParticipar;
+    private char razonNoAceptaParticipar;
+    private char asentimientoVerbal;
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -80,40 +78,39 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     }
 
     @Column(name="ACEPTA_TAMIZAJE", nullable = false, length = 1)
-    public char getAceptaTamizaje() {
-        return aceptaTamizaje;
+    public char getAceptaTamizajePersona() {
+        return aceptaTamizajePersona;
     }
 
-    public void setAceptaTamizaje(char aceptaTamizaje) {
-        this.aceptaTamizaje = aceptaTamizaje;
+    public void setAceptaTamizajePersona(char aceptaTamizajePersona) {
+        this.aceptaTamizajePersona = aceptaTamizajePersona;
     }
 
     @Column(name="RAZON_NO_ACEPTA_TAMIZAJE", nullable = true, length = 50)
-    public String getRazonNoAceptaTamizaje() {
-        return razonNoAceptaTamizaje;
+    public String getRazonNoAceptaTamizajePersona() {
+        return razonNoAceptaTamizajePersona;
     }
 
-    public void setRazonNoAceptaTamizaje(String razonNoAceptaTamizaje) {
-        this.razonNoAceptaTamizaje = razonNoAceptaTamizaje;
+    public void setRazonNoAceptaTamizajePersona(String razonNoAceptaTamizajePersona) {
+        this.razonNoAceptaTamizajePersona = razonNoAceptaTamizajePersona;
     }
 
-    
     @Column(name="CRITERIOS_INCLUSION", nullable = true, length = 50)
     public String getCriteriosInclusion() {
-		return criteriosInclusion;
-	}
-
-	public void setCriteriosInclusion(String criteriosInclusion) {
-		this.criteriosInclusion = criteriosInclusion;
-	}
-
-	@Column(name="ELEGIBLE", nullable = false, length = 1)
-    public char getElegible() {
-        return elegible;
+        return criteriosInclusion;
     }
 
-    public void setElegible(char elegible) {
-        this.elegible = elegible;
+    public void setCriteriosInclusion(String criteriosInclusion) {
+        this.criteriosInclusion = criteriosInclusion;
+    }
+
+    @Column(name="ENFERMEDAD", nullable = true, length = 50)
+    public String getEnfermedad() {
+        return enfermedad;
+    }
+
+    public void setEnfermedad(String enfermedad) {
+        this.enfermedad = enfermedad;
     }
 
     @Column(name="DONDE_ASISTE_PROBLEMAS_SALUD", nullable = true)
@@ -123,15 +120,6 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setDondeAsisteProblemasSalud(String dondeAsisteProblemasSalud) {
         this.dondeAsisteProblemasSalud = dondeAsisteProblemasSalud;
-    }
-
-    @Column(name="ASISTE_CSSF", nullable = false, length = 1)
-    public char getAsisteCSSF() {
-        return asisteCSSF;
-    }
-
-    public void setAsisteCSSF(char asisteCSSF) {
-        this.asisteCSSF = asisteCSSF;
     }
 
     @Column(name="OTRO_CENTRO_SALUD", nullable = true)
@@ -152,40 +140,49 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.puestoSalud = puestoSalud;
     }
 
-    @Column(name = "SI_ENFERMA_ASISTIR_CSSF", length = 1)
-    public char getSiEnfermaSoloAsistirCSSF() {
-        return siEnfermaSoloAsistirCSSF;
+    @Column(name="ASISTIR_CSSF", nullable = true, length = 1)
+    public char getAceptaAtenderCentro() {
+        return aceptaAtenderCentro;
     }
 
-    public void setSiEnfermaSoloAsistirCSSF(char siEnfermaSoloAsistirCSSF) {
-        this.siEnfermaSoloAsistirCSSF = siEnfermaSoloAsistirCSSF;
+    public void setAceptaAtenderCentro(char aceptaAtenderCentro) {
+        this.aceptaAtenderCentro = aceptaAtenderCentro;
     }
 
-    @Column(name="TOMA_PUNTO_GPS", nullable = false, length = 1)
-    public char getTomaPuntoGPSCasa() {
-        return tomaPuntoGPSCasa;
+    @Column(name="ELEGIBLE", nullable = true, length = 1)
+    public char getEsElegible() {
+        return esElegible;
     }
 
-    public void setTomaPuntoGPSCasa(char tomaPuntoGPSCasa) {
-        this.tomaPuntoGPSCasa = tomaPuntoGPSCasa;
+    public void setEsElegible(char esElegible) {
+        this.esElegible = esElegible;
     }
 
-    @Column(name="RAZON_NOGEOREFERENCIA", nullable = true)
-    public String getRazonNoGeoreferenciacion() {
-        return razonNoGeoreferenciacion;
+    @Column(name="ACEPTA_PARTICIPAR", nullable = true, length = 1)
+    public char getAceptaParticipar() {
+        return aceptaParticipar;
     }
 
-    public void setRazonNoGeoreferenciacion(String razonNoGeoreferenciacion) {
-        this.razonNoGeoreferenciacion = razonNoGeoreferenciacion;
+    public void setAceptaParticipar(char aceptaParticipar) {
+        this.aceptaParticipar = aceptaParticipar;
     }
 
-    @Column(name="OTRA_RAZON_NOGEOREFERENCIA", nullable = false)
-    public String getOtraRazonNoGeoreferenciacion() {
-        return otraRazonNoGeoreferenciacion;
+    @Column(name="RAZON_NO_ACEPTA_PARTICIPAR", nullable = true, length = 1)
+    public char getRazonNoAceptaParticipar() {
+        return razonNoAceptaParticipar;
     }
 
-    public void setOtraRazonNoGeoreferenciacion(String otraRazonNoGeoreferenciacion) {
-        this.otraRazonNoGeoreferenciacion = otraRazonNoGeoreferenciacion;
+    public void setRazonNoAceptaParticipar(char razonNoAceptaParticipar) {
+        this.razonNoAceptaParticipar = razonNoAceptaParticipar;
+    }
+
+    @Column(name="ASENTIMIENTO_VERBAL", nullable = true, length = 1)
+    public char getAsentimientoVerbal() {
+        return asentimientoVerbal;
+    }
+
+    public void setAsentimientoVerbal(char asentimientoVerbal) {
+        this.asentimientoVerbal = asentimientoVerbal;
     }
 
     @Override

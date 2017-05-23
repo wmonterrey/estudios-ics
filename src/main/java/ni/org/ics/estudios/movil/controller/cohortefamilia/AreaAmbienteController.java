@@ -2,6 +2,7 @@ package ni.org.ics.estudios.movil.controller.cohortefamilia;
 
 import ni.org.ics.estudios.domain.cohortefamilia.*;
 import ni.org.ics.estudios.service.cohortefamilia.AreaAmbienteService;
+import ni.org.ics.estudios.service.cohortefamilia.PersonaCamaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class AreaAmbienteController {
 
     @Resource(name = "areaAmbienteService")
     private AreaAmbienteService areaAmbienteService;
+
+    @Resource(name = "personaCamaService")
+    private PersonaCamaService personaCamaService;
 
     /**
      * Acepta una solicitud GET para JSON
@@ -270,6 +274,27 @@ public class AreaAmbienteController {
             List<Ventana> areasAmbienteList = Arrays.asList(envio);
             for (Ventana areaAmb : areasAmbienteList){
                 areaAmbienteService.saveOrUpdateVentana(areaAmb);
+            }
+        }
+        return "Datos recibidos!";
+    }
+
+    /**
+     * Acepta una solicitud POST con un par�metro JSON
+     * @param envio Objeto serializado de Camas
+     * @return String con el resultado
+     */
+    @RequestMapping(value = "personasCamas", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String savePersonasCamas(@RequestBody PersonaCama[] envio) {
+        logger.debug("Insertando/Actualizando datos personas Camas");
+        if (envio == null){
+            logger.debug("Nulo");
+            return "No recibi nada!";
+        }
+        else{
+            List<PersonaCama> personaCamaList = Arrays.asList(envio);
+            for (PersonaCama areaAmb : personaCamaList){
+                personaCamaService.saveOrUdatePersonaCama(areaAmb);
             }
         }
         return "Datos recibidos!";
