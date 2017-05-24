@@ -33,6 +33,8 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
     private String proposito;
     private ParticipanteCohorteFamilia participanteCHF;
     private String realizaPaxgene;
+    private String horaInicioPax;
+    private String horaFinPax;
 
     @Id
     @Column(name = "CODIGO", length = 50, nullable = false)
@@ -168,6 +170,24 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
 
     public void setRealizaPaxgene(String realizaPaxgene) {
         this.realizaPaxgene = realizaPaxgene;
+    }
+
+    @Column(name = "HORA_INICIO_PAX", nullable = true, length = 20)
+    public String getHoraInicioPax() {
+        return horaInicioPax;
+    }
+
+    public void setHoraInicioPax(String horaInicioPax) {
+        this.horaInicioPax = horaInicioPax;
+    }
+
+    @Column(name = "HORA_FIN_PAX", nullable = true, length = 20)
+    public String getHoraFinPax() {
+        return horaFinPax;
+    }
+
+    public void setHoraFinPax(String horaFinPax) {
+        this.horaFinPax = horaFinPax;
     }
 
     @ManyToOne

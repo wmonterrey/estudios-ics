@@ -53,7 +53,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
         this.participante = participante;
     }
 
-	@Column(name = "DIO_PECHO", nullable = true, length = 1)
+	@Column(name = "DIO_PECHO", nullable = true, length = 5)
 	public String getDioPecho() {
 		return dioPecho;
 	}
@@ -188,7 +188,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.mesDioAlimSol = mesDioAlimSol;
 	}
 
-	@Column(name = "RECURSO1", nullable = true, length = 10)
+	@Column(name = "RECURSO1", nullable = true, length = 50)
 	public String getRecurso1() {
 		return recurso1;
 	}
@@ -197,7 +197,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 		this.recurso1 = recurso1;
 	}
 
-	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO1", nullable = true, length = 50)
 	public String getOtrorecurso1() {
 		return otrorecurso1;
 	}

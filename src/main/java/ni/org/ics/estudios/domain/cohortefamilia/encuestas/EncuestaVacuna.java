@@ -186,7 +186,7 @@ public class EncuestaVacuna extends BaseMetaData implements Auditable {
 		this.fechaInf10 = fechaInf10;
 	}
 
-	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO1", nullable = true, length = 50)
 	public Integer getOtrorecurso1() {
 		return otrorecurso1;
 	}

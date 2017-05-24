@@ -436,7 +436,7 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
         this.tienAireAcondicionado = tienAireAcondicionado;
     }
 
-    @Column(name = "FUNCIONAMIENTO_AIRE", length = 100)
+    @Column(name = "FUNCIONAMIENTO_AIRE", length = 2)
     public String getAireAcondicionadoFuncionando() {
         return aireAcondicionadoFuncionando;
     }

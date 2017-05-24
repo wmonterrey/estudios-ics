@@ -149,7 +149,7 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 		this.difTalla = difTalla;
 	}
 
-	@Column(name = "RECURSO1", nullable = true, length = 10)
+	@Column(name = "RECURSO1", nullable = true, length = 50)
 	public String getRecurso1() {
 		return recurso1;
 	}
@@ -158,7 +158,7 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 		this.recurso1 = recurso1;
 	}
 
-	@Column(name = "OTRO_RECURSO1", nullable = true, length = 10)
+	@Column(name = "OTRO_RECURSO1", nullable = true, length = 50)
 	public String getOtrorecurso1() {
 		return otrorecurso1;
 	}
