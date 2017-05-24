@@ -34,4 +34,11 @@ public class PersonaCamaService {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(personaCama);
     }
+
+    public List<PersonaCama> getPersonasCama()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from PersonaCama where pasive = '0'");
+        return query.list();
+    }
 }

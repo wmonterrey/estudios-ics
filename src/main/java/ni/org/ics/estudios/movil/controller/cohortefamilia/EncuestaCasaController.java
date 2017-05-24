@@ -30,9 +30,24 @@ public class EncuestaCasaController {
      */
     @RequestMapping(value = "encuestasCasa/{username}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<EncuestaCasa> getEncuestasCasa(@PathVariable String username) {
+    List<EncuestaCasa> getEncuestasCasaByUser(@PathVariable String username) {
         logger.info("Descargando toda la informacion de formularios encuesta casa para el usuario " +username);
         List<EncuestaCasa> respuestaList = encuestaCasaService.getEncuestasCasaByUser(username);
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+    /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "encuestasCasa", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<EncuestaCasa> getEncuestasCasa() {
+        logger.info("Descargando toda la informacion de formularios encuesta casa");
+        List<EncuestaCasa> respuestaList = encuestaCasaService.getEncuestasCasa();
         if (respuestaList == null){
             logger.debug("Nulo");
         }

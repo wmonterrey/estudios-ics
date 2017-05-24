@@ -30,9 +30,24 @@ public class EncuestaLactanciaMaternaController {
      */
     @RequestMapping(value = "encuestasLactanciaMaterna/{username}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<EncuestaLactanciaMaterna> getEncuestasLactanciaMaterna(@PathVariable String username) {
+    List<EncuestaLactanciaMaterna> getEncuestasLactanciaMaternaByUser(@PathVariable String username) {
         logger.info("Descargando toda la informacion de formularios encuesta lactancia materna " +username);
         List<EncuestaLactanciaMaterna> respuestaList = encuestaLactanciaMaternaService.getEncuestasLactanciaMaternaByUser(username);
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+    /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "encuestasLactanciaMaterna", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<EncuestaLactanciaMaterna> getEncuestasLactanciaMaterna() {
+        logger.info("Descargando toda la informacion de formularios encuesta lactancia materna ");
+        List<EncuestaLactanciaMaterna> respuestaList = encuestaLactanciaMaternaService.getEncuestasLactanciaMaterna();
         if (respuestaList == null){
             logger.debug("Nulo");
         }

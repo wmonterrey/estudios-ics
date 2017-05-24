@@ -202,5 +202,54 @@ public class AreaAmbienteService {
         query.setParameter("username",username);
         return query.list();
     }
+
+    public List<Banio> getBanios()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select b from Banio b where b.pasive = '0'");
+        return query.list();
+    }
+
+    public List<Cama> getCamas()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Cama c where c.pasive = '0'");
+        return query.list();
+    }
+
+    public List<Cocina> getCocinas()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from Cocina c where c.pasive = '0'");
+        return query.list();
+    }
+
+    public List<Comedor> getComedores()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from Comedor c where c.pasive = '0'");
+        return query.list();
+    }
+
+    public List<Habitacion> getHabitaciones()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select h from Habitacion h where h.pasive = '0'");
+        return query.list();
+    }
+
+    public List<Sala> getSalas()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select s from Sala s where s.pasive = '0'");
+        return query.list();
+    }
+
+    public List<Ventana> getVentanas()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Ventana v where v.pasive = '0'");
+        return query.list();
+    }
 }
 

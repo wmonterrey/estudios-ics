@@ -23,22 +23,22 @@ public class EncuestaPesoTallaService {
 
     public List<EncuestaPesoTalla> getEncuestasPesoTalla(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaPesoTalla");
+        Query query = session.createQuery("from EncuestaPesoTalla where pasive = '0'");
         return query.list();
     }
 
     public List<EncuestaPesoTalla> getEncuestasPesoTallaByUser(String username){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaPesoTalla ec where ec.pasive = false and ec.participante.casa.codigo in (" +
+        Query query = session.createQuery("from EncuestaPesoTalla ec where ec.pasive = false and ec.participante.casaCHF.casa.codigo in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);
         return query.list();
     }
 
-    public EncuestaPesoTalla getEncuestaPesoTalla(Integer codigo){
+    public EncuestaPesoTalla getEncuestaPesoTalla(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaPesoTalla where participante.codigo = :codigo");
+        Query query = session.createQuery("from EncuestaPesoTalla where participante.participanteCHF = :codigo");
         query.setParameter("codigo", codigo);
         return (EncuestaPesoTalla)query.uniqueResult();
     }

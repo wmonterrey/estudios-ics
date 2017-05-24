@@ -30,9 +30,24 @@ public class EncuestaDatosPartoBBController {
      */
     @RequestMapping(value = "encuestasDatosPartoBB/{username}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<EncuestaDatosPartoBB> getEncuestasDatosPartoBB(@PathVariable String username) {
+    List<EncuestaDatosPartoBB> getEncuestasDatosPartoBBByUser(@PathVariable String username) {
         logger.info("Descargando toda la informacion de formularios encuesta datos parto BB para el usuario " +username);
         List<EncuestaDatosPartoBB> respuestaList = encuestaDatosPartoBBService.getEncuestasDatosPartoBBByUser(username);
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+    /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "encuestasDatosPartoBB", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<EncuestaDatosPartoBB> getEncuestasDatosPartoBB() {
+        logger.info("Descargando toda la informacion de formularios encuesta datos parto BB");
+        List<EncuestaDatosPartoBB> respuestaList = encuestaDatosPartoBBService.getEncuestasDatosPartoBB();
         if (respuestaList == null){
             logger.debug("Nulo");
         }

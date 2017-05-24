@@ -30,9 +30,24 @@ public class PreTamizajeController {
      */
     @RequestMapping(value = "preTamizajes/{username}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<PreTamizaje> getPreTamizajes(@PathVariable String username) {
+    List<PreTamizaje> getPreTamizajesByUser(@PathVariable String username) {
         logger.info("Descargando toda la informacion de formularios PreTamizaje" +username);
         List<PreTamizaje> respuestaList = preTamizajeService.getPreTamizajesByUser(username);
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+    /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "preTamizajes", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<PreTamizaje> getPreTamizajes() {
+        logger.info("Descargando toda la informacion de formularios PreTamizaje");
+        List<PreTamizaje> respuestaList = preTamizajeService.getPreTamizajes();
         if (respuestaList == null){
             logger.debug("Nulo");
         }

@@ -26,9 +26,21 @@ public class CartaConsentimientoController {
 
     @RequestMapping(value = "cartasConsen/{username}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List <CartaConsentimiento> getCartasConsentimiento(@PathVariable String username) {
+    List <CartaConsentimiento> getCartasConsentimientoByUser(@PathVariable String username) {
         logger.info("Descargando toda la informacion de los datos de las cartas de consentimiento para el usuario " +username);
         List<CartaConsentimiento> cartaConsentimientos = cartaConsentimientoService.getCartasConsentimientoByUser(username);
+        if (cartaConsentimientos == null) {
+            logger.debug("Nulo");
+        }
+
+        return cartaConsentimientos;
+    }
+
+    @RequestMapping(value = "cartasConsen", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List <CartaConsentimiento> getCartasConsentimiento() {
+        logger.info("Descargando toda la informacion de los datos de las cartas de consentimiento");
+        List<CartaConsentimiento> cartaConsentimientos = cartaConsentimientoService.getCartasConsentimiento();
         if (cartaConsentimientos == null) {
             logger.debug("Nulo");
         }

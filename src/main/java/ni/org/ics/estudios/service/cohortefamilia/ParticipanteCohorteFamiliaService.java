@@ -23,7 +23,7 @@ public class ParticipanteCohorteFamiliaService {
     @SuppressWarnings("unchecked")
 	public List<ParticipanteCohorteFamilia> getParticipantesCHF(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamilia");
+        Query query = session.createQuery("from ParticipanteCohorteFamilia where pasive = '0'");
         return query.list();
     }
 

@@ -26,9 +26,20 @@ public class CasaCohorteFamiliaController {
 
     @RequestMapping(value = "casasCHF/{username}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<CasaCohorteFamilia> getCasasCHF(@PathVariable String username){
+    List<CasaCohorteFamilia> getCasasCHFByUser(@PathVariable String username){
         logger.info("Descargando toda la informacion de los datos de las casas de la cohorte familia para el usuario " +username);
         List<CasaCohorteFamilia> casas = casaCohorteFamiliaService.getCasasCHFByUser(username);
+        if (casas == null){
+            logger.debug("Nulo");
+        }
+        return  casas;
+    }
+
+    @RequestMapping(value = "casasCHF", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<CasaCohorteFamilia> getCasasCHF(){
+        logger.info("Descargando toda la informacion de los datos de las casas de la cohorte familia");
+        List<CasaCohorteFamilia> casas = casaCohorteFamiliaService.getCasasCHF();
         if (casas == null){
             logger.debug("Nulo");
         }

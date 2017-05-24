@@ -24,7 +24,7 @@ public class PreTamizajeService {
     public List<PreTamizaje> getPreTamizajes()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from PreTamizaje ");
+        Query query = session.createQuery("from PreTamizaje where pasive = '0'");
         return query.list();
     }
 

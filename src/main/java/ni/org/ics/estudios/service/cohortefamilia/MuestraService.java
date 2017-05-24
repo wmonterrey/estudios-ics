@@ -25,7 +25,7 @@ public class MuestraService {
     public List<Muestra> getMuestras()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Muestra where pasive = false ");
+        Query query = session.createQuery("from Muestra where pasive = '0' ");
         return  query.list();
     }
 

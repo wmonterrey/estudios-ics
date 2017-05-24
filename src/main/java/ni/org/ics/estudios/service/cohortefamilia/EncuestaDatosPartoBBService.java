@@ -24,13 +24,13 @@ public class EncuestaDatosPartoBBService {
     public List<EncuestaDatosPartoBB> getEncuestasDatosPartoBB()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaDatosPartoBB ");
+        Query query = session.createQuery("from EncuestaDatosPartoBB where pasive = '0' ");
         return query.list();
     }
 
-    public EncuestaDatosPartoBB getEncuestaDatosPartoBBByCodigo(Integer codigo){
+    public EncuestaDatosPartoBB getEncuestaDatosPartoBBByCodigo(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaDatosPartoBB where participante.codigo = :codigo");
+        Query query = session.createQuery("from EncuestaDatosPartoBB where participante.participanteCHF = :codigo");
         query.setParameter("codigo", codigo );
         return (EncuestaDatosPartoBB)query.uniqueResult();
     }
@@ -38,7 +38,7 @@ public class EncuestaDatosPartoBBService {
     public List<EncuestaDatosPartoBB> getEncuestasDatosPartoBBByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select ec from EncuestaDatosPartoBB ec where ec.pasive = false and ec.participante.casa.codigo in (" +
+        Query query = session.createQuery("select ec from EncuestaDatosPartoBB ec where ec.pasive = false and ec.participante.casaCHF.casa.codigo in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);

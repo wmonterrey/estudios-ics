@@ -40,6 +40,21 @@ public class EncuestaPesoTallaController {
     }
 
     /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "encuestasPesoTalla", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<EncuestaPesoTalla> getEncuestasPesoTalla() {
+        logger.info("Descargando toda la informacion de formularios encuesta Peso y Talla ");
+        List<EncuestaPesoTalla> respuestaList = encuestaPesoTallaService.getEncuestasPesoTalla();
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+    /**
      * Acepta una solicitud POST con un par�metro JSON
      * @param encuestas Objeto serializado de EncuestaPesoTalla
      * @return String con el resultado

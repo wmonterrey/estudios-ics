@@ -23,21 +23,21 @@ public class EncuestaParticipanteService {
 
     public List<EncuestaParticipante> getEncuestasParticipantes(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaParticipante ");
+        Query query = session.createQuery("from EncuestaParticipante where pasive = '0'");
         return query.list();
     }
     public List<EncuestaParticipante> getEncuestasParticipantesByUser(String username){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaParticipante ec where ec.pasive = false and ec.participante.casa.codigo in (" +
+        Query query = session.createQuery("from EncuestaParticipante ec where ec.pasive = false and ec.participante.casaCHF.casa.codigo in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);
         return query.list();
     }
 
-    public EncuestaParticipante getEncuestaParticipanteByCodigo(Integer codigo){
+    public EncuestaParticipante getEncuestaParticipanteByCodigo(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaParticipante where participante.codigo = :codigo");
+        Query query = session.createQuery("from EncuestaParticipante where participante.participanteCHF = :codigo");
         query.setParameter("codigo", codigo);
         return (EncuestaParticipante)query.uniqueResult();
     }

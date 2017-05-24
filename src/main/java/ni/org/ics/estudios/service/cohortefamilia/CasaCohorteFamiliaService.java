@@ -24,9 +24,16 @@ public class CasaCohorteFamiliaService {
     public List<CasaCohorteFamilia> getCasasCHFByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select c from CasaCohorteFamilia c where c.pasive = false and c.casa.codigo in (select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
+        Query query = session.createQuery("select c from CasaCohorteFamilia c where c.pasive = '0' and c.casa.codigo in (select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 "  select us.estudio.codigo  from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);
+        return query.list();
+    }
+
+    public List<CasaCohorteFamilia> getCasasCHF()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from CasaCohorteFamilia c where c.pasive = '0'");
         return query.list();
     }
 

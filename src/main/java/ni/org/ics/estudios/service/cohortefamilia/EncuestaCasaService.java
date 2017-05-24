@@ -24,7 +24,7 @@ public class EncuestaCasaService {
     public List<EncuestaCasa> getEncuestasCasa()
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaCasa where pasive = false ");
+        Query query = session.createQuery("from EncuestaCasa where pasive = '0' ");
         return  query.list();
     }
 

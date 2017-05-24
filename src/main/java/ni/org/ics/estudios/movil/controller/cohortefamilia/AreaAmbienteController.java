@@ -31,11 +31,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "banios/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "banios", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Banio> getBanios(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de los Banio para el usuario " +username);
-        List<Banio> baniosByUser = areaAmbienteService.getBaniosByUser(username);
+    List<Banio> getBanios() {
+        logger.info("Descargando toda la informacion de los datos de los Banio");
+        List<Banio> baniosByUser = areaAmbienteService.getBanios();
         if (baniosByUser == null){
             logger.debug("Nulo");
         }
@@ -46,11 +46,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "camas/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "camas", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Cama> getCamas(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de las camas para el usuario " +username);
-        List<Cama> listaByUser = areaAmbienteService.getCamasByUser(username);
+    List<Cama> getCamas() {
+        logger.info("Descargando toda la informacion de los datos de las camas");
+        List<Cama> listaByUser = areaAmbienteService.getCamas();
         if (listaByUser == null){
             logger.debug("Nulo");
         }
@@ -61,11 +61,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "cocinas/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "cocinas", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Cocina> getCocinas(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de las cocinas para el usuario " +username);
-        List<Cocina> listaByUser = areaAmbienteService.getCocinasByUser(username);
+    List<Cocina> getCocinas() {
+        logger.info("Descargando toda la informacion de los datos de las cocinas ");
+        List<Cocina> listaByUser = areaAmbienteService.getCocinas();
         if (listaByUser == null){
             logger.debug("Nulo");
         }
@@ -76,11 +76,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "comedores/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "comedores", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Comedor> getComedores(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de las comedores para el usuario " +username);
-        List<Comedor> listaByUser = areaAmbienteService.getComedoresByUser(username);
+    List<Comedor> getComedores() {
+        logger.info("Descargando toda la informacion de los datos de las comedores");
+        List<Comedor> listaByUser = areaAmbienteService.getComedores();
         if (listaByUser == null){
             logger.debug("Nulo");
         }
@@ -91,11 +91,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "habitaciones/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "habitaciones", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Habitacion> getHabitaciones(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de las habitaciones para el usuario " +username);
-        List<Habitacion> listaByUser = areaAmbienteService.getHabitacionesByUser(username);
+    List<Habitacion> getHabitaciones() {
+        logger.info("Descargando toda la informacion de los datos de las habitaciones");
+        List<Habitacion> listaByUser = areaAmbienteService.getHabitaciones();
         if (listaByUser == null){
             logger.debug("Nulo");
         }
@@ -106,11 +106,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "salas/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "salas", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Sala> getSalas(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de las salas para el usuario " +username);
-        List<Sala> listaByUser = areaAmbienteService.getSalasByUser(username);
+    List<Sala> getSalas() {
+        logger.info("Descargando toda la informacion de los datos de las salas");
+        List<Sala> listaByUser = areaAmbienteService.getSalas();
         if (listaByUser == null){
             logger.debug("Nulo");
         }
@@ -121,11 +121,11 @@ public class AreaAmbienteController {
      * Acepta una solicitud GET para JSON
      * @return JSON
      */
-    @RequestMapping(value = "ventanas/{username}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "ventanas", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Ventana> getVentanas(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de las ventanas para el usuario " +username);
-        List<Ventana> listaByUser = areaAmbienteService.getVentanasByUser(username);
+    List<Ventana> getVentanas() {
+        logger.info("Descargando toda la informacion de los datos de las ventanas ");
+        List<Ventana> listaByUser = areaAmbienteService.getVentanas();
         if (listaByUser == null){
             logger.debug("Nulo");
         }
@@ -298,5 +298,16 @@ public class AreaAmbienteController {
             }
         }
         return "Datos recibidos!";
+    }
+
+    @RequestMapping(value = "personasCamas", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<PersonaCama> getPersonasCamas() {
+        logger.info("Descargando toda la informacion de las personas camas");
+        List<PersonaCama> listaByUser = personaCamaService.getPersonasCama();
+        if (listaByUser == null){
+            logger.debug("Nulo");
+        }
+        return listaByUser;
     }
 }

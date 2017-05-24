@@ -41,6 +41,21 @@ public class MuestraController {
     }
 
     /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "muestras", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Muestra> getMuestras() {
+        logger.info("Descargando toda la informacion de formularios muestras para el usuario ");
+        List<Muestra> respuestaList = muestraService.getMuestras();
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+    /**
      * Acepta una solicitud POST con un par�metro JSON
      * @param muestras Objeto serializado de Muestras
      * @return String con el resultado
