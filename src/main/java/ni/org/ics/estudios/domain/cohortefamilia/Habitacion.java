@@ -14,7 +14,17 @@ import javax.persistence.Entity;
 @DiscriminatorValue("habitacion")
 public class Habitacion extends AreaAmbiente {
 
+    private String codigoHabitacion;
     private int cantidadCamas;
+
+    @Column(name = "ID_HABITACION", length = 5)
+    public String getCodigoHabitacion() {
+        return codigoHabitacion;
+    }
+
+    public void setCodigoHabitacion(String codigoHabitacion) {
+        this.codigoHabitacion = codigoHabitacion;
+    }
 
     @Column(name = "CANTIDAD_CAMAS")
     public int getCantidadCamas() {

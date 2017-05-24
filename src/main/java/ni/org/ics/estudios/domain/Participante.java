@@ -4,6 +4,7 @@ import ni.org.ics.estudios.domain.audit.Auditable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
 
 import java.util.Date;
@@ -190,11 +191,13 @@ public class Participante extends BaseMetaData implements Auditable {
     }
 
     @Transient
+    @JsonIgnore
     public String getEdad(){
         return "";
     }
 
     @Transient
+    @JsonIgnore
     public String getNombreCompleto(){
         return "";
     }
