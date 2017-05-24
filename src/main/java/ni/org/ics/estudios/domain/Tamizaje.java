@@ -167,7 +167,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.aceptaParticipar = aceptaParticipar;
     }
 
-    @Column(name="RAZON_NO_ACEPTA_PARTICIPAR", nullable = true, length = 1)
+    @Column(name="RAZON_NO_ACEPTA_PARTICIPAR", nullable = true, length = 5)
     public String getRazonNoAceptaParticipar() {
         return razonNoAceptaParticipar;
     }
