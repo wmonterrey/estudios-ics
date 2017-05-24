@@ -17,19 +17,28 @@ public class Paxgene extends BaseMetaData implements Auditable, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Muestra muestra;
+    private Integer id;
+    private String muestra;
     private String horaInicio;
     private String horaFin;
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "CODIGO_MX",referencedColumnName = "CODIGO_MX")
-    @ForeignKey(name = "FK_MUESTRA_DATOSPAXGENE")
-    public Muestra getMuestra() {
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Column(name = "CODIGO_MX", length = 50)
+    public String getMuestra() {
         return muestra;
     }
 
-    public void setMuestra(Muestra muestra) {
+    public void setMuestra(String muestra) {
         this.muestra = muestra;
     }
 
@@ -53,7 +62,7 @@ public class Paxgene extends BaseMetaData implements Auditable, Serializable {
 
     @Override
     public String toString() {
-        return "Paxgene{" + muestra.getCodigoMx() +
+        return "Paxgene{" + muestra +
                 '}';
     }
 
