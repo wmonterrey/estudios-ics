@@ -56,6 +56,10 @@ public class TamizajeController {
         else{
             List<Tamizaje> tamizaje = Arrays.asList(envio);
             for (Tamizaje zp00Screening : tamizaje){
+                if (zp00Screening.getAsentimientoVerbal()!=null && zp00Screening.getAsentimientoVerbal().equalsIgnoreCase("null"))
+                    zp00Screening.setAsentimientoVerbal(null);
+                if (zp00Screening.getRazonNoAceptaParticipar()!=null && zp00Screening.getRazonNoAceptaParticipar().equalsIgnoreCase("null"))
+                    zp00Screening.setRazonNoAceptaParticipar(null);
             	tamizajeService.saveOrUpdateTamizaje(zp00Screening);
             }
         }
