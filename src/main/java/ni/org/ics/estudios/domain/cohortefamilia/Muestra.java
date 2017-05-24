@@ -64,7 +64,7 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
         this.codigoMx = codigoMx;
     }
 
-    @Column(name = "HORA", length = 20, nullable = false)
+    @Column(name = "HORA", length = 20, nullable = true)
     public String getHora() {
         return hora;
     }
@@ -82,7 +82,7 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
         this.horaFin = horaFin;
     }
 
-    @Column(name = "VOLUMEN", nullable = false)
+    @Column(name = "VOLUMEN", nullable = true)
     public Double getVolumen() {
         return volumen;
     }
