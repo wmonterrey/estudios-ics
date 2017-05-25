@@ -84,8 +84,8 @@ public class AreaAmbiente extends BaseMetaData implements Auditable {
         this.numVentanas = numVentanas;
     }
 
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "CODIGO_CASACHF", nullable = true)
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_CASACHF", nullable = false)
     @ForeignKey(name = "FK_AREAAMBIENTE_CASA")
     public CasaCohorteFamilia getCasa() {
         return casa;

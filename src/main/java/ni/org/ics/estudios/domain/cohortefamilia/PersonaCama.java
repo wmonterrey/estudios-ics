@@ -16,8 +16,12 @@ import javax.persistence.*;
 @Table(name = "chf_persona_cama", catalog = "estudios_ics")
 public class PersonaCama extends BaseMetaData implements Auditable {
 
-    private String codigoPersona;
-    private char estaEnEstudio; //0 No, 1 Si
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigoPersona;
+    private String estaEnEstudio; //0 No, 1 Si
     private Participante participante; //si es participante
     private String sexo;  //si no participa
     private Integer edad;   //si no participa
@@ -34,11 +38,11 @@ public class PersonaCama extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "ESTA_EN_ESTUDIO")
-    public char getEstaEnEstudio() {
+    public String getEstaEnEstudio() {
         return estaEnEstudio;
     }
 
-    public void setEstaEnEstudio(char estaEnEstudio) {
+    public void setEstaEnEstudio(String estaEnEstudio) {
         this.estaEnEstudio = estaEnEstudio;
     }
 

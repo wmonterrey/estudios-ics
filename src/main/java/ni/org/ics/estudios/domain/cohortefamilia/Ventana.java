@@ -18,14 +18,14 @@ public class Ventana extends AreaAmbiente {
 	 */
 	private static final long serialVersionUID = 1L;
     private AreaAmbiente areaAmbiente;
-    private char abierta;
+    private String abierta;
 
     @Column(name = "ABIERTA", length = 1)
-    public char getAbierta() {
+    public String getAbierta() {
         return abierta;
     }
 
-    public void setAbierta(char abierta) {
+    public void setAbierta(String abierta) {
         this.abierta = abierta;
     }
 

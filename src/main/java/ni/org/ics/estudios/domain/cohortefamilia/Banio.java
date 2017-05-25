@@ -17,10 +17,10 @@ public class Banio extends  AreaAmbiente {
 	 */
 	private static final long serialVersionUID = 1L;
 	private AreaAmbiente areaAmbiente;
-    private char conVentana;
+    private String conVentana;
 
     @ManyToOne(optional=true)
-    @JoinColumn(name = "CODIGO_AREA")
+    @JoinColumn(name = "CODIGO_AREA", nullable = true)
     @ForeignKey(name = "FK_AREA_AREA")
     public AreaAmbiente getAreaAmbiente() {
         return areaAmbiente;
@@ -31,11 +31,11 @@ public class Banio extends  AreaAmbiente {
     }
 
     @Column(name = "CON_VENTANA", length = 1)
-    public char getConVentana() {
+    public String getConVentana() {
         return conVentana;
     }
 
-    public void setConVentana(char conVentana) {
+    public void setConVentana(String conVentana) {
         this.conVentana = conVentana;
     }
 }
