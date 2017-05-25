@@ -21,8 +21,10 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
     private String tienePatioJardin;
     private String utilizaAbate;
     private String fumiga;
+    private String cadaCuantoFumiga;
     private String conoceLarvas;
     private String lugaresLarvas;
+    private String otrosLugaresLarvas;
 
 
     @Id
@@ -35,6 +37,87 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
 
     public void setCasa(CasaCohorteFamilia casa) {
         this.casa = casa;
+    }
+
+    @Column(name = "SEDAZOS", length = 1)
+    public String getSedazoPuertasVentanas() {
+        return sedazoPuertasVentanas;
+    }
+
+    public void setSedazoPuertasVentanas(String sedazoPuertasVentanas) {
+        this.sedazoPuertasVentanas = sedazoPuertasVentanas;
+    }
+
+    @Column(name = "COMPRA_PRODUCTOS", length = 1)
+    public String getCompraProdEvitarZancudos() {
+        return compraProdEvitarZancudos;
+    }
+
+    public void setCompraProdEvitarZancudos(String compraProdEvitarZancudos) {
+        this.compraProdEvitarZancudos = compraProdEvitarZancudos;
+    }
+
+    @Column(name = "TIENE_PATIO", length = 1)
+    public String getTienePatioJardin() {
+        return tienePatioJardin;
+    }
+
+    public void setTienePatioJardin(String tienePatioJardin) {
+        this.tienePatioJardin = tienePatioJardin;
+    }
+
+    @Column(name = "UTILIZA_ABATE", length = 1)
+    public String getUtilizaAbate() {
+        return utilizaAbate;
+    }
+
+    public void setUtilizaAbate(String utilizaAbate) {
+        this.utilizaAbate = utilizaAbate;
+    }
+
+    @Column(name = "FUMIGA", length = 1)
+    public String getFumiga() {
+        return fumiga;
+    }
+
+    public void setFumiga(String fumiga) {
+        this.fumiga = fumiga;
+    }
+
+    @Column(name = "CUANTO_FUMIGA", length = 5)
+    public String getCadaCuantoFumiga() {
+        return cadaCuantoFumiga;
+    }
+
+    public void setCadaCuantoFumiga(String cadaCuantoFumiga) {
+        this.cadaCuantoFumiga = cadaCuantoFumiga;
+    }
+
+    @Column(name = "CONOCE_LARVAS", length = 1)
+    public String getConoceLarvas() {
+        return conoceLarvas;
+    }
+
+    public void setConoceLarvas(String conoceLarvas) {
+        this.conoceLarvas = conoceLarvas;
+    }
+
+    @Column(name = "LUGARES_LARVAS", length = 50)
+    public String getLugaresLarvas() {
+        return lugaresLarvas;
+    }
+
+    public void setLugaresLarvas(String lugaresLarvas) {
+        this.lugaresLarvas = lugaresLarvas;
+    }
+
+    @Column(name = "OTROS_LUGARES_LARVAS", length = 255)
+    public String getOtrosLugaresLarvas() {
+        return otrosLugaresLarvas;
+    }
+
+    public void setOtrosLugaresLarvas(String otrosLugaresLarvas) {
+        this.otrosLugaresLarvas = otrosLugaresLarvas;
     }
 
     @Override

@@ -18,7 +18,9 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     private ParticipanteSeroprevalencia participanteSA;
     private String escuchadoZikaSn;
     private String queEsSika;
+    private String otroQueEsSika;
     private String transmiteZika;
+    private String otroTransmiteZika;
     private String sintomas;
     private String tenidoZikaSn;
     private String conoceFechaZika;
@@ -28,6 +30,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     private Integer cantMiembrosZika;
     private Date fechaDxZika;
     private String relacionFamZika;
+    private String otraRelacionFamZika;
     private String tenidoDengueSn;
     private String conoceFechaDengue;
     private Date fechaDengue;
@@ -35,6 +38,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     private Integer cantMiembrosDengue;
     private Date fechaDxDengue;
     private String relacionFamDengue;
+    private String otraRelacionFamDengue;
     private String tenidoChikSn;
     private String conoceFechaChik;
     private Date fechaChik;
@@ -42,6 +46,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     private Integer cantMiembrosChik;
     private Date fechaDxChik;
     private String relacionFamChik;
+    private String otraRelacionFamChik;
     private String vacunaFiebreAmarillaSn;
     private String conoceFechaVacFiebreAmar;
     private Date fechaVacunaFiebreAmar;
@@ -397,6 +402,51 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
     public void setUsaOtroMetodo(String usaOtroMetodo) {
         this.usaOtroMetodo = usaOtroMetodo;
+    }
+
+    @Column(name = "OTRO_SABE_ZIKA", length = 255)
+    public String getOtroQueEsSika() {
+        return otroQueEsSika;
+    }
+
+    public void setOtroQueEsSika(String otroQueEsSika) {
+        this.otroQueEsSika = otroQueEsSika;
+    }
+
+    @Column(name = "OTRO_TRANSMITE_ZIKA", length = 255)
+    public String getOtroTransmiteZika() {
+        return otroTransmiteZika;
+    }
+
+    public void setOtroTransmiteZika(String otroTransmiteZika) {
+        this.otroTransmiteZika = otroTransmiteZika;
+    }
+
+    @Column(name = "OTRA_RELACION_FAM_ZIKA", length = 255)
+    public String getOtraRelacionFamZika() {
+        return otraRelacionFamZika;
+    }
+
+    public void setOtraRelacionFamZika(String otraRelacionFamZika) {
+        this.otraRelacionFamZika = otraRelacionFamZika;
+    }
+
+    @Column(name = "OTRA_RELACION_FAM_DENGUE", length = 255)
+    public String getOtraRelacionFamDengue() {
+        return otraRelacionFamDengue;
+    }
+
+    public void setOtraRelacionFamDengue(String otraRelacionFamDengue) {
+        this.otraRelacionFamDengue = otraRelacionFamDengue;
+    }
+
+    @Column(name = "OTRA_RELACION_FAM_CHIK", length = 255)
+    public String getOtraRelacionFamChik() {
+        return otraRelacionFamChik;
+    }
+
+    public void setOtraRelacionFamChik(String otraRelacionFamChik) {
+        this.otraRelacionFamChik = otraRelacionFamChik;
     }
 
     @Override
