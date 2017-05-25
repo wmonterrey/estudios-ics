@@ -140,7 +140,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.puestoSalud = puestoSalud;
     }
 
-    @Column(name="ASISTIR_CSSF", nullable = true, length = 1)
+    @Column(name="ASISTIR_CSSF", nullable = true, length = 5)
     public String getAceptaAtenderCentro() {
         return aceptaAtenderCentro;
     }

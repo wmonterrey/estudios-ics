@@ -30,7 +30,7 @@ public class VisitaTerreno extends BaseMetaData {
 	private String razonVisitaNoExitosa;
 
 	@Id
-	@Column(name = "CODIGO_VISITA", nullable = false, length = 4)
+	@Column(name = "CODIGO_VISITA", nullable = false, length = 50)
     public String getCodigoVisita() {
 		return codigoVisita;
 	}

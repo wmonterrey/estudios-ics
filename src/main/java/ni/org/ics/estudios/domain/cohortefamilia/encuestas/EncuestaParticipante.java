@@ -594,7 +594,7 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.otrasEnfermedades = otrasEnfermedades;
     }
 
-    @Column(name = "DESC_OTRAS_ENFERMEDADES", length = 1)
+    @Column(name = "DESC_OTRAS_ENFERMEDADES", length = 255)
     public String getDescOtrasEnfermedades() {
         return descOtrasEnfermedades;
     }

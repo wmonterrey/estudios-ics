@@ -14,7 +14,11 @@ import javax.persistence.Entity;
 @DiscriminatorValue("habitacion")
 public class Habitacion extends AreaAmbiente {
 
-    private String codigoHabitacion;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigoHabitacion;
     private int cantidadCamas;
 
     @Column(name = "ID_HABITACION", length = 5)

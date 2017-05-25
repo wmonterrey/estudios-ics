@@ -11,4 +11,9 @@ import javax.persistence.Entity;
 @DiscriminatorValue("cocina")
 public class Cocina extends AreaAmbiente {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 }

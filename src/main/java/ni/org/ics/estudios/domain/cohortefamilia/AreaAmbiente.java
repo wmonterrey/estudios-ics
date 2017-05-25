@@ -1,7 +1,6 @@
 package ni.org.ics.estudios.domain.cohortefamilia;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
-import ni.org.ics.estudios.domain.Casa;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
@@ -18,7 +17,11 @@ import javax.persistence.*;
 @DiscriminatorValue(value="area_ambiente")
 public class AreaAmbiente extends BaseMetaData implements Auditable {
 
-    private String codigo;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigo;
     private Double largo;
     private Double ancho;
     private Double totalM2;

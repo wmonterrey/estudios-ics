@@ -15,7 +15,12 @@ import javax.persistence.*;
 @Table(name = "chf_camas_habitacion", catalog = "estudios_ics")
 public class Cama extends BaseMetaData implements Auditable {
 
-    private String codigoCama;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigoCama;
+    private String descCama;
     private Habitacion habitacion;
 
     @Id
@@ -27,8 +32,18 @@ public class Cama extends BaseMetaData implements Auditable {
     public void setCodigoCama(String codigoCama) {
         this.codigoCama = codigoCama;
     }
+    
+    
+    @Column(name = "DESC_CAMA", length = 255)
+    public String getDescCama() {
+		return descCama;
+	}
 
-    @ManyToOne
+	public void setDescCama(String descCama) {
+		this.descCama = descCama;
+	}
+
+	@ManyToOne
     @JoinColumn(name = "CODIGO_HABITACION")
     @ForeignKey(name = "FK_CAMA_HABITACION")
     public Habitacion getHabitacion() {

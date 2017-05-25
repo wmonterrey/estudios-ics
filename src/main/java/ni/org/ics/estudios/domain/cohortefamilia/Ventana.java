@@ -13,30 +13,12 @@ import javax.persistence.*;
 @DiscriminatorValue("ventana")
 public class Ventana extends AreaAmbiente {
 
-    //private String codigoVentana;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
     private AreaAmbiente areaAmbiente;
-    private Double alto;
     private char abierta;
-
-    /*
-    @Id
-    @Column(name = "CODIGO")
-    public String getCodigoVentana() {
-        return codigoVentana;
-    }
-
-    public void setCodigoVentana(String codigoVentana) {
-        this.codigoVentana = codigoVentana;
-    }*/
-
-    @Column(name = "ALTO")
-    public Double getAlto() {
-        return alto;
-    }
-
-    public void setAlto(Double alto) {
-        this.alto = alto;
-    }
 
     @Column(name = "ABIERTA", length = 1)
     public char getAbierta() {
@@ -48,8 +30,8 @@ public class Ventana extends AreaAmbiente {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CODIGO_AREA_VENT")
-    @ForeignKey(name = "FK_AREAAMBIENTE_VENTANA")
+    @JoinColumn(name = "CODIGO_AREA")
+    @ForeignKey(name = "FK_AREA_AREA")
     public AreaAmbiente getAreaAmbiente() {
         return areaAmbiente;
     }

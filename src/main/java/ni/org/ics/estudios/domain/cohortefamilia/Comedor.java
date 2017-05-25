@@ -11,5 +11,10 @@ import javax.persistence.Entity;
 @DiscriminatorValue("comedor")
 public class Comedor extends AreaAmbiente {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 
 }

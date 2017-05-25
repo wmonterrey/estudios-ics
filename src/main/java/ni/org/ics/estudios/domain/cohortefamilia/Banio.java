@@ -1,6 +1,5 @@
 package ni.org.ics.estudios.domain.cohortefamilia;
 
-import ni.org.ics.estudios.domain.cohortefamilia.Habitacion;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -13,18 +12,22 @@ import javax.persistence.*;
 @DiscriminatorValue("banio")
 public class Banio extends  AreaAmbiente {
 
-    private Habitacion habitacion;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private AreaAmbiente areaAmbiente;
     private char conVentana;
 
-    @ManyToOne
-    @JoinColumn(name = "CODIGO_HABITACION")
-    @ForeignKey(name = "FK_HABITACION_BANIO")
-    public Habitacion getHabitacion() {
-        return habitacion;
+    @ManyToOne(optional=true)
+    @JoinColumn(name = "CODIGO_AREA")
+    @ForeignKey(name = "FK_AREA_AREA")
+    public AreaAmbiente getAreaAmbiente() {
+        return areaAmbiente;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
+    public void setAreaAmbiente(AreaAmbiente areaAmbiente) {
+        this.areaAmbiente = areaAmbiente;
     }
 
     @Column(name = "CON_VENTANA", length = 1)
