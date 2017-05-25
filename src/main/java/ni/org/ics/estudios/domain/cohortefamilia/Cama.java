@@ -21,7 +21,7 @@ public class Cama extends BaseMetaData implements Auditable {
 	private static final long serialVersionUID = 1L;
 	private String codigoCama;
     private String descCama;
-    private Habitacion habitacion;
+    private Cuarto cuarto;
 
     @Id
     @Column(name = "CODIGO", length = 36)
@@ -44,14 +44,14 @@ public class Cama extends BaseMetaData implements Auditable {
 	}
 
 	@ManyToOne
-    @JoinColumn(name = "CODIGO_HABITACION")
-    @ForeignKey(name = "FK_CAMA_HABITACION")
-    public Habitacion getHabitacion() {
-        return habitacion;
+    @JoinColumn(name = "CODIGO_CUARTO")
+    @ForeignKey(name = "FK_CAMA_CUARTO")
+    public Cuarto getCuarto() {
+        return cuarto;
     }
 
-    public void setHabitacion(Habitacion habitacion) {
-        this.habitacion = habitacion;
+    public void setCuarto(Cuarto cuarto) {
+        this.cuarto = cuarto;
     }
 
     @Override

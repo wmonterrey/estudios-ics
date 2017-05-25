@@ -1,6 +1,13 @@
 package ni.org.ics.estudios.service.cohortefamilia;
 
-import ni.org.ics.estudios.domain.cohortefamilia.*;
+
+import ni.org.ics.estudios.domain.cohortefamilia.Banio;
+import ni.org.ics.estudios.domain.cohortefamilia.Cocina;
+import ni.org.ics.estudios.domain.cohortefamilia.Comedor;
+import ni.org.ics.estudios.domain.cohortefamilia.Habitacion;
+import ni.org.ics.estudios.domain.cohortefamilia.Sala;
+import ni.org.ics.estudios.domain.cohortefamilia.Ventana;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -27,14 +34,6 @@ public class AreaAmbienteService {
         return query.list();
     }
 
-    public List<Cama> getCamasByHabitacion(String habitacion)
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Cama where habitacion.codigo = :habitacion");
-        query.setParameter("habitacion",habitacion);
-        return query.list();
-    }
-
     public List<Ventana> getVentanasByArea(String codigoArea){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Ventana where codigo = :codigoArea");
@@ -47,13 +46,6 @@ public class AreaAmbienteService {
         Query query = session.createQuery("from Banio where codigo = :codigo");
         query.setParameter("codigo", codigo);
         return (Banio)query.uniqueResult();
-    }
-
-    public Cama getCamaByCodigo(String codigo){
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Cama where codigoCama = :codigo");
-        query.setParameter("codigo", codigo);
-        return (Cama)query.uniqueResult();
     }
 
     public Cocina getCocinaByCodigo(String codigo){
@@ -97,12 +89,6 @@ public class AreaAmbienteService {
         session.saveOrUpdate(banio);
     }
 
-    public void saveOrUpdateCama(Cama cama)
-    {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(cama);
-    }
-
     public void saveOrUpdateCocina(Cocina cocina)
     {
         Session session = sessionFactory.getCurrentSession();
@@ -137,16 +123,6 @@ public class AreaAmbienteService {
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select b from Banio b where b.pasive = false and b.casa.codigoCHF in (" +
-                "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
-                " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
-        query.setParameter("username",username);
-        return query.list();
-    }
-
-    public List<Cama> getCamasByUser(String username)
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Cama c where c.pasive = false and c.habitacion.casa.codigoCHF in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);
@@ -207,13 +183,6 @@ public class AreaAmbienteService {
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select b from Banio b where b.pasive = '0'");
-        return query.list();
-    }
-
-    public List<Cama> getCamas()
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Cama c where c.pasive = '0'");
         return query.list();
     }
 

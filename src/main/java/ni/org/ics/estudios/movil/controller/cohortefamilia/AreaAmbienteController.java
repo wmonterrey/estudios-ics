@@ -1,8 +1,12 @@
 package ni.org.ics.estudios.movil.controller.cohortefamilia;
 
-import ni.org.ics.estudios.domain.cohortefamilia.*;
+import ni.org.ics.estudios.domain.cohortefamilia.Banio;
+import ni.org.ics.estudios.domain.cohortefamilia.Cocina;
+import ni.org.ics.estudios.domain.cohortefamilia.Comedor;
+import ni.org.ics.estudios.domain.cohortefamilia.Habitacion;
+import ni.org.ics.estudios.domain.cohortefamilia.Sala;
+import ni.org.ics.estudios.domain.cohortefamilia.Ventana;
 import ni.org.ics.estudios.service.cohortefamilia.AreaAmbienteService;
-import ni.org.ics.estudios.service.cohortefamilia.PersonaCamaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -24,9 +28,6 @@ public class AreaAmbienteController {
     @Resource(name = "areaAmbienteService")
     private AreaAmbienteService areaAmbienteService;
 
-    @Resource(name = "personaCamaService")
-    private PersonaCamaService personaCamaService;
-
     /**
      * Acepta una solicitud GET para JSON
      * @return JSON
@@ -40,21 +41,6 @@ public class AreaAmbienteController {
             logger.debug("Nulo");
         }
         return baniosByUser;
-    }
-
-    /**
-     * Acepta una solicitud GET para JSON
-     * @return JSON
-     */
-    @RequestMapping(value = "camas", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
-    List<Cama> getCamas() {
-        logger.info("Descargando toda la informacion de los datos de las camas");
-        List<Cama> listaByUser = areaAmbienteService.getCamas();
-        if (listaByUser == null){
-            logger.debug("Nulo");
-        }
-        return listaByUser;
     }
 
     /**
@@ -153,26 +139,6 @@ public class AreaAmbienteController {
         return "Datos recibidos!";
     }
 
-    /**
-     * Acepta una solicitud POST con un par�metro JSON
-     * @param envio Objeto serializado de Camas
-     * @return String con el resultado
-     */
-    @RequestMapping(value = "camas", method = RequestMethod.POST, consumes = "application/json")
-    public @ResponseBody String saveCamas(@RequestBody Cama[] envio) {
-        logger.debug("Insertando/Actualizando datos Camas");
-        if (envio == null){
-            logger.debug("Nulo");
-            return "No recibi nada!";
-        }
-        else{
-            List<Cama> areasAmbienteList = Arrays.asList(envio);
-            for (Cama areaAmb : areasAmbienteList){
-                areaAmbienteService.saveOrUpdateCama(areaAmb);
-            }
-        }
-        return "Datos recibidos!";
-    }
 
     /**
      * Acepta una solicitud POST con un par�metro JSON
@@ -277,37 +243,5 @@ public class AreaAmbienteController {
             }
         }
         return "Datos recibidos!";
-    }
-
-    /**
-     * Acepta una solicitud POST con un par�metro JSON
-     * @param envio Objeto serializado de Camas
-     * @return String con el resultado
-     */
-    @RequestMapping(value = "personasCamas", method = RequestMethod.POST, consumes = "application/json")
-    public @ResponseBody String savePersonasCamas(@RequestBody PersonaCama[] envio) {
-        logger.debug("Insertando/Actualizando datos personas Camas");
-        if (envio == null){
-            logger.debug("Nulo");
-            return "No recibi nada!";
-        }
-        else{
-            List<PersonaCama> personaCamaList = Arrays.asList(envio);
-            for (PersonaCama areaAmb : personaCamaList){
-                personaCamaService.saveOrUdatePersonaCama(areaAmb);
-            }
-        }
-        return "Datos recibidos!";
-    }
-
-    @RequestMapping(value = "personasCamas", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody
-    List<PersonaCama> getPersonasCamas() {
-        logger.info("Descargando toda la informacion de las personas camas");
-        List<PersonaCama> listaByUser = personaCamaService.getPersonasCama();
-        if (listaByUser == null){
-            logger.debug("Nulo");
-        }
-        return listaByUser;
     }
 }
