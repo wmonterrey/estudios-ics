@@ -17,30 +17,30 @@ import java.util.Date;
 public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String codigo;
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    private String codigo;
     private Date fechaFirma;
     private Tamizaje tamizaje;
     private Participante participante;
-    private char emancipado;
+    private String emancipado;
     private String nombre1Tutor;
     private String nombre2Tutor;
     private String apellido1Tutor;
     private String apellido2Tutor;
     private String relacionFamiliarTutor;
-    private char participanteOTutorAlfabeto;
-    private char testigoPresente;
+    private String participanteOTutorAlfabeto;
+    private String testigoPresente;
     private String nombre1Testigo;
     private String nombre2Testigo;
     private String apellido1Testigo;
     private String apellido2Testigo;
-    private char aceptaParteA;
+    private String aceptaParteA;
     private String motivoRechazoParteA;
-    private char aceptaContactoFuturo;
-    private char aceptaParteB; //Consentimiento para almacenamiento y uso de muestras en estudios futuros
-    private char aceptaParteC; //Consentimiento adicional para estudios genéticos
+    private String aceptaContactoFuturo;
+    private String aceptaParteB; //Consentimiento para almacenamiento y uso de muestras en estudios futuros
+    private String aceptaParteC; //Consentimiento adicional para estudios genéticos
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -63,11 +63,11 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "EMANCIPADO", length = 1)
-    public char getEmancipado() {
+    public String getEmancipado() {
         return emancipado;
     }
 
-    public void setEmancipado(char emancipado) {
+    public void setEmancipado(String emancipado) {
         this.emancipado = emancipado;
     }
 
@@ -108,20 +108,20 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "PARTICIPANTE_TUTOR_ALFABETO", length = 1)
-    public char getParticipanteOTutorAlfabeto() {
+    public String getParticipanteOTutorAlfabeto() {
         return participanteOTutorAlfabeto;
     }
 
-    public void setParticipanteOTutorAlfabeto(char participanteOTutorAlfabeto) {
+    public void setParticipanteOTutorAlfabeto(String participanteOTutorAlfabeto) {
         this.participanteOTutorAlfabeto = participanteOTutorAlfabeto;
     }
 
     @Column(name = "TESTIGO_PRESENTE", length = 1)
-    public char getTestigoPresente() {
+    public String getTestigoPresente() {
         return testigoPresente;
     }
 
-    public void setTestigoPresente(char testigoPresente) {
+    public void setTestigoPresente(String testigoPresente) {
         this.testigoPresente = testigoPresente;
     }
 
@@ -162,11 +162,11 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "ACEPTA_PARTE_A", length = 1)
-    public char getAceptaParteA() {
+    public String getAceptaParteA() {
         return aceptaParteA;
     }
 
-    public void setAceptaParteA(char aceptaParteA) {
+    public void setAceptaParteA(String aceptaParteA) {
         this.aceptaParteA = aceptaParteA;
     }
 
@@ -180,29 +180,29 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "ACEPTA_CONTACTO_FUTURO", length = 1)
-    public char getAceptaContactoFuturo() {
+    public String getAceptaContactoFuturo() {
         return aceptaContactoFuturo;
     }
 
-    public void setAceptaContactoFuturo(char aceptaContactoFuturo) {
+    public void setAceptaContactoFuturo(String aceptaContactoFuturo) {
         this.aceptaContactoFuturo = aceptaContactoFuturo;
     }
 
     @Column(name = "ACEPTA_PARTE_B", length = 1)
-    public char getAceptaParteB() {
+    public String getAceptaParteB() {
         return aceptaParteB;
     }
 
-    public void setAceptaParteB(char aceptaParteB) {
+    public void setAceptaParteB(String aceptaParteB) {
         this.aceptaParteB = aceptaParteB;
     }
 
     @Column(name = "ACEPTA_PARTE_C", length = 1)
-    public char getAceptaParteC() {
+    public String getAceptaParteC() {
         return aceptaParteC;
     }
 
-    public void setAceptaParteC(char aceptaParteC) {
+    public void setAceptaParteC(String aceptaParteC) {
         this.aceptaParteC = aceptaParteC;
     }
 
@@ -239,7 +239,7 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     @Override
     public boolean isFieldAuditable(String fieldname) {
-        return false;
+        return true;
     }
 
     @Override

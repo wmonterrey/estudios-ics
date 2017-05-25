@@ -18,70 +18,70 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
 
     private ParticipanteCohorteFamilia participante;
     //Adulto   (Mayores o igual a 18 años; Mujeres menores de 18 años con niños o embarazadas)
-    //private char emancipado;
+    //private String emancipado;
     //private String motivoEmacipacion;
     //private String otroMotivoEmancipacion;
-    private char estaEmbarazada;
+    private String estaEmbarazada;
     private Integer semanasEmbarazo;
-    private char esAlfabeto;
+    private String esAlfabeto;
     private String nivelEducacion;
-    private char trabaja;
+    private String trabaja;
     private String tipoTrabajo;
     private String ocupacionActual;
     //Niño
-    private char vaNinoEscuela;
+    private String vaNinoEscuela;
     private String gradoCursa;
     private String turno;
     private String nombreCentroEstudio;
     private String dondeCuidanNino;
-    private char ninoTrabaja;
+    private String ninoTrabaja;
     private String ocupacionActualNino;
     private Integer cantNinosLugarCuidan; //Cuántos niños aproximadamente hay en el lugar que cuidan al niño
     //Datos generales de los padres y factores de hacinamiento
     private String conQuienViveNino;
     private String descOtroViveNino;
-    private char padreEnEstudio;
+    private String padreEnEstudio;
     private String codigoPadreEstudio;
-    private char padreAlfabeto;
+    private String padreAlfabeto;
     private String nivelEducacionPadre;
-    private char trabajaPadre;
+    private String trabajaPadre;
     private String tipoTrabajoPadre;
-    private char madreEnEstudio;
+    private String madreEnEstudio;
     private String codigoMadreEstudio;
-    private char madreAlfabeto;
+    private String madreAlfabeto;
     private String nivelEducacionMadre;
-    private char trabajaMadre;
+    private String trabajaMadre;
     private String tipoTrabajoMadre;
     // Para todos los participantes
-    private char fuma;
+    private String fuma;
     private String periodicidadFuma;
     private Integer cantidadCigarrillos;
-    private char fumaDentroCasa;
+    private String fumaDentroCasa;
     //Antecedentes de Salud
-    private char tuberculosisPulmonarActual;
+    private String tuberculosisPulmonarActual;
     private String fechaDiagnosticoTubPulActual;
-    private char tomaTratamientoTubPulActual;
-    private char completoTratamientoTubPulActual;
-    private char tuberculosisPulmonarPasado;
+    private String tomaTratamientoTubPulActual;
+    private String completoTratamientoTubPulActual;
+    private String tuberculosisPulmonarPasado;
     private String fechaDiagnosticoTubPulPasado;
-    private char fechaDiagnosticoTubPulPasadoDes;//fecha de diagnóstico desconocida
-    private char tomaTratamientoTubPulPasado;
-    private char completoTratamientoTubPulPasado;
-    private char alergiaRespiratoria;
-    private char cardiopatia;
-    private char enfermedadPulmonarOC; // enfermedad pulmonar obstructiva crónica
-    private char diabetes;
-    private char presionAlta;
-    private char asma;
-    private char silbidoRespirarPechoApretado;
-    private char tosSinFiebreResfriado;
-    private char usaInhaladoresSpray;
-    private char crisisAsma;
+    private String fechaDiagnosticoTubPulPasadoDes;//fecha de diagnóstico desconocida
+    private String tomaTratamientoTubPulPasado;
+    private String completoTratamientoTubPulPasado;
+    private String alergiaRespiratoria;
+    private String cardiopatia;
+    private String enfermedadPulmonarOC; // enfermedad pulmonar obstructiva crónica
+    private String diabetes;
+    private String presionAlta;
+    private String asma;
+    private String silbidoRespirarPechoApretado;
+    private String tosSinFiebreResfriado;
+    private String usaInhaladoresSpray;
+    private String crisisAsma;
     private Integer cantidadCrisisAsma;
     private Integer vecesEnfermoEnfermedadesRes; //veces enfermo en el último año por cuadros o enfermedades respiratorias
-    private char otrasEnfermedades;
+    private String otrasEnfermedades;
     private String descOtrasEnfermedades;
-    private char vacunaInfluenza;
+    private String vacunaInfluenza;
     private Integer anioVacunaInfluenza;
     private String recurso1;
     private String otrorecurso1;
@@ -100,11 +100,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "ENBARAZADA", length = 1)
-    public char getEstaEmbarazada() {
+    public String getEstaEmbarazada() {
         return estaEmbarazada;
     }
 
-    public void setEstaEmbarazada(char estaEmbarazada) {
+    public void setEstaEmbarazada(String estaEmbarazada) {
         this.estaEmbarazada = estaEmbarazada;
     }
 
@@ -118,11 +118,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "ALFABETO", length = 1)
-    public char getEsAlfabeto() {
+    public String getEsAlfabeto() {
         return esAlfabeto;
     }
 
-    public void setEsAlfabeto(char esAlfabeto) {
+    public void setEsAlfabeto(String esAlfabeto) {
         this.esAlfabeto = esAlfabeto;
     }
 
@@ -136,11 +136,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "TRABAJA", length = 1)
-    public char getTrabaja() {
+    public String getTrabaja() {
         return trabaja;
     }
 
-    public void setTrabaja(char trabaja) {
+    public void setTrabaja(String trabaja) {
         this.trabaja = trabaja;
     }
 
@@ -163,11 +163,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "NINO_ASISTE_ESCUELA", length = 1)
-    public char getVaNinoEscuela() {
+    public String getVaNinoEscuela() {
         return vaNinoEscuela;
     }
 
-    public void setVaNinoEscuela(char vaNinoEscuela) {
+    public void setVaNinoEscuela(String vaNinoEscuela) {
         this.vaNinoEscuela = vaNinoEscuela;
     }
 
@@ -208,11 +208,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "NINO_TRABAJA", length = 1)
-    public char getNinoTrabaja() {
+    public String getNinoTrabaja() {
         return ninoTrabaja;
     }
 
-    public void setNinoTrabaja(char ninoTrabaja) {
+    public void setNinoTrabaja(String ninoTrabaja) {
         this.ninoTrabaja = ninoTrabaja;
     }
 
@@ -253,11 +253,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "PADRE_ESTUDIO", length = 1)
-    public char getPadreEnEstudio() {
+    public String getPadreEnEstudio() {
         return padreEnEstudio;
     }
 
-    public void setPadreEnEstudio(char padreEnEstudio) {
+    public void setPadreEnEstudio(String padreEnEstudio) {
         this.padreEnEstudio = padreEnEstudio;
     }
 
@@ -271,11 +271,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "PADRE_ALFABETO", length = 1)
-    public char getPadreAlfabeto() {
+    public String getPadreAlfabeto() {
         return padreAlfabeto;
     }
 
-    public void setPadreAlfabeto(char padreAlfabeto) {
+    public void setPadreAlfabeto(String padreAlfabeto) {
         this.padreAlfabeto = padreAlfabeto;
     }
 
@@ -289,11 +289,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "TRABAJA_PADRE", length = 1)
-    public char getTrabajaPadre() {
+    public String getTrabajaPadre() {
         return trabajaPadre;
     }
 
-    public void setTrabajaPadre(char trabajaPadre) {
+    public void setTrabajaPadre(String trabajaPadre) {
         this.trabajaPadre = trabajaPadre;
     }
 
@@ -307,11 +307,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "MADRE_ESTUDIO", length = 1)
-    public char getMadreEnEstudio() {
+    public String getMadreEnEstudio() {
         return madreEnEstudio;
     }
 
-    public void setMadreEnEstudio(char madreEnEstudio) {
+    public void setMadreEnEstudio(String madreEnEstudio) {
         this.madreEnEstudio = madreEnEstudio;
     }
 
@@ -325,11 +325,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "MADRE_ALFABETA", length = 1)
-    public char getMadreAlfabeto() {
+    public String getMadreAlfabeto() {
         return madreAlfabeto;
     }
 
-    public void setMadreAlfabeto(char madreAlfabeto) {
+    public void setMadreAlfabeto(String madreAlfabeto) {
         this.madreAlfabeto = madreAlfabeto;
     }
 
@@ -343,11 +343,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "TRABAJA_MADRE", length = 1)
-    public char getTrabajaMadre() {
+    public String getTrabajaMadre() {
         return trabajaMadre;
     }
 
-    public void setTrabajaMadre(char trabajaMadre) {
+    public void setTrabajaMadre(String trabajaMadre) {
         this.trabajaMadre = trabajaMadre;
     }
 
@@ -361,11 +361,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "FUMA", length = 1)
-    public char getFuma() {
+    public String getFuma() {
         return fuma;
     }
 
-    public void setFuma(char fuma) {
+    public void setFuma(String fuma) {
         this.fuma = fuma;
     }
 
@@ -388,20 +388,20 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "FUMA_DENTRO_CASA", length = 1)
-    public char getFumaDentroCasa() {
+    public String getFumaDentroCasa() {
         return fumaDentroCasa;
     }
 
-    public void setFumaDentroCasa(char fumaDentroCasa) {
+    public void setFumaDentroCasa(String fumaDentroCasa) {
         this.fumaDentroCasa = fumaDentroCasa;
     }
 
     @Column(name = "TUBERCULOSIS_PULMONAR_ACTUAL", length = 1)
-    public char getTuberculosisPulmonarActual() {
+    public String getTuberculosisPulmonarActual() {
         return tuberculosisPulmonarActual;
     }
 
-    public void setTuberculosisPulmonarActual(char tuberculosisPulmonarActual) {
+    public void setTuberculosisPulmonarActual(String tuberculosisPulmonarActual) {
         this.tuberculosisPulmonarActual = tuberculosisPulmonarActual;
     }
 
@@ -415,29 +415,29 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "TRATAMIENTO_TUBPUL_ACTUAL", length = 1)
-    public char getTomaTratamientoTubPulActual() {
+    public String getTomaTratamientoTubPulActual() {
         return tomaTratamientoTubPulActual;
     }
 
-    public void setTomaTratamientoTubPulActual(char tomaTratamientoTPActual) {
+    public void setTomaTratamientoTubPulActual(String tomaTratamientoTPActual) {
         this.tomaTratamientoTubPulActual = tomaTratamientoTPActual;
     }
 
     @Column(name = "COMPLETO_TRATAMIENTO_TUBPUL_ACTUAL", length = 1)
-    public char getCompletoTratamientoTubPulActual() {
+    public String getCompletoTratamientoTubPulActual() {
         return completoTratamientoTubPulActual;
     }
 
-    public void setCompletoTratamientoTubPulActual(char completoTratamientoTPActual) {
+    public void setCompletoTratamientoTubPulActual(String completoTratamientoTPActual) {
         this.completoTratamientoTubPulActual = completoTratamientoTPActual;
     }
 
     @Column(name = "TUBERCULOSIS_PULMONAR_PASADO", length = 1)
-    public char getTuberculosisPulmonarPasado() {
+    public String getTuberculosisPulmonarPasado() {
         return tuberculosisPulmonarPasado;
     }
 
-    public void setTuberculosisPulmonarPasado(char tuberculosisPulmonarPasado) {
+    public void setTuberculosisPulmonarPasado(String tuberculosisPulmonarPasado) {
         this.tuberculosisPulmonarPasado = tuberculosisPulmonarPasado;
     }
 
@@ -451,119 +451,119 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "FECHA_DIAG_TUBPUL_PASADO_DES", length = 1, nullable = true)
-    public char getFechaDiagnosticoTubPulPasadoDes() {
+    public String getFechaDiagnosticoTubPulPasadoDes() {
         return fechaDiagnosticoTubPulPasadoDes;
     }
 
-    public void setFechaDiagnosticoTubPulPasadoDes(char fechaDiagnosticoTubPulPasadoDes) {
+    public void setFechaDiagnosticoTubPulPasadoDes(String fechaDiagnosticoTubPulPasadoDes) {
         this.fechaDiagnosticoTubPulPasadoDes = fechaDiagnosticoTubPulPasadoDes;
     }
 
     @Column(name = "TRATAMIENTO_TUBBUL_PASADO", length = 1)
-    public char getTomaTratamientoTubPulPasado() {
+    public String getTomaTratamientoTubPulPasado() {
         return tomaTratamientoTubPulPasado;
     }
 
-    public void setTomaTratamientoTubPulPasado(char tomaTratamientoTPPasado) {
+    public void setTomaTratamientoTubPulPasado(String tomaTratamientoTPPasado) {
         this.tomaTratamientoTubPulPasado = tomaTratamientoTPPasado;
     }
 
     @Column(name = "COMPLETO_TRATAMIENTO_TUBPUL_PAS", length = 1)
-    public char getCompletoTratamientoTubPulPasado() {
+    public String getCompletoTratamientoTubPulPasado() {
         return completoTratamientoTubPulPasado;
     }
 
-    public void setCompletoTratamientoTubPulPasado(char completoTratamientoTPPasado) {
+    public void setCompletoTratamientoTubPulPasado(String completoTratamientoTPPasado) {
         this.completoTratamientoTubPulPasado = completoTratamientoTPPasado;
     }
 
     @Column(name = "ALERGIA_RESPIRATORIA", length = 1)
-    public char getAlergiaRespiratoria() {
+    public String getAlergiaRespiratoria() {
         return alergiaRespiratoria;
     }
 
-    public void setAlergiaRespiratoria(char alergiaRespiratoria) {
+    public void setAlergiaRespiratoria(String alergiaRespiratoria) {
         this.alergiaRespiratoria = alergiaRespiratoria;
     }
 
     @Column(name = "CARDIOPATIA", length = 1)
-    public char getCardiopatia() {
+    public String getCardiopatia() {
         return cardiopatia;
     }
 
-    public void setCardiopatia(char cardiopatia) {
+    public void setCardiopatia(String cardiopatia) {
         this.cardiopatia = cardiopatia;
     }
 
     @Column(name = "ENFERM_PULMONAR_OBST_CRONICA", length = 1)
-    public char getEnfermedadPulmonarOC() {
+    public String getEnfermedadPulmonarOC() {
         return enfermedadPulmonarOC;
     }
 
-    public void setEnfermedadPulmonarOC(char enfermedadPulmonarOC) {
+    public void setEnfermedadPulmonarOC(String enfermedadPulmonarOC) {
         this.enfermedadPulmonarOC = enfermedadPulmonarOC;
     }
 
     @Column(name = "DIABETES", length = 1)
-    public char getDiabetes() {
+    public String getDiabetes() {
         return diabetes;
     }
 
-    public void setDiabetes(char diabetes) {
+    public void setDiabetes(String diabetes) {
         this.diabetes = diabetes;
     }
 
     @Column(name = "PRESION_ALTA", length = 1)
-    public char getPresionAlta() {
+    public String getPresionAlta() {
         return presionAlta;
     }
 
-    public void setPresionAlta(char presionAlta) {
+    public void setPresionAlta(String presionAlta) {
         this.presionAlta = presionAlta;
     }
 
     @Column(name = "ASMA", length = 1)
-    public char getAsma() {
+    public String getAsma() {
         return asma;
     }
 
-    public void setAsma(char asma) {
+    public void setAsma(String asma) {
         this.asma = asma;
     }
 
     @Column(name = "SILBIDO_RESPIRAR_PECHO_APRETADO", length = 1)
-    public char getSilbidoRespirarPechoApretado() {
+    public String getSilbidoRespirarPechoApretado() {
         return silbidoRespirarPechoApretado;
     }
 
-    public void setSilbidoRespirarPechoApretado(char silbidoRespirarPechoApretado) {
+    public void setSilbidoRespirarPechoApretado(String silbidoRespirarPechoApretado) {
         this.silbidoRespirarPechoApretado = silbidoRespirarPechoApretado;
     }
 
     @Column(name = "TOS_SIN_FIEBRE_RESFRIADO", length = 1)
-    public char getTosSinFiebreResfriado() {
+    public String getTosSinFiebreResfriado() {
         return tosSinFiebreResfriado;
     }
 
-    public void setTosSinFiebreResfriado(char tosSinFiebreResfriado) {
+    public void setTosSinFiebreResfriado(String tosSinFiebreResfriado) {
         this.tosSinFiebreResfriado = tosSinFiebreResfriado;
     }
 
     @Column(name = "INHALADORES_SPRAY", length = 1)
-    public char getUsaInhaladoresSpray() {
+    public String getUsaInhaladoresSpray() {
         return usaInhaladoresSpray;
     }
 
-    public void setUsaInhaladoresSpray(char usaInhaladoresSpray) {
+    public void setUsaInhaladoresSpray(String usaInhaladoresSpray) {
         this.usaInhaladoresSpray = usaInhaladoresSpray;
     }
 
     @Column(name = "CRISIS_ASMA", length = 1)
-    public char getCrisisAsma() {
+    public String getCrisisAsma() {
         return crisisAsma;
     }
 
-    public void setCrisisAsma(char crisisAsma) {
+    public void setCrisisAsma(String crisisAsma) {
         this.crisisAsma = crisisAsma;
     }
 
@@ -586,11 +586,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "OTRAS_ENFERMEDADES", length = 1)
-    public char getOtrasEnfermedades() {
+    public String getOtrasEnfermedades() {
         return otrasEnfermedades;
     }
 
-    public void setOtrasEnfermedades(char otrasEnfermedades) {
+    public void setOtrasEnfermedades(String otrasEnfermedades) {
         this.otrasEnfermedades = otrasEnfermedades;
     }
 
@@ -604,11 +604,11 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "VACUNA_INFLUENZA", length = 1)
-    public char getVacunaInfluenza() {
+    public String getVacunaInfluenza() {
         return vacunaInfluenza;
     }
 
-    public void setVacunaInfluenza(char vacunaInfluenza) {
+    public void setVacunaInfluenza(String vacunaInfluenza) {
         this.vacunaInfluenza = vacunaInfluenza;
     }
 

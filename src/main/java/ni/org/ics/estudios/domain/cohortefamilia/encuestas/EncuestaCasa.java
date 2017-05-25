@@ -24,24 +24,24 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     private int hrsSinServicioAgua;
     private String ubicacionLlaveAgua;
     private String llaveCompartida;
-    private char almacenaAgua;
-    private char almacenaEnBarriles;
-    private char almacenaEnTanques;
-    private char almacenaEnPilas;
-    private char almacenaOtrosRecipientes;
+    private String almacenaAgua;
+    private String almacenaEnBarriles;
+    private String almacenaEnTanques;
+    private String almacenaEnPilas;
+    private String almacenaOtrosRecipientes;
     private String otrosRecipientes;
     private Integer numBarriles;
     private Integer numTanques;
     private Integer numPilas;
     private Integer numOtrosRecipientes;
-    private char barrilesTapados;
-    private char tanquesTapados;
-    private char pilasTapadas;
-    private char otrosRecipientesTapados;
-    private char barrilesConAbate;
-    private char tanquesConAbate;
-    private char pilasConAbate;
-    private char otrosRecipientesConAbate;
+    private String barrilesTapados;
+    private String tanquesTapados;
+    private String pilasTapadas;
+    private String otrosRecipientesTapados;
+    private String barrilesConAbate;
+    private String tanquesConAbate;
+    private String pilasConAbate;
+    private String otrosRecipientesConAbate;
     private String ubicacionLavandero;
     private String materialParedes;
     private String materialPiso;
@@ -49,43 +49,43 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     private String otroMaterialParedes;
     private String otroMaterialPiso;
     private String otroMaterialTecho;
-    private char casaPropia;
-    private char tieneAbanico;
-    private char tieneTelevisor;
-    private char tieneRefrigerador;
-    private char tienAireAcondicionado;
+    private String casaPropia;
+    private String tieneAbanico;
+    private String tieneTelevisor;
+    private String tieneRefrigerador;
+    private String tienAireAcondicionado;
     private String aireAcondicionadoFuncionando;
     private Integer numAbanicos;
     private Integer numTelevisores;
     private Integer numRefrigeradores;
-    private char tieneMoto;
-    private char tieneCarro;
-    private char tienMicrobus;
-    private char tieneCamioneta;
-    private char tieneCamion;
-    private char tieneOtroMedioTransAuto;
+    private String tieneMoto;
+    private String tieneCarro;
+    private String tienMicrobus;
+    private String tieneCamioneta;
+    private String tieneCamion;
+    private String tieneOtroMedioTransAuto;
     private String otroMedioTransAuto;
-    private char cocinaConLenia;
+    private String cocinaConLenia;
     private String ubicacionCocinaLenia;
     private String periodicidadCocinaLenia;
     private Integer numDiarioCocinaLenia;   //# de veces que cocina
     private Integer numSemanalCocinaLenia;  //# de veces que cocina semanalmente
     private Integer numQuincenalCocinaLenia;    //# de veces que cocina quincenalmente
     private Integer numMensualCocinaLenia;  //# de veces que cocina al mes
-    private char tieneAnimales;
-    private char tieneGallinas;
-    private char tienePatos;
-    private char tieneCerdos;
+    private String tieneAnimales;
+    private String tieneGallinas;
+    private String tienePatos;
+    private String tieneCerdos;
     private Integer cantidadGallinas;
     private Integer cantidadPatos;
     private Integer cantidadCerdos;
-    private char gallinasDentroCasa;
-    private char patosDentroCasa;
-    private char cerdosDentroCasa;
-    private char personaFumaDentroCasa;  //Alguna persona que no pertenece al estudio fuma dentro de la casa
-    private char madreFuma;
-    private char padreFuma;
-    private char otrosFuman;
+    private String gallinasDentroCasa;
+    private String patosDentroCasa;
+    private String cerdosDentroCasa;
+    private String personaFumaDentroCasa;  //Alguna persona que no pertenece al estudio fuma dentro de la casa
+    private String madreFuma;
+    private String padreFuma;
+    private String otrosFuman;
     private Integer cantidadOtrosFuman;
     private Integer cantidadCigarrilosMadre; // diarios
     private Integer cantidadCigarrillosPadre; // diarios
@@ -167,47 +167,47 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "ALMACENA_AGUA", length = 1)
-    public char getAlmacenaAgua() {
+    public String getAlmacenaAgua() {
         return almacenaAgua;
     }
 
-    public void setAlmacenaAgua(char almacenaAgua) {
+    public void setAlmacenaAgua(String almacenaAgua) {
         this.almacenaAgua = almacenaAgua;
     }
 
     @Column(name = "ALMACENA_EN_BARRILES", length = 1)
-    public char getAlmacenaEnBarriles() {
+    public String getAlmacenaEnBarriles() {
         return almacenaEnBarriles;
     }
 
-    public void setAlmacenaEnBarriles(char utilizaBarriles) {
+    public void setAlmacenaEnBarriles(String utilizaBarriles) {
         this.almacenaEnBarriles = utilizaBarriles;
     }
 
     @Column(name = "ALMACENA_EN_TANQUES", length = 1)
-    public char getAlmacenaEnTanques() {
+    public String getAlmacenaEnTanques() {
         return almacenaEnTanques;
     }
 
-    public void setAlmacenaEnTanques(char utilizaTanques) {
+    public void setAlmacenaEnTanques(String utilizaTanques) {
         this.almacenaEnTanques = utilizaTanques;
     }
 
     @Column(name = "ALMACENA_EN_PILAS", length = 1)
-    public char getAlmacenaEnPilas() {
+    public String getAlmacenaEnPilas() {
         return almacenaEnPilas;
     }
 
-    public void setAlmacenaEnPilas(char utilizaPilas) {
+    public void setAlmacenaEnPilas(String utilizaPilas) {
         this.almacenaEnPilas = utilizaPilas;
     }
 
     @Column(name = "ALMACENA_EN_OTROSRECIP", length = 1)
-    public char getAlmacenaOtrosRecipientes() {
+    public String getAlmacenaOtrosRecipientes() {
         return almacenaOtrosRecipientes;
     }
 
-    public void setAlmacenaOtrosRecipientes(char utilizaOtrosRecipientes) {
+    public void setAlmacenaOtrosRecipientes(String utilizaOtrosRecipientes) {
         this.almacenaOtrosRecipientes = utilizaOtrosRecipientes;
     }
 
@@ -257,74 +257,74 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "BARRILES_TAPADOS", length = 1)
-    public char getBarrilesTapados() {
+    public String getBarrilesTapados() {
         return barrilesTapados;
     }
 
-    public void setBarrilesTapados(char barrilesTapados) {
+    public void setBarrilesTapados(String barrilesTapados) {
         this.barrilesTapados = barrilesTapados;
     }
 
     @Column(name = "TANQUES_TAPADOS", length = 1)
-    public char getTanquesTapados() {
+    public String getTanquesTapados() {
         return tanquesTapados;
     }
 
-    public void setTanquesTapados(char tanquesTapados) {
+    public void setTanquesTapados(String tanquesTapados) {
         this.tanquesTapados = tanquesTapados;
     }
 
     @Column(name = "PILAS_TAPADAS", length = 1)
-    public char getPilasTapadas() {
+    public String getPilasTapadas() {
         return pilasTapadas;
     }
 
-    public void setPilasTapadas(char pilasTapadas) {
+    public void setPilasTapadas(String pilasTapadas) {
         this.pilasTapadas = pilasTapadas;
     }
 
     @Column(name = "OTROS_RECIP_TAPADOS", length = 1)
-    public char getOtrosRecipientesTapados() {
+    public String getOtrosRecipientesTapados() {
         return otrosRecipientesTapados;
     }
 
-    public void setOtrosRecipientesTapados(char otrosRecipientesTapados) {
+    public void setOtrosRecipientesTapados(String otrosRecipientesTapados) {
         this.otrosRecipientesTapados = otrosRecipientesTapados;
     }
 
     @Column(name = "BARRILES_CON_ABATE", length = 1)
-    public char getBarrilesConAbate() {
+    public String getBarrilesConAbate() {
         return barrilesConAbate;
     }
 
-    public void setBarrilesConAbate(char barrilesConAbate) {
+    public void setBarrilesConAbate(String barrilesConAbate) {
         this.barrilesConAbate = barrilesConAbate;
     }
 
     @Column(name = "TANQUES_CON_ABATE", length = 1)
-    public char getTanquesConAbate() {
+    public String getTanquesConAbate() {
         return tanquesConAbate;
     }
 
-    public void setTanquesConAbate(char tanquesConAbate) {
+    public void setTanquesConAbate(String tanquesConAbate) {
         this.tanquesConAbate = tanquesConAbate;
     }
 
     @Column(name = "PILAS_CON_ABATE", length = 1)
-    public char getPilasConAbate() {
+    public String getPilasConAbate() {
         return pilasConAbate;
     }
 
-    public void setPilasConAbate(char pilasConAbate) {
+    public void setPilasConAbate(String pilasConAbate) {
         this.pilasConAbate = pilasConAbate;
     }
 
     @Column(name = "OTROSRECIP_CON_ABATE", length = 1)
-    public char getOtrosRecipientesConAbate() {
+    public String getOtrosRecipientesConAbate() {
         return otrosRecipientesConAbate;
     }
 
-    public void setOtrosRecipientesConAbate(char otrosRecipientesConAbate) {
+    public void setOtrosRecipientesConAbate(String otrosRecipientesConAbate) {
         this.otrosRecipientesConAbate = otrosRecipientesConAbate;
     }
 
@@ -392,47 +392,47 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "CASA_PROPIA", length = 1)
-    public char getCasaPropia() {
+    public String getCasaPropia() {
         return casaPropia;
     }
 
-    public void setCasaPropia(char casaPropia) {
+    public void setCasaPropia(String casaPropia) {
         this.casaPropia = casaPropia;
     }
 
     @Column(name = "TIENE_ABANICO", length = 1)
-    public char getTieneAbanico() {
+    public String getTieneAbanico() {
         return tieneAbanico;
     }
 
-    public void setTieneAbanico(char tieneAbanico) {
+    public void setTieneAbanico(String tieneAbanico) {
         this.tieneAbanico = tieneAbanico;
     }
 
     @Column(name = "TIENE_TELEVISOR", length = 1)
-    public char getTieneTelevisor() {
+    public String getTieneTelevisor() {
         return tieneTelevisor;
     }
 
-    public void setTieneTelevisor(char tieneTelevisor) {
+    public void setTieneTelevisor(String tieneTelevisor) {
         this.tieneTelevisor = tieneTelevisor;
     }
 
     @Column(name = "TIENE_REFRIGERADOR_FREEZER", length = 1)
-    public char getTieneRefrigerador() {
+    public String getTieneRefrigerador() {
         return tieneRefrigerador;
     }
 
-    public void setTieneRefrigerador(char tieneRefrigerador) {
+    public void setTieneRefrigerador(String tieneRefrigerador) {
         this.tieneRefrigerador = tieneRefrigerador;
     }
 
     @Column(name = "TIENE_AIRE_ACONDICIONADO", length = 1)
-    public char getTienAireAcondicionado() {
+    public String getTienAireAcondicionado() {
         return tienAireAcondicionado;
     }
 
-    public void setTienAireAcondicionado(char tienAireAcondicionado) {
+    public void setTienAireAcondicionado(String tienAireAcondicionado) {
         this.tienAireAcondicionado = tienAireAcondicionado;
     }
 
@@ -473,56 +473,56 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "TIENE_MOTO", length = 1)
-    public char getTieneMoto() {
+    public String getTieneMoto() {
         return tieneMoto;
     }
 
-    public void setTieneMoto(char tieneMoto) {
+    public void setTieneMoto(String tieneMoto) {
         this.tieneMoto = tieneMoto;
     }
 
     @Column(name = "TIENE_CARRO", length = 1)
-    public char getTieneCarro() {
+    public String getTieneCarro() {
         return tieneCarro;
     }
 
-    public void setTieneCarro(char tieneCarro) {
+    public void setTieneCarro(String tieneCarro) {
         this.tieneCarro = tieneCarro;
     }
 
     @Column(name = "TIENE_MICROBUS", length = 1)
-    public char getTienMicrobus() {
+    public String getTienMicrobus() {
         return tienMicrobus;
     }
 
-    public void setTienMicrobus(char tienMicrobus) {
+    public void setTienMicrobus(String tienMicrobus) {
         this.tienMicrobus = tienMicrobus;
     }
 
     @Column(name = "TIENE_CAMIONETA", length = 1)
-    public char getTieneCamioneta() {
+    public String getTieneCamioneta() {
         return tieneCamioneta;
     }
 
-    public void setTieneCamioneta(char tieneCamioneta) {
+    public void setTieneCamioneta(String tieneCamioneta) {
         this.tieneCamioneta = tieneCamioneta;
     }
 
     @Column(name = "TIENE_CAMION", length = 1)
-    public char getTieneCamion() {
+    public String getTieneCamion() {
         return tieneCamion;
     }
 
-    public void setTieneCamion(char tieneCamion) {
+    public void setTieneCamion(String tieneCamion) {
         this.tieneCamion = tieneCamion;
     }
 
     @Column(name = "TIENE_OTRO_MEDIO_TRANS", length = 1)
-    public char getTieneOtroMedioTransAuto() {
+    public String getTieneOtroMedioTransAuto() {
         return tieneOtroMedioTransAuto;
     }
 
-    public void setTieneOtroMedioTransAuto(char tieneOtroMedioTransAuto) {
+    public void setTieneOtroMedioTransAuto(String tieneOtroMedioTransAuto) {
         this.tieneOtroMedioTransAuto = tieneOtroMedioTransAuto;
     }
 
@@ -536,11 +536,11 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "COCINA_CON_LENIA", length = 1)
-    public char getCocinaConLenia() {
+    public String getCocinaConLenia() {
         return cocinaConLenia;
     }
 
-    public void setCocinaConLenia(char cocinaConLenia) {
+    public void setCocinaConLenia(String cocinaConLenia) {
         this.cocinaConLenia = cocinaConLenia;
     }
 
@@ -599,38 +599,38 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "TIENE_ANIMALES", length = 1)
-    public char getTieneAnimales() {
+    public String getTieneAnimales() {
         return tieneAnimales;
     }
 
-    public void setTieneAnimales(char tieneAnimales) {
+    public void setTieneAnimales(String tieneAnimales) {
         this.tieneAnimales = tieneAnimales;
     }
 
     @Column(name = "TIENE_GALLINAS", length = 1)
-    public char getTieneGallinas() {
+    public String getTieneGallinas() {
         return tieneGallinas;
     }
 
-    public void setTieneGallinas(char tieneGallinas) {
+    public void setTieneGallinas(String tieneGallinas) {
         this.tieneGallinas = tieneGallinas;
     }
 
     @Column(name = "TIENE_PATOS", length = 1)
-    public char getTienePatos() {
+    public String getTienePatos() {
         return tienePatos;
     }
 
-    public void setTienePatos(char tienePatos) {
+    public void setTienePatos(String tienePatos) {
         this.tienePatos = tienePatos;
     }
 
     @Column(name = "TIENE_CERDOS", length = 1)
-    public char getTieneCerdos() {
+    public String getTieneCerdos() {
         return tieneCerdos;
     }
 
-    public void setTieneCerdos(char tieneCerdos) {
+    public void setTieneCerdos(String tieneCerdos) {
         this.tieneCerdos = tieneCerdos;
     }
 
@@ -662,65 +662,65 @@ public class EncuestaCasa extends BaseMetaData implements Auditable {
     }
 
     @Column(name = "GALLINAS_DENTRO_CASA", length = 1)
-    public char getGallinasDentroCasa() {
+    public String getGallinasDentroCasa() {
         return gallinasDentroCasa;
     }
 
-    public void setGallinasDentroCasa(char gallinasDentroCasa) {
+    public void setGallinasDentroCasa(String gallinasDentroCasa) {
         this.gallinasDentroCasa = gallinasDentroCasa;
     }
 
     @Column(name = "PATOS_DENTRO_CASA", length = 1)
-    public char getPatosDentroCasa() {
+    public String getPatosDentroCasa() {
         return patosDentroCasa;
     }
 
-    public void setPatosDentroCasa(char patosDentroCasa) {
+    public void setPatosDentroCasa(String patosDentroCasa) {
         this.patosDentroCasa = patosDentroCasa;
     }
 
     @Column(name = "CERDOS_DENTRO_CASA", length = 1)
-    public char getCerdosDentroCasa() {
+    public String getCerdosDentroCasa() {
         return cerdosDentroCasa;
     }
 
-    public void setCerdosDentroCasa(char cerdosDentroCasa) {
+    public void setCerdosDentroCasa(String cerdosDentroCasa) {
         this.cerdosDentroCasa = cerdosDentroCasa;
     }
 
     @Column(name = "PERS_FUMA_DENTRO_CASA", length = 1)
-    public char getPersonaFumaDentroCasa() {
+    public String getPersonaFumaDentroCasa() {
         return personaFumaDentroCasa;
     }
 
-    public void setPersonaFumaDentroCasa(char personaFumaDentroCasa) {
+    public void setPersonaFumaDentroCasa(String personaFumaDentroCasa) {
         this.personaFumaDentroCasa = personaFumaDentroCasa;
     }
 
     @Column(name = "MADRE_FUMA", length = 1)
-    public char getMadreFuma() {
+    public String getMadreFuma() {
         return madreFuma;
     }
 
-    public void setMadreFuma(char madreFuma) {
+    public void setMadreFuma(String madreFuma) {
         this.madreFuma = madreFuma;
     }
 
     @Column(name = "PADRE_FUMA", length = 1)
-    public char getPadreFuma() {
+    public String getPadreFuma() {
         return padreFuma;
     }
 
-    public void setPadreFuma(char padreFuma) {
+    public void setPadreFuma(String padreFuma) {
         this.padreFuma = padreFuma;
     }
 
     @Column(name = "OTROS_FUMAN", length = 1)
-    public char getOtrosFuman() {
+    public String getOtrosFuman() {
         return otrosFuman;
     }
 
-    public void setOtrosFuman(char otrosFuman) {
+    public void setOtrosFuman(String otrosFuman) {
         this.otrosFuman = otrosFuman;
     }
 

@@ -78,7 +78,7 @@ public class TelefonoContacto extends BaseMetaData implements Auditable {
 
     @Override
     public boolean isFieldAuditable(String fieldname) {
-        return false;
+        return true;
     }
 
     @Override
