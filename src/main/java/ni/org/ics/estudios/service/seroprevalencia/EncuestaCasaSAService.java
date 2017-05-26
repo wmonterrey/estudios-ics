@@ -30,7 +30,7 @@ public class EncuestaCasaSAService {
     public List<EncuestaCasaSA> getEncuestasCasaByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaCasaSA ec where ec.pasive = false and ec.casa.casa.codigo in (" +
+        Query query = session.createQuery("from EncuestaCasaSA ec where ec.pasive = '0' and ec.casaCHF.casa.codigo in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);

@@ -16,45 +16,42 @@ import java.util.Date;
 public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
     private ParticipanteSeroprevalencia participanteSA;
+    //Aspectos Educacionales
     private String escuchadoZikaSn;
     private String queEsSika;
     private String otroQueEsSika;
     private String transmiteZika;
     private String otroTransmiteZika;
+    //Sintomas Previos
     private String sintomas;
+    //Diagnostico previo por Arbovirus
+    //Diagnostico previo por Zika
     private String tenidoZikaSn;
-    private String conoceFechaZika;
-    private Date fechaZika;
+    private String fechaZika;
     private String sintomasZika;
     private String zikaConfirmadoMedico;
-    private Integer cantMiembrosZika;
-    private Date fechaDxZika;
-    private String relacionFamZika;
-    private String otraRelacionFamZika;
+    //Diagnostico previo de Dengue
     private String tenidoDengueSn;
-    private String conoceFechaDengue;
-    private Date fechaDengue;
+    private String fechaDengue;
     private String dengueConfirmadoMedico;
-    private Integer cantMiembrosDengue;
-    private Date fechaDxDengue;
-    private String relacionFamDengue;
-    private String otraRelacionFamDengue;
+    //Diagnostico Previo de Chikungunya
     private String tenidoChikSn;
-    private String conoceFechaChik;
-    private Date fechaChik;
+    private String fechaChik;
     private String chikConfirmadoMedico;
-    private Integer cantMiembrosChik;
-    private Date fechaDxChik;
-    private String relacionFamChik;
-    private String otraRelacionFamChik;
+    //Vacunacion para fiebre Amarilla (not captured by MINSA vaccine booklet)
     private String vacunaFiebreAmarillaSn;
-    private String conoceFechaVacFiebreAmar;
-    private Date fechaVacunaFiebreAmar;
+    private String fechaVacunaFiebreAmar;
+    //Transfusion Sanguinea
     private String transfusionSangreSn;
-    private String conoceFechaTransfusion;
-    private Date fechaTransfusionSangre;
+    private String fechaTransfusionSangre;
+    //Medidas para el control de vectores
     private String usaRepelentes;
-    private String tieneHijos;
+    private String conoceLarvas;
+    private String lugaresLarvas;
+    private String otrosLugaresLarvas;
+    //Aspectos eduacionales
+    //Para mujeres y hombres de 16-49 anos
+    private String tenidoHijos;
     private String usaPlanificacionFam;
     private String usaCondon;
     private String usaOtroMetodo;
@@ -80,7 +77,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.escuchadoZikaSn = escuchadoZikaSn;
     }
 
-    @Column(name = "SABE_ZIKA", length = 5)
+    @Column(name = "SABE_ZIKA", length = 50)
     public String getQueEsSika() {
         return queEsSika;
     }
@@ -89,13 +86,31 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.queEsSika = queEsSika;
     }
 
-    @Column(name = "COMO_TRANSMITE_ZIKA", length = 5)
+    @Column(name = "OTRO_SABE_ZIKA", length = 255)
+    public String getOtroQueEsSika() {
+        return otroQueEsSika;
+    }
+
+    public void setOtroQueEsSika(String otroQueEsSika) {
+        this.otroQueEsSika = otroQueEsSika;
+    }
+
+    @Column(name = "COMO_TRANSMITE_ZIKA", length = 50)
     public String getTransmiteZika() {
         return transmiteZika;
     }
 
     public void setTransmiteZika(String transmiteZika) {
         this.transmiteZika = transmiteZika;
+    }
+
+    @Column(name = "OTRO_TRANSMITE_ZIKA", length = 255)
+    public String getOtroTransmiteZika() {
+        return otroTransmiteZika;
+    }
+
+    public void setOtroTransmiteZika(String otroTransmiteZika) {
+        this.otroTransmiteZika = otroTransmiteZika;
     }
 
     @Column(name = "SINTOMAS", length = 50)
@@ -116,21 +131,12 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.tenidoZikaSn = tenidoZikaSn;
     }
 
-    @Column(name = "CONOCE_FECHA_ZIKA", length = 1)
-    public String getConoceFechaZika() {
-        return conoceFechaZika;
-    }
-
-    public void setConoceFechaZika(String conoceFechaZika) {
-        this.conoceFechaZika = conoceFechaZika;
-    }
-
-    @Column(name = "FECHA_ZIKA")
-    public Date getFechaZika() {
+    @Column(name = "FECHA_ZIKA", length = 10)
+    public String getFechaZika() {
         return fechaZika;
     }
 
-    public void setFechaZika(Date fechaZika) {
+    public void setFechaZika(String fechaZika) {
         this.fechaZika = fechaZika;
     }
 
@@ -152,33 +158,6 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.zikaConfirmadoMedico = zikaConfirmadoMedico;
     }
 
-    @Column(name = "CANT_MIEMBROS_ZIKA")
-    public Integer getCantMiembrosZika() {
-        return cantMiembrosZika;
-    }
-
-    public void setCantMiembrosZika(Integer cantMiembrosZika) {
-        this.cantMiembrosZika = cantMiembrosZika;
-    }
-
-    @Column(name = "FECHA_DIAG_ZIKA")
-    public Date getFechaDxZika() {
-        return fechaDxZika;
-    }
-
-    public void setFechaDxZika(Date fechaDxZika) {
-        this.fechaDxZika = fechaDxZika;
-    }
-
-    @Column(name = "RELACION_FAM_ZIKA", length = 50)
-    public String getRelacionFamZika() {
-        return relacionFamZika;
-    }
-
-    public void setRelacionFamZika(String relacionFamZika) {
-        this.relacionFamZika = relacionFamZika;
-    }
-
     @Column(name = "TENIDO_DENGUE", length = 1)
     public String getTenidoDengueSn() {
         return tenidoDengueSn;
@@ -188,21 +167,12 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.tenidoDengueSn = tenidoDengueSn;
     }
 
-    @Column(name = "CONOCE_FECHA_DENGUE", length = 1)
-    public String getConoceFechaDengue() {
-        return conoceFechaDengue;
-    }
-
-    public void setConoceFechaDengue(String conoceFechaDengue) {
-        this.conoceFechaDengue = conoceFechaDengue;
-    }
-
-    @Column(name = "FECHA_DENGUE")
-    public Date getFechaDengue() {
+    @Column(name = "FECHA_DENGUE", length = 10)
+    public String getFechaDengue() {
         return fechaDengue;
     }
 
-    public void setFechaDengue(Date fechaDengue) {
+    public void setFechaDengue(String fechaDengue) {
         this.fechaDengue = fechaDengue;
     }
 
@@ -215,33 +185,6 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.dengueConfirmadoMedico = dengueConfirmadoMedico;
     }
 
-    @Column(name = "CANT_MIEMBROS_DENGUE")
-    public Integer getCantMiembrosDengue() {
-        return cantMiembrosDengue;
-    }
-
-    public void setCantMiembrosDengue(Integer cantMiembrosDengue) {
-        this.cantMiembrosDengue = cantMiembrosDengue;
-    }
-
-    @Column(name = "FECHA_DIAG_DENGUE")
-    public Date getFechaDxDengue() {
-        return fechaDxDengue;
-    }
-
-    public void setFechaDxDengue(Date fechaDxDengue) {
-        this.fechaDxDengue = fechaDxDengue;
-    }
-
-    @Column(name = "RELACION_FAM_DENGUE", length = 50)
-    public String getRelacionFamDengue() {
-        return relacionFamDengue;
-    }
-
-    public void setRelacionFamDengue(String relacionFamDengue) {
-        this.relacionFamDengue = relacionFamDengue;
-    }
-
     @Column(name = "TENIDO_CHIK", length = 1)
     public String getTenidoChikSn() {
         return tenidoChikSn;
@@ -251,21 +194,12 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.tenidoChikSn = tenidoChikSn;
     }
 
-    @Column(name = "CONOCE_FECHA_CHIK", length = 1)
-    public String getConoceFechaChik() {
-        return conoceFechaChik;
-    }
-
-    public void setConoceFechaChik(String conoceFechaChik) {
-        this.conoceFechaChik = conoceFechaChik;
-    }
-
-    @Column(name = "FECHA_CHIK")
-    public Date getFechaChik() {
+    @Column(name = "FECHA_CHIK", length = 10)
+    public String getFechaChik() {
         return fechaChik;
     }
 
-    public void setFechaChik(Date fechaChik) {
+    public void setFechaChik(String fechaChik) {
         this.fechaChik = fechaChik;
     }
 
@@ -278,33 +212,6 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.chikConfirmadoMedico = chikConfirmadoMedico;
     }
 
-    @Column(name = "CANT_MIEMBROS_CHIK")
-    public Integer getCantMiembrosChik() {
-        return cantMiembrosChik;
-    }
-
-    public void setCantMiembrosChik(Integer cantMiembrosChik) {
-        this.cantMiembrosChik = cantMiembrosChik;
-    }
-
-    @Column(name = "FECHA_DIAG_CHIK")
-    public Date getFechaDxChik() {
-        return fechaDxChik;
-    }
-
-    public void setFechaDxChik(Date fechaDxChik) {
-        this.fechaDxChik = fechaDxChik;
-    }
-
-    @Column(name = "RELACION_FAM_CHIK", length = 50)
-    public String getRelacionFamChik() {
-        return relacionFamChik;
-    }
-
-    public void setRelacionFamChik(String relacionFamChik) {
-        this.relacionFamChik = relacionFamChik;
-    }
-
     @Column(name = "VACUNA_FIEBREA", length = 1)
     public String getVacunaFiebreAmarillaSn() {
         return vacunaFiebreAmarillaSn;
@@ -314,21 +221,12 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.vacunaFiebreAmarillaSn = vacunaFiebreAmarillaSn;
     }
 
-    @Column(name = "CONOCE_FECHA_VACUNA_FIEBREA", length = 1)
-    public String getConoceFechaVacFiebreAmar() {
-        return conoceFechaVacFiebreAmar;
-    }
-
-    public void setConoceFechaVacFiebreAmar(String conoceFechaVacFiebreAmar) {
-        this.conoceFechaVacFiebreAmar = conoceFechaVacFiebreAmar;
-    }
-
-    @Column(name = "FECHA_VACUNA_FIEBREA")
-    public Date getFechaVacunaFiebreAmar() {
+    @Column(name = "FECHA_VACUNA_FIEBREA", length = 10)
+    public String getFechaVacunaFiebreAmar() {
         return fechaVacunaFiebreAmar;
     }
 
-    public void setFechaVacunaFiebreAmar(Date fechaVacunaFiebreAmar) {
+    public void setFechaVacunaFiebreAmar(String fechaVacunaFiebreAmar) {
         this.fechaVacunaFiebreAmar = fechaVacunaFiebreAmar;
     }
 
@@ -341,21 +239,12 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.transfusionSangreSn = transfusionSangreSn;
     }
 
-    @Column(name = "CONOCE_FECHA_TRANSFUSION", length = 1)
-    public String getConoceFechaTransfusion() {
-        return conoceFechaTransfusion;
-    }
-
-    public void setConoceFechaTransfusion(String conoceFechaTransfusion) {
-        this.conoceFechaTransfusion = conoceFechaTransfusion;
-    }
-
-    @Column(name = "FECHA_TRANSFUSION_SANGRE")
-    public Date getFechaTransfusionSangre() {
+    @Column(name = "FECHA_TRANSFUSION_SANGRE", length = 10)
+    public String getFechaTransfusionSangre() {
         return fechaTransfusionSangre;
     }
 
-    public void setFechaTransfusionSangre(Date fechaTransfusionSangre) {
+    public void setFechaTransfusionSangre(String fechaTransfusionSangre) {
         this.fechaTransfusionSangre = fechaTransfusionSangre;
     }
 
@@ -368,13 +257,40 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.usaRepelentes = usaRepelentes;
     }
 
-    @Column(name = "TIENE_HIJOS", length = 1)
-    public String getTieneHijos() {
-        return tieneHijos;
+    @Column(name = "CONOCE_LARVAS", length = 1)
+    public String getConoceLarvas() {
+        return conoceLarvas;
     }
 
-    public void setTieneHijos(String tieneHijos) {
-        this.tieneHijos = tieneHijos;
+    public void setConoceLarvas(String conoceLarvas) {
+        this.conoceLarvas = conoceLarvas;
+    }
+
+    @Column(name = "LUGARES_LARVAS", length = 50)
+    public String getLugaresLarvas() {
+        return lugaresLarvas;
+    }
+
+    public void setLugaresLarvas(String lugaresLarvas) {
+        this.lugaresLarvas = lugaresLarvas;
+    }
+
+    @Column(name = "OTROS_LUGARES_LARVAS", length = 255)
+    public String getOtrosLugaresLarvas() {
+        return otrosLugaresLarvas;
+    }
+
+    public void setOtrosLugaresLarvas(String otrosLugaresLarvas) {
+        this.otrosLugaresLarvas = otrosLugaresLarvas;
+    }
+
+    @Column(name = "TIENE_HIJOS", length = 1)
+    public String getTenidoHijos() {
+        return tenidoHijos;
+    }
+
+    public void setTenidoHijos(String tieneHijos) {
+        this.tenidoHijos = tieneHijos;
     }
 
     @Column(name = "PLANIFICACION_FAM", length = 1)
@@ -386,7 +302,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.usaPlanificacionFam = usaPlanificacionFam;
     }
 
-    @Column(name = "CONDON", length = 1)
+    @Column(name = "USA_CONDON", length = 1)
     public String getUsaCondon() {
         return usaCondon;
     }
@@ -404,51 +320,6 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.usaOtroMetodo = usaOtroMetodo;
     }
 
-    @Column(name = "OTRO_SABE_ZIKA", length = 255)
-    public String getOtroQueEsSika() {
-        return otroQueEsSika;
-    }
-
-    public void setOtroQueEsSika(String otroQueEsSika) {
-        this.otroQueEsSika = otroQueEsSika;
-    }
-
-    @Column(name = "OTRO_TRANSMITE_ZIKA", length = 255)
-    public String getOtroTransmiteZika() {
-        return otroTransmiteZika;
-    }
-
-    public void setOtroTransmiteZika(String otroTransmiteZika) {
-        this.otroTransmiteZika = otroTransmiteZika;
-    }
-
-    @Column(name = "OTRA_RELACION_FAM_ZIKA", length = 255)
-    public String getOtraRelacionFamZika() {
-        return otraRelacionFamZika;
-    }
-
-    public void setOtraRelacionFamZika(String otraRelacionFamZika) {
-        this.otraRelacionFamZika = otraRelacionFamZika;
-    }
-
-    @Column(name = "OTRA_RELACION_FAM_DENGUE", length = 255)
-    public String getOtraRelacionFamDengue() {
-        return otraRelacionFamDengue;
-    }
-
-    public void setOtraRelacionFamDengue(String otraRelacionFamDengue) {
-        this.otraRelacionFamDengue = otraRelacionFamDengue;
-    }
-
-    @Column(name = "OTRA_RELACION_FAM_CHIK", length = 255)
-    public String getOtraRelacionFamChik() {
-        return otraRelacionFamChik;
-    }
-
-    public void setOtraRelacionFamChik(String otraRelacionFamChik) {
-        this.otraRelacionFamChik = otraRelacionFamChik;
-    }
-
     @Override
     public boolean isFieldAuditable(String fieldname) {
         return true;
@@ -456,7 +327,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "EncuestaParticipante{" + participanteSA +
+        return "EncuestaParticipanteSA{" + participanteSA +
                 '}';
     }
 

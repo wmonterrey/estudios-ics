@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Simple objeto de dominio que representa un participante de los estudios de cohorte de familia
+ * Simple objeto de dominio que representa un participante del estudio seroprevalencia arbovirus
  * 
  * @author William Aviles
  **/

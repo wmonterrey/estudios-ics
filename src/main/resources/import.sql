@@ -287,3 +287,63 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PINCH_MX_03', '2', 'CHF_CAT_PINCH_MX', NULL, '0', 3, '0', '2');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PINCH_MX_04', '3', 'CHF_CAT_PINCH_MX', NULL, '0', 4, '0', '3');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_PINCH_MX_05', '4', 'CHF_CAT_PINCH_MX', NULL, '0', 5, '0', '4');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_FUMIGA', NULL, NULL, NULL, '1', 0, '0', 'Catalogo frecuencia fumigación Seroprevalencia Arbovirus (SA)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_FUMIGA_01', '1', 'SA_CAT_FUMIGA', NULL, '0', 1, '0', 'Semanal');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_FUMIGA_02', '2', 'SA_CAT_FUMIGA', NULL, '0', 2, '0', 'Mensual');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_FUMIGA_03', '3', 'SA_CAT_FUMIGA', NULL, '0', 3, '0', 'Cada 6 Meses');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_FUMIGA_04', '4', 'SA_CAT_FUMIGA', NULL, '0', 4, '0', 'Una Vez al Año');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_RELFAM', NULL, NULL, NULL, '1', 0, '0', 'Catalogo realación familiar SA');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_RELFAM_01', '1', 'SA_CAT_RELFAM', NULL, '0', 1, '0', 'Pareja');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_RELFAM_02', '2', 'SA_CAT_RELFAM', NULL, '0', 2, '0', 'Hijo');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_RELFAM_03', '3', 'SA_CAT_RELFAM', NULL, '0', 3, '0', 'Padres');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_RELFAM_04', '4', 'SA_CAT_RELFAM', NULL, '0', 4, '0', 'Amigo');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_RELFAM_998', '998', 'SA_CAT_RELFAM', NULL, '0', 5, '0', 'Otra relacion familiar');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA', NULL, NULL, NULL, '1', 0, '0', 'Catalogo definición zika SA');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA_01', '1', 'SA_CAT_DEF_ZIKA', NULL, '0', 1, '0', 'Virus');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA_02', '2', 'SA_CAT_DEF_ZIKA', NULL, '0', 2, '0', 'Bacteria');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA_03', '3', 'SA_CAT_DEF_ZIKA', NULL, '0', 3, '0', 'Una enfermedad');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA_04', '4', 'SA_CAT_DEF_ZIKA', NULL, '0', 4, '0', 'Mosquito');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA_05', '5', 'SA_CAT_DEF_ZIKA', NULL, '0', 5, '0', 'Fiebre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_DEF_ZIKA_998', '998', 'SA_CAT_DEF_ZIKA', NULL, '0', 6, '0', 'Otra');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_TRA_ZIKA', NULL, NULL, NULL, '1', 0, '0', 'Catalogo transmisión de zika SA');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_TRA_ZIKA_01', '1', 'SA_CAT_TRA_ZIKA', NULL, '0', 1, '0', 'Mosquito');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_TRA_ZIKA_02', '2', 'SA_CAT_TRA_ZIKA', NULL, '0', 2, '0', 'Sexual');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_TRA_ZIKA_03', '3', 'SA_CAT_TRA_ZIKA', NULL, '0', 3, '0', 'Besos/Saliva');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_TRA_ZIKA_04', '4', 'SA_CAT_TRA_ZIKA', NULL, '0', 4, '0', 'Contacto de piel');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_TRA_ZIKA_998', '998', 'SA_CAT_TRA_ZIKA', NULL, '0', 5, '0', 'Otra');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS', NULL, NULL, NULL, '1', 0, '0', 'Catalogo síntomas SA');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_01', '1', 'SA_CAT_SINTOMAS', NULL, '0', 1, '0', 'Rash');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_02', '2', 'SA_CAT_SINTOMAS', NULL, '0', 2, '0', 'Fiebre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_03', '3', 'SA_CAT_SINTOMAS', NULL, '0', 3, '0', 'Ojos rojos (conjunctivitis)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_04', '4', 'SA_CAT_SINTOMAS', NULL, '0', 4, '0', 'Dolor de hueso (arthralgia)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_05', '5', 'SA_CAT_SINTOMAS', NULL, '0', 5, '0', 'Dolor de músculos( myalgia)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_06', '6', 'SA_CAT_SINTOMAS', NULL, '0', 6, '0', 'Inflamación  (peri-articular edema)');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA', NULL, NULL, NULL, '1', 0, '0', 'Catalogo síntomas de zika SA');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_01', '1', 'SA_CAT_SINT_ZIKA', NULL, '0', 1, '0', 'Rash');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_02', '2', 'SA_CAT_SINT_ZIKA', NULL, '0', 2, '0', 'Fiebre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_03', '3', 'SA_CAT_SINT_ZIKA', NULL, '0', 3, '0', 'Ojos rojos (conjunctivitis)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_04', '4', 'SA_CAT_SINT_ZIKA', NULL, '0', 4, '0', 'Dolor de hueso (arthralgia)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_05', '5', 'SA_CAT_SINT_ZIKA', NULL, '0', 5, '0', 'Dolor de músculos( myalgia)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_06', '6', 'SA_CAT_SINT_ZIKA', NULL, '0', 6, '0', 'Inflamación  (peri-articular edema)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_07', '7', 'SA_CAT_SINT_ZIKA', NULL, '0', 7, '0', 'Diarrea');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_08', '8', 'SA_CAT_SINT_ZIKA', NULL, '0', 8, '0', 'Dolor de cabeza');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_09', '9', 'SA_CAT_SINT_ZIKA', NULL, '0', 9, '0', 'Dolor de estómago');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_10', '10', 'SA_CAT_SINT_ZIKA', NULL, '0', 10, '0', 'Dolor de garganta');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_11', '11', 'SA_CAT_SINT_ZIKA', NULL, '0', 11, '0', 'Mocos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_12', '12', 'SA_CAT_SINT_ZIKA', NULL, '0', 12, '0', 'Toz');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA', NULL, NULL, NULL, '1', 0, '0', 'Catalogo lugares ha visto larvas de zika SA');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_01', '1', 'SA_CAT_LUG_LARVA', NULL, '0', 1, '0', 'Barriles');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_02', '2', 'SA_CAT_LUG_LARVA', NULL, '0', 2, '0', 'Floreros');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_03', '3', 'SA_CAT_LUG_LARVA', NULL, '0', 3, '0', 'Botellas');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_04', '4', 'SA_CAT_LUG_LARVA', NULL, '0', 4, '0', 'Botellas de vidrio quebrada');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_05', '5', 'SA_CAT_LUG_LARVA', NULL, '0', 5, '0', 'Platas');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_06', '6', 'SA_CAT_LUG_LARVA', NULL, '0', 6, '0', 'Canales de techo');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_998', '998', 'SA_CAT_LUG_LARVA', NULL, '0', 7, '0', 'Otros lugares');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_LUG_LARVA_07', '7', 'SA_CAT_LUG_LARVA', NULL, '0', 8, '0', 'No ha visto');
