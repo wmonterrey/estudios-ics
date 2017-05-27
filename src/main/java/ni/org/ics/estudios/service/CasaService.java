@@ -42,7 +42,7 @@ public class CasaService {
 	public List<Casa> getCasasByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select c from Casa c where c.pasive = false and c.codigo in (select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
+        Query query = session.createQuery("select c from Casa c where c.pasive = '0' and c.codigo in (select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 "  select us.estudio.codigo  from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);
         return query.list();

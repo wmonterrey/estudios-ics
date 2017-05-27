@@ -29,7 +29,7 @@ public class EncuestaLactanciaMaternaService {
 
     public List<EncuestaLactanciaMaterna> getEncuestasLactanciaMaternaByUser(String username){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select ec from EncuestaLactanciaMaterna ec where ec.pasive = false and ec.participante.casaCHF.casa.codigo in (" +
+        Query query = session.createQuery("select ec from EncuestaLactanciaMaterna ec where ec.pasive = '0' and ec.participante.casaCHF.casa.codigo in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);

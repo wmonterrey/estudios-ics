@@ -4,6 +4,7 @@ INSERT INTO `usuarios_sistema` (`NOMBRE_USUARIO`, `CUENTA_SINEXPIRAR`, `CUENTA_S
 INSERT INTO `usuarios_roles` (`ROL`, `NOMBRE_USUARIO`, `PASIVO`, `FECHA_REGISTRO`, `USUARIO_REGISTRO`, `ESTADO`) VALUES ('ROLE_ADMIN', 'admin', '0', '2016-06-07 10:47:12', 'admin', '1');
 
 INSERT INTO `estudios` (`CODIGO`, `IDENTIFICADOR_EQUIPO`, `ESTADO`, `PASIVO`, `FECHA_REGISTRO`, `USUARIO_REGISTRO`, `NOMBRE`) VALUES ('1', 'server', '1', '0', '2017-05-23', 'admin', 'Estudio Cohorte Familia');
+INSERT INTO `estudios_ics`.`estudios` (`CODIGO`, `ESTADO`, `PASIVO`, `NOMBRE`) VALUES (2, '0', '0', 'Seroprevalencia Arbovirus');
 
 /*Plantilla*/
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'heading', 'Cohorte Influenza, Dengue','0','0',0);

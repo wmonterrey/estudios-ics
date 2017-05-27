@@ -31,9 +31,8 @@ public class TamizajeService {
     public List<Tamizaje> getTamizajesByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Tamizaje t where t.pasive = false and t.participante.casa.codigo in (" +
-                "select cc.tamizaje.participante.casa.codigo from CartaConsentimiento cc where cc.estudio.codigo in (" +
-                " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
+        Query query = session.createQuery("from Tamizaje t where t.pasive = '0' and t.estudio.codigo in (" +
+                " select us.estudio.codigo from UserStudy us where us.usuario.username = :username)");
         query.setParameter("username",username);
         return query.list();
     }

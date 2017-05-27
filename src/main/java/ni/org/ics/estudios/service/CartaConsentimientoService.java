@@ -39,7 +39,7 @@ public class CartaConsentimientoService {
     public List<CartaConsentimiento> getCartasConsentimientoByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from CartaConsentimiento cc where cc.pasive = false and cc.tamizaje.estudio.codigo in ( select estudio.codigo from UserStudy where usuario.username = :username) ");
+        Query query = session.createQuery("from CartaConsentimiento cc where cc.pasive = '0' and cc.tamizaje.estudio.codigo in ( select estudio.codigo from UserStudy where usuario.username = :username) ");
         query.setParameter("username", username);
         return query.list();
     }
