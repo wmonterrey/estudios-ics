@@ -23,7 +23,7 @@ public class ParticipanteSeroprevalenciaService {
     @SuppressWarnings("unchecked")
     public List<ParticipanteSeroprevalencia> getParticipantesSA(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamilia where pasive = '0'");
+        Query query = session.createQuery("from ParticipanteSeroprevalencia where pasive = '0'");
         return query.list();
     }
 

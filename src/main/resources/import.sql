@@ -324,6 +324,7 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_04', '4', 'SA_CAT_SINTOMAS', NULL, '0', 4, '0', 'Dolor de hueso (arthralgia)');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_05', '5', 'SA_CAT_SINTOMAS', NULL, '0', 5, '0', 'Dolor de músculos( myalgia)');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_06', '6', 'SA_CAT_SINTOMAS', NULL, '0', 6, '0', 'Inflamación  (peri-articular edema)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINTOMAS_996', '996', 'SA_CAT_SINTOMAS', NULL, '0', 7, '0', 'Ninguno');
 
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA', NULL, NULL, NULL, '1', 0, '0', 'Catalogo síntomas de zika SA');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('SA_CAT_SINT_ZIKA_01', '1', 'SA_CAT_SINT_ZIKA', NULL, '0', 1, '0', 'Rash');
