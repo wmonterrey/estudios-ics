@@ -24,6 +24,8 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 	 */
 	
 	private ParticipanteCohorteFamilia participante;
+    private String tomoMedidaSn;
+    private String razonNoTomoMedidas;
 	private Double peso1;
 	private Double peso2;
 	private Double peso3;
@@ -50,7 +52,25 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
         this.participante = participante;
     }
 
-	@Column(name = "PESO1", nullable = true)
+    @Column(name = "TOMA_MEDIDAS", length = 1)
+    public String getTomoMedidaSn() {
+        return tomoMedidaSn;
+    }
+
+    public void setTomoMedidaSn(String tomoMedidaSn) {
+        this.tomoMedidaSn = tomoMedidaSn;
+    }
+
+    @Column(name = "RAZON_NO_TOMA_MEDIDAS")
+    public String getRazonNoTomoMedidas() {
+        return razonNoTomoMedidas;
+    }
+
+    public void setRazonNoTomoMedidas(String razonNoTomoMedidas) {
+        this.razonNoTomoMedidas = razonNoTomoMedidas;
+    }
+
+    @Column(name = "PESO1", nullable = true)
 	public Double getPeso1() {
 		return peso1;
 	}
