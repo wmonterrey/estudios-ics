@@ -19,20 +19,20 @@ public class TelefonoContacto extends BaseMetaData implements Auditable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;
+	private String id;
     private String numero;
     private String operadora;
+    private String tipo;
     private Casa casa;
     private Participante participante;
 
     @Id
-    @Column(name = "ID", nullable = false, length = 6)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Integer getId() {
+    @Column(name = "ID", nullable = false, length = 50)
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -75,8 +75,18 @@ public class TelefonoContacto extends BaseMetaData implements Auditable {
     public void setOperadora(String operadora) {
         this.operadora = operadora;
     }
+    
+    
+    @Column(name="TIPO_NUMERO", nullable = false, length = 50)
+    public String getTipo() {
+		return tipo;
+	}
 
-    @Override
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	@Override
     public boolean isFieldAuditable(String fieldname) {
         return true;
     }
