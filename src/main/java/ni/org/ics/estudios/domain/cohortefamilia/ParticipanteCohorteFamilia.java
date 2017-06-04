@@ -26,12 +26,11 @@ public class ParticipanteCohorteFamilia extends BaseMetaData implements Auditabl
 	/**
 	 * 
 	 */
-	private String participanteCHF;
+	//private String participanteCHF;
 	private Participante participante;
     private CasaCohorteFamilia casaCHF;
 
-    @Id
-    @Column(name = "CODIGO_CHF", nullable = false, length = 50)
+    /*@Column(name = "CODIGO_CHF", nullable = false, length = 50)
     public String getParticipanteCHF() {
 		return participanteCHF;
 	}
@@ -39,9 +38,10 @@ public class ParticipanteCohorteFamilia extends BaseMetaData implements Auditabl
 	public void setParticipanteCHF(String participanteCHF) {
 		this.participanteCHF = participanteCHF;
 	}
-
+*/
+    @Id
     @ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE", nullable = false)
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO", nullable = false)
     @ForeignKey(name = "FK_PARTICIPANTE_PARTICIPANTECHF")
 	public Participante getParticipante() {
 		return participante;
@@ -64,7 +64,7 @@ public class ParticipanteCohorteFamilia extends BaseMetaData implements Auditabl
 
 	@Override
     public String toString() {
-        return "'" + participante.getCodigo() + "'";
+        return "'" + this.participante.getCodigo() + "'";
     }
 
     @Override
@@ -74,12 +74,12 @@ public class ParticipanteCohorteFamilia extends BaseMetaData implements Auditabl
 
         ParticipanteCohorteFamilia participante = (ParticipanteCohorteFamilia) o;
 
-        return (!participanteCHF.equals(participante.participanteCHF));
+        return (!this.participante.getCodigo().equals(participante.participante.getCodigo()));
     }
 
     @Override
     public int hashCode() {
-        return participanteCHF.hashCode();
+        return participante.getCodigo().hashCode();
     }
 
     @Override

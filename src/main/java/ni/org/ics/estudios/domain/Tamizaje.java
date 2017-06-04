@@ -68,7 +68,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
         this.sexo = sexo;
     }
 
-    @Column(name = "FECHA_NACIMIENTO", nullable = false)
+    @Column(name = "FECHA_NACIMIENTO", nullable = true)
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }

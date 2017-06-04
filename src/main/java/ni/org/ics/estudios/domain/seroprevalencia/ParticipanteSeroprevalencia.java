@@ -27,11 +27,10 @@ public class ParticipanteSeroprevalencia extends BaseMetaData implements Auditab
 	/**
 	 * 
 	 */
-	private String participanteSA;
+	//private String participanteSA;
 	private Participante participante;
     private CasaCohorteFamilia casaCHF;
-
-    @Id
+/*
     @Column(name = "CODIGO_SA", nullable = false, length = 50)
     public String getParticipanteSA() {
 		return participanteSA;
@@ -40,9 +39,10 @@ public class ParticipanteSeroprevalencia extends BaseMetaData implements Auditab
 	public void setParticipanteSA(String participanteSA) {
 		this.participanteSA = participanteSA;
 	}
-
+*/
+    @Id
     @ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE", nullable = false)
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO",  nullable = false)
     @ForeignKey(name = "FK_PARTICIPANTE_PARTICIPANTESA")
 	public Participante getParticipante() {
 		return participante;
@@ -65,7 +65,7 @@ public class ParticipanteSeroprevalencia extends BaseMetaData implements Auditab
 
 	@Override
     public String toString() {
-        return "'" + participante.getCodigo() + "'";
+        return "'" + this.participante.getCodigo() + "'";
     }
 
     @Override
@@ -75,12 +75,12 @@ public class ParticipanteSeroprevalencia extends BaseMetaData implements Auditab
 
         ParticipanteSeroprevalencia participante = (ParticipanteSeroprevalencia) o;
 
-        return (!participanteSA.equals(participante.participanteSA));
+        return (!this.participante.getCodigo().equals(participante.getParticipante().getCodigo()));
     }
 
     @Override
     public int hashCode() {
-        return participanteSA.hashCode();
+        return participante.getCodigo().hashCode();
     }
 
     @Override

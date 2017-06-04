@@ -42,7 +42,7 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTECHF")
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
     @ForeignKey(name = "FK_PARTICIPANTECHF_PESOTALLA")
     public ParticipanteCohorteFamilia getParticipante() {
         return participante;
@@ -194,7 +194,7 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "EncuestaPesoTalla{" + participante.getParticipanteCHF() +
+        return "EncuestaPesoTalla{" + participante.getParticipante().getCodigo() +
                 '}';
     }
 

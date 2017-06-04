@@ -41,7 +41,7 @@ public class EncuestaVacuna extends BaseMetaData implements Auditable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTE")
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO")
     @ForeignKey(name = "FK_PARTICIPANTE_VACUNA")
     public Participante getParticipante() {
         return participante;

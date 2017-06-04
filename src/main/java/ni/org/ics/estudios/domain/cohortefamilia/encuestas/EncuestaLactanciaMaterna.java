@@ -43,7 +43,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTECHF")
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
     @ForeignKey(name = "FK_PARTICIPANTECHF_LACTANCIAMAT")
     public ParticipanteCohorteFamilia getParticipante() {
         return participante;
@@ -213,7 +213,7 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
 
     @Override
     public String toString() {
-        return "EncuestaLactanciaMaterna{" + participante.getParticipanteCHF() +
+        return "EncuestaLactanciaMaterna{" + participante.getParticipante().getCodigo() +
                 '}';
     }
 
@@ -231,4 +231,5 @@ public class EncuestaLactanciaMaterna extends BaseMetaData implements Auditable 
     public int hashCode() {
         return participante.hashCode();
     }
+
 }

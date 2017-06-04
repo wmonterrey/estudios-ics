@@ -190,8 +190,9 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
         this.horaFinPax = horaFinPax;
     }
 
+
     @ManyToOne
-    @JoinColumn(name = "CODIDO_PARTICIPANTECHF")
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
     @ForeignKey(name = "FK_PARTICIPANTECHF_MUESTRA")
     public ParticipanteCohorteFamilia getParticipanteCHF() {
         return participanteCHF;
@@ -226,4 +227,5 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
     public int hashCode() {
         return codigo.hashCode();
     }
+
 }
