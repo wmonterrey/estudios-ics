@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.domain.cohortefamilia;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
+import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
@@ -31,7 +32,7 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
     private String tubo;
     private String tipoMuestra;
     private String proposito;
-    private ParticipanteCohorteFamilia participanteCHF;
+    private Participante participante;
     private String realizaPaxgene;
     private String horaInicioPax;
     private String horaFinPax;
@@ -192,14 +193,14 @@ public class Muestra extends BaseMetaData implements Auditable, Serializable {
 
 
     @ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO", nullable = false)
     @ForeignKey(name = "FK_PARTICIPANTECHF_MUESTRA")
-    public ParticipanteCohorteFamilia getParticipanteCHF() {
-        return participanteCHF;
+    public Participante getParticipante() {
+        return participante;
     }
 
-    public void setParticipanteCHF(ParticipanteCohorteFamilia participanteCHF) {
-        this.participanteCHF = participanteCHF;
+    public void setParticipante(Participante participanteCHF) {
+        this.participante = participanteCHF;
     }
 
     @Override

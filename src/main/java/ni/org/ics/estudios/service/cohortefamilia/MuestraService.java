@@ -1,7 +1,6 @@
 package ni.org.ics.estudios.service.cohortefamilia;
 
 import ni.org.ics.estudios.domain.cohortefamilia.Muestra;
-import ni.org.ics.estudios.domain.cohortefamilia.Paxgene;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,7 +31,7 @@ public class MuestraService {
     public List<Muestra> getMuestrasByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Muestra ec where ec.pasive = '0' and ec.participanteCHF.casaCHF.casa.codigo in (" +
+        Query query = session.createQuery("from Muestra ec where ec.pasive = '0' and ec.participante.casa.codigo in (" +
                 "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
                 " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
         query.setParameter("username",username);
@@ -44,25 +43,4 @@ public class MuestraService {
         session.saveOrUpdate(muestra);
     }
 
-    public List<Paxgene> getDatosPaxgene()
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Paxgene where pasive = false ");
-        return  query.list();
-    }
-
-    public List<Paxgene> getDatosPaxgeneByUser(String username)
-    {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("select px from Paxgene px where px.pasive = false and px.muestra.participanteCHF.casaCHF.casa.codigo in (" +
-                "select cc.participante.casa.codigo from CartaConsentimiento cc where cc.tamizaje.estudio.codigo in (" +
-                " select us.estudio.codigo from UserStudy us where us.usuario.username = :username))");
-        query.setParameter("username",username);
-        return  query.list();
-    }
-
-    public void saveOrUpdateDatosPaxgene(Paxgene paxgene){
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(paxgene);
-    }
 }
