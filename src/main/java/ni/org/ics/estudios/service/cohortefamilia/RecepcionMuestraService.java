@@ -1,6 +1,5 @@
 package ni.org.ics.estudios.service.cohortefamilia;
 
-import ni.org.ics.estudios.domain.cohortefamilia.Muestra;
 import ni.org.ics.estudios.domain.cohortefamilia.RecepcionMuestra;
 import org.hibernate.Query;
 import org.hibernate.Session;

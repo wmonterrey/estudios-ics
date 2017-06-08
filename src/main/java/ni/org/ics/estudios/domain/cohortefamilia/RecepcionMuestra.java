@@ -22,13 +22,16 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 
     private String codigoMx;
     private Date fechaRecepcion;
-	private Boolean paxgene;
+	private String paxgene;
 	private Double volumen;
 	private String lugar;
 	private String observacion;
+    private String tubo;
+    private String tipoMuestra;
+    private String proposito;
 
     @Id
-    @Column(name = "CODIGO_MX", length = 50, nullable = true)
+    @Column(name = "CODIGO_MX", length = 50, nullable = false)
     public String getCodigoMx() {
         return codigoMx;
     }
@@ -47,12 +50,12 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
         this.fechaRecepcion = fechaRecepcion;
     }
 
-    @Column(name="PAXGENE", nullable = true)
-	public Boolean getPaxgene() {
+    @Column(name="PAXGENE", nullable = true, length = 1)
+	public String getPaxgene() {
 		return paxgene;
 	}
 
-	public void setPaxgene(Boolean paxgene) {
+	public void setPaxgene(String paxgene) {
 		this.paxgene = paxgene;
 	}
 
@@ -74,7 +77,7 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 		this.observacion = observacion;
 	}
 
-	@Column(name="LUGAR", nullable = true)
+	@Column(name="LUGAR", length = 5, nullable = true)
 	public String getLugar() {
 		return lugar;
 	}
@@ -82,7 +85,36 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
 	}
-	
+
+    @Id
+    @Column(name = "TIPO_TUBO", length = 5, nullable = true)
+    public String getTubo() {
+        return tubo;
+    }
+
+    public void setTubo(String tubo) {
+        this.tubo = tubo;
+    }
+
+    @Column(name = "TIPO_MUESTRA", length = 5, nullable = true)
+    public String getTipoMuestra() {
+        return tipoMuestra;
+    }
+
+    public void setTipoMuestra(String tipoMuestra) {
+        this.tipoMuestra = tipoMuestra;
+    }
+
+    @Column(name = "PROPOSITO", length = 5, nullable = true)
+    public String getProposito() {
+        return proposito;
+    }
+
+    public void setProposito(String proposito) {
+        this.proposito = proposito;
+    }
+
+
     @Override
     public boolean isFieldAuditable(String fieldname) {
         return true;
@@ -91,5 +123,25 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
     @Override
     public String toString() {
         return "RecepcionMuestra{" + codigoMx + "," + fechaRecepcion +'}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof RecepcionMuestra)) return false;
+
+        RecepcionMuestra that = (RecepcionMuestra) o;
+
+        if (!codigoMx.equals(that.codigoMx)) return false;
+        if (!fechaRecepcion.equals(that.fechaRecepcion)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = codigoMx.hashCode();
+        result = 31 * result + fechaRecepcion.hashCode();
+        return result;
     }
 }
