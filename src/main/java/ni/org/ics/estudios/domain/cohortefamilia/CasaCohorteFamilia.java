@@ -15,7 +15,11 @@ import javax.persistence.*;
 @Table(name = "chf_casas_cohorte_familia", catalog = "estudios_ics")
 public class CasaCohorteFamilia extends BaseMetaData implements Auditable {
 
-    private String codigoCHF;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String codigoCHF;
     private Casa casa;
     private String nombre1JefeFamilia;
     private String nombre2JefeFamilia;

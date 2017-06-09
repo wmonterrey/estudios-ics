@@ -18,6 +18,7 @@
                 <li class="breadcrumb-item"><a href="<spring:url value="/" htmlEscape="true "/>"><spring:message code="home" /></a></li>
             </ol>
             <div class="container-fluid">
+            	404
             </div>
             <!-- /.conainer-fluid -->
         </div>
