@@ -27,6 +27,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private Date fechaNacimiento;
     private String aceptaTamizajePersona;
     private String razonNoAceptaTamizajePersona;
+    private String otraRazonNoAceptaTamizajePersona;
     private String criteriosInclusion;
     private String enfermedad;
     private String dondeAsisteProblemasSalud;
@@ -36,6 +37,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String esElegible;
     private String aceptaParticipar;
     private String razonNoAceptaParticipar;
+    private String otraRazonNoAceptaParticipar;
     private String asentimientoVerbal;
 
     @Id
@@ -183,6 +185,24 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setAsentimientoVerbal(String asentimientoVerbal) {
         this.asentimientoVerbal = asentimientoVerbal;
+    }
+
+    @Column(name="OTRA_RAZON_NO_ACEPTA_TAMIZAJE", nullable = true)
+    public String getOtraRazonNoAceptaTamizajePersona() {
+        return otraRazonNoAceptaTamizajePersona;
+    }
+
+    public void setOtraRazonNoAceptaTamizajePersona(String otraRazonNoAceptaTamizajePersona) {
+        this.otraRazonNoAceptaTamizajePersona = otraRazonNoAceptaTamizajePersona;
+    }
+
+    @Column(name="OTRA_RAZON_NO_ACEPTA_PARTICIPAR", nullable = true)
+    public String getOtraRazonNoAceptaParticipar() {
+        return otraRazonNoAceptaParticipar;
+    }
+
+    public void setOtraRazonNoAceptaParticipar(String otraRazonNoAceptaParticipar) {
+        this.otraRazonNoAceptaParticipar = otraRazonNoAceptaParticipar;
     }
 
     @Override

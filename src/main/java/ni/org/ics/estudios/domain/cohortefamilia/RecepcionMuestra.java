@@ -20,6 +20,7 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 	 * 
 	 */
 
+    private String codigo;
     private String codigoMx;
     private Date fechaRecepcion;
 	private String paxgene;
@@ -31,6 +32,15 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
     private String proposito;
 
     @Id
+    @Column(name = "CODIGO", length = 50, nullable = false)
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     @Column(name = "CODIGO_MX", length = 50, nullable = false)
     public String getCodigoMx() {
         return codigoMx;
@@ -40,7 +50,6 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
         this.codigoMx = codigoMx;
     }
 
-    @Id
     @Column(name = "FECHA_RECEPCION", nullable = false)
     public Date getFechaRecepcion() {
         return fechaRecepcion;
@@ -86,7 +95,6 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 		this.lugar = lugar;
 	}
 
-    @Id
     @Column(name = "TIPO_TUBO", length = 5, nullable = true)
     public String getTubo() {
         return tubo;
@@ -122,7 +130,7 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "RecepcionMuestra{" + codigoMx + "," + fechaRecepcion +'}';
+        return "RecepcionMuestra{'" + codigo +'}';
     }
 
     @Override
@@ -132,16 +140,13 @@ public class RecepcionMuestra extends BaseMetaData implements Auditable {
 
         RecepcionMuestra that = (RecepcionMuestra) o;
 
-        if (!codigoMx.equals(that.codigoMx)) return false;
-        if (!fechaRecepcion.equals(that.fechaRecepcion)) return false;
+        if (!codigo.equals(that.codigo)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = codigoMx.hashCode();
-        result = 31 * result + fechaRecepcion.hashCode();
-        return result;
+        return codigo.hashCode();
     }
 }
