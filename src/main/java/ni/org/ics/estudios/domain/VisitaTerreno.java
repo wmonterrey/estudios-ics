@@ -28,6 +28,7 @@ public class VisitaTerreno extends BaseMetaData {
 	private Date fechaVisita;
 	private String visitaExitosa;
 	private String razonVisitaNoExitosa;
+    private String otraRazonVisitaNoExitosa;
 
 	@Id
 	@Column(name = "CODIGO_VISITA", nullable = false, length = 50)
@@ -77,7 +78,16 @@ public class VisitaTerreno extends BaseMetaData {
 		this.razonVisitaNoExitosa = razonVisitaNoExitosa;
 	}
 
-	@Override
+    @Column(name = "OTRA_RAZON_VISITA_NO_EXITOSA", nullable = true)
+    public String getOtraRazonVisitaNoExitosa() {
+        return otraRazonVisitaNoExitosa;
+    }
+
+    public void setOtraRazonVisitaNoExitosa(String otraRazonVisitaNoExitosa) {
+        this.otraRazonVisitaNoExitosa = otraRazonVisitaNoExitosa;
+    }
+
+    @Override
     public String toString() {
         return "'" + codigoVisita + "'";
     }
