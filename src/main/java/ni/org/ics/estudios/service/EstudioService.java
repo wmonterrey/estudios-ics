@@ -30,5 +30,10 @@ public class EstudioService {
         return query.list();
     }
 
-    
+    public Estudio getEstudioByCodigo(int codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Estudio where codigo = :codigo");
+        query.setParameter("codigo", codigo);
+        return (Estudio)query.uniqueResult();
+    }
 }

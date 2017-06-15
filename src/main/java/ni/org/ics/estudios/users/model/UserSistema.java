@@ -104,7 +104,6 @@ public class UserSistema implements Auditable {
 	}
 	@Column(name = "CORREO_ELECTRONICO", nullable = true, length =100)
 	@Size(max = 100)
-	@Email
 	public String getEmail() {
 		return email;
 	}

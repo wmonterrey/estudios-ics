@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import ni.org.ics.estudios.domain.catalogs.Estudio;
+import ni.org.ics.estudios.domain.relationships.UserStudy;
 import ni.org.ics.estudios.users.model.Authority;
 import ni.org.ics.estudios.users.model.Rol;
 import ni.org.ics.estudios.users.model.UserAccess;
@@ -105,7 +107,7 @@ public class UsuarioService {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(user);
 	}
-	
+
 	/**
 	 * Regresa los UserAccess
 	 * 
@@ -201,4 +203,48 @@ public class UsuarioService {
 		// Retrieve all
 		return  query.list();
 	}
+
+    public List<UserStudy> getEstudiosUsuario(String username) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM UserStudy auth " +
+                "where auth.usuario.username =:username and auth.pasive = '0'");
+        query.setParameter("username",username);
+        // Retrieve all
+        return  query.list();
+    }
+
+    public List<UserStudy> getAllEstudiosUsuario(String username) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM UserStudy auth " +
+                "where auth.usuario.username =:username");
+        query.setParameter("username",username);
+        // Retrieve all
+        return  query.list();
+    }
+
+    public List<Estudio> getEstudios(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM Estudio where pasive = '0'");
+        return query.list();
+    }
+
+    public UserStudy getEstudioUsuario(String username, int estudio) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM UserStudy uc " +
+                "where uc.usuario.username =:username and uc.estudio.codigo =:estudio");
+        query.setParameter("username",username);
+        query.setParameter("estudio", estudio);
+        return  (UserStudy) query.uniqueResult();
+    }
+
+    public void saveUserStudies(UserStudy userStudy) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(userStudy);
+    }
 }
