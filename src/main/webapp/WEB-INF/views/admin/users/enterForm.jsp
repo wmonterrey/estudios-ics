@@ -102,9 +102,9 @@
                                             </span>
                                             <input id="password" name="password" type="password" class="form-control"/>
                                         </div>
-                                        <span class="help-block">
+                                        <!--<span class="help-block">
                                             <spring:message code="Pattern.password.format" />
-                                        </span>
+                                        </span>-->
                                     </div>
                                     <div id="divPassRepeat" class="form-group row">
                                         <label class="form-control-label col-md-3" for="confirm_password"><spring:message code="password.repeat" />

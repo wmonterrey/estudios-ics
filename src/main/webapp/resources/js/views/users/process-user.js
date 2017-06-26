@@ -94,14 +94,14 @@ var EditUser = function () {
                         email: true
                     },
                     password: {
-                        minlength: 8,
+                        minlength: 4,
                         maxlength: 150,
                         noSpace:true,
-                        required: true,
-                        pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[!@#$%^&*()?])).+$/
+                        required: true
+                        //pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(_|[!@#$%^&*()?])).+$/
                     },
                     confirm_password: {
-                        minlength: 8,
+                        minlength: 4,
                         maxlength: 150,
                         required: true,
                         noSpace:true,
@@ -110,9 +110,9 @@ var EditUser = function () {
                     authorities: {
                         required: true
                     },
-                    studies: {
+                    /*studies: {
                         required: true
-                    },
+                    },*/
                     firstname: {
                         required: true
                     }
