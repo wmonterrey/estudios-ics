@@ -1,7 +1,5 @@
 package ni.org.ics.estudios.domain.cohortefamilia.casos;
 
-import java.util.Date;
-
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
@@ -23,14 +21,13 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String codigoCasoContacto;
-	private ParticipanteCohorteFamiliaCaso codigoParticipanteCaso;
-	private Date fechaVisita;
+	private VisitaSeguimientoCaso codigoVisitaCaso;
 	private ParticipanteCohorteFamilia partContacto;
 	private String tiempoInteraccion;
 	private String tipoInteraccion;
     
 	@Id
-    @Column(name = "CODIGO_VISITA_CASO", length = 50, nullable = false)
+    @Column(name = "CODIGO_CONTACTO_CASO", length = 50, nullable = false)
 	public String getCodigoCasoContacto() {
 		return codigoCasoContacto;
 	}
@@ -38,29 +35,20 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
 	public void setCodigoCasoContacto(String codigoCasoContacto) {
 		this.codigoCasoContacto = codigoCasoContacto;
 	}
-
-	@ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE_CASO", nullable = false)
-    @ForeignKey(name = "FK_CONTACTO_CASO")
-	public ParticipanteCohorteFamiliaCaso getCodigoParticipanteCaso() {
-		return codigoParticipanteCaso;
-	}
-
-	public void setCodigoParticipanteCaso(ParticipanteCohorteFamiliaCaso codigoParticipanteCaso) {
-		this.codigoParticipanteCaso = codigoParticipanteCaso;
-	}
 	
-	@Column(name = "FECHA_VISITA", nullable = false)
-	public Date getFechaVisita() {
-		return fechaVisita;
+	@ManyToOne
+    @JoinColumn(name = "CODIGO_VISITA_CASO", nullable = false)
+    @ForeignKey(name = "FK_CONTACTO_VISITA")
+	public VisitaSeguimientoCaso getCodigoVisitaCaso() {
+		return codigoVisitaCaso;
 	}
 
-	public void setFechaVisita(Date fechaVisita) {
-		this.fechaVisita = fechaVisita;
+	public void setCodigoVisitaCaso(VisitaSeguimientoCaso codigoVisitaCaso) {
+		this.codigoVisitaCaso = codigoVisitaCaso;
 	}
 
 	@ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
+    @JoinColumn(name = "CODIGO_PARTICIPANTE_RELACION", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
     @ForeignKey(name = "FK_CONTACTO_PARTICIPANTE")
 	public ParticipanteCohorteFamilia getPartContacto() {
 		return partContacto;
@@ -90,7 +78,8 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
 
 	@Override
 	public String toString(){
-		return codigoParticipanteCaso.getCodigoCaso().getCasa().getCodigoCHF() + "-" + codigoParticipanteCaso.getParticipante().getParticipante().getCodigo() + "-" + codigoParticipanteCaso.getCodigoCaso().getFechaInicio();
+		return codigoVisitaCaso.getCodigoParticipanteCaso().getCodigoCaso().getCasa().getCodigoCHF() + "-" + 
+				codigoVisitaCaso.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo() + "-" + codigoVisitaCaso.getFechaVisita();
 	}
 	@Override
     public boolean equals(Object o) {
@@ -107,7 +96,7 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
     @Override
     public int hashCode() {
         int result = codigoCasoContacto.hashCode();
-        result = 31 * result + codigoParticipanteCaso.getParticipante().hashCode();
+        result = 31 * result + codigoVisitaCaso.getCodigoParticipanteCaso().getParticipante().hashCode();
         return result;
     }
 

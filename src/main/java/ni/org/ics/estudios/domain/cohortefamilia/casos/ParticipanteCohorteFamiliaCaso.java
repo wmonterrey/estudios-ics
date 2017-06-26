@@ -71,7 +71,7 @@ public class ParticipanteCohorteFamiliaCaso extends BaseMetaData implements Audi
 		this.enfermo = enfermo;
 	}
 
-	@Column(name = "FECHA_ENFERMEDAD", nullable = false)
+	@Column(name = "FECHA_ENFERMEDAD", nullable = true)
 	public Date getFechaEnfermedad() {
 		return fechaEnfermedad;
 	}

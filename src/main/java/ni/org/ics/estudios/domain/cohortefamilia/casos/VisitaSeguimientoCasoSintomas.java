@@ -59,7 +59,7 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 	}
 
 	@ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE_CASO", nullable = false)
+    @JoinColumn(name = "CODIGO_VISITA_CASO", nullable = false)
     @ForeignKey(name = "FK_SINTOMA_VISITA")
 	public VisitaSeguimientoCaso getCodigoVisitaCaso() {
 		return codigoVisitaCaso;
@@ -276,7 +276,7 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 		this.antibiotico = antibiotico;
 	}
 
-	@Column(name = "CUAL_ANTIBIOTICO", length = 2, nullable = true)
+	@Column(name = "CUAL_ANTIBIOTICO", length = 100, nullable = true)
 	public String getCualAntibiotico() {
 		return cualAntibiotico;
 	}
