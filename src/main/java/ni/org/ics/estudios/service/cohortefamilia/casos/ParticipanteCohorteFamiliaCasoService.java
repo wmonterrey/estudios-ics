@@ -29,8 +29,42 @@ public class ParticipanteCohorteFamiliaCasoService {
         return query.list();
     }
 
+    public ParticipanteCohorteFamiliaCaso getParticipanteCohorteFamiliaCasosByCodigo(String codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCasoParticipante = :codigo");
+        query.setParameter("codigo", codigo);
+        return (ParticipanteCohorteFamiliaCaso)query.uniqueResult();
+    }
+
+    public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCaso(String codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.codigoCaso = :codigo");
+        query.setParameter("codigo", codigo);
+        return query.list();
+    }
+
+    public ParticipanteCohorteFamiliaCaso getParticipanteCohorteFamiliaCasosByParticipantePos(Integer codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.enfermo = 'S' and p.participante.participante.codigo = :codigo");
+        query.setParameter("codigo", codigo);
+        return (ParticipanteCohorteFamiliaCaso)query.uniqueResult();
+    }
+
+    public ParticipanteCohorteFamiliaCaso getParticipanteCohorteFamiliaCasosByParticipante(Integer codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.participante.participante.codigo = :codigo");
+        query.setParameter("codigo", codigo);
+        return (ParticipanteCohorteFamiliaCaso)query.uniqueResult();
+    }
+
     public void saveOrUpdateParticipanteCohorteFamiliaCaso(ParticipanteCohorteFamiliaCaso participante){
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(participante);
+    }
+
+    public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosPositivos(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.enfermo = 'S'");
+        return query.list();
     }
 }

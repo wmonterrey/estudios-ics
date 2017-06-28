@@ -37,6 +37,14 @@ public class CasaCohorteFamiliaService {
         return query.list();
     }
 
+    public CasaCohorteFamilia getCasasCHFByCodigo(String codigo)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("select c from CasaCohorteFamilia c where c.pasive = '0' and c.codigoCHF = :codigo");
+        query.setParameter("codigo",codigo);
+        return (CasaCohorteFamilia)query.uniqueResult();
+    }
+
     public void saveOrUpdateCasaCHF(CasaCohorteFamilia casa)
     {
         Session session = sessionFactory.getCurrentSession();

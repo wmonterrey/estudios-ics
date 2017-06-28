@@ -27,9 +27,16 @@ public class ParticipanteCohorteFamiliaService {
         return query.list();
     }
 
-    public ParticipanteCohorteFamilia getParticipanteCHFByCodigo(String codigo){
+    public List<ParticipanteCohorteFamilia> getParticipantesCHFByCodigoCasa(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamilia where participanteCHF = :codigo");
+        Query query = session.createQuery("from ParticipanteCohorteFamilia where casaCHF.codigoCHF = :codigo and pasive = '0'");
+        query.setParameter("codigo", codigo);
+        return query.list();
+    }
+
+    public ParticipanteCohorteFamilia getParticipanteCHFByCodigo(Integer codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ParticipanteCohorteFamilia where participante.codigo = :codigo");
         query.setParameter("codigo",codigo);
         return (ParticipanteCohorteFamilia)query.uniqueResult();
     }
