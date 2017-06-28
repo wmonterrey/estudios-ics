@@ -146,7 +146,7 @@ public class Casa extends BaseMetaData implements Auditable {
 
         Casa casa = (Casa) o;
 
-        return (!codigo.equals(casa.codigo));
+        return (codigo.equals(casa.codigo));
     }
 
     @Override

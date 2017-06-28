@@ -1,5 +1,7 @@
 package ni.org.ics.estudios.domain.cohortefamilia.casos;
 
+import java.util.Date;
+
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
@@ -23,6 +25,7 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
 	private String codigoCasoContacto;
 	private VisitaSeguimientoCaso codigoVisitaCaso;
 	private ParticipanteCohorteFamilia partContacto;
+	private Date fechaContacto;
 	private String tiempoInteraccion;
 	private String tipoInteraccion;
     
@@ -58,6 +61,15 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
 		this.partContacto = partContacto;
 	}
 
+	@Column(name = "FECHA_CONTACTO", nullable = false)
+	public Date getFechaContacto() {
+		return fechaContacto;
+	}
+
+	public void setFechaContacto(Date fechaContacto) {
+		this.fechaContacto = fechaContacto;
+	}
+
 	@Column(name = "TIEMPO_INTERACCION", length = 10, nullable = false)
 	public String getTiempoInteraccion() {
 		return tiempoInteraccion;
@@ -67,7 +79,7 @@ public class FormularioContactoCaso extends BaseMetaData implements Auditable {
 		this.tiempoInteraccion = tiempoInteraccion;
 	}
 
-	@Column(name = "TIPO_INTERACCION", length = 100, nullable = false)
+	@Column(name = "TIPO_INTERACCION", length = 100, nullable = true)
 	public String getTipoInteraccion() {
 		return tipoInteraccion;
 	}

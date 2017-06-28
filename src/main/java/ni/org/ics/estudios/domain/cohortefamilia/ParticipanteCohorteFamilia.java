@@ -74,7 +74,7 @@ public class ParticipanteCohorteFamilia extends BaseMetaData implements Auditabl
 
         ParticipanteCohorteFamilia participante = (ParticipanteCohorteFamilia) o;
 
-        return (!this.participante.getCodigo().equals(participante.participante.getCodigo()));
+        return (this.participante.getCodigo().equals(participante.participante.getCodigo()));
     }
 
     @Override

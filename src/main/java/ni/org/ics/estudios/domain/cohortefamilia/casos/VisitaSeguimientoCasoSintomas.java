@@ -78,7 +78,7 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 		this.fechaSintomas = fechaSintomas;
 	}
 	
-	@Column(name = "PERIODO", length = 10, nullable = false)
+	@Column(name = "PERIODO", length = 10, nullable = true)
 	public String getPeriodo() {
 		return periodo;
 	}
@@ -276,7 +276,7 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 		this.antibiotico = antibiotico;
 	}
 
-	@Column(name = "CUAL_ANTIBIOTICO", length = 100, nullable = true)
+	@Column(name = "CUAL_ANTIBIOTICO", length = 255, nullable = true)
 	public String getCualAntibiotico() {
 		return cualAntibiotico;
 	}

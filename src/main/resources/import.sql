@@ -1,4 +1,5 @@
 INSERT INTO `roles` (`ROL`) VALUES ('ROLE_ADMIN');
+INSERT INTO `roles` (`ROL`) VALUES ('ROLE_SUPER');
 
 INSERT INTO `usuarios_sistema` (`NOMBRE_USUARIO`, `CUENTA_SINEXPIRAR`, `CUENTA_SINBLOQUEAR`, `DESCRIPCION`, `FECHA_REGISTRO`, `USUARIO_REGISTRO`, `CREDENCIAL_SINEXPIRAR`, `CORREO_ELECTRONICO`, `HABILITADO`, `FECHA_ULTACC`, `FECHA_ULTMODCRED`, `FECHA_ULTMOD`, `USUARIO_ULTMOD`, `CONTRASENA`) VALUES ('admin', '', '', 'Administrador', '2017-06-08 08:31:00', 'admin', '', 'admincndr@minsa.gob.ni', '', '2017-06-08 10:05:40', NULL, '2017-06-08 17:58:06', 'admin', '6c36dc262b0e44be5811c2296669fc65643aec9dcaa4a76501e0a9508b633fd01ee59a207f8c6d68');
 INSERT INTO `usuarios_roles` (`ROL`, `NOMBRE_USUARIO`, `PASIVO`, `FECHA_REGISTRO`, `USUARIO_REGISTRO`, `ESTADO`) VALUES ('ROLE_ADMIN', 'admin', '0', '2016-06-07 10:47:12', 'admin', '1');
@@ -572,6 +573,23 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CAT_LUGAR_RECEP', NULL, NULL, NULL, '1', 0, '0', 'Catalogo lugar de recepción de muestras');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CAT_LUGAR_RECEP_01', '1', 'CAT_LUGAR_RECEP', NULL, '0', 1, '0', 'Auditorio');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CAT_LUGAR_RECEP_02', '2', 'CAT_LUGAR_RECEP', NULL, '0', 2, '0', 'Terreno');
+
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION', NULL, NULL, NULL, '1', 0, '0', 'Catalogo tipo de interaccion participantes');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_01', '1', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 1, '0', 'Contacto físico');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_02', '2', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 2, '0', 'Jugaron juntos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_03', '3', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 3, '0', 'Comieron juntos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_04', '4', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 4, '0', 'Conversaron');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_05', '5', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 5, '0', 'Estuvieron en la misma habitación');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_06', '6', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 6, '0', '¿Cuidó a un miembro del hogar que estaba enfermo?');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIPO_INTERACCION_07', '7', 'CHF_CAT_TIPO_INTERACCION', NULL, '0', 7, '0', '¿Durmió en la misma habitación que esta persona?');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIEMPO_INTERACCION', NULL, NULL, NULL, '1', 0, '0', 'Catalogo tiempo de interaccion participantes');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIEMPO_INTERACCION_01', '1', 'CHF_CAT_TIEMPO_INTERACCION', NULL, '0', 1, '0', '00-15 Minutos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIEMPO_INTERACCION_02', '2', 'CHF_CAT_TIEMPO_INTERACCION', NULL, '0', 2, '0', '15-30 Minutos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIEMPO_INTERACCION_03', '3', 'CHF_CAT_TIEMPO_INTERACCION', NULL, '0', 3, '0', '30-60 Minutos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIEMPO_INTERACCION_04', '4', 'CHF_CAT_TIEMPO_INTERACCION', NULL, '0', 4, '0', 'Mas de 60 Minutos');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIEMPO_INTERACCION_05', '5', 'CHF_CAT_TIEMPO_INTERACCION', NULL, '0', 5, '0', 'No tuvo contacto');
 
 /*Usuarios*/
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'username', 'Usuario','0','0',0);
