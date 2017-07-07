@@ -5,10 +5,13 @@ import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.CasaCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.ParticipanteCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.scancarta.VersionCarta;
+import ni.org.ics.estudios.language.MessageResource;
+import ni.org.ics.estudios.service.MessageResourceService;
 import ni.org.ics.estudios.service.cohortefamilia.CasaCohorteFamiliaService;
 import ni.org.ics.estudios.service.cohortefamilia.ParticipanteCohorteFamiliaService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.CasaCohorteFamiliaCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.ParticipanteCohorteFamiliaCasoService;
+import ni.org.ics.estudios.web.utils.DateUtil;
 import org.apache.commons.lang3.text.translate.UnicodeEscaper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,11 +53,18 @@ public class CasaCohorteFamiliaCasoWController {
     @Resource(name = "participanteCohorteFamiliaService")
     private ParticipanteCohorteFamiliaService participanteCohorteFamiliaService;
 
+    @Resource(name = "messageResourceService")
+    private MessageResourceService messageResourceService;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String obtenerCasos(Model model) throws ParseException {
         logger.debug("Mostrando casos monitoreo intensivo en JSP");
         List<ParticipanteCohorteFamiliaCaso> casos = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosPositivos();
+        List<MessageResource> visitas = messageResourceService.getCatalogo("CHF_CAT_VIS_MI");
+        List<MessageResource> tiposEtiquetas = messageResourceService.getCatalogo("CHF_CAT_TIP_ETIQ_MI");
         model.addAttribute("casos",casos);
+        model.addAttribute("visitas", visitas);
+        model.addAttribute("etiquetas", tiposEtiquetas);
         return "/supervisor/casos/list";
     }
 
@@ -94,26 +104,30 @@ public class CasaCohorteFamiliaCasoWController {
     {
         CasaCohorteFamiliaCaso casaCasoExistente = null;
         try{
-            casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigoCasa(codigoCasa);
+            Date dFechaInicio = DateUtil.StringToDate(fechaInicio, "dd/MM/yyyy");
+            casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigoCasaFecha(codigoCasa,dFechaInicio);
             CasaCohorteFamiliaCaso casaCaso = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigo);
-            if (casaCasoExistente!=null && codigo.isEmpty())
+            /*if (casaCasoExistente!=null && codigo.isEmpty())
                 return createJsonResponse("Ya existe un caso positivo para esta casa");
+*/
+            if (casaCasoExistente==null) {
+                if (casaCaso == null) {
+                    casaCaso = new CasaCohorteFamiliaCaso();
+                    casaCaso.setCodigoCaso(getCadenaAlfanumAleatoria(36, true));
 
-            if (casaCaso==null){
-                casaCaso = new CasaCohorteFamiliaCaso();
-                casaCaso.setCodigoCaso(getCadenaAlfanumAleatoria(36, true));
+                }
+                casaCaso.setCasa(casaCohorteFamiliaService.getCasasCHFByCodigo(codigoCasa));
+                casaCaso.setFechaInicio(dFechaInicio);
+                casaCaso.setEstado('1');
+                casaCaso.setPasive('0');
+                casaCaso.setInactiva("0");
+                casaCaso.setRecordDate(new Date());
+                casaCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
 
+                this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCaso);
+            }else {
+                casaCaso = casaCasoExistente;
             }
-            casaCaso.setCasa(casaCohorteFamiliaService.getCasasCHFByCodigo(codigoCasa));
-            casaCaso.setFechaInicio(StringToDate(fechaInicio,"dd/MM/yyyy"));
-            casaCaso.setEstado('1');
-            casaCaso.setPasive('0');
-            casaCaso.setInactiva("0");
-            casaCaso.setRecordDate(new Date());
-            casaCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
-
-            this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCaso);
-
             //agregar paticipante positivo
             ParticipanteCohorteFamiliaCaso participanteCaso = this.participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByParticipante(codigoParticipante);
             if(participanteCaso==null){
@@ -124,7 +138,7 @@ public class CasaCohorteFamiliaCasoWController {
             participanteCaso.setCodigoCaso(casaCaso);
             participanteCaso.setEstado('1');
             participanteCaso.setEnfermo("S");
-            participanteCaso.setFechaEnfermedad(StringToDate(fif,"dd/MM/yyyy"));
+            participanteCaso.setFechaEnfermedad(DateUtil.StringToDate(fif, "dd/MM/yyyy"));
             participanteCaso.setPasive('0');
             participanteCaso.setRecordDate(new Date());
             participanteCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -139,12 +153,12 @@ public class CasaCohorteFamiliaCasoWController {
                     if (participanteCaso == null) {
                         participanteCaso = new ParticipanteCohorteFamiliaCaso();
                         participanteCaso.setCodigoCasoParticipante(getCadenaAlfanumAleatoria(36, true));
+                        participanteCaso.setEnfermo("N");
+                        participanteCaso.setFechaEnfermedad(null);
                     }
                     participanteCaso.setParticipante(participante);
                     participanteCaso.setCodigoCaso(casaCaso);
                     participanteCaso.setEstado('1');
-                    participanteCaso.setEnfermo("N");
-                    participanteCaso.setFechaEnfermedad(null);
                     participanteCaso.setPasive('0');
                     participanteCaso.setRecordDate(new Date());
                     participanteCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -204,17 +218,5 @@ public class CasaCohorteFamiliaCasoWController {
             }
         }
         return cadenaAleatoria.toString();
-    }
-
-    /**
-     * Convierte un string a Date según el formato indicado
-     * @param strFecha cadena a convertir
-     * @param formato formato solicitado
-     * @return Fecha
-     * @throws java.text.ParseException
-     */
-    public static Date StringToDate(String strFecha, String formato) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(formato);
-        return simpleDateFormat.parse(strFecha);
     }
 }

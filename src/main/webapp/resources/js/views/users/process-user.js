@@ -149,7 +149,7 @@ var EditUser = function () {
         	            {
         	    			usuario = JSON.parse(data);
         	    			if (usuario.username === undefined) {
-        						toastr.error(data);        						
+        						toastr.error(data,"Error",{timeOut: 0});
         					}
         					else{
         						$('#username').val(usuario.username);

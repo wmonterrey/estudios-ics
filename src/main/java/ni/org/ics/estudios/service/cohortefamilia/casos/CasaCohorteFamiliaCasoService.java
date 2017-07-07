@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,6 +45,15 @@ public class CasaCohorteFamiliaCasoService {
         query.setParameter("codigo",codigo);
         return (CasaCohorteFamiliaCaso)query.uniqueResult();
     }
+
+    public CasaCohorteFamiliaCaso getCasaCohorteFamiliaCasosByCodigoCasaFecha(String codigo, Date fechaInicio){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from CasaCohorteFamiliaCaso c where c.pasive = '0' and c.inactiva = '0' and c.casa.codigoCHF = :codigo and c.fechaInicio = :fechaInicio");
+        query.setParameter("codigo",codigo);
+        query.setParameter("fechaInicio", fechaInicio);
+        return (CasaCohorteFamiliaCaso)query.uniqueResult();
+    }
+
     public void saveOrUpdateCasaCohorteFamiliaCaso(CasaCohorteFamiliaCaso casa){
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(casa);

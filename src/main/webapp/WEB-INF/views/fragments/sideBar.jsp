@@ -19,10 +19,18 @@
 	            </ul>
 	        </li>
             <li class="nav-item nav-dropdown supervision">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-wrench"></i><spring:message code="superv" /></a>
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-eye"></i><spring:message code="superv" /></a>
                 <ul class="nav-dropdown-items">
                     <li class="nav-item intensiveMonitoring">
                         <a class="nav-link" href="<spring:url value="/super/casacaso/" htmlEscape="true "/>"><i class="icon-location-pin"></i><spring:message code="intensiveMonitoring" /></a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item nav-dropdown laboratory">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-chemistry"></i><spring:message code="laboratory" /></a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item printcodes">
+                        <a class="nav-link" href="<spring:url value="/lab/muestras/" htmlEscape="true "/>"><i class="icon-printer"></i><spring:message code="print.codes" /></a>
                     </li>
                 </ul>
             </li>

@@ -99,7 +99,7 @@ public class EncuestaParticipante extends BaseMetaData implements Auditable {
         this.participante = participante;
     }
 
-    @Column(name = "ENBARAZADA", length = 1)
+    @Column(name = "EMBARAZADA", length = 1)
     public String getEstaEmbarazada() {
         return estaEmbarazada;
     }

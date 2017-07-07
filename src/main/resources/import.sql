@@ -171,6 +171,8 @@ INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUE
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'superv', 'Supervisión','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'intensiveMonitoring', 'Monitoreo Intensivo','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'versionLetters', 'Versiones Cartas','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'laboratory', 'Laboratorio','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'print.codes', 'Impresión Códigos','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'logout', 'Salir','0','0',0);
 
 
@@ -654,6 +656,7 @@ INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUE
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'confirm', 'Confirmar','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'please.enter', 'Favor ingresar','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ('delete', 'Eliminar', '0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ('generate', 'Generar', '0','0',0);
 
 /*Mensajes generales, todas las paginas*/
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'enabled', 'Habilitado','0','0',0);
@@ -703,4 +706,29 @@ INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUE
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'participant', 'Participante','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'age', 'Edad','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'cases', 'Casos','0','0',0);
-INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'print.selected', 'Imprimir seleccionados','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'print.selected', 'Imprimir seleccionado','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'visit', 'Visita','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'label.types', 'Tipos de Etiquetas','0','0',0);
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_VIS_MI', NULL, NULL, NULL, '1', 0, '0', 'Catalogo visitas monitoreo intensivo CHF');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_VIS_MI_01', '1', 'CHF_CAT_VIS_MI', NULL, '0', 1, '0', 'Visita 1');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_VIS_MI_02', '2', 'CHF_CAT_VIS_MI', NULL, '0', 2, '0', 'Visita 2');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_VIS_MI_03', '3', 'CHF_CAT_VIS_MI', NULL, '0', 3, '0', 'Visita 3');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_VIS_MI_04', '4', 'CHF_CAT_VIS_MI', NULL, '0', 4, '0', 'Visita 4');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_VIS_MI_05', '5', 'CHF_CAT_VIS_MI', NULL, '0', 5, '0', 'Visita 5');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIP_ETIQ_MI', NULL, NULL, NULL, '1', 0, '0', 'Catalogo tipos de etiquetas monitoreo intensivo CHF');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIP_ETIQ_MI_01', '1', 'CHF_CAT_TIP_ETIQ_MI', NULL, '0', 1, '0', 'BHC');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIP_ETIQ_MI_02', '2', 'CHF_CAT_TIP_ETIQ_MI', NULL, '0', 2, '0', 'PBMC');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIP_ETIQ_MI_03', '3', 'CHF_CAT_TIP_ETIQ_MI', NULL, '0', 3, '0', 'Rojo');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TIP_ETIQ_MI_04', '4', 'CHF_CAT_TIP_ETIQ_MI', NULL, '0', 4, '0', 'FLU');
+
+/*Impresión de muestras*/
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'sample.code', 'Código muestra','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'start.date.registration', 'Fecha Inicio de Registro','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'end.date.registration', 'Fecha Fin de Registro','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'sample.date', 'Fecha Toma','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'label.types.to.generate', 'Tipos de Etiquetas a Generar','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'enter.parameter', 'Favor ingresar al menos un parámetro de búsqueda','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'registered', 'Registrado','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'select.sample', 'Seleccione al menos una muestra','0','0',0);

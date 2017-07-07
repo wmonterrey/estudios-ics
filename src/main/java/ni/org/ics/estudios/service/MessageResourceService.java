@@ -99,7 +99,18 @@ public class MessageResourceService {
 		// Retrieve all
 		return  (MessageResource) query.uniqueResult();
 	}
-	
+
+    public MessageResource getMensaje(String idMensaje, String catalogo) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM MessageResource mens where mens.catRoot =:catalogo and mens.messageKey =:idMensaje");
+        query.setParameter("catalogo",catalogo);
+        query.setParameter("idMensaje", idMensaje);
+        // Retrieve all
+        return  (MessageResource) query.uniqueResult();
+    }
+
 	/**
 	 * Guarda un mensaje
 	 * 
