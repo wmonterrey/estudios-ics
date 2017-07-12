@@ -98,7 +98,7 @@ var ProcessCase = function () {
                         }
                     }
                 ).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-                        alert( "error:" + errorThrown);
+                        toastr.error( "error:" + errorThrown);
                     });
             }
 
@@ -123,7 +123,7 @@ var ProcessCase = function () {
         	            }
         	            , 'text' )
         		  		.fail(function(XMLHttpRequest, textStatus, errorThrown) {
-        		    		alert( "error:" + errorThrown);
+                        toastr.error("error:" + errorThrown);
         		  		});
         	}
             

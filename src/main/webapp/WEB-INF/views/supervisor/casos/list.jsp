@@ -9,6 +9,10 @@
     <jsp:include page="../../fragments/headTag.jsp" />
     <spring:url value="/resources/js/libs/data-tables/TableTools/css/dataTables.tableTools.css" var="dtttcss" />
     <link rel="stylesheet" href="${dtttcss}"/>
+    <!-- DATE PICKER -->
+    <spring:url value="/resources/css/datepicker.css" var="datepickerCss" />
+    <link href="${datepickerCss}" rel="stylesheet" type="text/css"/>
+    <!-- END DATE PICKER -->
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
 <jsp:include page="../../fragments/bodyHeader.jsp" />
@@ -25,10 +29,15 @@
         </ol>
         <c:set var="exportar"><spring:message code="export" /></c:set>
         <c:set var="confirmar"><spring:message code="confirm" /></c:set>
+        <c:set var="cerrarCaso"><spring:message code="close.case" /></c:set>
         <c:set var="deshabilitar"><spring:message code="disable" /></c:set>
         <c:set var="recordDisabledLabel"><spring:message code="recordDisabled" /></c:set>
-        <spring:url value="/super/particaso/getParticipantsCasos" var="getCodesUrl"/>
+        <c:set var="successLabel"><spring:message code="process.success" /></c:set>
+        <c:set var="seleccionarCaso"><spring:message code="select.case" /></c:set>
+        <c:set var="casoInactivo"><spring:message code="inactive.case" /></c:set>
 
+        <spring:url value="/super/particaso/getParticipantsCasos" var="getCodesUrl"/>
+        <spring:url value="/super/casacaso/closeCase" var="closeUrl"/>
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
@@ -55,12 +64,12 @@
                         <table class="table table-hover table-bordered" id="lista_casos">
                             <thead>
                             <tr>
-                                <th><spring:message code="house" /></th>
-                                <th><spring:message code="logindate" /></th>
-                                <th><spring:message code="positive" /></th>
-                                <th><spring:message code="fif" /></th>
-                                <th><spring:message code="logoutdate" /></th>
-                                <th><spring:message code="actions" /></th>
+                                <th width="12%"><spring:message code="house" /></th>
+                                <th width="20%"><spring:message code="logindate" /></th>
+                                <th width="12%"><spring:message code="positive" /></th>
+                                <th width="20%"><spring:message code="fif" /></th>
+                                <th width="20%"><spring:message code="logoutdate" /></th>
+                                <th width="16%"><spring:message code="actions" /></th>
                             </tr>
                             </thead>
                             <c:forEach items="${casos}" var="parti">
@@ -72,9 +81,9 @@
                                             var="participantsUrl">
                                     <spring:param name="codigo" value="${parti.codigoCaso.codigoCaso}" />
                                 </spring:url>
-                                <spring:url value="/admin/vcartas/habdes/disable/{codigo}"
+                                <spring:url value="/super/casacaso/actions/disable/{codigo}"
                                             var="disableUrl">
-                                    <spring:param name="codigo" value="${parti.codigoCaso.codigoCaso}" />
+                                    <spring:param name="codigo" value="${parti.codigoCaso.codigoCaso}-${parti.codigoCaso.casa.codigoCHF}" />
                                 </spring:url>
                                 <tr>
                                     <td><c:out value="${parti.codigoCaso.casa.codigoCHF}" /></td>
@@ -83,11 +92,20 @@
                                     <td><fmt:formatDate value="${parti.fechaEnfermedad}" pattern="dd/MM/yyyy" /></td>
                                     <td><fmt:formatDate value="${parti.codigoCaso.fechaInactiva}" pattern="dd/MM/yyyy" /></td>
                                     <td>
-                                        <a href="${fn:escapeXml(editUrl)}" title="Editar" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                        <a href="${fn:escapeXml(participantsUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-users"></i></a>
-                                        <a href="#" class="btn btn-outline-primary btn-sm"><i class="fa fa-ban"></i></a>
-                                        <!--<a data-toggle="modal" data-id= "${fn:escapeXml(disableUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash-o"></i></a>
-                                        -->
+                                        <c:choose>
+                                            <c:when test="${parti.codigoCaso.inactiva=='1'}">
+                                                <button title="<spring:message code="edit" />" class="btn btn-outline-primary btn-sm" disabled><i class="fa fa-edit"></i></button>
+                                                <a title="<spring:message code="participants" />" href="${fn:escapeXml(participantsUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-users"></i></a>
+                                                <button title="<spring:message code="close.case" />" class="btn btn-outline-primary btn-sm" disabled><i class="fa fa-sign-out"></i></button>
+                                                <button title="<spring:message code="disable" />" class="btn btn-outline-primary btn-sm" disabled><i class="fa fa-trash-o"></i></button>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a title="<spring:message code="edit" />" href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                                <a title="<spring:message code="participants" />" href="${fn:escapeXml(participantsUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-users"></i></a>
+                                                <a title="<spring:message code="close.case" />" data-toggle="modal" data-id="${parti.codigoCaso.codigoCaso}" class="btn btn-outline-primary btn-sm salida"><i class="fa fa-sign-out"></i></a>
+                                                <a title="<spring:message code="disable" />" data-toggle="modal" data-id="${fn:escapeXml(disableUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash-o"></i></a>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -97,11 +115,9 @@
                     <br>
                     <br>
                     <div class="row">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <form action="#" autocomplete="off" id="print-form" class="form-horizontal">
-                                <div class="form-group row">
+                                <!--<div class="form-group row">
                                     <label class="form-control-label col-md-4" for="visita"><spring:message code="visit" />
                                         <span class="required">*</span>
                                     </label>
@@ -116,7 +132,7 @@
                                             </c:forEach>
                                         </select>
                                     </div>
-                                </div>
+                                </div>-->
                                 <div class="form-group row">
                                     <label class="form-control-label col-md-4" for="etiquetas"><spring:message code="label.types" />
                                         <span class="required">*</span>
@@ -136,7 +152,7 @@
                                 <br>
                                 <div class="form-actions fluid">
                                     <div class="col-md-offset-10 col-md-12">
-                                        <button id="btnPrint" type="button" name="btnPrint" class="btn btn-success">
+                                        <button id="btnPrint" type="submit" name="btnPrint" class="btn btn-success">
                                             <spring:message code="print.selected" /> <i class="fa fa-print"></i>
                                         </button>
                                         <br>
@@ -144,8 +160,6 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
-                        <div class="col-md-2">
                         </div>
                     </div>
                 </div>
@@ -160,34 +174,32 @@
                         <div class="modal-body">
                             <input type=hidden id="accionUrl"/>
                             <div id="cuerpo"></div>
+                            <form action="#" autocomplete="off" id="close-form" class="form-horizontal">
+                                <div id="dvSalida" class="form-group row">
+                                    <label class="form-control-label col-md-3" for="fechaSalida"><spring:message code="logoutdate" />
+                                            <span class="required">
+                                                 *
+                                            </span>
+                                    </label>
+                                    <div class="input-group col-md-9">
+                                                <span class="input-group-addon"><i class="fa fa-calendar"></i>
+                                                </span>
+                                        <input name="fechaSalida" id="fechaSalida" class="form-control date-picker" type="text" data-date-end-date="+0d" value="" />
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
-                            <button type="button" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+                            <button type="button" id="btnOkAct" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+                            <button type="button" id="btnOkPrint" class="btn btn-info" onclick="printSelected()"><spring:message code="ok" /></button>
+                            <button type="button" id="btnOkClose" class="btn btn-info"><spring:message code="ok" /></button>
                         </div>
                     </div>
                     <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
             </div>
-            <div class="modal fade" id="confirModal" tabindex="-1" data-role="basic" data-backdrop="static" data-aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"></button>
-                            <div>Confirmación</div>
-                        </div>
-                        <div class="modal-body">
-                            <div>Imprimir seleccionados?</div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
-                            <button type="button" class="btn btn-info" id="okPrint" name="okPrint"><spring:message code="ok" /></button>
-                        </div>
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
             </div>
         </div>
         <!-- /.conainer-fluid -->
@@ -223,7 +235,15 @@
     <spring:param name="language" value="${lenguaje}" />
 </spring:url>
 <script src="${jQValidationLoc}"></script>
+<!-- bootstrap datepicker -->
+<spring:url value="/resources/js/libs/bootstrap-datepicker/bootstrap-datepicker.js" var="datepickerPlugin" />
+<script src="${datepickerPlugin}"></script>
+<spring:url value="/resources/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.{languagedt}.js" var="datePickerLoc">
+    <spring:param name="languagedt" value="${lenguaje}" /></spring:url>
+<script src="${datePickerLoc}"></script>
 
+<spring:url value="/resources/js/views/handleDatePickers.js" var="handleDatePickers" />
+<script src="${handleDatePickers}"></script>
 <spring:url value="/resources/js/app.js" var="App" />
 <script src="${App}" type="text/javascript"></script>
 <c:choose>
@@ -240,6 +260,8 @@
 </spring:url>
 <script>
     jQuery(document).ready(function() {
+        handleDatePickers("${lenguaje}");
+        $('#etiquetas').select2();
         var table = $('#lista_casos').DataTable({
             "oLanguage": {
                 "sUrl": "${dataTablesLang}"
@@ -276,12 +298,30 @@
         $( tt.fnContainer() ).insertBefore('div.table-toolbar');
 
         if ("${deshabilitado}"){
-            toastr.error("${recordDisabledLabel}", "${registroVersion}" );
+            toastr.error("${recordDisabledLabel}", "${casa}" );
+        }
+        if ("${cerrado}"){
+            toastr.success("${successLabel}", "${casa}" );
         }
         $(".desact").click(function(){
             $('#accionUrl').val($(this).data('id').substr(0,$(this).data('id').lastIndexOf("-")));
             $('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
             $('#cuerpo').html('<h3>'+"${deshabilitar}"+' '+decodeURIComponent($(this).data('id').substr($(this).data('id').lastIndexOf("-")+1))+'?</h3>');
+            $('#btnOkAct').show();
+            $('#btnOkPrint').hide();
+            $('#dvSalida').hide();
+            $('#btnOkClose').hide();
+            $('#basic').modal('show');
+        });
+
+        $(".salida").click(function(){
+            $('#accionUrl').val($(this).data('id'));
+            $('#titulo').html('<h2 class="modal-title">'+"${cerrarCaso}"+'</h2>');
+            $('#cuerpo').html('');
+            $('#btnOkAct').hide();
+            $('#btnOkPrint').hide();
+            $('#dvSalida').show();
+            $('#btnOkClose').show();
             $('#basic').modal('show');
         });
 
@@ -297,9 +337,48 @@
                     required: true
                 }
             },
+            ignore: ':hidden:not("#etiquetas")',
             errorPlacement: function ( error, element ) {
                 // Add the `help-block` class to the error element
                 error.addClass( 'form-control-feedback col-md-4' );
+                if ( element.prop( 'type' ) === 'checkbox' ) {
+                    error.insertAfter( element.parent( 'label' ) );
+                } else {
+                    error.insertAfter( element ); //cuando no es input-group
+                    //error.insertAfter(element.parent('.input-group'));
+                }
+            },
+            highlight: function ( element, errorClass, validClass ) {
+                $( element ).addClass( 'form-control-danger' ).removeClass( 'form-control-success' );
+                $( element ).parents( '.input-group' ).addClass( 'has-danger' ).removeClass( 'has-success' );
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $( element ).addClass( 'form-control-success' ).removeClass( 'form-control-danger' );
+                $( element ).parents( '.input-group' ).addClass( 'has-success' ).removeClass( 'has-danger' );
+            },
+            submitHandler: function (form) {
+                $('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
+                $('#cuerpo').html('<h3>'+'Imprimir seleccionados?</h3>');
+                $('#btnOkAct').hide();
+                $('#btnOkPrint').show();
+                $('#dvSalida').hide();
+                $('#btnOkClose').hide();
+                $('#basic').modal('show');
+            }
+        });
+
+        var form2 = $('#close-form');
+        form2.validate({
+            errorElement: 'span', //default input error message container
+            focusInvalid: false, // do not focus the last invalid input
+            rules: {
+                fechaSalida: {
+                    required: true
+                }
+            },
+            errorPlacement: function ( error, element ) {
+                // Add the `help-block` class to the error element
+                error.addClass( 'form-control-feedback col-md-8' );
                 if ( element.prop( 'type' ) === 'checkbox' ) {
                     error.insertAfter( element.parent( 'label' ) );
                 } else {
@@ -314,86 +393,37 @@
             unhighlight: function (element, errorClass, validClass) {
                 $( element ).addClass( 'form-control-success' ).removeClass( 'form-control-danger' );
                 $( element ).parents( '.form-group' ).addClass( 'has-success' ).removeClass( 'has-danger' );
-            },
-            submitHandler: function (form) {
-                $('#confirModal').modal('show');
             }
         });
 
-        $('#btnPrint').click(function () {
-            form1.valid();
-        });
-
-        $('#okPrint').click(function () {
-            printSelected();
-        });
-
-        $('#etiquetas').select2();
-
-        function printSelected() {
-            var oTT = TableTools.fnGetInstance('lista_casos');
-            var aSelectedTrs = oTT.fnGetSelected();
-            var len = aSelectedTrs.length;
-            if (len > 0) {
-                var casas = [];
-                //var codesLabLineal = [];
-                for (var i = 0; i < len; i++) {
-                    //console.log(table.row(aSelectedTrs[i]).data());
-                    var codigoCasa = table.row(aSelectedTrs[i]).data()[0];
-                    if (i + 1 < len) {
-                        casas += codigoCasa + ",";
-                    } else {
-                        casas += codigoCasa;
-                    }
-                }
-                //codesLab = reemplazar(codesLab, ".", "*");
-                console.log(casas);
-                getCodesLab(casas);
-
-            } else {
-                toastr.warning("seleccione al menos un caso");
+        $("#btnOkClose").click(function(){
+            if (form2.valid()){
+                processCase();
             }
-        }
+        });
 
-        function getCodesLab(casas)
+        function processCase()
         {
-            $.getJSON( "${getCodesUrl}"
-                    , {casas : casas,
-                     visita : $("#visita").val()}
+            $.post( "${closeUrl}"
+                    , {codigo: $('#accionUrl').val(), fechaInactiva: $('#fechaSalida').val()}
                     , function( data )
                     {
-                        var total = data.TOTAL;
-                        var codigosLab="";
-                        for(var indice =1;indice<=total;indice++){
-                            if (indice < total) {
-                                codigosLab += data["CODIGO"+indice] + ",";
-                            } else {
-                                codigosLab += data["CODIGO"+indice];
-                            }
+                        var registro = JSON.parse(data);
+                        console.log(registro);
+                        if (registro.codigoCaso === undefined) {
+                            toastr.error(data,"Error",{timeOut: 0});
                         }
-                        imprimir(codigosLab);
+                        else {
+                            toastr.success("${successLabel}");
+                            window.setTimeout(function () {
+                                window.location.reload();
+                            }, 1500);
+                        }
                     }
-            ).fail(function(XMLHttpRequest, textStatus, errorThrown) {
-                        alert( "error:" + errorThrown);
+                    , 'text' )
+                    .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                        toastr.error( "error:" + errorThrown,{timeOut: 0});
                     });
-        }
-
-        function imprimir(strBarCodes){
-            $.getJSON("http://localhost:13001/print", {
-                barcodes: strBarCodes,
-                copias: 1,
-                ajax:'false'
-            }, function (data) {
-                console.log(data);
-                $('#confirModal').modal('toggle');
-                toastr.success("etiquetas impresas");
-            }).fail(function (jqXHR) {
-                console.log(jqXHR);
-                $('#confirModal').modal('toggle');
-                if (jqXHR.status!=200 && jqXHR.status!=0) {
-                    toastr.error("error al imprimir etiquetas","Error",{timeOut: 0});
-                }
-            });
         }
 
     });
@@ -401,6 +431,90 @@
     function ejecutarAccion() {
         window.location.href = $('#accionUrl').val();
     }
+
+    function printSelected() {
+        var oTT = TableTools.fnGetInstance('lista_casos');
+        var aSelectedTrs = oTT.fnGetSelected();
+        var len = aSelectedTrs.length;
+        if (len > 0) {
+            var casas = [];
+            for (var i = 0; i < len; i++) {
+                var codigoCasa = aSelectedTrs[i].cells[0].innerHTML;
+                var fechaSalida = aSelectedTrs[i].cells[4].innerHTML;
+                if (fechaSalida.length>0){
+                    $('#basic').modal('toggle');
+                    toastr.warning("${casoInactivo}");
+                }
+                else {
+                    if (i + 1 < len) {
+                        casas += codigoCasa + ",";
+                    } else {
+                        casas += codigoCasa;
+                    }
+                }
+            }
+            //codesLab = reemplazar(codesLab, ".", "*");
+            //console.log(casas);
+            if(casas.length>0) {
+                getCodesLab(casas);
+            }
+
+        } else {
+            $('#basic').modal('toggle');
+            toastr.warning("${seleccionarCaso}");
+        }
+    }
+
+    function getCodesLab(casas)
+    {
+        var strValores = '';
+        var valores = $('#etiquetas').val();
+        for (var i = 0; i < valores.length; i++) {
+            if (i == 0)
+                strValores = valores[i];
+            else
+                strValores = strValores + ',' + valores[i];
+        }
+        $.getJSON( "${getCodesUrl}"
+                , {casas : casas,
+                    etiquetas : strValores}
+                , function( data )
+                {
+                    var total = data.TOTAL;
+                    var codigosLab="";
+                    for(var indice =0;indice<total;indice++){
+                        if (indice < total-1) {
+                            codigosLab += data["CODIGO"+indice] + ",";
+                        } else {
+                            codigosLab += data["CODIGO"+indice];
+                        }
+                    }
+                    //console.log(codigosLab);
+                    imprimir(codigosLab);
+                }
+        ).fail(function(XMLHttpRequest, textStatus, errorThrown) {
+                    toastr.error( "error:" + errorThrown,{timeOut: 0});
+                });
+    }
+
+    function imprimir(strBarCodes){
+        $.getJSON("http://localhost:13001/print", {
+            barcodes: strBarCodes,
+            copias: 1,
+            ajax:'false'
+        }, function (data) {
+            console.log(data);
+            $('#basic').modal('toggle');
+            toastr.success("etiquetas impresas");
+        }).fail(function (jqXHR) {
+            console.log(jqXHR);
+            $('#basic').modal('toggle');
+            if (jqXHR.status!=200 && jqXHR.status!=0) {
+                toastr.error("error al imprimir etiquetas","Error",{timeOut: 0});
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

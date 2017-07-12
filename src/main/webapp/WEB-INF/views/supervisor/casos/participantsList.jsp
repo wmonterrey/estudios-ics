@@ -29,7 +29,7 @@
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-list-alt"></i> <spring:message code="intensiveMonitoring" /> <spring:message code="house" />
-                    <c:out value="${caso.casa.codigoCHF}" /> - <fmt:formatDate value="${caso.fechaInicio}" pattern="dd/MM/yyyy" />
+                    <c:out value="${caso.casa.codigoCHF}" /> (<fmt:formatDate value="${caso.fechaInicio}" pattern="dd/MM/yyyy" /> - <fmt:formatDate value="${caso.fechaInactiva}" pattern="dd/MM/yyyy" />)
                 </div>
                 <div class="card-block">
                     <div class="row table-toolbar">
@@ -57,9 +57,10 @@
                             </thead>
                             <c:forEach items="${participantes}" var="parti">
                                 <tr>
+                                    <c:set var="edadParts" value="${fn:split(parti.participante.participante.edad, '/')}" />
                                     <td><c:out value="${parti.participante.participante.codigo}" /></td>
                                     <td><c:out value="${parti.participante.participante.nombreCompleto}" /></td>
-                                    <td><c:out value="${parti.participante.participante.edad}" /></td>
+                                    <td><c:out value="${edadParts[0]} años ${edadParts[1]} meses ${edadParts[2]} dias" /></td>
                                     <c:choose>
                                         <c:when test="${parti.enfermo eq 'S'}">
                                             <td><span class="badge badge-success"><spring:message code="CHF_CAT_SINO_SI" /></span></td>

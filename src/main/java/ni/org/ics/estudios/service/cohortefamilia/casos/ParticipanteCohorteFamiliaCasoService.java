@@ -38,7 +38,7 @@ public class ParticipanteCohorteFamiliaCasoService {
      */
     public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosPositivos(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.enfermo = 'S' and p.codigoCaso.inactiva = '0'");
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.enfermo = 'S' and p.codigoCaso.pasive = '0'");
         return query.list();
     }
 
@@ -61,7 +61,7 @@ public class ParticipanteCohorteFamiliaCasoService {
      */
     public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCaso(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.inactiva = '0' and p.codigoCaso.codigoCaso = :codigo");
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.pasive = '0' and p.codigoCaso.codigoCaso = :codigo");
         query.setParameter("codigo", codigo);
         return query.list();
     }
@@ -121,10 +121,11 @@ public class ParticipanteCohorteFamiliaCasoService {
      * @param codigo Código de participante
      * @return ParticipanteCohorteFamiliaCaso
      */
-    public ParticipanteCohorteFamiliaCaso getParticipanteCohorteFamiliaCasosByParticipante(Integer codigo){
+    public ParticipanteCohorteFamiliaCaso getParticipanteCohorteFamiliaCasosByParticipante(Integer codigo, String caso){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.inactiva = '0' and p.participante.participante.codigo = :codigo");
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.inactiva = '0' and p.participante.participante.codigo = :codigo and p.codigoCaso.codigoCaso = :caso");
         query.setParameter("codigo", codigo);
+        query.setParameter("caso", caso);
         return (ParticipanteCohorteFamiliaCaso)query.uniqueResult();
     }
 

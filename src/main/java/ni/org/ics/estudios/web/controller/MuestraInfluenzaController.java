@@ -99,16 +99,28 @@ public class MuestraInfluenzaController {
                             ParticipanteCohorteFamilia participanteCohorteFamilia = participanteCohorteFamiliaService.getParticipanteCHFByCodigo(participanteCaso.getParticipante().getParticipante().getCodigo());
                             Date fif = (participanteCaso.getFechaEnfermedad() != null ? participanteCaso.getFechaEnfermedad() : DateUtil.StringToDate("10/10/3000", "dd/MM/yyyy"));
 
+                            codigoParticipante = participanteCaso.getParticipante().getParticipante().getCodigo();
                             codigoLab = participanteCaso.getParticipante().getParticipante().getCodigo() + ".01.TR1";
                             map.put(indice, parseSampleMap(participanteCaso.getParticipante().getParticipante().getCodigo(), codigoLab, null, fif, participanteCohorteFamilia));
+
                             indice++;
+                            codigoLab = codigoParticipante + ".01.TRI";
+                            map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
+
+                            indice++;
+                            codigoLab = codigoParticipante + ".01.TPI";
+                            map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
+
+                            indice++;
+                            codigoLab = String.valueOf(codigoParticipante);
+                            map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
                         }
                     }
                 } else{
                     muestras = muestraInfluenzaService.getMuestrasInfluenza(codigoParticipante, codigoCasa, null);
                     String codigoLab = "";
                     if (muestras.size() > 0) {
-                        ParticipanteCohorteFamiliaCaso participanteCaso = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByParticipante(codigoParticipante);
+                        ParticipanteCohorteFamiliaCaso participanteCaso = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByParticipante(codigoParticipante, null);
                         Integer numMuestra = Integer.valueOf(muestras.get(0).getCodLab().substring(muestras.get(0).getCodLab().lastIndexOf(".") + 3, muestras.get(0).getCodLab().length()));
                         if (numMuestra<5) {
                             ParticipanteCohorteFamilia participanteCohorteFamilia = participanteCohorteFamiliaService.getParticipanteCHFByCodigo(muestras.get(0).getIdMx());
@@ -126,22 +138,21 @@ public class MuestraInfluenzaController {
                             map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
                         }
                     } else {
-                        ParticipanteCohorteFamiliaCaso participanteCaso = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByParticipante(codigoParticipante);
+                        ParticipanteCohorteFamiliaCaso participanteCaso = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByParticipante(codigoParticipante, null);
                         Date fif = (participanteCaso != null && participanteCaso.getFechaEnfermedad() != null ? participanteCaso.getFechaEnfermedad() : DateUtil.StringToDate("10/10/3000", "dd/MM/yyyy"));
                         codigoLab = codigoParticipante + ".01.TR1";
                         ParticipanteCohorteFamilia participanteCohorteFamilia = participanteCohorteFamiliaService.getParticipanteCHFByCodigo(codigoParticipante);
-
                         map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
+
                         indice++;
                         codigoLab = codigoParticipante + ".01.TRI";
-
                         map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
-                        indice++;
 
+                        indice++;
                         codigoLab = codigoParticipante + ".01.TPI";
                         map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
-                        indice++;
 
+                        indice++;
                         codigoLab = String.valueOf(codigoParticipante);
                         map.put(indice, parseSampleMap(codigoParticipante, codigoLab, null, fif, participanteCohorteFamilia));
                     }

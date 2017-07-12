@@ -1,11 +1,15 @@
 package ni.org.ics.estudios.web.controller;
 
 import com.google.gson.Gson;
+import ni.org.ics.estudios.domain.MuestraInfluenza;
 import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
+import ni.org.ics.estudios.domain.cohortefamilia.casos.CasaCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.ParticipanteCohorteFamiliaCaso;
+import ni.org.ics.estudios.service.MuestraInfluenzaService;
 import ni.org.ics.estudios.service.ParticipanteService;
 import ni.org.ics.estudios.service.cohortefamilia.ParticipanteCohorteFamiliaService;
+import ni.org.ics.estudios.service.cohortefamilia.casos.CasaCohorteFamiliaCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.ParticipanteCohorteFamiliaCasoService;
 import ni.org.ics.estudios.web.utils.DateUtil;
 import org.apache.commons.lang3.text.translate.UnicodeEscaper;
@@ -43,6 +47,12 @@ public class ParticipanteCohorteFamiliaCasoWebController {
     @Resource(name = "participanteService")
     private ParticipanteService participanteService;
 
+    @Resource(name = "muestraInfluenzaService")
+    private MuestraInfluenzaService muestraInfluenzaService;
+
+    @Resource(name = "casaCohorteFamiliaCasoService")
+    private CasaCohorteFamiliaCasoService casaCohorteFamiliaCasoService;
+
     @RequestMapping(value = "searchParticipant", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     ResponseEntity<String> buscarParticipante(@RequestParam(value="participantCode", required=true ) Integer codigo) throws ParseException {
@@ -63,37 +73,96 @@ public class ParticipanteCohorteFamiliaCasoWebController {
 
     @RequestMapping(value = "getParticipantsCasos", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    ResponseEntity<String> buscarParticipantesByCasa(@RequestParam(value="casas", required=true ) String casas) throws ParseException {
-        logger.debug("buscar participantes de las casas para monitoreo intensivo");
-        //Map<String, Object> map = new HashMap<String, Object>();
+    ResponseEntity<String> buscarParticipantesByCasa(@RequestParam(value="casas", required=true ) String casas,
+                                                     @RequestParam(value = "etiquetas", required = false) String etiquetas) throws ParseException {
+        logger.debug("buscar participantes de las casas para monitoreo intensivo"+etiquetas);
+        //CHF_CAT_TIP_ETIQ_MI_01(BHC),CHF_CAT_TIP_ETIQ_MI_02(PBMC),CHF_CAT_TIP_ETIQ_MI_03(Rojo),CHF_CAT_TIP_ETIQ_MI_04(FLU)
         Map<String, String> map = new HashMap<String, String>();
         String[] codigosCasas = casas.split(",");
+        List<MuestraInfluenza> muestras = new ArrayList<MuestraInfluenza>();
         int indice = 0;
         for(String codigoCasa : codigosCasas){
+            List<CasaCohorteFamiliaCaso> casosCasa = casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigoCasa(codigoCasa);
+            String evento = (casosCasa.size()<10?"0":"")+String.valueOf(casosCasa.size());
             List<ParticipanteCohorteFamiliaCaso> participantesCasos = participanteCohorteFamiliaCasoService.getParticipantesCohorteFamiliaCasoByCodigoCasa(codigoCasa);
             List<String> codigoLineal = new ArrayList<String>();
             for(ParticipanteCohorteFamiliaCaso participante : participantesCasos){
-                String codigo="";
-                if (participante.getEnfermo().equalsIgnoreCase("S")) {
-                    codigo = DateUtil.DateToString(participante.getFechaEnfermedad(), "dd/MM/yyyy") +
-                            DateUtil.DateToString(new Date(), "dd/MM/yyyy");
-                } else {
-                    codigo = "10/10/3000" + DateUtil.DateToString(new Date(), "dd/MM/yyyy");
-                }
-                //*1*1 indica que es una copia del estiquer y es tipo QRCode
+                //*1*1 al final de cada codigo indica que es una copia del estiquer y es tipo QRCode
                 //El formato para los tipo QRCode es: <fechafif><fechaHoy>*<codigolab>*<codigocasa>*<copias>*<tipo>
-                codigo+="*"+participante.getParticipante().getParticipante().getCodigo()+ ".01.T*" +
-                        participante.getCodigoCaso().getCasa().getCodigoCHF()+"*1*1";
-                //se agrega en esta lista, para agregarlos al final de la casa
-                //*1*2 indica que es una copia del estiquer y es tipo Codabar
+
+                //*1*2 al final de cada codigo indica que es una copia del estiquer y es tipo Codabar
                 //El formato para los tipo Codabar es: <codigoparticipante>*<copias>*<tipo>
-                codigoLineal.add(participante.getParticipante().getParticipante().getCodigo()+"*1*2");
-                indice++;
-                map.put("CODIGO"+indice, codigo);
+                String[] edad = participante.getParticipante().getParticipante().getEdad().split("/");
+                int anios = 0;
+                int meses = 0;
+                //int dias = 0;
+                if (edad.length > 0) {
+                    anios = Integer.valueOf(edad[0]);
+                    meses = Integer.valueOf(edad[1]);
+                    //dias = Integer.valueOf(edad[2]);
+                }
+                //Para los menores de 6 meses no se toma ningún tipo de muestra
+                if (anios > 0 || (anios == 0 && meses >= 6)) {
+                    muestras = muestraInfluenzaService.getMuestrasInfluenza(participante.getParticipante().getParticipante().getCodigo(), codigoCasa, null);
+                    String codigoLab = "";
+                    if (muestras.size() > 0 && muestras.get(0).getCodLab().contains("TR")) {
+                        Integer numMuestra = Integer.valueOf(muestras.get(0).getCodLab().substring(muestras.get(0).getCodLab().lastIndexOf(".") + 3, muestras.get(0).getCodLab().length()));
+                        if (numMuestra < 5) {
+                            if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_04")) {
+                                codigoLab = DateUtil.DateToString(muestras.get(0).getFif(), "dd/MM/yyyy") + DateUtil.DateToString(muestras.get(0).getFechaTomaMx(), "dd/MM/yyyy");
+                                codigoLab += "  *" + muestras.get(0).getIdMx() + "."+evento+".TR" + String.valueOf(numMuestra + 1);
+                                codigoLab += "*" + participante.getCodigoCaso().getCasa().getCodigoCHF() + "*1*1";
+                                map.put("CODIGO" + indice, codigoLab);
+                                indice++;
+                            }
+                            if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_03")) {
+                                codigoLab = DateUtil.DateToString(muestras.get(0).getFif(), "dd/MM/yyyy") + DateUtil.DateToString(muestras.get(0).getFechaTomaMx(), "dd/MM/yyyy");
+                                codigoLab += "  *" + muestras.get(0).getIdMx() + "."+evento+".TRF";
+                                codigoLab += "*" + participante.getCodigoCaso().getCasa().getCodigoCHF() + "*1*1";
+                                map.put("CODIGO" + indice, codigoLab);
+                                indice++;
+                            }
+                            if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_02")) {
+                                codigoLab = DateUtil.DateToString(muestras.get(0).getFif(), "dd/MM/yyyy") + DateUtil.DateToString(muestras.get(0).getFechaTomaMx(), "dd/MM/yyyy");
+                                codigoLab += "  *" + muestras.get(0).getIdMx() + "."+evento+".TPF";
+                                codigoLab += "*" + participante.getCodigoCaso().getCasa().getCodigoCHF() + "*1*1";
+                                map.put("CODIGO" + indice, codigoLab);
+                                indice++;
+                            }
+                        }
+                    } else {
+                        Date fif = (participante.getFechaEnfermedad() != null ? participante.getFechaEnfermedad() : DateUtil.StringToDate("10/10/3000", "dd/MM/yyyy"));
+                        if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_04")) {
+                            codigoLab = DateUtil.DateToString(fif, "dd/MM/yyyy") + DateUtil.DateToString(new Date(), "dd/MM/yyyy");
+                            codigoLab += "  *" + participante.getParticipante().getParticipante().getCodigo() + "."+evento+".TR1";
+                            codigoLab += "*" + participante.getCodigoCaso().getCasa().getCodigoCHF() + "*1*1";
+                            map.put("CODIGO" + indice, codigoLab);
+                            indice++;
+                        }
+                        if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_03")) {
+                            codigoLab = DateUtil.DateToString(fif, "dd/MM/yyyy") + DateUtil.DateToString(new Date(), "dd/MM/yyyy");
+                            codigoLab += "  *" + participante.getParticipante().getParticipante().getCodigo() + "."+evento+".TRI";
+                            codigoLab += "*" + participante.getCodigoCaso().getCasa().getCodigoCHF() + "*1*1";
+                            map.put("CODIGO" + indice, codigoLab);
+                            indice++;
+                        }
+                        if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_02")) {
+                            codigoLab = DateUtil.DateToString(fif, "dd/MM/yyyy") + DateUtil.DateToString(new Date(), "dd/MM/yyyy");
+                            codigoLab += "  *" + participante.getParticipante().getParticipante().getCodigo() + "."+evento+".TPI";
+                            codigoLab += "*" + participante.getCodigoCaso().getCasa().getCodigoCHF() + "*1*1";
+                            map.put("CODIGO" + indice, codigoLab);
+                            indice++;
+                        }
+                        if (etiquetas.contains("CHF_CAT_TIP_ETIQ_MI_01")) {
+                            codigoLab = participante.getParticipante().getParticipante().getCodigo() + "*1*2";
+                            codigoLineal.add(codigoLab);
+                        }
+                    }
+                }
             }
             for(String codigo : codigoLineal){
-                indice++;
                 map.put("CODIGO"+indice, codigo);
+                indice++;
             }
         }
         map.put("TOTAL", String.valueOf(indice));

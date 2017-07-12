@@ -39,7 +39,7 @@ public class CasaCohorteFamiliaCasoService {
     }
 
     @SuppressWarnings("unchecked")
-    public CasaCohorteFamiliaCaso getCasaCohorteFamiliaCasosByCodigoCasa(String codigo){
+    public CasaCohorteFamiliaCaso getCasaCohorteFamiliaCasoByCodigoCasa(String codigo){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from CasaCohorteFamiliaCaso c where c.pasive = '0' and c.inactiva = '0' and c.casa.codigoCHF = :codigo");
         query.setParameter("codigo",codigo);
@@ -52,6 +52,14 @@ public class CasaCohorteFamiliaCasoService {
         query.setParameter("codigo",codigo);
         query.setParameter("fechaInicio", fechaInicio);
         return (CasaCohorteFamiliaCaso)query.uniqueResult();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<CasaCohorteFamiliaCaso> getCasaCohorteFamiliaCasosByCodigoCasa(String codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from CasaCohorteFamiliaCaso c where c.pasive = '0' and c.casa.codigoCHF = :codigo");
+        query.setParameter("codigo",codigo);
+        return query.list();
     }
 
     public void saveOrUpdateCasaCohorteFamiliaCaso(CasaCohorteFamiliaCaso casa){

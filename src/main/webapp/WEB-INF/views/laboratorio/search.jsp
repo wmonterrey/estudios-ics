@@ -429,7 +429,6 @@
                                     moduleSize: 2,
                                     barHeight: 30,
                                     showHRI: false
-
                                 };
                                 for (var i = 0; i < len; i++) {
                                     var idDiv = "divBarcode" + i;

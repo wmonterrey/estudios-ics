@@ -99,7 +99,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="form-control-label col-md-3" for="fechaInicio"><spring:message code="dateAdded" />
+                                    <label class="form-control-label col-md-3" for="fechaInicio"><spring:message code="logindate" />
 										<span class="required">
 											 *
 										</span>
