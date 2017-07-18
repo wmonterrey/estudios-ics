@@ -21,14 +21,24 @@ public class MuestraService {
     @Resource(name = "sessionFactory")
     private SessionFactory sessionFactory;
 
-    public List<Muestra> getMuestras()
+    @SuppressWarnings("unchecked")
+	public List<Muestra> getMuestras()
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Muestra where pasive = '0' ");
         return  query.list();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<Muestra> getMuestrasTx()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Muestra where pasive = '0' and proposito = '3'");
+        return  query.list();
+    }
 
-    public List<Muestra> getMuestrasByUser(String username)
+    @SuppressWarnings("unchecked")
+	public List<Muestra> getMuestrasByUser(String username)
     {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Muestra ec where ec.pasive = '0' and ec.participante.casa.codigo in (" +

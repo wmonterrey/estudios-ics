@@ -42,7 +42,7 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 	private String diarrea;
 	private String quedoCama;
 	private String respiracionRuidosa;
-	private Date frr;
+	private Date frr; //Fecha de dolor de garganta
 	private String oseltamivir;
 	private String antibiotico;
 	private String cualAntibiotico;

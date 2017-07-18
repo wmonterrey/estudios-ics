@@ -3,6 +3,8 @@ package ni.org.ics.estudios.domain.cohortefamilia;
 import ni.org.ics.estudios.domain.BaseMetaData;
 import ni.org.ics.estudios.domain.Casa;
 import ni.org.ics.estudios.domain.audit.Auditable;
+
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
 
 import javax.persistence.*;
@@ -101,6 +103,17 @@ public class CasaCohorteFamilia extends BaseMetaData implements Auditable {
 
     public void setLongitud(Double longitud) {
         this.longitud = longitud;
+    }
+    
+    @Transient
+    @JsonIgnore
+    public String getNombreJefeFamiliaCompleto(){
+        String nombreJefeFamiliaCompleto = this.getNombre1JefeFamilia().toUpperCase();
+        if (this.getNombre2JefeFamilia()!=null) nombreJefeFamiliaCompleto = nombreJefeFamiliaCompleto + " "+  this.getNombre2JefeFamilia().toUpperCase();
+        nombreJefeFamiliaCompleto = nombreJefeFamiliaCompleto +" "+ this.getApellido1JefeFamilia().toUpperCase();
+        if (this.getApellido2JefeFamilia()!=null) nombreJefeFamiliaCompleto = nombreJefeFamiliaCompleto + " "+  this.getApellido2JefeFamilia().toUpperCase();
+
+        return nombreJefeFamiliaCompleto;
     }
 
     @Override

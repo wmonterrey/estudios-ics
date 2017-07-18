@@ -336,7 +336,7 @@
                                     <tr>
                                         <td><spring:message code="${estudio.estudio.nombre}" /></td>
                                         <c:choose>
-                                            <c:when test="${estudio.pasive=='0'.charAt(0)}">
+                                            <c:when test="${estudio.pasive=='0'}">
                                                 <td><span class="badge badge-success"><spring:message code="CHF_CAT_SINO_SI" /></span></td>
                                             </c:when>
                                             <c:otherwise>

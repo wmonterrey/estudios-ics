@@ -18,6 +18,14 @@
                     </li>
 	            </ul>
 	        </li>
+	        <li class="nav-item nav-dropdown chfcasos">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-notebook"></i><spring:message code="chfcasos" /></a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item chfcasossearch">
+                        <a class="nav-link" href="<spring:url value="/chf/editarcaso/" htmlEscape="true "/>"><i class="icon-home"></i><spring:message code="chfcasossearch" /></a>
+                    </li>
+                </ul>
+            </li>
             <li class="nav-item nav-dropdown supervision">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-eye"></i><spring:message code="superv" /></a>
                 <ul class="nav-dropdown-items">

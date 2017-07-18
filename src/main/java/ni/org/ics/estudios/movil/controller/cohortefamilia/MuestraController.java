@@ -53,6 +53,21 @@ public class MuestraController {
         }
         return respuestaList;
     }
+    
+    /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "mxstx", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Muestra> getMuestrasTX() {
+        logger.info("Descargando toda la informacion de formularios muestras para el usuario ");
+        List<Muestra> respuestaList = muestraService.getMuestrasTx();
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
 
     /**
      * Acepta una solicitud POST con un par�metro JSON

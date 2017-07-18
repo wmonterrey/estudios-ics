@@ -36,7 +36,8 @@ public class ParticipanteCohorteFamiliaCasoService {
      * Obtiene todos los participantes de monitoreo activos reportados como positivos
      * @return List<ParticipanteCohorteFamiliaCaso>
      */
-    public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosPositivos(){
+    @SuppressWarnings("unchecked")
+	public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosPositivos(){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.enfermo = 'S' and p.codigoCaso.pasive = '0'");
         return query.list();
@@ -59,7 +60,8 @@ public class ParticipanteCohorteFamiliaCasoService {
      * @param codigo Código de caso
      * @return List<ParticipanteCohorteFamiliaCaso>
      */
-    public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCaso(String codigo){
+    @SuppressWarnings("unchecked")
+	public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCaso(String codigo){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.pasive = '0' and p.codigoCaso.codigoCaso = :codigo");
         query.setParameter("codigo", codigo);
@@ -71,7 +73,8 @@ public class ParticipanteCohorteFamiliaCasoService {
      * @param codigo Código de casa
      * @return List<ParticipanteCohorteFamiliaCaso>
      */
-    public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCasa(String codigo){
+    @SuppressWarnings("unchecked")
+	public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCasa(String codigo){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.inactiva = '0' and p.codigoCaso.casa.codigoCHF = :codigo order by p.participante.participante.codigo asc");
         query.setParameter("codigo", codigo);
@@ -95,7 +98,8 @@ public class ParticipanteCohorteFamiliaCasoService {
      * @param codigo Código de participante
      * @return ParticipanteCohorteFamiliaCaso
      */
-    public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosPosByParticipante(Integer codigo){
+    @SuppressWarnings("unchecked")
+	public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosPosByParticipante(Integer codigo){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("select p from ParticipanteCohorteFamiliaCaso p, ParticipanteCohorteFamilia pp where p.participante.participante.codigo = pp.participante.codigo and p.pasive = '0' and p.codigoCaso.inactiva = '0' and p.enfermo = 'S' " +
                 " and pp.casaCHF.codigoCHF =(select pc.casaCHF.codigoCHF from ParticipanteCohorteFamilia pc where pc.participante.codigo = :codigo)" +
@@ -109,7 +113,8 @@ public class ParticipanteCohorteFamiliaCasoService {
      * @param codigo Código de casa
      * @return ParticipanteCohorteFamiliaCaso
      */
-    public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosByCasaPos(String codigo){
+    @SuppressWarnings("unchecked")
+	public List<ParticipanteCohorteFamiliaCaso> getParticipanteCohorteFamiliaCasosByCasaPos(String codigo){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.inactiva = '0' and p.enfermo = 'S' and p.codigoCaso.casa.codigoCHF = :codigo");
         query.setParameter("codigo", codigo);

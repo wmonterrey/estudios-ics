@@ -27,6 +27,14 @@ public class FormularioContactoCasoService {
         Query query = session.createQuery("from FormularioContactoCaso f where f.pasive = '0'");
         return query.list();
     }
+    
+    @SuppressWarnings("unchecked")
+	public List<FormularioContactoCaso> getFormularioContactoCasos(String codigoCasoVisita){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from FormularioContactoCaso f where f.pasive = '0' and f.codigoVisitaCaso.codigoCasoVisita =:codigoCasoVisita");
+        query.setParameter("codigoCasoVisita", codigoCasoVisita);
+        return query.list();
+    }
 
     public void saveOrUpdateFormularioContactoCaso(FormularioContactoCaso contacto){
         Session session = sessionFactory.getCurrentSession();
