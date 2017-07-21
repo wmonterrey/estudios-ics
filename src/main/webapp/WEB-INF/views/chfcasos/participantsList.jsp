@@ -30,6 +30,9 @@
                             
                         </div>
                         <div class="card-block">
+                        	<spring:url value="/chf/editarcaso/newfailvisit/{codigoCaso}/" var="newVisitFallidaUrl">
+                                <spring:param name="codigoCaso" value="${caso.codigoCaso}" />
+                            </spring:url>
                             <table class="table table-striped table-bordered datatable">
                                 <thead>
                                     <tr>
@@ -43,7 +46,7 @@
                                 </thead>
                                 <tbody>
 	                                <c:forEach items="${participantes}" var="parti">
-	                                	<spring:url value="/chf/editarcaso/participantdata/{codigo}" var="editUrl">
+	                                	<spring:url value="/chf/editarcaso/participantdata/{codigo}/" var="editUrl">
 		                                    <spring:param name="codigo" value="${parti.codigoCasoParticipante}" />
 		                                </spring:url>
 		                                <tr>
@@ -59,11 +62,14 @@
 		                                        </c:otherwise>
 		                                    </c:choose>
 		                                    <td><fmt:formatDate value="${parti.fechaEnfermedad}" pattern="dd/MM/yyyy" /></td>
-		                                    <td><a href="${fn:escapeXml(editUrl)}" title="Editar" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a></td>
+		                                    <td><a href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a></td>
 		                                </tr>
 		                            </c:forEach>
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer">
+                            <a href="${fn:escapeXml(newVisitFallidaUrl)}" class="btn btn-sm btn-danger"><i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="failVisit" /></a>
                         </div>
                     </div>
                 </div>
@@ -78,6 +84,5 @@
     <!-- GenesisUI main scripts -->
 	<spring:url value="/resources/js/app.js" var="App" />
 	<script src="${App}" type="text/javascript"></script>
-	
 </body>
 </html>

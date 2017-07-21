@@ -1,4 +1,4 @@
-var CreateVisit = function () {
+var CreateFailVisit = function () {
 	
     return {
         //main function to initiate the module
@@ -12,16 +12,13 @@ var CreateVisit = function () {
         	var form1 = $('#visit-form');
         	$("#fechaVisita").mask("99/99/9999");
         	$("#horaVisita").mask("99:99");
-        	$("#horaProbableVisita").mask("99:99");
         	form1.validate( {
                 rules: {
-                	visita: 'required',
                 	fechaVisita: 'required',
-                	expCS: 'required',
-                	temp:{
-                		required: true,
-                        min: 35,
-                        max: 44,
+                	horaVisita: 'required',
+                	razonVisitaFallida: 'required',
+                	otraRazon:{
+                		required: true
                 	}
                 },
                 errorElement: 'em',
@@ -43,43 +40,45 @@ var CreateVisit = function () {
                   $( element ).parents( '.form-group' ).addClass( 'has-success' ).removeClass( 'has-danger' );
                 },
                 submitHandler: function (form) {
-                	processVisit();
+                	processFailVisit();
                 }
               });
         	
-        	function processVisit(){
-        	    $.post( parametros.saveVisitUrl
+        	function processFailVisit(){
+        	    $.post( parametros.saveCasoFailVisitUrl
         	            , form1.serialize()
         	            , function( data ){
-        	    			visita = JSON.parse(data);
-        	    			if (visita.codigoCasoVisita === undefined) {
-        	    				data = data.replace(/u0027/g,"");
-        	    				toastr.options = {
-        	    						  "closeButton": true,
-        	    						  "onclick": null,
-        	    						  "showDuration": "300",
-        	    						  "hideDuration": "1000",
-        	    						  "timeOut": 0,
-        	    						  "extendedTimeOut": 0,
-        	    						  "tapToDismiss": false
-        	    						};
-        	    				toastr["error"](data, "Error!!");      						
-        					}
-        					else{
-        						$('#codigoCasoVisita').val(visita.codigoCasoVisita);
-        						$('a#finishlink').text('Terminar');
-        						toastr.options = {
-      	    						  "closeButton": true,
-      	    						  "onclick": null,
-      	    						  "showDuration": "300",
-      	    						  "hideDuration": "1000",
-      	    						  "timeOut": 2000,
-      	    						  "extendedTimeOut": 0,
-      	    						  "tapToDismiss": false
-      	    						};
-        						toastr.success(parametros.processSuccess,visita.codigoCasoVisita);
-        					}
-        	    			$('#visita').focus();
+		        	    	caso = JSON.parse(data);
+			    			if (caso.codigoCaso === undefined) {
+			    				data = data.replace(/u0027/g,"");
+			    				toastr.options = {
+			    						  "closeButton": true,
+			    						  "onclick": null,
+			    						  "showDuration": "300",
+			    						  "hideDuration": "1000",
+			    						  "timeOut": 0,
+			    						  "extendedTimeOut": 0,
+			    						  "tapToDismiss": false
+			    						};
+			    				toastr["error"](data, "Error!!");      						
+							}
+							else{
+								$('#guardar').prop( "disabled", true );
+								$('a#finishlink').prop( "disabled", true );
+								toastr.options = {
+		    						  "closeButton": true,
+		    						  "onclick": null,
+		    						  "showDuration": "300",
+		    						  "hideDuration": "1000",
+		    						  "timeOut": 2000,
+		    						  "extendedTimeOut": 0,
+		    						  "tapToDismiss": false
+		    						};
+								toastr.success(parametros.processSuccess,caso.codigoCaso);
+								window.setTimeout(function(){
+							        window.location.href = parametros.casoDataUrl;
+							    }, 1000);
+							}
         	            }
         	            , 'text' )
         		  		.fail(function(XMLHttpRequest, textStatus, errorThrown) {
@@ -93,7 +92,6 @@ var CreateVisit = function () {
   	    						  "tapToDismiss": false
   	    						};
         		  			toastr["error"](errorThrown, "Error!!"); 
-        		  			$('#visita').focus();
         		  		});
         	}
         	
@@ -114,6 +112,17 @@ var CreateVisit = function () {
         	        $canfocus.eq(index).focus();
         	    }
         	});
+        	
+        	$('#razonVisitaFallida').change(function () {
+	    		if ($('#razonVisitaFallida').val() != "") {
+	    			if ($('#razonVisitaFallida').val() != "9") {
+	    				$("#otraRazonGroup").hide("slow");
+	    				$('#otraRazon').val("");
+	    			} else {
+	    				$("#otraRazonGroup").show("slow");
+	    			}
+	    		}
+	    	});
         }
     };
 

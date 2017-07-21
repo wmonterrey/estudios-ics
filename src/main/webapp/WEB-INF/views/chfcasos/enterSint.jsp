@@ -43,7 +43,8 @@
 	                            <div class="form-group row">
 	                                <label class="col-md-3 form-control-label" ><spring:message code="participant" /></label>
 	                                <div class="col-md-9">
-	                                    <p class="form-control-static"><c:out value="${visita.codigoParticipanteCaso.participante.participante.nombreCompleto}"/></p>
+	                                    <p class="form-control-static"><c:out value="${visita.codigoParticipanteCaso.participante.participante.nombreCompleto}"/>  -  <spring:message code="visit" /> <c:out value="${visita.visita}"/> 
+	                                     	- <fmt:formatDate value="${visita.fechaVisita}" pattern="dd/MM/yyyy" /></p>
 	                                </div>
 	                            </div>
                             </form>
@@ -423,6 +424,7 @@
 	
 	<c:set var="lenguaje" value="es"/>
 	<fmt:formatDate value="${visita.codigoParticipanteCaso.codigoCaso.fechaInicio}" pattern="dd/MM/yyyy" var="fechaInicio" />
+	<fmt:formatDate value="${visita.fechaVisita}" pattern="dd/MM/yyyy" var="fechaFin" />
 	
 	<!-- Custom scripts required by this view -->
 	<spring:url value="/resources/scripts/visitas/process-sint.js" var="sintScript" />
@@ -456,11 +458,13 @@
 	<script src="${datePickerLoc}"></script>
 	
 	<spring:url value="/chf/editarcaso/saveSint" var="saveSintUrl"/>
-	
+	<c:set var="processSuccess"><spring:message code="process.success" /></c:set>
 	<script>
 		jQuery(document).ready(function() {			
 			var parametros = {saveSintUrl: "${saveSintUrl}",
-					fechaInicio:"${fechaInicio}"};
+					processSuccess: "${processSuccess}",
+					fechaInicio:"${fechaInicio}",
+					fechaFin:"${fechaFin}"};
 			CreateSint.init(parametros);
 		});
 		if ($('#fiebre').val() != "1") $("#fifGroup").hide();

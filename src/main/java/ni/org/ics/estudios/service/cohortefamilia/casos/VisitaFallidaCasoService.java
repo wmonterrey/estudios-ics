@@ -27,6 +27,22 @@ public class VisitaFallidaCasoService {
         Query query = session.createQuery("from VisitaFallidaCaso v where v.pasive = '0'");
         return query.list();
     }
+    
+    
+	public VisitaFallidaCaso getVisitaFallidaCaso(String codigoFallaVisita){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from VisitaFallidaCaso v where v.pasive = '0' and v.codigoFallaVisita =:codigoFallaVisita");
+        query.setParameter("codigoFallaVisita", codigoFallaVisita);
+        return (VisitaFallidaCaso) query.uniqueResult();
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<VisitaFallidaCaso> getVisitaFallidaCasos(String codigoParticipanteCaso){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from VisitaFallidaCaso v where v.pasive = '0' and v.codigoParticipanteCaso.codigoCasoParticipante =:codigoParticipanteCaso");
+        query.setParameter("codigoParticipanteCaso", codigoParticipanteCaso);
+        return query.list();
+    }
 
     public void saveOrUpdateVisitaFallidaCaso(VisitaFallidaCaso visita){
         Session session = sessionFactory.getCurrentSession();

@@ -29,7 +29,7 @@
             	<div class="animated fadeIn">
                     <div class="card">
                         <div class="card-header">
-                            <i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="visit" />
+                            <i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="failVisit" />
                             
                         </div>
                         <div class="card-block">
@@ -51,8 +51,8 @@
                     </div>
                     <div class="card">
                         <div class="card-block">
-                        	<spring:url value="/chf/editarcaso/participantdata/{codigo}/" var="partDataUrl">
-                                <spring:param name="codigo" value="${participante.codigoCasoParticipante}" />
+                        	<spring:url value="/chf/editarcaso/participantdata/{codigoCasoParticipante}" var="casoDataUrl">
+                                <spring:param name="codigoCasoParticipante" value="${participante.codigoCasoParticipante}" />
                             </spring:url>
                         	<form action="#" autocomplete="off" id="visit-form" class="form-horizontal">
                         		<div class="row">
@@ -62,32 +62,10 @@
 	                                        <input type="text" readonly name="codigoParticipanteCaso" id="codigoParticipanteCaso" class="form-control" value="${participante.codigoCasoParticipante}"></input>
 	                                    </div>
 	                                </div>
-	                            </div>
-                        		<div class="row">
 	                                <div class="col-sm-12">
 	                                    <div class="form-group" hidden="true">
-	                                        <label class="form-control-label" for="codigoCasoVisita"><spring:message code="please.enter"/> <spring:message code="codigoCasoVisita"/><span class="required">*</span></label>
-	                                        <input type="text" readonly name="codigoCasoVisita" id="codigoCasoVisita" class="form-control" value="${visita.codigoCasoVisita}"></input>
-	                                    </div>
-	                                </div>
-	                            </div>
-                        		<div class="row">
-	                                <div class="col-sm-12">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="visita"><spring:message code="please.enter"/> <spring:message code="visita"/><span class="required">*</span></label>
-	                                        <select name="visita" id="visita" class="form-control">
-		                                        <option selected value=""><spring:message code="select" />...</option>
-	                                            <c:forEach items="${visitas}" var="visitaCat">
-													<c:choose> 
-														<c:when test="${visitaCat.catKey eq visita.visita}">
-															<option selected value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
-														</c:when>
-														<c:otherwise>
-															<option value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
-														</c:otherwise>
-													</c:choose> 
-												</c:forEach>
-	                                        </select>
+	                                        <label class="form-control-label" for="codigoFallaVisita"><spring:message code="please.enter"/> <spring:message code="codigoFallaVisita"/><span class="required">*</span></label>
+	                                        <input type="text" readonly name="codigoFallaVisita" id="codigoFallaVisita" class="form-control" value="${visitafallida.codigoFallaVisita}"></input>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -95,7 +73,7 @@
 	                                <div class="col-sm-12">
 	                                    <div class="form-group">
 	                                        <label class="form-control-label" for="fechaVisita"><spring:message code="please.enter"/> <spring:message code="visitDate"/><span class="required">*</span></label>
-	                                        <input type="text" name="fechaVisita" id="fechaVisita" class="form-control date-picker" value="<fmt:formatDate value="${visita.fechaVisita}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+	                                        <input type="text" name="fechaVisita" id="fechaVisita" class="form-control date-picker" value="<fmt:formatDate value="${visitafallida.fechaVisita}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -104,32 +82,23 @@
 	                                    <div class="form-group">
 	                                        <label class="form-control-label" for="horaVisita"><spring:message code="please.enter"/> <spring:message code="visitTime"/><span class="required">*</span></label>
 	                                        <input type="text" name="horaVisita" id="horaVisita" class="form-control" 
-	                                        		value="<fmt:formatDate value="${visita.fechaVisita}" pattern="hh:mm" />" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9])" required="required" placeholder="hh:mm"></input>
+	                                        		value="<fmt:formatDate value="${visitafallida.fechaVisita}" pattern="hh:mm" />" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9])" required="required" placeholder="hh:mm"></input>
 	                                    </div>
 	                                </div>
 	                            </div>
 	                            <div class="row">
 	                                <div class="col-sm-12">
 	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="horaProbableVisita"><spring:message code="please.enter"/> <spring:message code="visitHour"/><span class="required">*</span></label>
-	                                        <input type="text" name="horaProbableVisita" id="horaProbableVisita" 
-	                                        			value="${visita.horaProbableVisita}" class="form-control" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9])" required="required" placeholder="hh:mm"></input>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <div class="row">
-	                                <div class="col-sm-12">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="expCS"><spring:message code="expCS"/><span class="required">*</span></label>
-	                                        <select name="expCS" id="expCS" class="form-control">
+	                                        <label class="form-control-label" for="razonVisitaFallida"><spring:message code="razonVisitaFallida"/><span class="required">*</span></label>
+	                                        <select name="razonVisitaFallida" id="razonVisitaFallida" class="form-control">
 		                                        <option selected value=""><spring:message code="select" />...</option>
-	                                            <c:forEach items="${sino}" var="sinoCat">
+	                                            <c:forEach items="${razones}" var="razonCat">
 													<c:choose> 
-														<c:when test="${sinoCat.catKey eq visita.expCS}">
-															<option selected value="${sinoCat.catKey}"><spring:message code="${sinoCat.spanish}" /></option>
+														<c:when test="${razonCat.catKey eq visitafallida.razonVisitaFallida}">
+															<option selected value="${razonCat.catKey}"><spring:message code="${razonCat.messageKey}" /></option>
 														</c:when>
 														<c:otherwise>
-															<option value="${sinoCat.catKey}"><spring:message code="${sinoCat.spanish}" /></option>
+															<option value="${razonCat.catKey}"><spring:message code="${razonCat.messageKey}" /></option>
 														</c:otherwise>
 													</c:choose> 
 												</c:forEach>
@@ -139,16 +108,16 @@
 	                            </div>
 								<div class="row">
 	                                <div class="col-sm-12">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="temp"><spring:message code="please.enter"/> <spring:message code="temp"/><span class="required">*</span></label>
-	                                        <input type="text" name="temp" id="temp" class="form-control" value="${visita.temp}"></input>
+	                                    <div class="form-group" id="otraRazonGroup">
+	                                        <label class="form-control-label" for="otraRazon"><spring:message code="otraRazon"/><span class="required">*</span></label>
+	                                        <input type="text" name="otraRazon" id="otraRazon" class="form-control" value="${visitafallida.otraRazon}"></input>
 	                                    </div>
 	                                </div>
 	                            </div>
 	                            <div class="form-group">
 									<div class="col-md-12">
 										<button id="guardar" type="submit" class="btn btn-success"><spring:message code="save" /></button>
-										<a href="${fn:escapeXml(partDataUrl)}" id="finishlink" class="btn btn-danger"><spring:message code="cancel" /></a>
+										<a href="${fn:escapeXml(casoDataUrl)}" id="finishlink" class="btn btn-danger"><spring:message code="cancel" /></a>
 									</div>
 								</div>
                         	</form>
@@ -168,10 +137,10 @@
 	<script src="${App}" type="text/javascript"></script>
 	
 	<c:set var="lenguaje" value="es"/>
-	<fmt:formatDate value="${participante.codigoCaso.fechaInicio}" pattern="dd/MM/yyyy" var="fechaInicio" />
+	<fmt:formatDate value="${caso.fechaInicio}" pattern="dd/MM/yyyy" var="fechaInicio" />
 	
 	<!-- Custom scripts required by this view -->
-	<spring:url value="/resources/scripts/visitas/process-visit.js" var="visitScript" />
+	<spring:url value="/resources/scripts/visitas/process-failvisitpart.js" var="visitScript" />
 	<script src="${visitScript}" type="text/javascript"></script>
 	
 	<!-- Plugins and scripts required by this views -->
@@ -201,16 +170,17 @@
 	    <spring:param name="languagedt" value="${lenguaje}" /></spring:url>
 	<script src="${datePickerLoc}"></script>
 	
-	<spring:url value="/chf/editarcaso/saveVisit" var="saveVisitUrl"/>
+	<spring:url value="/chf/editarcaso/saveCasoFailVisitPart" var="saveCasoFailVisitPartUrl"/>
 	<c:set var="processSuccess"><spring:message code="process.success" /></c:set>
 	<script>
-		jQuery(document).ready(function() {			
-			var parametros = {saveVisitUrl: "${saveVisitUrl}",
-					processSuccess: "${processSuccess}",
-					fechaInicio:"${fechaInicio}"};
-			CreateVisit.init(parametros);
-		});
-		
+	jQuery(document).ready(function() {			
+		var parametros = {saveCasoFailVisitUrl: "${saveCasoFailVisitPartUrl}",
+				casoDataUrl: "${casoDataUrl}",
+				processSuccess: "${processSuccess}",
+				fechaInicio:"${fechaInicio}"};
+		CreateFailVisit.init(parametros);
+	});
+	if ($('#razonVisitaFallida').val() != "9" || $('#razonVisitaFallida').val() == "") $("#otraRazonGroup").hide();
 	</script>
 	
 </body>

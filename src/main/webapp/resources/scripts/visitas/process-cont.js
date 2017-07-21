@@ -1,47 +1,39 @@
-var CreateSint = function () {
+var CreateCont = function () {
 	
     return {
         //main function to initiate the module
         init: function (parametros) {
-        	$('#fechaSintomas, #fif, #ftos, #fsn, #frr').datepicker({
+        	$('#partContacto, #tiempoInteraccion,  #tipoInteraccion').select2();
+        	$('#fechaContacto').datepicker({
 	            language: 'es',
 	            format:'dd/mm/yyyy',
 	            autoclose: true,
-	            startDate: parametros.fechaInicio
+	            startDate: parametros.fechaInicio,
+	            endDate: parametros.fechaFin
 	        });
-        	var form1 = $('#sint-form');
-        	$("#fechaSintomas").mask("99/99/9999");
-        	$("#fif").mask("99/99/9999");
-        	$("#ftos").mask("99/99/9999");
-        	$("#fsn").mask("99/99/9999");
-        	$("#frr").mask("99/99/9999");
+        	var form1 = $('#cont-form');
+        	$("#fechaContacto").mask("99/99/9999");
         	form1.validate( {
                 rules: {
-                	visita: 'required',
-                	fechaSintomas: 'required',
-                	fiebre: 'required',
-                	fiebreCuantificada: 'required',
-                	valorFiebreCuantificada:{
-                		required: true,
-                        min: 35,
-                        max: 44,
-                	},
-                	dolorCabeza: 'required',
-                	dolorArticular: 'required',
-                	dolorMuscular: 'required',
-                	dificultadRespiratoria: 'required',
-                	secrecionNasal: 'required',
-                	tos: 'required',
-                	pocoApetito: 'required',
-                	dolorGarganta: 'required',
-                	diarrea: 'required',
-                	quedoCama: 'required',
-                	respiracionRuidosa: 'required',
-                	oseltamivir: 'required',
-                	antibiotico: 'required',
-                	cualAntibiotico: 'required',
-                	prescritoMedico: 'required'
+                	fechaContacto: {
+                        required: true
+                    },
+                	partContacto: {
+                        required: true
+                    },
+                    tiempoInteraccion: {
+                        required: true
+                    },
+                    tipoInteraccion: {
+                    	required: {
+		                	depends: function(element){
+		                        return $("#tiempoInteraccion option:selected").val()!="5";
+		                    }
+                    	}
+                    }
                 },
+                ignore: ':hidden:not("#partContacto, #tiempoInteraccion, #tipoInteraccion")',
+
                 errorElement: 'em',
                 errorPlacement: function ( error, element ) {
                   // Add the `help-block` class to the error element
@@ -61,16 +53,16 @@ var CreateSint = function () {
                   $( element ).parents( '.form-group' ).addClass( 'has-success' ).removeClass( 'has-danger' );
                 },
                 submitHandler: function (form) {
-                	processSint();
+                	processCont();
                 }
               });
         	
-        	function processSint(){
-    	    $.post( parametros.saveSintUrl
+        	function processCont(){
+    	    $.post( parametros.saveContUrl
 	            , form1.serialize()
 	            , function( data ){
-	    			sintoma = JSON.parse(data);
-	    			if (sintoma.codigoCasoSintoma === undefined) {
+	    			contacto = JSON.parse(data);
+	    			if (contacto.codigoCasoContacto === undefined) {
 	    				data = data.replace(/u0027/g,"");
 	    				toastr.options = {
 	    						  "closeButton": true,
@@ -84,7 +76,7 @@ var CreateSint = function () {
 	    				toastr["error"](data, "Error!!");      						
 					}
 					else{
-						$('#codigoCasoSintoma').val(sintoma.codigoCasoSintoma);
+						$('#codigoCasoContacto').val(contacto.codigoCasoContacto);
 						$('a#finishlink').text('Terminar');
 						toastr.options = {
     						  "closeButton": true,
@@ -95,9 +87,9 @@ var CreateSint = function () {
     						  "extendedTimeOut": 0,
     						  "tapToDismiss": false
     						};
-						toastr.success(parametros.successmessage,sintoma.codigoCasoSintoma);
+						toastr.success(parametros.processSuccess,contacto.codigoCasoContacto);
 					}
-	            	$('#visita').focus();
+	            	$('#partContacto').focus();
 	            }
 	            , 'text' )
 		  		.fail(function(XMLHttpRequest, textStatus, errorThrown) {
@@ -132,69 +124,13 @@ var CreateSint = function () {
         	    }
         	});
         	
-        	$('#fiebre').change(function () {
-	    		if ($('#fiebre').val() != "") {
-	    			if ($('#fiebre').val() == "1") {
-	    				$("#fifGroup").show("slow");
+        	$('#tiempoInteraccion').change(function () {
+	    		if ($('#tiempoInteraccion').val() != "") {
+	    			if ($('#tiempoInteraccion').val() == "5") {
+	    				$("#tipoInteraccionGroup").hide("slow");
+	    				$('#tipoInteraccion').select2("data",null);
 	    			} else {
-	    				$("#fifGroup").hide("slow");
-	    				$('#fif').val("");
-	    			}
-	    		}
-	    	});
-        	
-        	$('#fiebreCuantificada').change(function () {
-	    		if ($('#fiebreCuantificada').val() != "") {
-	    			if ($('#fiebreCuantificada').val() == "1") {
-	    				$("#fiebreCuantificadaGroup").show("slow");
-	    			} else {
-	    				$("#fiebreCuantificadaGroup").hide("slow");
-	    				$('#valorFiebreCuantificada').val('');
-	    			}
-	    		}
-	    	});
-        	
-        	$('#tos').change(function () {
-	    		if ($('#tos').val() != "") {
-	    			if ($('#tos').val() == "S") {
-	    				$("#ftosGroup").show("slow");
-	    			} else {
-	    				$("#ftosGroup").hide("slow");
-	    				$('#ftos').val("");
-	    			}
-	    		}
-	    	});
-        	
-        	$('#secrecionNasal').change(function () {
-	    		if ($('#secrecionNasal').val() != "") {
-	    			if ($('#secrecionNasal').val() == "1") {
-	    				$("#fsnGroup").show("slow");
-	    			} else {
-	    				$("#fsnGroup").hide("slow");
-	    				$('#fsn').val("");
-	    			}
-	    		}
-	    	});
-        	
-        	$('#dolorGarganta').change(function () {
-	    		if ($('#dolorGarganta').val() != "") {
-	    			if ($('#dolorGarganta').val() == "1") {
-	    				$("#frrGroup").show("slow");
-	    			} else {
-	    				$("#frrGroup").hide("slow");
-	    				$('#frr').val("");
-	    			}
-	    		}
-	    	});
-        	
-        	$('#antibiotico').change(function () {
-	    		if ($('#antibiotico').val() != "") {
-	    			if ($('#antibiotico').val() == "1") {
-	    				$("#antibioticoGroup").show("slow");
-	    			} else {
-	    				$("#antibioticoGroup").hide("slow");
-	    				$("#prescritoMedico").val('');
-	    				$("#cualAntibiotico").val('');
+	    				$("#tipoInteraccionGroup").show("slow");
 	    			}
 	    		}
 	    	});

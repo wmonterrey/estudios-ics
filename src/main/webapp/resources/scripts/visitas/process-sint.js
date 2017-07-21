@@ -7,7 +7,8 @@ var CreateSint = function () {
 	            language: 'es',
 	            format:'dd/mm/yyyy',
 	            autoclose: true,
-	            startDate: parametros.fechaInicio
+	            startDate: parametros.fechaInicio,
+	            endDate: parametros.fechaFin
 	        });
         	var form1 = $('#sint-form');
         	$("#fechaSintomas").mask("99/99/9999");
@@ -95,7 +96,7 @@ var CreateSint = function () {
     						  "extendedTimeOut": 0,
     						  "tapToDismiss": false
     						};
-						toastr.success(parametros.successmessage,sintoma.codigoCasoSintoma);
+						toastr.success(parametros.processSuccess,sintoma.codigoCasoSintoma);
 					}
 	            	$('#visita').focus();
 	            }
@@ -156,7 +157,7 @@ var CreateSint = function () {
         	
         	$('#tos').change(function () {
 	    		if ($('#tos').val() != "") {
-	    			if ($('#tos').val() == "S") {
+	    			if ($('#tos').val() == "1") {
 	    				$("#ftosGroup").show("slow");
 	    			} else {
 	    				$("#ftosGroup").hide("slow");

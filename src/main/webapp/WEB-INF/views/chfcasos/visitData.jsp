@@ -39,7 +39,8 @@
 	                            <div class="form-group row">
 	                                <label class="col-md-3 form-control-label"><spring:message code="participant" /></label>
 	                                <div class="col-md-9">
-	                                    <p class="form-control-static"><c:out value="${participante.participante.participante.nombreCompleto}"/>  -  <spring:message code="visit" /> <c:out value="${visita.visita}"/> </p>
+	                                    <p class="form-control-static"><c:out value="${participante.participante.participante.nombreCompleto}"/>  -  <spring:message code="visit" /> <c:out value="${visita.visita}"/> 
+	                                     	- <fmt:formatDate value="${visita.fechaVisita}" pattern="dd/MM/yyyy" /></p>
 	                                </div>
 	                            </div>
                             </form>
