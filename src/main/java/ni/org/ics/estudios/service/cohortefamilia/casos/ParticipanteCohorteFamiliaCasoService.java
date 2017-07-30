@@ -63,7 +63,7 @@ public class ParticipanteCohorteFamiliaCasoService {
     @SuppressWarnings("unchecked")
 	public List<ParticipanteCohorteFamiliaCaso> getParticipantesCohorteFamiliaCasoByCodigoCaso(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.pasive = '0' and p.codigoCaso.codigoCaso = :codigo");
+        Query query = session.createQuery("from ParticipanteCohorteFamiliaCaso p where p.pasive = '0' and p.codigoCaso.pasive = '0' and p.codigoCaso.codigoCaso = :codigo order by p.participante.participante.codigo");
         query.setParameter("codigo", codigo);
         return query.list();
     }

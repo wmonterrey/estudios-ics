@@ -51,7 +51,7 @@
                     </div>
                     <div class="card">
                         <div class="card-block">
-                        	<spring:url value="/chf/editarcaso/participantdata/{codigoCasoParticipante}" var="casoDataUrl">
+                        	<spring:url value="/chf/editarcaso/participantdata/{codigoCasoParticipante}/" var="casoDataUrl">
                                 <spring:param name="codigoCasoParticipante" value="${participante.codigoCasoParticipante}" />
                             </spring:url>
                         	<form action="#" autocomplete="off" id="visit-form" class="form-horizontal">
@@ -82,7 +82,7 @@
 	                                    <div class="form-group">
 	                                        <label class="form-control-label" for="horaVisita"><spring:message code="please.enter"/> <spring:message code="visitTime"/><span class="required">*</span></label>
 	                                        <input type="text" name="horaVisita" id="horaVisita" class="form-control" 
-	                                        		value="<fmt:formatDate value="${visitafallida.fechaVisita}" pattern="hh:mm" />" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9])" required="required" placeholder="hh:mm"></input>
+	                                        		value="<fmt:formatDate value="${visitafallida.fechaVisita}" pattern="HH:mm" />" pattern="([01]?[0-9]|2[0-3])(:[0-5][0-9])" required="required" placeholder="hh:mm"></input>
 	                                    </div>
 	                                </div>
 	                            </div>

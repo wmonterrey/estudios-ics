@@ -1,21 +1,25 @@
 package ni.org.ics.estudios.web.controller;
 
 
+import ni.org.ics.estudios.domain.cohortefamilia.Muestra;
 import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.CasaCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.FormularioContactoCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.ParticipanteCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.VisitaFallidaCaso;
+import ni.org.ics.estudios.domain.cohortefamilia.casos.VisitaFinalCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.VisitaSeguimientoCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.VisitaSeguimientoCasoSintomas;
 import ni.org.ics.estudios.language.MessageResource;
 import ni.org.ics.estudios.service.MessageResourceService;
 import ni.org.ics.estudios.service.UsuarioService;
+import ni.org.ics.estudios.service.cohortefamilia.MuestraService;
 import ni.org.ics.estudios.service.cohortefamilia.ParticipanteCohorteFamiliaService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.CasaCohorteFamiliaCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.FormularioContactoCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.ParticipanteCohorteFamiliaCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.VisitaFallidaCasoService;
+import ni.org.ics.estudios.service.cohortefamilia.casos.VisitaFinalCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.VisitaSeguimientoCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.VisitaSeguimientoCasoSintomasService;
 import ni.org.ics.estudios.users.model.UserSistema;
@@ -69,10 +73,14 @@ public class ChfCasosController {
     private VisitaSeguimientoCasoService visitaSeguimientoCasoService;
     @Resource(name = "visitaFallidaCasoService")
     private VisitaFallidaCasoService visitaFallidaCasoService;
+    @Resource(name = "visitaFinalCasoService")
+    private VisitaFinalCasoService visitaFinalCasoService;
     @Resource(name = "visitaSeguimientoCasoSintomasService")
     private VisitaSeguimientoCasoSintomasService visitaSeguimientoCasoSintomasService;
     @Resource(name = "formularioContactoCasoService")
     private FormularioContactoCasoService formularioContactoCasoService;
+    @Resource(name = "muestraService")
+    private MuestraService muestraService;
     @Resource(name = "messageResourceService")
     private MessageResourceService messageResourceService;
     @Resource(name = "usuarioService")
@@ -114,9 +122,11 @@ public class ChfCasosController {
         ParticipanteCohorteFamiliaCaso participante = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(codigo);
         List<VisitaSeguimientoCaso> vseg = visitaSeguimientoCasoService.getVisitaSeguimientoCasos(codigo);
         List<VisitaFallidaCaso> vfall = this.visitaFallidaCasoService.getVisitaFallidaCasos(codigo);
+        VisitaFinalCaso visFinal = this.visitaFinalCasoService.getVisitaFinalCaso(codigo);
         model.addAttribute("participante",participante);
         model.addAttribute("visitas",vseg);
         model.addAttribute("fallidas",vfall);
+        model.addAttribute("visFinal",visFinal);
         return "/chfcasos/participantData";
     }
     
@@ -181,6 +191,43 @@ public class ChfCasosController {
     		vsc.setRecordUser(usuarioActual.getUsername());
     		vsc.setPasive(hab);
     		this.visitaSeguimientoCasoService.saveOrUpdateVisitaSeguimientoCaso(vsc);
+    	}
+    	return redirecTo;	
+    }
+    
+    
+    /**
+     * Custom handler for enabling/disabling a fail visit.
+     *
+     * @param username the ID of the visit to disable
+     * @return a String
+     */
+    @RequestMapping("/voidFailVisit/{accion}/{codigoFallaVisita}")
+    public String initDeletionFailVisit(@PathVariable("codigoFallaVisita") String codigoFallaVisita, 
+    		@PathVariable("accion") String accion, RedirectAttributes redirectAttributes) {
+    	String redirecTo="404";
+    	UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    	VisitaFallidaCaso vfc = this.visitaFallidaCasoService.getVisitaFallidaCaso(codigoFallaVisita);
+    	
+    	char hab;
+    	if (accion.matches("enable")){
+        	redirecTo = "redirect:/chf/editarcaso/participantdata/"+vfc.getCodigoParticipanteCaso().getCodigoCasoParticipante()+"/";
+    		hab = '0';
+    		redirectAttributes.addFlashAttribute("visitaHabilitado", true);
+        }
+        else if(accion.matches("disable")){
+        	redirecTo = "redirect:/chf/editarcaso/participantdata/"+vfc.getCodigoParticipanteCaso().getCodigoCasoParticipante()+"/";
+    		hab = '1';
+    		redirectAttributes.addFlashAttribute("visitaDeshabilitado", true);
+        }
+        else{
+        	return redirecTo;
+        }
+    	if(vfc!=null){
+    		vfc.setRecordDate(new Date());
+    		vfc.setRecordUser(usuarioActual.getUsername());
+    		vfc.setPasive(hab);
+    		this.visitaFallidaCasoService.saveOrUpdateVisitaFallidaCaso(vfc);
     	}
     	return redirecTo;	
     }
@@ -256,10 +303,12 @@ public class ChfCasosController {
         ParticipanteCohorteFamiliaCaso participante = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(vsc.getCodigoParticipanteCaso().getCodigoCasoParticipante());
         List<VisitaSeguimientoCasoSintomas> vsegsint = visitaSeguimientoCasoSintomasService.getVisitaSeguimientoCasoSintomas(codigoCasoVisita);
         List<FormularioContactoCaso> contactos = formularioContactoCasoService.getFormularioContactoCasos(codigoCasoVisita);
+        List<Muestra> muestras = muestraService.getMuestrasTx(vsc.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),vsc.getFechaVisita());
         model.addAttribute("participante",participante);
         model.addAttribute("visita",vsc);
         model.addAttribute("sintomas",vsegsint);
         model.addAttribute("contactos",contactos);
+        model.addAttribute("muestras",muestras);
         return "/chfcasos/visitData";
     }
     
@@ -272,7 +321,7 @@ public class ChfCasosController {
 		return "/chfcasos/enterSint";
 	}
     
-    @RequestMapping(value = "editSint/{codigoCasoSintoma}/", method = RequestMethod.GET)
+    @RequestMapping(value = "/editSint/{codigoCasoSintoma}/", method = RequestMethod.GET)
     public String initEditionSint(Model model, @PathVariable(value = "codigoCasoSintoma") String codigoCasoSintoma){
     	VisitaSeguimientoCasoSintomas vscs = this.visitaSeguimientoCasoSintomasService.getVisitaSeguimientoCasoSintoma(codigoCasoSintoma);
     	if (vscs!=null){
@@ -287,6 +336,21 @@ public class ChfCasosController {
         }
     }  
     
+    @RequestMapping("/voidSint/{codigoCasoSintoma}")
+    public String initDeletionSint(@PathVariable("codigoCasoSintoma") String codigoCasoSintoma, RedirectAttributes redirectAttributes) {
+    	String redirecTo="404";
+    	UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    	VisitaSeguimientoCasoSintomas vscs = this.visitaSeguimientoCasoSintomasService.getVisitaSeguimientoCasoSintoma(codigoCasoSintoma);
+    	redirecTo = "redirect:/chf/editarcaso/visitdata/"+vscs.getCodigoVisitaCaso().getCodigoCasoVisita()+"/";
+    	redirectAttributes.addFlashAttribute("sintNoHabilitado", true);
+    	if(vscs!=null){
+    		vscs.setRecordDate(new Date());
+    		vscs.setRecordUser(usuarioActual.getUsername());
+    		vscs.setPasive('1');
+    		this.visitaSeguimientoCasoSintomasService.saveOrUpdateVisitaSeguimientoCasoSintomas(vscs);
+    	}
+    	return redirecTo;	
+    }
     
     @RequestMapping( value="saveSint", method=RequestMethod.POST)
 	public ResponseEntity<String> processSintForm( @RequestParam(value="codigoCasoSintoma", required=false, defaultValue="" ) String codigoCasoSintoma
@@ -433,6 +497,22 @@ public class ChfCasosController {
     		return "404";
         }
     }  
+    
+    @RequestMapping("/voidCont/{codigoCasoContacto}")
+    public String initDeletionCont(@PathVariable("codigoCasoContacto") String codigoCasoContacto, RedirectAttributes redirectAttributes) {
+    	String redirecTo="404";
+    	UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    	FormularioContactoCaso fcc = this.formularioContactoCasoService.getFormularioContactoCaso(codigoCasoContacto);
+    	redirecTo = "redirect:/chf/editarcaso/visitdata/"+fcc.getCodigoVisitaCaso().getCodigoCasoVisita()+"/";
+    	redirectAttributes.addFlashAttribute("contNoHabilitado", true);
+    	if(fcc!=null){
+    		fcc.setRecordDate(new Date());
+    		fcc.setRecordUser(usuarioActual.getUsername());
+    		fcc.setPasive('1');
+    		this.formularioContactoCasoService.saveOrUpdateFormularioContactoCaso(fcc);
+    	}
+    	return redirecTo;	
+    }
     
     @RequestMapping( value="saveCont", method=RequestMethod.POST)
 	public ResponseEntity<String> processContForm( @RequestParam(value="codigoCasoContacto", required=false, defaultValue="" ) String codigoCasoContacto
@@ -631,6 +711,188 @@ public class ChfCasosController {
     		return new ResponseEntity<String>( json, HttpStatus.CREATED);
     	}
 		
+	}
+    
+    
+    @RequestMapping(value = "/newsamp/{codigoCasoVisita}", method = RequestMethod.GET)
+	public String initCreationSamp(@PathVariable("codigoCasoVisita") String codigoCasoVisita, Model model) {
+    	VisitaSeguimientoCaso vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
+    	model.addAttribute("visita", vsc);
+    	List<MessageResource> catTipoMx = messageResourceService.getCatalogo("CHF_CAT_TIP0_MX");
+    	catTipoMx.remove(messageResourceService.getMensaje("CHF_CAT_TIP0_MX_09"));
+    	model.addAttribute("catTipoMx", catTipoMx);
+    	List<MessageResource> catTipoTubo = messageResourceService.getCatalogo("CHF_CAT_TIP_TUBO_MX");
+    	catTipoTubo.remove(messageResourceService.getMensaje("CHF_CAT_TIP_TUBO_MX_04"));
+    	catTipoTubo.remove(messageResourceService.getMensaje("CHF_CAT_TIP_TUBO_MX_05"));
+    	catTipoTubo.remove(messageResourceService.getMensaje("CHF_CAT_TIP_TUBO_MX_09"));
+    	model.addAttribute("catTipoTubo", catTipoTubo);
+    	List<MessageResource> catSiNo = messageResourceService.getCatalogo("CHF_CAT_SINO");
+    	model.addAttribute("catSiNo", catSiNo);
+    	List<MessageResource> catNoMxResp = messageResourceService.getCatalogo("CHF_CAT_RAZON_NO_MX_RESP");
+    	List<MessageResource> catNoMxSangre = messageResourceService.getCatalogo("CHF_CAT_RAZON_NO_MX");
+    	model.addAttribute("catNoMxResp", catNoMxResp);
+    	model.addAttribute("catNoMxSangre", catNoMxSangre);
+    	List<MessageResource> catObservacion = messageResourceService.getCatalogo("CHF_CAT_OBSERV_MX");
+    	model.addAttribute("catObservacion", catObservacion);
+    	List<MessageResource> catPinchazos = messageResourceService.getCatalogo("CHF_CAT_PINCH_MX");
+    	model.addAttribute("catPinchazos", catPinchazos);
+		return "/chfcasos/enterSamp";
+	}
+    
+    @RequestMapping(value = "/editSamp/{codigoCasoVisita}/{codigo}/", method = RequestMethod.GET)
+    public String initEditionSamp(Model model, @PathVariable(value = "codigo") String codigo, @PathVariable(value = "codigoCasoVisita") String codigoCasoVisita){
+    	Muestra fcc = this.muestraService.getMuestra(codigo);
+    	if (fcc!=null){
+    		model.addAttribute("muestra", fcc);
+    		VisitaSeguimientoCaso vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
+        	model.addAttribute("visita", vsc);
+    		List<MessageResource> catTipoMx = messageResourceService.getCatalogo("CHF_CAT_TIP0_MX");
+        	catTipoMx.remove(messageResourceService.getMensaje("CHF_CAT_TIP0_MX_09"));
+        	model.addAttribute("catTipoMx", catTipoMx);
+        	List<MessageResource> catTipoTubo = messageResourceService.getCatalogo("CHF_CAT_TIP_TUBO_MX");
+        	catTipoTubo.remove(messageResourceService.getMensaje("CHF_CAT_TIP_TUBO_MX_04"));
+        	catTipoTubo.remove(messageResourceService.getMensaje("CHF_CAT_TIP_TUBO_MX_05"));
+        	catTipoTubo.remove(messageResourceService.getMensaje("CHF_CAT_TIP_TUBO_MX_09"));
+        	model.addAttribute("catTipoTubo", catTipoTubo);
+        	List<MessageResource> catSiNo = messageResourceService.getCatalogo("CHF_CAT_SINO");
+        	model.addAttribute("catSiNo", catSiNo);
+        	List<MessageResource> catNoMxResp = messageResourceService.getCatalogo("CHF_CAT_RAZON_NO_MX_RESP");
+        	List<MessageResource> catNoMxSangre = messageResourceService.getCatalogo("CHF_CAT_RAZON_NO_MX");
+        	model.addAttribute("catNoMxResp", catNoMxResp);
+        	model.addAttribute("catNoMxSangre", catNoMxSangre);
+        	List<MessageResource> catObservacion = messageResourceService.getCatalogo("CHF_CAT_OBSERV_MX");
+        	model.addAttribute("catObservacion", catObservacion);
+        	List<MessageResource> catPinchazos = messageResourceService.getCatalogo("CHF_CAT_PINCH_MX");
+        	model.addAttribute("catPinchazos", catPinchazos);
+    		return "/chfcasos/enterSamp";
+    	}
+    	else{
+    		return "404";
+        }
+    }  
+    
+    @RequestMapping("/voidSamp/{codigoCasoVisita}/{codigo}")
+    public String initDeletionSamp(@PathVariable("codigo") String codigo, @PathVariable("codigoCasoVisita") String codigoCasoVisita,
+    		RedirectAttributes redirectAttributes) {
+    	String redirecTo="404";
+    	UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    	Muestra sample = this.muestraService.getMuestra(codigo);
+    	redirecTo = "redirect:/chf/editarcaso/visitdata/{codigoCasoVisita}/";
+    	redirectAttributes.addFlashAttribute("sampNoHabilitado", true);
+    	if(sample!=null){
+    		sample.setRecordDate(new Date());
+    		sample.setRecordUser(usuarioActual.getUsername());
+    		sample.setPasive('1');
+    		this.muestraService.saveOrUpdate(sample);
+    	}
+    	return redirecTo;	
+    }
+    
+    @RequestMapping( value="saveSamp", method=RequestMethod.POST)
+	public ResponseEntity<String> processSampForm( @RequestParam(value="codigo", required=false, defaultValue="" ) String codigo
+			, @RequestParam( value="participante", required=true ) Integer participante
+			, @RequestParam( value="fechaVisita", required=true ) String fechaVisita
+			, @RequestParam( value="tomaMxSn", required=true ) String tomaMxSn
+			, @RequestParam( value="codigoMx", required=false, defaultValue="" ) String codigoMx
+			, @RequestParam( value="hora", required=false, defaultValue="" ) String hora
+			, @RequestParam( value="horaFin", required=false, defaultValue="" ) String horaFin
+			, @RequestParam( value="volumen", required=false, defaultValue="" ) Double volumen
+			, @RequestParam( value="observacion", required=false, defaultValue="" ) String observacion
+			, @RequestParam( value="descOtraObservacion", required=false, defaultValue="" ) String descOtraObservacion
+			, @RequestParam( value="numPinchazos", required=false, defaultValue="" ) String numPinchazos
+			, @RequestParam( value="razonNoTomaSang", required=false, defaultValue="" ) String razonNoTomaSang
+			, @RequestParam( value="razonNoTomaResp", required=false, defaultValue="" ) String razonNoTomaResp
+			, @RequestParam( value="descOtraRazonNoToma", required=false, defaultValue="" ) String descOtraRazonNoToma
+			, @RequestParam( value="tubo", required=false, defaultValue="" ) String tubo
+			, @RequestParam( value="tipoMuestra", required=false, defaultValue="" ) String tipoMuestra
+			, @RequestParam( value="realizaPaxgene", required=false, defaultValue="" ) String realizaPaxgene
+			, @RequestParam( value="horaInicioPax", required=false, defaultValue="" ) String horaInicioPax
+			, @RequestParam( value="horaFinPax", required=false, defaultValue="" ) String horaFinPax
+			
+	        ){
+    	try{
+    		UserSistema usuario = usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    		ParticipanteCohorteFamilia partCHF = participanteCohorteFamiliaService.getParticipanteCHFByCodigo(participante);
+    		Muestra muestra = new Muestra();
+			//Si el codigo viene en blanco es un nuevo muestra
+			if (codigo.equals("")){
+				//Crear un nuevo muestra
+				codigo = new UUID(usuario.getUsername().hashCode(),new Date().hashCode()).toString();
+				muestra.setCodigo(codigo);
+				muestra.setParticipante(partCHF.getParticipante());
+			}
+			//Si el codigo no viene en blanco hay que editar el contacto
+			else{
+				//Recupera el contacto de la base de datos
+				muestra = this.muestraService.getMuestra(codigo);
+			}
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        	Date date1 = formatter.parse(fechaVisita);
+        	muestra.setRecordDate(date1);
+        	muestra.setTipoMuestra(tipoMuestra);
+        	if(tipoMuestra.equals("5")){
+        		muestra.setTubo("5");
+        	}
+        	else if(tipoMuestra.equals("1")){
+        		muestra.setTubo(tubo);
+        	}
+        	else if(tipoMuestra.equals("2")||tipoMuestra.equals("3")||tipoMuestra.equals("4")){
+        		muestra.setTubo("4");
+        	}
+        	else{
+        		muestra.setTubo("9");
+        	}
+        	muestra.setTomaMxSn(tomaMxSn);
+        	muestra.setRazonNoToma(razonNoTomaResp);
+        	if(tipoMuestra.equals("1")) muestra.setRazonNoToma(razonNoTomaSang);
+        	muestra.setDescOtraRazonNoToma(descOtraRazonNoToma);
+        	muestra.setHora(hora);
+        	muestra.setCodigoMx(codigoMx);
+        	muestra.setVolumen(volumen);
+        	muestra.setObservacion(observacion);
+        	muestra.setDescOtraObservacion(descOtraObservacion);
+        	muestra.setProposito("3");
+        	muestra.setNumPinchazos(numPinchazos);
+        	muestra.setRealizaPaxgene(realizaPaxgene);
+        	muestra.setHoraInicioPax(horaInicioPax);
+        	muestra.setHoraFin(horaFinPax);
+        	muestra.setRecordUser(usuario.getUsername());
+			WebAuthenticationDetails wad  = (WebAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
+        	String idSesion = wad.getSessionId();
+        	String direccionIp = wad.getRemoteAddress();
+			muestra.setDeviceid(idSesion + "-"+ direccionIp);
+			muestra.setEstado('1');
+			//Actualiza el muestra
+			this.muestraService.saveOrUpdate(muestra);
+			return createJsonResponse(muestra);
+    	}
+    	catch (DataIntegrityViolationException e){
+    		String message = e.getMostSpecificCause().getMessage();
+    		Gson gson = new Gson();
+    	    String json = gson.toJson(message);
+    		return new ResponseEntity<String>( json, HttpStatus.CREATED);
+    	}
+    	catch(Exception e){
+    		Gson gson = new Gson();
+    	    String json = gson.toJson(e.toString());
+    		return new ResponseEntity<String>( json, HttpStatus.CREATED);
+    	}
+		
+	}
+    
+    @RequestMapping(value = "/visfinal/{codigoCasoParticipante}", method = RequestMethod.GET)
+	public String initCreationVisFinal(@PathVariable("codigoCasoParticipante") String codigoCasoParticipante, Model model) {
+    	ParticipanteCohorteFamiliaCaso part = this.participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(codigoCasoParticipante);
+    	model.addAttribute("participante",part);
+    	VisitaFinalCaso visFinal = this.visitaFinalCasoService.getVisitaFinalCaso(codigoCasoParticipante);
+    	model.addAttribute("visFinal",visFinal);
+    	List<MessageResource> sinod = messageResourceService.getCatalogo("CHF_CAT_SND");
+    	model.addAttribute("sinod",sinod);
+    	List<MessageResource> sino = messageResourceService.getCatalogo("CHF_CAT_SINO");
+    	model.addAttribute("sino",sino);
+    	List<MessageResource> tratamientos = messageResourceService.getCatalogo("CHF_CAT_TRATAMIENTO");
+    	model.addAttribute("tratamientos",tratamientos);
+		return "/chfcasos/enterVisFinal";
 	}
     
     private ResponseEntity<String> createJsonResponse( Object o ){

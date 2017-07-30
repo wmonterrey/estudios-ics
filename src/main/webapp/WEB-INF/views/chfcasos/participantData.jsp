@@ -92,7 +92,7 @@
 		                                    <td><a href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
 		                                    <c:choose>
 	                                            <c:when test="${anulada < 1}">
-	                                                <a data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a>
+	                                                <a href="" data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a>
 	                                            </c:when>
 	                                            <c:otherwise>
 	                                                <a data-toggle="modal" data-id= "${fn:escapeXml(unvoidUrl)}" class="btn btn-outline-primary btn-sm act"><i class="fa fa-check"></i></a>
@@ -109,94 +109,151 @@
                             <a href="${fn:escapeXml(partsUrl)}" class="btn btn-sm btn-primary"><i class="fa fa-mail-reply"></i> <spring:message code="back" /></a>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="fa fa-group"></i> <spring:message code="failVisit" />
-                        </div>
-                        <div class="card-block">
-                            <spring:url value="/chf/editarcaso/participants/{codigo}/" var="partsUrl">
-                                <spring:param name="codigo" value="${participante.codigoCaso.codigoCaso}" />
-                            </spring:url>
-                            <spring:url value="/chf/editarcaso/newfailvisitpart/{codigo}" var="newFailVisitUrl">
-                                <spring:param name="codigo" value="${participante.codigoCasoParticipante}" />
-                            </spring:url>
-                            <table class="table table-striped table-bordered datatable">
-                                <thead>
-                                    <tr>                                        
-		                                <th><spring:message code="visitDate" /></th>
-		                                <th><spring:message code="razonVisitaFallida" /></th>
-		                                <th><spring:message code="otraRazon" /></th>
-		                                <th><spring:message code="actions" /></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-	                                <c:forEach items="${fallidas}" var="fallida">
-		                                <spring:url value="/chf/editarcaso/editfailvisit/{codigoFallaVisita}/" var="editUrl">
-		                                    <spring:param name="codigoFallaVisita" value="${fallida.codigoFallaVisita}" />
-		                                </spring:url>
-		                                <tr>
-		                                    <td><fmt:formatDate value="${fallida.fechaVisita}" pattern="dd/MM/yyyy hh:mm" /></td>
-		                                    <td><c:out value="${fallida.razonVisitaFallida}" /></td>
-		                                    <td><c:out value="${fallida.otraRazon}" /></td>
-		                                    <td><a href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
-		                                    <a href="${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-trash"></i></a></td>
-		                                </tr>
-		                            </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="card-footer">
-                            <a href="${fn:escapeXml(newFailVisitUrl)}" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="failVisit" /></a>
-                            <a href="${fn:escapeXml(partsUrl)}" class="btn btn-sm btn-primary"><i class="fa fa-mail-reply"></i> <spring:message code="back" /></a>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="basic" tabindex="-1" data-role="basic" data-backdrop="static" data-aria-hidden="true">
-		                <div class="modal-dialog">
-		                    <div class="modal-content">
-		                        <div class="modal-header">
-		                            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"></button>
-		                            <div id="titulo"></div>
+                    <div class="row">
+	                    <div class="col-sm-6">
+		                    <div class="card">
+		                        <div class="card-header">
+		                            <i class="fa fa-group"></i> <spring:message code="failVisit" />
 		                        </div>
-		                        <div class="modal-body">
-		                            <input type=hidden id="accionUrl"/>
-		                            <div id="cuerpo"></div>
+		                        <div class="card-block">
+		                            <spring:url value="/chf/editarcaso/participants/{codigo}/" var="partsUrl">
+		                                <spring:param name="codigo" value="${participante.codigoCaso.codigoCaso}" />
+		                            </spring:url>
+		                            <spring:url value="/chf/editarcaso/newfailvisitpart/{codigo}" var="newFailVisitUrl">
+		                                <spring:param name="codigo" value="${participante.codigoCasoParticipante}" />
+		                            </spring:url>
+		                            <table class="table table-striped table-bordered datatable">
+		                                <thead>
+		                                    <tr>                                        
+				                                <th><spring:message code="visitDate" /></th>
+				                                <th><spring:message code="razonVisitaFallida" /></th>
+				                                <th><spring:message code="otraRazon" /></th>
+				                                <th><spring:message code="actions" /></th>
+		                                    </tr>
+		                                </thead>
+		                                <tbody>
+			                                <c:forEach items="${fallidas}" var="fallida">
+				                                <spring:url value="/chf/editarcaso/editfailvisit/{codigoFallaVisita}/" var="editUrl">
+				                                    <spring:param name="codigoFallaVisita" value="${fallida.codigoFallaVisita}" />
+				                                </spring:url>
+				                                <spring:url value="/chf/editarcaso/voidFailVisit/disable/{codigoFallaVisita}" var="voidUrl">
+				                                    <spring:param name="codigoFallaVisita" value="${fallida.codigoFallaVisita}" />
+				                                </spring:url>
+				                                <tr>
+				                                    <td><fmt:formatDate value="${fallida.fechaVisita}" pattern="dd/MM/yyyy hh:mm" /></td>
+				                                    <td><c:out value="${fallida.razonVisitaFallida}" /></td>
+				                                    <td><c:out value="${fallida.otraRazon}" /></td>
+				                                    <td><a href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+				                                    <a href="" data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a></td>
+				                                </tr>
+				                            </c:forEach>
+		                                </tbody>
+		                            </table>
 		                        </div>
-		                        <div class="modal-footer">
-		                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
-		                            <button type="button" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+		                        <div class="card-footer">
+		                            <a href="${fn:escapeXml(newFailVisitUrl)}" class="btn btn-sm btn-warning"><i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="failVisit" /></a>
+		                            <a href="${fn:escapeXml(partsUrl)}" class="btn btn-sm btn-primary"><i class="fa fa-mail-reply"></i> <spring:message code="back" /></a>
 		                        </div>
 		                    </div>
-		                    <!-- /.modal-content -->
-		                </div>
-		                <!-- /.modal-dialog -->
-		            </div>
+	                    </div>
+	                    <div class="col-sm-6">
+		                    <div class="card">
+		                        <div class="card-header">
+		                            <i class="fa fa-group"></i> <spring:message code="visitaFinal" />
+		                        </div>
+	                            <spring:url value="/chf/editarcaso/visfinal/{codigoCasoParticipante}/" var="editVisitFinalUrl">
+	                                <spring:param name="codigoCasoParticipante" value="${participante.codigoCasoParticipante}" />
+	                            </spring:url>
+		                        <div class="card-block">
+		                        	<c:choose>
+                                        <c:when test="${visFinal.fechaVisita != null}">
+                                            <div class="form-group row">
+				                                <div class="form-group col-sm-6">
+		                                            <label class="form-control-label"><spring:message code="visitDate" /></label>
+		                                            <p class="form-control-static"><c:out value="${visFinal.fechaVisita}"/></p>
+		                                        </div>
+		                                        <div class="form-group col-sm-6">
+		                                            <label class="form-control-label"><spring:message code="enfermo" /></label>
+		                                            <p class="form-control-static"><c:out value="${visFinal.enfermo}"/></p>
+		                                        </div>
+			                            	</div>
+			                            	<div class="form-group row">
+				                                <div class="form-group col-sm-3">
+		                                            <label class="form-control-label"><spring:message code="fiebre" /></label>
+		                                            <p class="form-control-static"><c:out value="${visFinal.fiebre}"/></p>
+		                                        </div>
+		                                        <div class="form-group col-sm-3">
+		                                            <label class="form-control-label"><spring:message code="tos" /></label>
+		                                            <p class="form-control-static"><c:out value="${visFinal.tos}"/></p>
+		                                        </div>
+		                                        <div class="form-group col-sm-3">
+		                                            <label class="form-control-label"><spring:message code="dolorGarganta" /></label>
+		                                            <p class="form-control-static"><c:out value="${visFinal.dolorGarganta}"/></p>
+		                                        </div>
+		                                        <div class="form-group col-sm-3">
+		                                            <label class="form-control-label"><spring:message code="secrecionNasal" /></label>
+		                                            <p class="form-control-static"><c:out value="${visFinal.secrecionNasal}"/></p>
+		                                        </div>
+			                            	</div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="form-group row">
+                                            	<label class="form-control-label"><spring:message code="visitaFinal" /> <spring:message code="pend" /></label>
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
+	                        		
+		                        </div>
+		                        <div class="card-footer">
+		                        	<a href="${fn:escapeXml(editVisitFinalUrl)}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i> <spring:message code="visitaFinal" /></a>
+		                        	<c:choose>
+			                        	<c:when test="${visFinal.fechaVisita != null}">
+			                        		<a href="${fn:escapeXml(newSampUrl)}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="sample" /></a>
+			                        	</c:when>
+		                        	</c:choose>
+		                        </div>
+		                    </div>
+	                    </div>
+                    </div>
                 </div>
             	
             </div>
             <!-- /.conainer-fluid -->
+            <div class="modal fade" id="basic" tabindex="-1" data-role="basic" data-backdrop="static" data-aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"></button>
+                            <div id="titulo"></div>
+                        </div>
+                        <div class="modal-body">
+                            <input type=hidden id="accionUrl"/>
+                            <div id="cuerpo"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
+                            <button type="button" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
         </div>
     </div>
     <jsp:include page="../fragments/bodyFooter.jsp" />
     <jsp:include page="../fragments/corePlugins.jsp" />
-    
+    <c:set var="processSuccess"><spring:message code="process.success" /></c:set>
+    <c:set var="confirmar"><spring:message code="confirm" /></c:set>
+    <c:set var="deshabilitar"><spring:message code="delete" /></c:set>
     <!-- GenesisUI main scripts -->
 	<spring:url value="/resources/js/app.js" var="App" />
 	<script src="${App}" type="text/javascript"></script>
 	<script type="text/javascript">
-	if ("${visitaHabilitado}"){
-        toastr.success("${visitaHabilitado}", "${nombreUsuario}" );
-    }
     if ("${visitaDeshabilitado}"){
-        toastr.error("${userDisabledLabel}", "${nombreUsuario}" );
+        toastr.success("${processSuccess}");
     }
-	$(".act").click(function(){
-        $('#accionUrl').val($(this).data('id'));
-        $('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
-        $('#cuerpo').html('<h3>'+"${habilitar}"+' '+$(this).data('id').substr($(this).data('id').lastIndexOf("/")+1)+'?</h3>');
-        $('#basic').modal('show');
-    });
-
-    $(".desact").click(function(){
+	$(".desact").click(function(){
         $('#accionUrl').val($(this).data('id'));
         $('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
         $('#cuerpo').html('<h3>'+"${deshabilitar}"+' '+$(this).data('id').substr($(this).data('id').lastIndexOf("/")+1)+'?</h3>');

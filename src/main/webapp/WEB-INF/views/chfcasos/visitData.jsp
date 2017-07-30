@@ -44,7 +44,7 @@
 	                                </div>
 	                            </div>
                             </form>
-                            <spring:url value="/chf/editarcaso/participantdata/{codigo}" var="partUrl">
+                            <spring:url value="/chf/editarcaso/participantdata/{codigo}/" var="partUrl">
                                 <spring:param name="codigo" value="${participante.codigoCasoParticipante}" />
                             </spring:url>
                             <spring:url value="/chf/editarcaso/newsint/{codigoCasoVisita}" var="newSintUrl">
@@ -64,6 +64,9 @@
                                 <tbody>
 	                                <c:forEach items="${sintomas}" var="sintoma">
 		                                <spring:url value="/chf/editarcaso/editSint/{codigoCasoSintoma}/" var="sintomaUrl">
+		                                    <spring:param name="codigoCasoSintoma" value="${sintoma.codigoCasoSintoma}" />
+		                                </spring:url>
+		                                <spring:url value="/chf/editarcaso/voidSint/{codigoCasoSintoma}" var="voidUrl">
 		                                    <spring:param name="codigoCasoSintoma" value="${sintoma.codigoCasoSintoma}" />
 		                                </spring:url>
 		                                <tr>
@@ -101,6 +104,7 @@
 		                                        </c:otherwise>
 		                                    </c:choose>
 		                                    <td><a href="${fn:escapeXml(sintomaUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+		                                    <a href="" data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a></td>
 		                                </tr>
 		                            </c:forEach>
                                 </tbody>
@@ -112,7 +116,7 @@
                        	</div>
                     </div>
                     
-                     <div class="card">
+                    <div class="card">
                         <div class="card-header">
                             <i class="fa fa-group"></i> <spring:message code="contact" /> 
                         </div>
@@ -134,12 +138,16 @@
 		                                <spring:url value="/chf/editarcaso/editCont/{codigoCasoContacto}/" var="contactoUrl">
 		                                    <spring:param name="codigoCasoContacto" value="${contacto.codigoCasoContacto}" />
 		                                </spring:url>
+		                                <spring:url value="/chf/editarcaso/voidCont/{codigoCasoContacto}" var="voidUrl">
+		                                    <spring:param name="codigoCasoContacto" value="${contacto.codigoCasoContacto}" />
+		                                </spring:url>
 		                                <tr>
 		                                    <td><fmt:formatDate value="${contacto.fechaContacto}" pattern="dd/MM/yyyy" /></td>
-		                                    <td><c:out value="${contacto.partContacto.participante.nombreCompleto}" /></td>
+		                                    <td><c:out value="${contacto.partContacto.participante.codigo} - ${contacto.partContacto.participante.nombreCompleto}" /></td>
 		                                    <td><c:out value="${contacto.tiempoInteraccion}" /></td>
 		                                    <td><c:out value="${contacto.tipoInteraccion}" /></td>
 		                                    <td><a href="${fn:escapeXml(contactoUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+		                                    <a href="" data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a></td>
 		                                </tr>
 		                            </c:forEach>
                                 </tbody>
@@ -149,14 +157,81 @@
                               <a href="${fn:escapeXml(newContUrl)}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="contact" /></a>
                               <a href="${fn:escapeXml(partUrl)}" class="btn btn-sm btn-primary"><i class="fa fa-mail-reply"></i> <spring:message code="back" /></a>
                        	</div>
+                       	
+                       	<div class="card">
+                        <div class="card-header">
+                            <i class="fa fa-group"></i> <spring:message code="sample"/>s 
+                        </div>
+                            <spring:url value="/chf/editarcaso/newsamp/{codigoCasoVisita}" var="newSampUrl">
+                                <spring:param name="codigoCasoVisita" value="${visita.codigoCasoVisita}" />
+                            </spring:url>
+                            <table class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+		                                <th><spring:message code="tipoMuestra" /></th>
+		                                <th><spring:message code="tubo" /></th>
+		                                <th><spring:message code="tomaMxSn" /></th>
+		                                <th><spring:message code="volumen" /></th>
+		                                <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+	                                <c:forEach items="${muestras}" var="muestra">
+		                                <spring:url value="/chf/editarcaso/editSamp/{codigoCasoVisita}/{codigo}/" var="sampleUrl">
+		                                	<spring:param name="codigoCasoVisita" value="${visita.codigoCasoVisita}" />
+		                                    <spring:param name="codigo" value="${muestra.codigo}" />
+		                                </spring:url>
+		                                <spring:url value="/chf/editarcaso/voidSamp/{codigoCasoVisita}/{codigo}" var="voidUrl">
+		                                	<spring:param name="codigoCasoVisita" value="${visita.codigoCasoVisita}" />
+		                                    <spring:param name="codigo" value="${muestra.codigo}" />
+		                                </spring:url>
+		                                <tr>
+		                                    <td><c:out value="${muestra.tipoMuestra}" /></td>
+		                                    <td><c:out value="${muestra.tubo}" /></td>
+		                                    <td><c:out value="${muestra.tomaMxSn}" /></td>
+		                                    <td><c:out value="${muestra.volumen}" /></td>
+		                                    <td><a href="${fn:escapeXml(sampleUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+		                                    <a href="" data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a></td>
+		                                </tr>
+		                            </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer">
+                              <a href="${fn:escapeXml(newSampUrl)}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> <spring:message code="add" /> <spring:message code="sample" /></a>
+                              <a href="${fn:escapeXml(partUrl)}" class="btn btn-sm btn-primary"><i class="fa fa-mail-reply"></i> <spring:message code="back" /></a>
+                       	</div>
+                       	
                     </div>
                 </div>
             <!-- /.conainer-fluid -->
+            <div class="modal fade" id="basic" tabindex="-1" data-role="basic" data-backdrop="static" data-aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"></button>
+                            <div id="titulo"></div>
+                        </div>
+                        <div class="modal-body">
+                            <input type=hidden id="accionUrl"/>
+                            <div id="cuerpo"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
+                            <button type="button" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
         </div>
     </div>
     <jsp:include page="../fragments/bodyFooter.jsp" />
     <jsp:include page="../fragments/corePlugins.jsp" />
-    
+    <c:set var="processSuccess"><spring:message code="process.success" /></c:set>
+    <c:set var="confirmar"><spring:message code="confirm" /></c:set>
+    <c:set var="deshabilitar"><spring:message code="delete" /></c:set>
     <!-- GenesisUI main scripts -->
 	<spring:url value="/resources/js/app.js" var="App" />
 	<script src="${App}" type="text/javascript"></script>
@@ -179,6 +254,21 @@
             }
         });
     });
+    if ("${sintNoHabilitado}"){
+        toastr.success("${processSuccess}");
+    }
+    if ("${contNoHabilitado}"){
+        toastr.success("${processSuccess}");
+    }
+	$(".desact").click(function(){
+        $('#accionUrl').val($(this).data('id'));
+        $('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
+        $('#cuerpo').html('<h3>'+"${deshabilitar}"+' '+$(this).data('id').substr($(this).data('id').lastIndexOf("/")+1)+'?</h3>');
+        $('#basic').modal('show');
+    });
+    function ejecutarAccion() {
+        window.location.href = $('#accionUrl').val();
+    }
 </script> 
 	
 </body>

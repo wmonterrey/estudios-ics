@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,10 +33,26 @@ public class MuestraService {
     }
     
     @SuppressWarnings("unchecked")
-	public List<Muestra> getMuestrasTx()
-    {
+	public List<Muestra> getMuestrasTx(){
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from Muestra where pasive = '0' and proposito = '3'");
+        return  query.list();
+    }
+    
+	public Muestra getMuestra(String codigo){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Muestra m where m.codigo =:codigo");
+        query.setParameter("codigo", codigo);
+        return  (Muestra) query.uniqueResult();
+    }
+    
+    @SuppressWarnings("unchecked")
+	public List<Muestra> getMuestrasTx(Integer codigo, Date fecha){
+        Session session = sessionFactory.getCurrentSession();
+		Timestamp timeStamp = new Timestamp(fecha.getTime());
+        Query query = session.createQuery("from Muestra m where pasive = '0' and proposito = '3' and m.participante.codigo =:codigo and m.recordDate =:fechaM");
+        query.setParameter("codigo", codigo);
+        query.setParameter("fechaM", timeStamp);
         return  query.list();
     }
 

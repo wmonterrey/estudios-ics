@@ -39,7 +39,7 @@ public class VisitaFallidaCasoService {
     @SuppressWarnings("unchecked")
 	public List<VisitaFallidaCaso> getVisitaFallidaCasos(String codigoParticipanteCaso){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from VisitaFallidaCaso v where v.pasive = '0' and v.codigoParticipanteCaso.codigoCasoParticipante =:codigoParticipanteCaso");
+        Query query = session.createQuery("from VisitaFallidaCaso v where v.pasive = '0' and v.codigoParticipanteCaso.codigoCasoParticipante =:codigoParticipanteCaso order by v.fechaVisita");
         query.setParameter("codigoParticipanteCaso", codigoParticipanteCaso);
         return query.list();
     }
