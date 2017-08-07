@@ -141,7 +141,7 @@
                                     <span class="input-group-addon">
                                         <i class="fa fa-eyedropper"></i>
                                     </span>
-                                        <select class="form-control select2-multiple" multiple="" id="etiquetas" name="etiquetas">
+                                        <select class="form-control select2-multiple" multiple id="etiquetas" name="etiquetas">
                                             <c:forEach items="${etiquetas}" var="etiqueta">
                                                 <option value="${etiqueta.messageKey}">${etiqueta.spanish}</option>
                                             </c:forEach>
@@ -204,7 +204,7 @@
         </div>
         <!-- /.conainer-fluid -->
     </div>
-</div>
+
 <jsp:include page="../../fragments/bodyFooter.jsp" />
 <jsp:include page="../../fragments/corePlugins.jsp" />
 <c:choose>

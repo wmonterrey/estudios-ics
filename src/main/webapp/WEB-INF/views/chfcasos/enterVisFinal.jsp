@@ -55,7 +55,7 @@
                                 <spring:param name="codigo" value="${participante.codigoCasoParticipante}" />
                             </spring:url>
                         	<form action="#" autocomplete="off" id="visit-form" class="form-horizontal">
-                        		<div class="row" hidden="true">
+                        		<div class="row" hidden ="true">
 	                                <div class="col-sm-12">
 	                                    <div class="form-group">
 	                                        <label class="form-control-label" for="codigoParticipanteCaso"><spring:message code="please.enter"/> <spring:message code="codigoParticipanteCaso"/><span class="required">*</span></label>
@@ -99,7 +99,7 @@
 	                                    </div>
 	                                </div>
 	                                <div class="col-sm-4">
-	                                    <div class="form-group">
+	                                    <div class="form-group" id="consTerrenoG">
 	                                        <label class="form-control-label" for="consTerreno"><spring:message code="consTerreno"/><span class="required">*</span></label>
 	                                        <select name="consTerreno" id="consTerreno" class="form-control">
 		                                        <option selected value=""><spring:message code="select" />...</option>
@@ -117,7 +117,7 @@
 	                                    </div>
 	                                </div>
 	                                <div class="col-sm-4">
-	                                    <div class="form-group">
+	                                    <div class="form-group" id="referidoCsG">
 	                                        <label class="form-control-label" for="referidoCs"><spring:message code="referidoCs"/><span class="required">*</span></label>
 	                                        <select name="referidoCs" id="referidoCs" class="form-control">
 		                                        <option selected value=""><spring:message code="select" />...</option>
@@ -137,7 +137,7 @@
 	                            </div>
 	                            <div class="row">
 	                                <div class="col-sm-6">
-	                                    <div class="form-group">
+	                                    <div class="form-group" id="tratamientoG">
 	                                        <label class="form-control-label" for="tratamiento"><spring:message code="tratamiento"/><span class="required">*</span></label>
 	                                        <select name="tratamiento" id="tratamiento" class="form-control select2-multiple" multiple>
 	                                            <c:forEach items="${tratamientos}" var="tratCat">
@@ -154,7 +154,7 @@
 	                                    </div>
 	                                </div>
 	                                <div class="col-sm-6">
-	                                    <div class="form-group">
+	                                    <div class="form-group" id="cualAntibioticoG">
 	                                        <label class="form-control-label" for="cualAntibiotico"><spring:message code="cualAntibiotico"/><span class="required">*</span></label>
 	                                        <input type="text" name="cualAntibiotico" id="cualAntibiotico" class="form-control" value="${visFinal.cualAntibiotico}"></input>
 	                                    </div>
@@ -181,132 +181,108 @@
 	                                </div>
 	                            </div>
 	                            <div class="row">
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="fiebre"><spring:message code="fiebre"/><span class="required">*</span></label>
-	                                        <select name="fiebre" id="fiebre" class="form-control">
-		                                        <option selected value=""><spring:message code="select" />...</option>
-	                                            <c:forEach items="${sinod}" var="sinodCat">
-													<c:choose> 
-														<c:when test="${sinodCat.catKey eq visFinal.fiebre}">
-															<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:when>
-														<c:otherwise>
-															<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:otherwise>
-													</c:choose> 
-												</c:forEach>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="fif"><spring:message code="fi"/><span class="required">*</span></label>
-	                                        <input type="text" name="fif" id="fif" class="form-control" value="${visFinal.fif}"></input>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="fff"><spring:message code="ff"/><span class="required">*</span></label>
-	                                        <input type="text" name="fff" id="fff" class="form-control" value="${visFinal.fff}"></input>
-	                                    </div>
-	                                </div>
+                                    <div class="form-group col-sm-4" id="fiebreG">
+                                        <label class="form-control-label" for="fiebre"><spring:message code="fiebre"/><span class="required">*</span></label>
+                                        <select name="fiebre" id="fiebre" class="form-control">
+	                                        <option selected value=""><spring:message code="select" />...</option>
+                                            <c:forEach items="${sinod}" var="sinodCat">
+												<c:choose> 
+													<c:when test="${sinodCat.catKey eq visFinal.fiebre}">
+														<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:when>
+													<c:otherwise>
+														<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:otherwise>
+												</c:choose> 
+											</c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="fifG">
+                                        <label class="form-control-label" for="fif"><spring:message code="fi"/><span class="required">*</span></label>
+                                        <input type="text" name="fif" id="fif" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.fif}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="fffG">
+                                        <label class="form-control-label" for="fff"><spring:message code="ff"/><span class="required">*</span></label>
+                                        <input type="text" name="fff" id="fff" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.fff}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
 	                            </div>
 	                            <div class="row">
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="tos"><spring:message code="tos"/><span class="required">*</span></label>
-	                                        <select name="tos" id="tos" class="form-control">
-		                                        <option selected value=""><spring:message code="select" />...</option>
-	                                            <c:forEach items="${sinod}" var="sinodCat">
-													<c:choose> 
-														<c:when test="${sinodCat.catKey eq visFinal.tos}">
-															<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:when>
-														<c:otherwise>
-															<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:otherwise>
-													</c:choose> 
-												</c:forEach>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="fitos"><spring:message code="fi"/><span class="required">*</span></label>
-	                                        <input type="text" name="fitos" id="fitos" class="form-control" value="${visFinal.fitos}"></input>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="fftos"><spring:message code="ff"/><span class="required">*</span></label>
-	                                        <input type="text" name="fftos" id="fftos" class="form-control" value="${visFinal.fftos}"></input>
-	                                    </div>
-	                                </div>
+                                    <div class="form-group col-sm-4" id="tosG">
+                                        <label class="form-control-label" for="tos"><spring:message code="tos"/><span class="required">*</span></label>
+                                        <select name="tos" id="tos" class="form-control">
+	                                        <option selected value=""><spring:message code="select" />...</option>
+                                            <c:forEach items="${sinod}" var="sinodCat">
+												<c:choose> 
+													<c:when test="${sinodCat.catKey eq visFinal.tos}">
+														<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:when>
+													<c:otherwise>
+														<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:otherwise>
+												</c:choose> 
+											</c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="fitosG">
+                                        <label class="form-control-label" for="fitos"><spring:message code="fi"/><span class="required">*</span></label>
+                                        <input type="text" name="fitos" id="fitos" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.fitos}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="fftosG">
+                                        <label class="form-control-label" for="fftos"><spring:message code="ff"/><span class="required">*</span></label>
+                                        <input type="text" name="fftos" id="fftos" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.fftos}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
 	                            </div>  
 	                            <div class="row">
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="dolorGarganta"><spring:message code="dolorGarganta"/><span class="required">*</span></label>
-	                                        <select name="dolorGarganta" id="dolorGarganta" class="form-control">
-		                                        <option selected value=""><spring:message code="select" />...</option>
-	                                            <c:forEach items="${sinod}" var="sinodCat">
-													<c:choose> 
-														<c:when test="${sinodCat.catKey eq visFinal.dolorGarganta}">
-															<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:when>
-														<c:otherwise>
-															<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:otherwise>
-													</c:choose> 
-												</c:forEach>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="figg"><spring:message code="fi"/><span class="required">*</span></label>
-	                                        <input type="text" name="figg" id="figg" class="form-control" value="${visFinal.figg}"></input>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="ffgg"><spring:message code="ff"/><span class="required">*</span></label>
-	                                        <input type="text" name="ffgg" id="ffgg" class="form-control" value="${visFinal.ffgg}"></input>
-	                                    </div>
-	                                </div>
+                                    <div class="form-group col-sm-4" id="dolorGargantaG">
+                                        <label class="form-control-label" for="dolorGarganta"><spring:message code="dolorGarganta"/><span class="required">*</span></label>
+                                        <select name="dolorGarganta" id="dolorGarganta" class="form-control">
+	                                        <option selected value=""><spring:message code="select" />...</option>
+                                            <c:forEach items="${sinod}" var="sinodCat">
+												<c:choose> 
+													<c:when test="${sinodCat.catKey eq visFinal.dolorGarganta}">
+														<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:when>
+													<c:otherwise>
+														<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:otherwise>
+												</c:choose> 
+											</c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="figgG">
+                                        <label class="form-control-label" for="figg"><spring:message code="fi"/><span class="required">*</span></label>
+                                        <input type="text" name="figg" id="figg" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.figg}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="ffggG">
+                                        <label class="form-control-label" for="ffgg"><spring:message code="ff"/><span class="required">*</span></label>
+                                        <input type="text" name="ffgg" id="ffgg" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.ffgg}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
 	                            </div>    
 	                            <div class="row">
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="secrecionNasal"><spring:message code="secrecionNasal"/><span class="required">*</span></label>
-	                                        <select name="secrecionNasal" id="secrecionNasal" class="form-control">
-		                                        <option selected value=""><spring:message code="select" />...</option>
-	                                            <c:forEach items="${sinod}" var="sinodCat">
-													<c:choose> 
-														<c:when test="${sinodCat.catKey eq visFinal.secrecionNasal}">
-															<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:when>
-														<c:otherwise>
-															<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
-														</c:otherwise>
-													</c:choose> 
-												</c:forEach>
-	                                        </select>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="fisn"><spring:message code="fi"/><span class="required">*</span></label>
-	                                        <input type="text" name="fisn" id="fisn" class="form-control" value="${visFinal.fisn}"></input>
-	                                    </div>
-	                                </div>
-	                                <div class="col-sm-4">
-	                                    <div class="form-group">
-	                                        <label class="form-control-label" for="ffsn"><spring:message code="ff"/><span class="required">*</span></label>
-	                                        <input type="text" name="ffsn" id="ffsn" class="form-control" value="${visFinal.ffsn}"></input>
-	                                    </div>
-	                                </div>
+                                    <div class="form-group col-sm-4" id="secrecionNasalG">
+                                        <label class="form-control-label" for="secrecionNasal"><spring:message code="secrecionNasal"/><span class="required">*</span></label>
+                                        <select name="secrecionNasal" id="secrecionNasal" class="form-control">
+	                                        <option selected value=""><spring:message code="select" />...</option>
+                                            <c:forEach items="${sinod}" var="sinodCat">
+												<c:choose> 
+													<c:when test="${sinodCat.catKey eq visFinal.secrecionNasal}">
+														<option selected value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:when>
+													<c:otherwise>
+														<option value="${sinodCat.catKey}"><spring:message code="${sinodCat.messageKey}" /></option>
+													</c:otherwise>
+												</c:choose> 
+											</c:forEach>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="fisnG">
+                                        <label class="form-control-label" for="fisn"><spring:message code="fi"/><span class="required">*</span></label>
+                                        <input type="text" name="fisn" id="fisn" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.fisn}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
+                                    <div class="form-group col-sm-4" id="ffsnG">
+                                        <label class="form-control-label" for="ffsn"><spring:message code="ff"/><span class="required">*</span></label>
+                                        <input type="text" name="ffsn" id="ffsn" class="form-control date-picker" value="<fmt:formatDate value="${visFinal.ffsn}" pattern="dd/MM/yyyy" />" data-date-end-date="+0d"></input>
+                                    </div>
 	                            </div> 
 	                            <div class="form-group">
 									<div class="col-md-12">
@@ -367,11 +343,11 @@
 	    <spring:param name="languagedt" value="${lenguaje}" /></spring:url>
 	<script src="${datePickerLoc}"></script>
 	
-	<spring:url value="/chf/editarcaso/saveVisit" var="saveVisitUrl"/>
+	<spring:url value="/chf/editarcaso/saveVisitFinal" var="saveVisitFinalUrl"/>
 	<c:set var="processSuccess"><spring:message code="process.success" /></c:set>
 	<script>
 		jQuery(document).ready(function() {			
-			var parametros = {saveVisitUrl: "${saveVisitUrl}",
+			var parametros = {saveVisitFinalUrl: "${saveVisitFinalUrl}",
 					processSuccess: "${processSuccess}",
 					fechaInicio:"${fechaInicio}"};
 			CreateVisit.init(parametros);

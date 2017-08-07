@@ -78,7 +78,7 @@
 		                                
 		                                <tr>
 		                                    <td><c:out value="${visita.visita}" /></td>
-		                                    <td><fmt:formatDate value="${visita.fechaVisita}" pattern="dd/MM/yyyy" /></td>
+		                                    <td><fmt:formatDate value="${visita.fechaVisita}" pattern="dd/MM/yyyy HH:mm" /></td>
 		                                    <td><c:out value="${visita.horaProbableVisita}" /></td>
 		                                    <c:choose>
 		                                        <c:when test="${visita.expCS eq 'S'}">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <div class="row">
-	                    <div class="col-sm-6">
+	                    <div class="col-sm-12">
 		                    <div class="card">
 		                        <div class="card-header">
 		                            <i class="fa fa-group"></i> <spring:message code="failVisit" />
@@ -140,7 +140,7 @@
 				                                    <spring:param name="codigoFallaVisita" value="${fallida.codigoFallaVisita}" />
 				                                </spring:url>
 				                                <tr>
-				                                    <td><fmt:formatDate value="${fallida.fechaVisita}" pattern="dd/MM/yyyy hh:mm" /></td>
+				                                    <td><fmt:formatDate value="${fallida.fechaVisita}" pattern="dd/MM/yyyy HH:mm" /></td>
 				                                    <td><c:out value="${fallida.razonVisitaFallida}" /></td>
 				                                    <td><c:out value="${fallida.otraRazon}" /></td>
 				                                    <td><a href="${fn:escapeXml(editUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
@@ -156,7 +156,9 @@
 		                        </div>
 		                    </div>
 	                    </div>
-	                    <div class="col-sm-6">
+                    </div>
+                    <div class="row">
+	                    <div class="col-sm-12">
 		                    <div class="card">
 		                        <div class="card-header">
 		                            <i class="fa fa-group"></i> <spring:message code="visitaFinal" />
@@ -195,6 +197,40 @@
 		                                            <p class="form-control-static"><c:out value="${visFinal.secrecionNasal}"/></p>
 		                                        </div>
 			                            	</div>
+			                            	<spring:url value="/chf/editarcaso/newsamp/{codigoCasoVisita}/2/" var="newSampUrl">
+				                                <spring:param name="codigoCasoVisita" value="${visFinal.codigoParticipanteCaso.codigoCasoParticipante}" />
+				                            </spring:url>
+			                            	<table class="table table-striped table-bordered">
+				                               <thead>
+				                                   <tr>
+					                                <th><spring:message code="tipoMuestra" /></th>
+					                                <th><spring:message code="tubo" /></th>
+					                                <th><spring:message code="tomaMxSn" /></th>
+					                                <th><spring:message code="volumen" /></th>
+					                                <th></th>
+				                                   </tr>
+				                               </thead>
+				                               <tbody>
+				                                <c:forEach items="${muestras}" var="muestra">
+					                                <spring:url value="/chf/editarcaso/editSamp/{codigoCasoVisita}/{codigo}/2/" var="sampleUrl">
+					                                	<spring:param name="codigoCasoVisita" value="${visFinal.codigoParticipanteCaso.codigoCasoParticipante}" />
+					                                    <spring:param name="codigo" value="${muestra.codigo}" />
+					                                </spring:url>
+					                                <spring:url value="/chf/editarcaso/voidSamp/{codigoCasoVisita}/{codigo}/2/" var="voidUrl">
+					                                	<spring:param name="codigoCasoVisita" value="${visFinal.codigoParticipanteCaso.codigoCasoParticipante}" />
+					                                    <spring:param name="codigo" value="${muestra.codigo}" />
+					                                </spring:url>
+					                                <tr>
+					                                    <td><c:out value="${muestra.tipoMuestra}" /></td>
+					                                    <td><c:out value="${muestra.tubo}" /></td>
+					                                    <td><c:out value="${muestra.tomaMxSn}" /></td>
+					                                    <td><c:out value="${muestra.volumen}" /></td>
+					                                    <td><a href="${fn:escapeXml(sampleUrl)}" class="btn btn-outline-primary btn-sm"><i class="fa fa-edit"></i></a>
+					                                    <a href="" data-toggle="modal" data-id= "${fn:escapeXml(voidUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash"></i></a></td>
+					                                </tr>
+					                            </c:forEach>
+				                               </tbody>
+				                           </table>
                                         </c:when>
                                         <c:otherwise>
                                             <div class="form-group row">

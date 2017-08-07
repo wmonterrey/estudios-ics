@@ -162,7 +162,7 @@
                         <div class="card-header">
                             <i class="fa fa-group"></i> <spring:message code="sample"/>s 
                         </div>
-                            <spring:url value="/chf/editarcaso/newsamp/{codigoCasoVisita}" var="newSampUrl">
+                            <spring:url value="/chf/editarcaso/newsamp/{codigoCasoVisita}/1/" var="newSampUrl">
                                 <spring:param name="codigoCasoVisita" value="${visita.codigoCasoVisita}" />
                             </spring:url>
                             <table class="table table-striped table-bordered">
@@ -177,11 +177,11 @@
                                 </thead>
                                 <tbody>
 	                                <c:forEach items="${muestras}" var="muestra">
-		                                <spring:url value="/chf/editarcaso/editSamp/{codigoCasoVisita}/{codigo}/" var="sampleUrl">
+		                                <spring:url value="/chf/editarcaso/editSamp/{codigoCasoVisita}/{codigo}/1/" var="sampleUrl">
 		                                	<spring:param name="codigoCasoVisita" value="${visita.codigoCasoVisita}" />
 		                                    <spring:param name="codigo" value="${muestra.codigo}" />
 		                                </spring:url>
-		                                <spring:url value="/chf/editarcaso/voidSamp/{codigoCasoVisita}/{codigo}" var="voidUrl">
+		                                <spring:url value="/chf/editarcaso/voidSamp/{codigoCasoVisita}/{codigo}/1/" var="voidUrl">
 		                                	<spring:param name="codigoCasoVisita" value="${visita.codigoCasoVisita}" />
 		                                    <spring:param name="codigo" value="${muestra.codigo}" />
 		                                </spring:url>

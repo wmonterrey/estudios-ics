@@ -140,6 +140,7 @@
             <!-- /.conainer-fluid -->
         </div>
     </div>
+    </div>
     <jsp:include page="../../fragments/bodyFooter.jsp" />
     <jsp:include page="../../fragments/corePlugins.jsp" />
     <c:choose>

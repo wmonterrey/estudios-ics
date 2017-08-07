@@ -57,7 +57,12 @@ var CreateSamp = function () {
         	$("#horaInicioPax").mask("99:99");
         	$("#horaFinPax").mask("99:99");
         	handleInit();
-        	var maximo = 2;
+        	var maximo = 0;
+        	if ($('#tubo').val() == "2") {
+        		maximo = 2;
+    		} else {
+    			maximo = 12;
+    		}
         	var form1 = $('#samp-form');
         	form1.validate( {
                 rules: {

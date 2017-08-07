@@ -123,10 +123,13 @@ public class ChfCasosController {
         List<VisitaSeguimientoCaso> vseg = visitaSeguimientoCasoService.getVisitaSeguimientoCasos(codigo);
         List<VisitaFallidaCaso> vfall = this.visitaFallidaCasoService.getVisitaFallidaCasos(codigo);
         VisitaFinalCaso visFinal = this.visitaFinalCasoService.getVisitaFinalCaso(codigo);
+        List<Muestra> muestras = null;
+        if(visFinal!=null) muestras = muestraService.getMuestrasTx(visFinal.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),visFinal.getFechaVisita());
         model.addAttribute("participante",participante);
         model.addAttribute("visitas",vseg);
         model.addAttribute("fallidas",vfall);
         model.addAttribute("visFinal",visFinal);
+        model.addAttribute("muestras",muestras);
         return "/chfcasos/participantData";
     }
     
@@ -264,6 +267,7 @@ public class ChfCasosController {
 				//Recupera el medicion de la base de datos
 				vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
 			}
+			List<Muestra> muestras = muestraService.getMuestrasTx(vsc.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),vsc.getFechaVisita());
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
         	vsc.setVisita(visita);
@@ -280,6 +284,12 @@ public class ChfCasosController {
 			vsc.setEstado('1');
 			//Actualiza la visita
 			this.visitaSeguimientoCasoService.saveOrUpdateVisitaSeguimientoCaso(vsc);
+			for (Muestra muestra:muestras){
+				muestra.setRecordDate(date1);
+				muestra.setRecordUser(usuario.getUsername());
+				muestra.setDeviceid(idSesion + "-"+ direccionIp);
+				this.muestraService.saveOrUpdate(muestra);
+			}
 			return createJsonResponse(vsc);
     	}
     	catch (DataIntegrityViolationException e){
@@ -714,10 +724,19 @@ public class ChfCasosController {
 	}
     
     
-    @RequestMapping(value = "/newsamp/{codigoCasoVisita}", method = RequestMethod.GET)
-	public String initCreationSamp(@PathVariable("codigoCasoVisita") String codigoCasoVisita, Model model) {
-    	VisitaSeguimientoCaso vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
-    	model.addAttribute("visita", vsc);
+    @RequestMapping(value = "/newsamp/{codigoCasoVisita}/{tipo}/", method = RequestMethod.GET)
+	public String initCreationSamp(@PathVariable("codigoCasoVisita") String codigoCasoVisita, @PathVariable("tipo") String tipo, Model model) {
+    	String formName="";
+    	if (tipo.equals("1")){
+    		VisitaSeguimientoCaso vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
+        	model.addAttribute("visita", vsc);
+        	formName = "/chfcasos/enterSamp";
+    	}
+    	else if(tipo.equals("2")){
+    		VisitaFinalCaso visFinal = this.visitaFinalCasoService.getVisitaFinalCaso(codigoCasoVisita);
+    		model.addAttribute("visita", visFinal);
+    		formName = "/chfcasos/enterSampFinal";
+    	}
     	List<MessageResource> catTipoMx = messageResourceService.getCatalogo("CHF_CAT_TIP0_MX");
     	catTipoMx.remove(messageResourceService.getMensaje("CHF_CAT_TIP0_MX_09"));
     	model.addAttribute("catTipoMx", catTipoMx);
@@ -736,16 +755,25 @@ public class ChfCasosController {
     	model.addAttribute("catObservacion", catObservacion);
     	List<MessageResource> catPinchazos = messageResourceService.getCatalogo("CHF_CAT_PINCH_MX");
     	model.addAttribute("catPinchazos", catPinchazos);
-		return "/chfcasos/enterSamp";
+		return formName;
 	}
     
-    @RequestMapping(value = "/editSamp/{codigoCasoVisita}/{codigo}/", method = RequestMethod.GET)
-    public String initEditionSamp(Model model, @PathVariable(value = "codigo") String codigo, @PathVariable(value = "codigoCasoVisita") String codigoCasoVisita){
+    @RequestMapping(value = "/editSamp/{codigoCasoVisita}/{codigo}/{tipo}/", method = RequestMethod.GET)
+    public String initEditionSamp(Model model, @PathVariable(value = "codigo") String codigo, @PathVariable(value = "codigoCasoVisita") String codigoCasoVisita, @PathVariable("tipo") String tipo){
     	Muestra fcc = this.muestraService.getMuestra(codigo);
     	if (fcc!=null){
     		model.addAttribute("muestra", fcc);
-    		VisitaSeguimientoCaso vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
-        	model.addAttribute("visita", vsc);
+    		String formName="";
+        	if (tipo.equals("1")){
+        		VisitaSeguimientoCaso vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
+            	model.addAttribute("visita", vsc);
+            	formName = "/chfcasos/enterSamp";
+        	}
+        	else if(tipo.equals("2")){
+        		VisitaFinalCaso visFinal = this.visitaFinalCasoService.getVisitaFinalCaso(codigoCasoVisita);
+        		model.addAttribute("visita", visFinal);
+        		formName = "/chfcasos/enterSampFinal";
+        	}
     		List<MessageResource> catTipoMx = messageResourceService.getCatalogo("CHF_CAT_TIP0_MX");
         	catTipoMx.remove(messageResourceService.getMensaje("CHF_CAT_TIP0_MX_09"));
         	model.addAttribute("catTipoMx", catTipoMx);
@@ -764,20 +792,25 @@ public class ChfCasosController {
         	model.addAttribute("catObservacion", catObservacion);
         	List<MessageResource> catPinchazos = messageResourceService.getCatalogo("CHF_CAT_PINCH_MX");
         	model.addAttribute("catPinchazos", catPinchazos);
-    		return "/chfcasos/enterSamp";
+    		return formName;
     	}
     	else{
     		return "404";
         }
     }  
     
-    @RequestMapping("/voidSamp/{codigoCasoVisita}/{codigo}")
-    public String initDeletionSamp(@PathVariable("codigo") String codigo, @PathVariable("codigoCasoVisita") String codigoCasoVisita,
+    @RequestMapping("/voidSamp/{codigoCasoVisita}/{codigo}/{tipo}/")
+    public String initDeletionSamp(@PathVariable("codigo") String codigo, @PathVariable("codigoCasoVisita") String codigoCasoVisita, @PathVariable("tipo") String tipo,
     		RedirectAttributes redirectAttributes) {
     	String redirecTo="404";
     	UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
     	Muestra sample = this.muestraService.getMuestra(codigo);
-    	redirecTo = "redirect:/chf/editarcaso/visitdata/{codigoCasoVisita}/";
+    	if (tipo.equals("1")){
+    		redirecTo = "redirect:/chf/editarcaso/visitdata/{codigoCasoVisita}/";
+    	}
+    	else if(tipo.equals("2")){
+    		redirecTo = "redirect:/chf/editarcaso/participantdata/{codigoCasoVisita}/";
+    	}
     	redirectAttributes.addFlashAttribute("sampNoHabilitado", true);
     	if(sample!=null){
     		sample.setRecordDate(new Date());
@@ -893,6 +926,121 @@ public class ChfCasosController {
     	List<MessageResource> tratamientos = messageResourceService.getCatalogo("CHF_CAT_TRATAMIENTO");
     	model.addAttribute("tratamientos",tratamientos);
 		return "/chfcasos/enterVisFinal";
+	}
+    
+    @RequestMapping( value="saveVisitFinal", method=RequestMethod.POST)
+	public ResponseEntity<String> processVisitFinalForm( @RequestParam(value="codigoParticipanteCaso", required=true) String codigoParticipanteCaso
+			, @RequestParam( value="fechaVisita", required=true ) String fechaVisita
+			, @RequestParam( value="horaVisita", required=true ) String horaVisita
+			, @RequestParam( value="enfermo", required=true ) String enfermo
+			, @RequestParam( value="consTerreno", required=false, defaultValue="" ) String consTerreno
+			, @RequestParam( value="referidoCs", required=false, defaultValue="" ) String referidoCs
+			, @RequestParam( value="tratamiento", required=false, defaultValue="" ) String tratamiento
+			, @RequestParam( value="cualAntibiotico", required=false, defaultValue="" ) String cualAntibiotico
+			, @RequestParam( value="sintResp", required=true ) String sintResp
+			, @RequestParam( value="fiebre", required=false, defaultValue="" ) String fiebre
+			, @RequestParam( value="tos", required=false, defaultValue="" ) String tos
+			, @RequestParam( value="dolorGarganta", required=false, defaultValue="" ) String dolorGarganta
+			, @RequestParam( value="secrecionNasal", required=false, defaultValue="" ) String secrecionNasal
+			, @RequestParam( value="fif", required=false, defaultValue="" ) String fif
+			, @RequestParam( value="fff", required=false, defaultValue="" ) String fff
+			, @RequestParam( value="fitos", required=false, defaultValue="" ) String fitos
+			, @RequestParam( value="fftos", required=false, defaultValue="" ) String fftos
+			, @RequestParam( value="figg", required=false, defaultValue="" ) String figg
+			, @RequestParam( value="ffgg", required=false, defaultValue="" ) String ffgg
+			, @RequestParam( value="fisn", required=false, defaultValue="" ) String fisn
+			, @RequestParam( value="ffsn", required=false, defaultValue="" ) String ffsn
+	        ){
+    	try{
+    		UserSistema usuario = usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+    		ParticipanteCohorteFamiliaCaso participante = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(codigoParticipanteCaso);
+    		VisitaFinalCaso visFinal = this.visitaFinalCasoService.getVisitaFinalCaso(codigoParticipanteCaso);
+    		List<Muestra> muestras = null;
+			//Si el visFinal es nulo
+			if (visFinal==null){
+				//Crear un nuevo visFinal
+				visFinal = new VisitaFinalCaso();
+				visFinal.setCodigoParticipanteCaso(participante);
+			}
+			else{
+				muestras = muestraService.getMuestrasTx(visFinal.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),visFinal.getFechaVisita());
+			}
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+        	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
+        	visFinal.setFechaVisita(date1);
+        	visFinal.setEnfermo(enfermo);
+        	visFinal.setConsTerreno(consTerreno);
+        	visFinal.setReferidoCs(referidoCs);
+        	visFinal.setTratamiento(tratamiento);
+        	visFinal.setCualAntibiotico(cualAntibiotico);
+        	visFinal.setSintResp(sintResp);
+        	visFinal.setFiebre(fiebre);
+        	visFinal.setTos(tos);
+        	visFinal.setDolorGarganta(dolorGarganta);
+        	visFinal.setSecrecionNasal(secrecionNasal);
+        	SimpleDateFormat formatterSintDate = new SimpleDateFormat("dd/MM/yyyy");
+        	Date sintDate = null;
+        	if (fif!=""){
+        		sintDate = formatterSintDate.parse(fif);
+        		visFinal.setFif(sintDate);
+        	}
+        	if (fff!=""){
+        		sintDate = formatterSintDate.parse(fff);
+        		visFinal.setFff(sintDate);
+        	}
+        	if (fitos!=""){
+        		sintDate = formatterSintDate.parse(fitos);
+        		visFinal.setFitos(sintDate);
+        	}
+        	if (fftos!=""){
+        		sintDate = formatterSintDate.parse(fftos);
+        		visFinal.setFftos(sintDate);
+        	}
+        	if (figg!=""){
+        		sintDate = formatterSintDate.parse(figg);
+        		visFinal.setFigg(sintDate);
+        	}
+        	if (ffgg!=""){
+        		sintDate = formatterSintDate.parse(ffgg);
+        		visFinal.setFfgg(sintDate);
+        	}
+        	if (fisn!=""){
+        		sintDate = formatterSintDate.parse(fisn);
+        		visFinal.setFisn(sintDate);
+        	}
+        	if (ffsn!=""){
+        		sintDate = formatterSintDate.parse(ffsn);
+        		visFinal.setFfsn(sintDate);
+        	}
+        	visFinal.setRecordUser(usuario.getUsername());
+        	visFinal.setRecordDate(new Date());
+			WebAuthenticationDetails wad  = (WebAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
+        	String idSesion = wad.getSessionId();
+        	String direccionIp = wad.getRemoteAddress();
+        	visFinal.setDeviceid(idSesion + "-"+ direccionIp);
+			visFinal.setEstado('1');
+			//Actualiza la visita
+			this.visitaFinalCasoService.saveOrUpdateVisitaFinalCasoCaso(visFinal);
+			for (Muestra muestra:muestras){
+				muestra.setRecordDate(date1);
+				muestra.setRecordUser(usuario.getUsername());
+				muestra.setDeviceid(idSesion + "-"+ direccionIp);
+				this.muestraService.saveOrUpdate(muestra);
+			}
+			return createJsonResponse(visFinal);
+    	}
+    	catch (DataIntegrityViolationException e){
+    		String message = e.getMostSpecificCause().getMessage();
+    		Gson gson = new Gson();
+    	    String json = gson.toJson(message);
+    		return new ResponseEntity<String>( json, HttpStatus.CREATED);
+    	}
+    	catch(Exception e){
+    		Gson gson = new Gson();
+    	    String json = gson.toJson(e.toString());
+    		return new ResponseEntity<String>( json, HttpStatus.CREATED);
+    	}
+		
 	}
     
     private ResponseEntity<String> createJsonResponse( Object o ){

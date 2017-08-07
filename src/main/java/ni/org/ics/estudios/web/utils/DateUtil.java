@@ -10,8 +10,8 @@ import java.util.Date;
  */
 public final class DateUtil {
 
-    /*
-    * Convierte un string a Date según el formato indicado
+    /**
+    * Convierte un string a Date segun el formato indicado
     * @param strFecha cadena a convertir
     * @param formato formato solicitado
     * @return Fecha
@@ -27,7 +27,7 @@ public final class DateUtil {
     }
 
     /**
-     * Convierte una Date a String, según el formato indicado
+     * Convierte una Date a String, segun el formato indicado
      * @param dtFecha Fecha a convertir
      * @param format formato solicitado
      * @return String

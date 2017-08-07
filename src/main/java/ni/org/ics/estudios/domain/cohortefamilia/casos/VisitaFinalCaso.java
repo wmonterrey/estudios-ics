@@ -71,7 +71,7 @@ public class VisitaFinalCaso extends BaseMetaData implements Auditable {
 		this.enfermo = enfermo;
 	}
 
-	@Column(name = "CONSULTA_TERRENO", length = 2, nullable = false)
+	@Column(name = "CONSULTA_TERRENO", length = 2, nullable = true)
 	public String getConsTerreno() {
 		return consTerreno;
 	}
@@ -80,7 +80,7 @@ public class VisitaFinalCaso extends BaseMetaData implements Auditable {
 		this.consTerreno = consTerreno;
 	}
 
-	@Column(name = "REFERIDO_CS", length = 2, nullable = false)
+	@Column(name = "REFERIDO_CS", length = 2, nullable = true)
 	public String getReferidoCs() {
 		return referidoCs;
 	}
@@ -89,7 +89,7 @@ public class VisitaFinalCaso extends BaseMetaData implements Auditable {
 		this.referidoCs = referidoCs;
 	}
 
-	@Column(name = "TRATAMIENTO", length = 255, nullable = false)
+	@Column(name = "TRATAMIENTO", length = 255, nullable = true)
 	public String getTratamiento() {
 		return tratamiento;
 	}
@@ -98,7 +98,7 @@ public class VisitaFinalCaso extends BaseMetaData implements Auditable {
 		this.tratamiento = tratamiento;
 	}
 
-	@Column(name = "CUAL_ANTIBIOTICO", length = 255, nullable = false)
+	@Column(name = "CUAL_ANTIBIOTICO", length = 255, nullable = true)
 	public String getCualAntibiotico() {
 		return cualAntibiotico;
 	}
