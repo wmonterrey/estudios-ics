@@ -983,38 +983,54 @@ public class ChfCasosController {
         	visFinal.setSecrecionNasal(secrecionNasal);
         	SimpleDateFormat formatterSintDate = new SimpleDateFormat("dd/MM/yyyy");
         	Date sintDate = null;
-        	if (fif!=""){
+        	if (!fif.equals("")){
         		sintDate = formatterSintDate.parse(fif);
         		visFinal.setFif(sintDate);
-        	}
-        	if (fff!=""){
+        	}else{
+                visFinal.setFif(null);
+            }
+        	if (!fff.equals("")){
         		sintDate = formatterSintDate.parse(fff);
         		visFinal.setFff(sintDate);
-        	}
-        	if (fitos!=""){
+        	}else{
+                visFinal.setFff(null);
+            }
+        	if (!fitos.equals("")){
         		sintDate = formatterSintDate.parse(fitos);
         		visFinal.setFitos(sintDate);
-        	}
-        	if (fftos!=""){
+        	}else{
+                visFinal.setFitos(null);
+            }
+        	if (!fftos.equals("")){
         		sintDate = formatterSintDate.parse(fftos);
         		visFinal.setFftos(sintDate);
-        	}
-        	if (figg!=""){
+        	}else{
+                visFinal.setFftos(null);
+            }
+        	if (!figg.equals("")){
         		sintDate = formatterSintDate.parse(figg);
         		visFinal.setFigg(sintDate);
-        	}
-        	if (ffgg!=""){
+        	}else{
+                visFinal.setFigg(null);
+            }
+        	if (!ffgg.equals("")){
         		sintDate = formatterSintDate.parse(ffgg);
         		visFinal.setFfgg(sintDate);
-        	}
-        	if (fisn!=""){
+        	}else{
+                visFinal.setFfgg(null);
+            }
+        	if (!fisn.equals("")){
         		sintDate = formatterSintDate.parse(fisn);
         		visFinal.setFisn(sintDate);
-        	}
-        	if (ffsn!=""){
+        	}else{
+                visFinal.setFisn(null);
+            }
+        	if (!ffsn.equals("")){
         		sintDate = formatterSintDate.parse(ffsn);
         		visFinal.setFfsn(sintDate);
-        	}
+        	}else{
+                visFinal.setFfsn(null);
+            }
         	visFinal.setRecordUser(usuario.getUsername());
         	visFinal.setRecordDate(new Date());
 			WebAuthenticationDetails wad  = (WebAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
