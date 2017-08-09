@@ -249,6 +249,7 @@ public class ChfCasosController {
     		UserSistema usuario = usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
     		ParticipanteCohorteFamiliaCaso participante = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(codigoParticipanteCaso);
 			VisitaSeguimientoCaso vsc = new VisitaSeguimientoCaso();
+			List<Muestra> muestras = null;
 			//Si el codigoCasoVisita viene en blanco es una nueva visita
 			if (codigoCasoVisita.equals("")){
 				if (this.visitaSeguimientoCasoService.checkVisitaSeguimientoCasos(codigoParticipanteCaso, visita, fechaVisita)){
@@ -266,8 +267,8 @@ public class ChfCasosController {
 			else{
 				//Recupera el medicion de la base de datos
 				vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
+				muestras = muestraService.getMuestrasTx(vsc.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),vsc.getFechaVisita());
 			}
-			List<Muestra> muestras = muestraService.getMuestrasTx(vsc.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),vsc.getFechaVisita());
 			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
         	vsc.setVisita(visita);
@@ -284,11 +285,13 @@ public class ChfCasosController {
 			vsc.setEstado('1');
 			//Actualiza la visita
 			this.visitaSeguimientoCasoService.saveOrUpdateVisitaSeguimientoCaso(vsc);
-			for (Muestra muestra:muestras){
-				muestra.setRecordDate(date1);
-				muestra.setRecordUser(usuario.getUsername());
-				muestra.setDeviceid(idSesion + "-"+ direccionIp);
-				this.muestraService.saveOrUpdate(muestra);
+			if(muestras!=null){
+				for (Muestra muestra:muestras){
+					muestra.setRecordDate(date1);
+					muestra.setRecordUser(usuario.getUsername());
+					muestra.setDeviceid(idSesion + "-"+ direccionIp);
+					this.muestraService.saveOrUpdate(muestra);
+				}
 			}
 			return createJsonResponse(vsc);
     	}
@@ -1021,11 +1024,13 @@ public class ChfCasosController {
 			visFinal.setEstado('1');
 			//Actualiza la visita
 			this.visitaFinalCasoService.saveOrUpdateVisitaFinalCasoCaso(visFinal);
-			for (Muestra muestra:muestras){
-				muestra.setRecordDate(date1);
-				muestra.setRecordUser(usuario.getUsername());
-				muestra.setDeviceid(idSesion + "-"+ direccionIp);
-				this.muestraService.saveOrUpdate(muestra);
+			if(muestras!=null){
+				for (Muestra muestra:muestras){
+					muestra.setRecordDate(date1);
+					muestra.setRecordUser(usuario.getUsername());
+					muestra.setDeviceid(idSesion + "-"+ direccionIp);
+					this.muestraService.saveOrUpdate(muestra);
+				}
 			}
 			return createJsonResponse(visFinal);
     	}
