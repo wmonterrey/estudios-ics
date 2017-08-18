@@ -194,15 +194,17 @@ public class CasaCohorteFamiliaCasoWController {
             if(participanteCaso==null){
                 participanteCaso = new ParticipanteCohorteFamiliaCaso();
                 participanteCaso.setCodigoCasoParticipante(getCadenaAlfanumAleatoria(36, true));
+                participanteCaso.setRecordDate(new Date());
+                participanteCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+                participanteCaso.setPasive('0');
             }
             participanteCaso.setParticipante(this.participanteCohorteFamiliaService.getParticipanteCHFByCodigo(codigoParticipante));
             participanteCaso.setCodigoCaso(casaCaso);
             participanteCaso.setEstado('1');
             participanteCaso.setEnfermo("S");
             participanteCaso.setFechaEnfermedad(DateUtil.StringToDate(fif, "dd/MM/yyyy"));
-            participanteCaso.setPasive('0');
-            participanteCaso.setRecordDate(new Date());
-            participanteCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+
+
             this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participanteCaso);
 
             //Agregar resto de participantes de la casa
@@ -216,13 +218,15 @@ public class CasaCohorteFamiliaCasoWController {
                         participanteCaso.setCodigoCasoParticipante(getCadenaAlfanumAleatoria(36, true));
                         participanteCaso.setEnfermo("N");
                         participanteCaso.setFechaEnfermedad(null);
+                        participanteCaso.setRecordDate(new Date());
+                        participanteCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+                        participanteCaso.setPasive('0');
                     }
                     participanteCaso.setParticipante(participante);
                     participanteCaso.setCodigoCaso(casaCaso);
                     participanteCaso.setEstado('1');
-                    participanteCaso.setPasive('0');
-                    participanteCaso.setRecordDate(new Date());
-                    participanteCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+
+
                     this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participanteCaso);
                 }
             }
