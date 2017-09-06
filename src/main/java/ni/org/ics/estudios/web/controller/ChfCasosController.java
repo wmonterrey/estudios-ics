@@ -269,7 +269,7 @@ public class ChfCasosController {
 				vsc = this.visitaSeguimientoCasoService.getVisitaSeguimientoCaso(codigoCasoVisita);
 				muestras = muestraService.getMuestrasTx(vsc.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),vsc.getFechaVisita());
 			}
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
         	vsc.setVisita(visita);
 			vsc.setFechaVisita(date1);
@@ -637,7 +637,7 @@ public class ChfCasosController {
     		UserSistema usuario = usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
     		CasaCohorteFamiliaCaso caso = casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigo);
     		List<ParticipanteCohorteFamiliaCaso> participantes = participanteCohorteFamiliaCasoService.getParticipantesCohorteFamiliaCasoByCodigoCaso(codigo);
-    		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+    		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
         	WebAuthenticationDetails wad  = (WebAuthenticationDetails) SecurityContextHolder.getContext().getAuthentication().getDetails();
         	String idSesion = wad.getSessionId();
@@ -696,7 +696,7 @@ public class ChfCasosController {
 				//Recupera el visita de la base de datos
 				vfc = this.visitaFallidaCasoService.getVisitaFallidaCaso(codigoFallaVisita);
 			}
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
         	vfc.setFechaVisita(date1);
 			vfc.setRecordUser(usuario.getUsername());
@@ -968,7 +968,7 @@ public class ChfCasosController {
 			else{
 				muestras = muestraService.getMuestrasTx(visFinal.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo(),visFinal.getFechaVisita());
 			}
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         	Date date1 = formatter.parse(fechaVisita+" "+horaVisita);
         	visFinal.setFechaVisita(date1);
         	visFinal.setEnfermo(enfermo);
