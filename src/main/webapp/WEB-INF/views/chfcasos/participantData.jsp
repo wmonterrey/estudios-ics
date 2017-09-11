@@ -124,7 +124,8 @@
 		                            </spring:url>
 		                            <table class="table table-striped table-bordered datatable">
 		                                <thead>
-		                                    <tr>                                        
+		                                    <tr>
+                                                <th><spring:message code="visit" /></th>
 				                                <th><spring:message code="visitDate" /></th>
 				                                <th><spring:message code="razonVisitaFallida" /></th>
 				                                <th><spring:message code="otraRazon" /></th>
@@ -140,6 +141,7 @@
 				                                    <spring:param name="codigoFallaVisita" value="${fallida.codigoFallaVisita}" />
 				                                </spring:url>
 				                                <tr>
+                                                    <td><c:out value="${fallida.visita}" /></td>
 				                                    <td><fmt:formatDate value="${fallida.fechaVisita}" pattern="dd/MM/yyyy HH:mm" /></td>
 				                                    <td><c:out value="${fallida.razonVisitaFallida}" /></td>
 				                                    <td><c:out value="${fallida.otraRazon}" /></td>

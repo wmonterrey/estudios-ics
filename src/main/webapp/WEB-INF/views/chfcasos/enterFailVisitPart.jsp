@@ -69,6 +69,26 @@
 	                                    </div>
 	                                </div>
 	                            </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for="visita"><spring:message code="please.enter"/> <spring:message code="visita"/><span class="required">*</span></label>
+                                            <select name="visita" id="visita" class="form-control">
+                                                <option selected value=""><spring:message code="select" />...</option>
+                                                <c:forEach items="${visitas}" var="visitaCat">
+                                                    <c:choose>
+                                                        <c:when test="${visitaCat.catKey eq visitafallida.visita}">
+                                                            <option selected value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <option value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 	                        	<div class="row">
 	                                <div class="col-sm-12">
 	                                    <div class="form-group">

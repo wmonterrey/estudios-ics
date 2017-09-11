@@ -25,7 +25,7 @@ public class VisitaFallidaCaso extends BaseMetaData implements Auditable {
 	private Date fechaVisita;
 	private String razonVisitaFallida;
 	private String otraRazon;
-	
+    private String visita;
     
 	@Id
     @Column(name = "CODIGO_VISITA_CASO", length = 50, nullable = false)
@@ -74,6 +74,15 @@ public class VisitaFallidaCaso extends BaseMetaData implements Auditable {
 	public void setOtraRazon(String otraRazon) {
 		this.otraRazon = otraRazon;
 	}
+
+    @Column(name = "VISITA", length = 2, nullable = true)
+    public String getVisita() {
+        return visita;
+    }
+
+    public void setVisita(String visita) {
+        this.visita = visita;
+    }
 
 	@Override
 	public String toString(){

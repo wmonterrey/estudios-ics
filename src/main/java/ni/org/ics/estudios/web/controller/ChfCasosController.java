@@ -594,8 +594,10 @@ public class ChfCasosController {
 	public String initCreationFailVisit(@PathVariable("codigoCaso") String codigoCaso, Model model) {
     	CasaCohorteFamiliaCaso caso = casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigoCaso);
     	List<MessageResource> razones = messageResourceService.getCatalogo("CHF_CAT_VISITA_NO_C");
+        List<MessageResource> visitas = messageResourceService.getCatalogo("CHF_CAT_VIS_MI");
     	model.addAttribute("caso",caso);
     	model.addAttribute("razones",razones);
+        model.addAttribute("visitas",visitas);
 		return "/chfcasos/enterFailVisit";
 	}
     
@@ -603,8 +605,10 @@ public class ChfCasosController {
 	public String initCreationFailVisitPart(@PathVariable("codigoCasoParticipante") String codigoCasoParticipante, Model model) {
     	ParticipanteCohorteFamiliaCaso participante = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(codigoCasoParticipante);
     	List<MessageResource> razones = messageResourceService.getCatalogo("CHF_CAT_VISITA_NO_P");
+        List<MessageResource> visitas = messageResourceService.getCatalogo("CHF_CAT_VIS_MI");
     	model.addAttribute("participante",participante);
     	model.addAttribute("razones",razones);
+        model.addAttribute("visitas",visitas);
 		return "/chfcasos/enterFailVisitPart";
 	}
     
@@ -616,8 +620,10 @@ public class ChfCasosController {
     		model.addAttribute("visitafallida", vfc);
     		ParticipanteCohorteFamiliaCaso participante = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(vfc.getCodigoParticipanteCaso().getCodigoCasoParticipante());
     		model.addAttribute("participante",participante);
-    		List<MessageResource> razones = messageResourceService.getCatalogo("CHF_CAT_VISITA_NO_P");
+            List<MessageResource> razones = messageResourceService.getCatalogo("CHF_CAT_VISITA_NO_P");
+            List<MessageResource> visitas = messageResourceService.getCatalogo("CHF_CAT_VIS_MI");
     		model.addAttribute("razones",razones);
+            model.addAttribute("visitas",visitas);
     		return "/chfcasos/enterFailVisitPart";
     	}
     	else{
@@ -632,6 +638,7 @@ public class ChfCasosController {
 			, @RequestParam( value="horaVisita", required=true ) String horaVisita
 			, @RequestParam( value="razonVisitaFallida", required=true ) String razonVisitaFallida
 			, @RequestParam( value="otraRazon", required=false, defaultValue="" ) String otraRazon
+            , @RequestParam( value="visita", required=false, defaultValue="" ) String visita
 			){
     	try{
     		UserSistema usuario = usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -653,6 +660,7 @@ public class ChfCasosController {
     			vfc.setEstado('1');
     			vfc.setRazonVisitaFallida(razonVisitaFallida);
     			vfc.setOtraRazon(otraRazon);
+                vfc.setVisita(visita);
     			//Actualiza la visita
     			this.visitaFallidaCasoService.saveOrUpdateVisitaFallidaCaso(vfc);
     		}
@@ -679,6 +687,7 @@ public class ChfCasosController {
 			, @RequestParam( value="horaVisita", required=true ) String horaVisita
 			, @RequestParam( value="razonVisitaFallida", required=true ) String razonVisitaFallida
 			, @RequestParam( value="otraRazon", required=false, defaultValue="" ) String otraRazon
+            , @RequestParam( value="visita", required=false, defaultValue="" ) String visita
 	        ){
     	try{
     		UserSistema usuario = usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -708,6 +717,7 @@ public class ChfCasosController {
 			vfc.setEstado('1');
 			vfc.setRazonVisitaFallida(razonVisitaFallida);
 			vfc.setOtraRazon(otraRazon);
+            vfc.setVisita(visita);
 			//Actualiza el contacto
 			this.visitaFallidaCasoService.saveOrUpdateVisitaFallidaCaso(vfc);
 			return createJsonResponse(vfc);
