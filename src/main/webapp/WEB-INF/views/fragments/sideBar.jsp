@@ -32,6 +32,9 @@
                     <li class="nav-item intensiveMonitoring">
                         <a class="nav-link" href="<spring:url value="/super/casacaso/" htmlEscape="true "/>"><i class="icon-location-pin"></i><spring:message code="intensiveMonitoring" /></a>
                     </li>
+                    <li class="nav-item visitsIM">
+                        <a class="nav-link" href="<spring:url value="/reportes/super/visitas/" htmlEscape="true "/>"><i class="icon-location-pin"></i><spring:message code="visits" /></a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item nav-dropdown laboratory">
