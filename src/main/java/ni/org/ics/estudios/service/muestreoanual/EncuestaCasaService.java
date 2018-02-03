@@ -1,7 +1,6 @@
 package ni.org.ics.estudios.service.muestreoanual;
 
 import ni.org.ics.estudios.domain.muestreoanual.EncuestaCasaMA;
-import ni.org.ics.estudios.domain.muestreoanual.EncuestaCasaId;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

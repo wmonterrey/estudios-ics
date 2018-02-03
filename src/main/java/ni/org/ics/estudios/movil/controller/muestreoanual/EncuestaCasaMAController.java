@@ -1,7 +1,6 @@
 package ni.org.ics.estudios.movil.controller.muestreoanual;
 
 import ni.org.ics.estudios.domain.muestreoanual.EncuestaCasaMA;
-import ni.org.ics.estudios.domain.muestreoanual.EncuestaCasaId;
 import ni.org.ics.estudios.service.muestreoanual.EncuestaCasaService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
