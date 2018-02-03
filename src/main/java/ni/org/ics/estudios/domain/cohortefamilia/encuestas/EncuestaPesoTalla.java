@@ -22,7 +22,7 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 	/**
 	 * 
 	 */
-	
+    private static final long serialVersionUID = 1L;
 	private ParticipanteCohorteFamilia participante;
     private String tomoMedidaSn;
     private String razonNoTomoMedidas;
@@ -210,6 +210,6 @@ public class EncuestaPesoTalla extends BaseMetaData implements Auditable {
 
     @Override
     public int hashCode() {
-        return participante.hashCode();
+        return participante.getParticipante().getCodigo().hashCode();
     }
 }

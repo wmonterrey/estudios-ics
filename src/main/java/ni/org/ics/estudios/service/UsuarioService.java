@@ -6,14 +6,12 @@ import javax.annotation.Resource;
 
 import ni.org.ics.estudios.domain.catalogs.Estudio;
 import ni.org.ics.estudios.domain.relationships.UserStudy;
-import ni.org.ics.estudios.users.model.Authority;
-import ni.org.ics.estudios.users.model.Rol;
-import ni.org.ics.estudios.users.model.UserAccess;
-import ni.org.ics.estudios.users.model.UserSistema;
+import ni.org.ics.estudios.users.model.*;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -97,7 +95,26 @@ public class UsuarioService {
 		UserSistema user = (UserSistema) query.uniqueResult();
 		return user.getCredentialsNonExpired();
 	}
-	
+
+    /**
+     * Verifica un User
+     *
+     * @return boolean
+     */
+
+    public Boolean checkUser(String username) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM UserSistema u where " +
+                "u.username = '" + username + "'");
+        UserSistema userPermissions = (UserSistema) query.uniqueResult();
+        if (userPermissions !=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 	/**
 	 * Guarda un usuario
 	 * 
@@ -246,5 +263,124 @@ public class UsuarioService {
     public void saveUserStudies(UserStudy userStudy) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(userStudy);
+    }
+
+
+    /**
+     * Borra rol admin
+     *
+     *
+     */
+
+    public Integer deleteRoleAdmin(String userName) {
+        // Retrieve session from Hibernate
+        Session s = sessionFactory.openSession();
+        Transaction tx = s.beginTransaction();
+
+        String hqlDelete = "delete Authority auth where auth.authId.username = :userName and" +
+                " auth.authId.authority = 'ROLE_ADMIN'";
+        int deletedEntities = s.createQuery( hqlDelete )
+                .setString( "userName", userName )
+                .executeUpdate();
+        tx.commit();
+        s.close();
+        return deletedEntities;
+    }
+
+    /**
+     * Borra rol super
+     *
+     *
+     */
+
+    public Integer deleteRoleSuper(String userName) {
+        // Retrieve session from Hibernate
+        Session s = sessionFactory.openSession();
+        Transaction tx = s.beginTransaction();
+
+        String hqlDelete = "delete Authority auth where auth.authId.username = :userName and" +
+                " auth.authId.authority = 'ROLE_SUPER'";
+        int deletedEntities = s.createQuery( hqlDelete )
+                .setString( "userName", userName )
+                .executeUpdate();
+        tx.commit();
+        s.close();
+        return deletedEntities;
+    }
+
+    /**
+     * Borra rol web
+     *
+     *
+     */
+
+    public Integer deleteRoleWeb(String userName) {
+        // Retrieve session from Hibernate
+        Session s = sessionFactory.openSession();
+        Transaction tx = s.beginTransaction();
+
+        String hqlDelete = "delete Authority auth where auth.authId.username = :userName and" +
+                " auth.authId.authority = 'ROLE_WEB'";
+        int deletedEntities = s.createQuery( hqlDelete )
+                .setString( "userName", userName )
+                .executeUpdate();
+        tx.commit();
+        s.close();
+        return deletedEntities;
+    }
+
+    /**
+     * Borra rol terreno
+     *
+     *
+     */
+
+    public Integer deleteRoleTerreno(String userName) {
+        // Retrieve session from Hibernate
+        Session s = sessionFactory.openSession();
+        Transaction tx = s.beginTransaction();
+
+        String hqlDelete = "delete Authority auth where auth.authId.username = :userName and" +
+                " auth.authId.authority = 'ROLE_MOVIL'";
+        int deletedEntities = s.createQuery( hqlDelete )
+                .setString( "userName", userName )
+                .executeUpdate();
+        tx.commit();
+        s.close();
+        return deletedEntities;
+    }
+
+    /**
+     * Regresa todos los permisos de los usuarios
+     *
+     * @return una lista de <code>UserPermissions</code>(s)
+     */
+
+    @SuppressWarnings("unchecked")
+    public List<UserPermissions> getUserPermissions() {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM UserPermissions ");
+        // Retrieve all
+        return  query.list();
+    }
+
+    /**
+     * Regresa todos los permisos de un usuario
+     *
+     * @return una lista de <code>UserPermissions</code>(es)
+     */
+
+    @SuppressWarnings("unchecked")
+    public List<UserPermissions> getUserPermissions(String username) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM UserPermissions perm " +
+                "where perm.username =:username");
+        query.setParameter("username",username);
+        // Retrieve all
+        return  query.list();
     }
 }

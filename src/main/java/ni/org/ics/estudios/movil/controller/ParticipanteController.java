@@ -1,7 +1,9 @@
 package ni.org.ics.estudios.movil.controller;
 
 import ni.org.ics.estudios.domain.Participante;
+import ni.org.ics.estudios.domain.muestreoanual.ParticipanteProcesos;
 import ni.org.ics.estudios.service.ParticipanteService;
+import ni.org.ics.estudios.service.muestreoanual.ParticipanteProcesosService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,7 +26,8 @@ public class ParticipanteController {
 
     @Resource(name = "participanteService")
     private ParticipanteService participanteService;
-
+    @Resource(name="participanteProcesosService")
+    private ParticipanteProcesosService participanteProcesosService;
     /**
      * Acepta una solicitud GET para JSON
      * @return JSON
@@ -59,4 +63,61 @@ public class ParticipanteController {
         return "Datos recibidos!";
     }
 
+    /**
+     * Retorna participantes activos. Acepta una solicitud GET para JSON
+     * @return participantes JSON
+     */
+    @RequestMapping(value = "participantesactivos", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<Participante> descargarParticipantesActivos() {
+        logger.info("Descargando toda la informacion de participantes activos");
+        List<Participante> participantes = participanteService.getParticipantesActivos();
+        if (participantes == null){
+            logger.debug("Nulo");
+        }
+        return participantes;
+    }
+
+    /**
+     * Retorna codigo casa. Acepta una solicitud GET para JSON
+     * @return participante JSON
+     */
+    @RequestMapping(value = "checkcasa/{codigo}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    Integer checkCasa(@PathVariable Integer codigo) {
+        logger.info("Descargando codigo de casa del participante");
+        Integer codCasa = participanteService.checkCasa(codigo);
+        if (codCasa == null){
+            logger.debug("Nulo");
+        }
+        return codCasa;
+    }
+
+    /**
+     * Retorna participante. Acepta una solicitud GET para JSON
+     * @return participante JSON
+     */
+    @RequestMapping(value = "participante/{codigo}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    Participante descargarParticipante(@PathVariable Integer codigo) {
+        logger.info("Descargando toda la informacion del participante "+codigo);
+        Participante participantes = participanteService.getParticipanteByCodigo(codigo);
+        return participantes;
+    }
+
+
+    /**
+     * Retorna participantes. Acepta una solicitud GET para JSON
+     * @return participantes JSON
+     */
+    @RequestMapping(value = "participantesprocesos", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<ParticipanteProcesos> descargarParticipantes() {
+        logger.info("Descargando toda la informacion de participantes");
+        List<ParticipanteProcesos> participantes = participanteProcesosService.getParticipantesProcesos();
+        if (participantes == null){
+            logger.debug(new Date() + " - Nulo");
+        }
+        return participantes;
+    }
 }
