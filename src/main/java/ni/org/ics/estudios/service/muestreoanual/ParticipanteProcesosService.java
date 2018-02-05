@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.service.muestreoanual;
 
+import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.muestreoanual.ParticipanteProcesos;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -39,6 +40,11 @@ public class ParticipanteProcesosService {
         Query query = session.createQuery("FROM ParticipanteProcesos p");
         // Retrieve all
         return  query.list();
+    }
+
+    public void saveOrUpdateParticipanteProc(ParticipanteProcesos participante){
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(participante);
     }
 
 	/**

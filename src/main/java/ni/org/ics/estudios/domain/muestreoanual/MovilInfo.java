@@ -87,7 +87,7 @@ public class MovilInfo implements Serializable{
 		this.estado = estado;
 	}
 
-	@Column(name = "ultimo_cambio", nullable = false, length = 50)
+	@Column(name = "ultimo_cambio", nullable = false, length = 100)
 	public String getUltimoCambio() {
 		return ultimoCambio;
 	}

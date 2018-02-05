@@ -55,6 +55,10 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     private String usaPlanificacionFam;
     private String usaCondon;
     private String usaOtroMetodo;
+    //MA 2018
+    private String sabeZika;
+    private String usaRopa;
+    private String embarazadaUltAnio;
 
     @Id
     @ManyToOne
@@ -318,6 +322,31 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
     public void setUsaOtroMetodo(String usaOtroMetodo) {
         this.usaOtroMetodo = usaOtroMetodo;
+    }
+
+    @Column(name = "SABE_EFECTOS_ZIKA", length = 1)
+    public String getSabeZika() {
+        return sabeZika;
+    }
+
+    public void setSabeZika(String sabeZika) {
+        this.sabeZika = sabeZika;
+    }
+    @Column(name = "USA_ROPA", length = 1)
+    public String getUsaRopa() {
+        return usaRopa;
+    }
+
+    public void setUsaRopa(String usaRopa) {
+        this.usaRopa = usaRopa;
+    }
+    @Column(name = "EMB_ULTIMO_ANIO", length = 1)
+    public String getEmbarazadaUltAnio() {
+        return embarazadaUltAnio;
+    }
+
+    public void setEmbarazadaUltAnio(String embarazadaUltAnio) {
+        this.embarazadaUltAnio = embarazadaUltAnio;
     }
 
     @Override

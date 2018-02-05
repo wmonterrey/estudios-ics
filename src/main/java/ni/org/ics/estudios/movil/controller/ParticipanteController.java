@@ -120,4 +120,24 @@ public class ParticipanteController {
         }
         return participantes;
     }
+
+    /**
+     * Acepta una solicitud POST con un parámetro JSON
+     * @param participantesArray Objeto serializado de Participante
+     * @return String con el resultado
+     */
+    @RequestMapping(value = "participantesprocesos", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveParticipantesProcesos(@RequestBody ParticipanteProcesos[] participantesArray){
+        logger.debug("Insertando/Actualizando datos procesos de participantes");
+        if (participantesArray == null){
+            logger.debug("Nulo");
+            return "No recibi nada!";
+        }else{
+            List<ParticipanteProcesos> participantes = Arrays.asList(participantesArray);
+            for (ParticipanteProcesos participante : participantes){
+                participanteProcesosService.saveOrUpdateParticipanteProc(participante);
+            }
+        }
+        return "Datos recibidos!";
+    }
 }
