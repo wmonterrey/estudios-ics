@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.domain.seroprevalencia;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
+import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import org.hibernate.annotations.ForeignKey;
 
@@ -12,10 +13,11 @@ import java.util.Date;
  * V1.0
  */
 @Entity
-@Table(name = "sa_encuestas_participante", catalog = "estudios_ics")
+@Table(name = "sa_encuestas_participante", catalog = "estudios_ics", uniqueConstraints = @UniqueConstraint(columnNames = {"CODIGO_PARTICIPANTE","FECHA_REGISTRO"}))
 public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
-    private ParticipanteSeroprevalencia participanteSA;
+    private String codigo;
+    private Participante participante;
     //Aspectos Educacionales
     private String escuchadoZikaSn;
     private String queEsSika;
@@ -59,17 +61,30 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     private String sabeZika;
     private String usaRopa;
     private String embarazadaUltAnio;
+    private String visitaCemeneterio;
+    private String cadaCuantoVisitaCem;
+    private String mesesVisitaCementerio;
+    private String descOtroMetodo;
 
     @Id
-    @ManyToOne
-    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO_PARTICIPANTE", nullable = false)
-    @ForeignKey(name = "FK_PARTICIPANTESA_ENCUESTAPARTICIPANTE")
-    public ParticipanteSeroprevalencia getParticipanteSA() {
-        return participanteSA;
+    @Column(name = "codigo", length = 50, nullable = false)
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setParticipanteSA(ParticipanteSeroprevalencia participanteSA) {
-        this.participanteSA = participanteSA;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_PARTICIPANTE", referencedColumnName = "CODIGO", nullable = false)
+    @ForeignKey(name = "FK_PARTICIPANTE_ENCUESTAPARTICIPANTE")
+    public Participante getParticipante() {
+        return participante;
+    }
+
+    public void setParticipante(Participante participante) {
+        this.participante = participante;
     }
 
     @Column(name = "ESCUCHADO_ZIKA", length = 1)
@@ -332,6 +347,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     public void setSabeZika(String sabeZika) {
         this.sabeZika = sabeZika;
     }
+
     @Column(name = "USA_ROPA", length = 1)
     public String getUsaRopa() {
         return usaRopa;
@@ -340,6 +356,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
     public void setUsaRopa(String usaRopa) {
         this.usaRopa = usaRopa;
     }
+
     @Column(name = "EMB_ULTIMO_ANIO", length = 1)
     public String getEmbarazadaUltAnio() {
         return embarazadaUltAnio;
@@ -349,6 +366,42 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
         this.embarazadaUltAnio = embarazadaUltAnio;
     }
 
+    @Column(name = "VISITA_CEMENTERIO", length = 1)
+    public String getVisitaCemeneterio() {
+        return visitaCemeneterio;
+    }
+
+    public void setVisitaCemeneterio(String visitaCemeneterio) {
+        this.visitaCemeneterio = visitaCemeneterio;
+    }
+
+    @Column(name = "CADA_CUANTO_VC", length = 5)
+    public String getCadaCuantoVisitaCem() {
+        return cadaCuantoVisitaCem;
+    }
+
+    public void setCadaCuantoVisitaCem(String cadaCuantoVisitaCem) {
+        this.cadaCuantoVisitaCem = cadaCuantoVisitaCem;
+    }
+
+    @Column(name = "MESES_VC", length = 40)
+    public String getMesesVisitaCementerio() {
+        return mesesVisitaCementerio;
+    }
+
+    public void setMesesVisitaCementerio(String mesesVisitaCementerio) {
+        this.mesesVisitaCementerio = mesesVisitaCementerio;
+    }
+
+    @Column(name = "DESC_OTRO_METODO", length = 255)
+    public String getDescOtroMetodo() {
+        return descOtroMetodo;
+    }
+
+    public void setDescOtroMetodo(String descOtroMetodo) {
+        this.descOtroMetodo = descOtroMetodo;
+    }
+
     @Override
     public boolean isFieldAuditable(String fieldname) {
         return true;
@@ -356,7 +409,7 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "EncuestaParticipanteSA{" + participanteSA.getParticipante().getCodigo() +
+        return "EncuestaParticipanteSA{" + participante.getCodigo() +
                 '}';
     }
 
@@ -367,11 +420,11 @@ public class EncuestaParticipanteSA extends BaseMetaData implements Auditable {
 
         EncuestaParticipanteSA that = (EncuestaParticipanteSA) o;
 
-        return  (!participanteSA.equals(that.participanteSA));
+        return  (!participante.equals(that.participante));
     }
 
     @Override
     public int hashCode() {
-        return participanteSA.hashCode();
+        return participante.hashCode();
     }
 }

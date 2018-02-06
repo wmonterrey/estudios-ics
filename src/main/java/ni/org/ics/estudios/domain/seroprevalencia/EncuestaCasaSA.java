@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.domain.seroprevalencia;
 
 import ni.org.ics.estudios.domain.BaseMetaData;
+import ni.org.ics.estudios.domain.Casa;
 import ni.org.ics.estudios.domain.audit.Auditable;
 import ni.org.ics.estudios.domain.cohortefamilia.CasaCohorteFamilia;
 import org.hibernate.annotations.ForeignKey;
@@ -13,10 +14,11 @@ import java.util.Date;
  * V1.0
  */
 @Entity
-@Table(name = "sa_encuestas_casa", catalog = "estudios_ics")
+@Table(name = "sa_encuestas_casa", catalog = "estudios_ics", uniqueConstraints = @UniqueConstraint(columnNames = {"CODIGO_CASA","FECHA_REGISTRO"}))
 public class EncuestaCasaSA extends BaseMetaData implements Auditable {
 
-    private CasaCohorteFamilia casaCHF;
+    private String codigo;
+    private Casa casa;
     private String sedazoPuertasVentanas;
     private String compraProdEvitarZancudos;
     private String tienePatioJardin;
@@ -42,17 +44,25 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
     private String relacionFamChik;
     private String otraRelacionFamChik;
 
-
     @Id
-    @OneToOne
-    @JoinColumn(name = "CODIGO_CASACHF", nullable = false)
-    @ForeignKey(name = "FK_CASACHF_ENCUESTACASASA")
-    public CasaCohorteFamilia getCasaCHF() {
-        return casaCHF;
+    @Column(name = "CODIGO", length = 50, nullable = false)
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCasaCHF(CasaCohorteFamilia casa) {
-        this.casaCHF = casa;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "CODIGO_CASA", nullable = false)
+    @ForeignKey(name = "FK_CASA_ENCUESTACASASA")
+    public Casa getCasa() {
+        return casa;
+    }
+
+    public void setCasa(Casa casa) {
+        this.casa = casa;
     }
 
     @Column(name = "SEDAZOS", length = 1)
@@ -251,7 +261,7 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return "EncuestaCasaSA{" + casaCHF.getCodigoCHF() +
+        return "EncuestaCasaSA{" + casa.getCodigo() +
                 '}';
     }
 
@@ -262,13 +272,13 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
 
         EncuestaCasaSA that = (EncuestaCasaSA) o;
 
-        if (!casaCHF.equals(that.casaCHF)) return false;
+        if (!casa.equals(that.getCasa())) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return casaCHF.hashCode();
+        return casa.hashCode();
     }
 }

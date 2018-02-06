@@ -32,7 +32,7 @@ public class VisitaFinalCasoService {
     @SuppressWarnings("unchecked")
 	public List<VisitaFinalCaso> getVisitaFinalCasos(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from VisitaFinalCaso v where v.pasive = '0'");
+        Query query = session.createQuery("from VisitaFinalCaso v where v.pasive = '0' and v.codigoParticipanteCaso.codigoCaso.inactiva = '0'");
         return query.list();
     }
 

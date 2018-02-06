@@ -29,7 +29,7 @@ public class FormularioContactoCasoService {
     @SuppressWarnings("unchecked")
 	public List<FormularioContactoCaso> getFormularioContactoCasos(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from FormularioContactoCaso f where f.pasive = '0'");
+        Query query = session.createQuery("from FormularioContactoCaso f where f.pasive = '0' and f.codigoVisitaCaso.codigoParticipanteCaso.codigoCaso.inactiva = '0'");
         return query.list();
     }
     

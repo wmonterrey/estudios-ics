@@ -30,7 +30,7 @@ public class VisitaSeguimientoCasoSintomasService {
     @SuppressWarnings("unchecked")
 	public List<VisitaSeguimientoCasoSintomas> getVisitaSeguimientoCasoSintomas(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from VisitaSeguimientoCasoSintomas v where v.pasive = '0'");
+        Query query = session.createQuery("from VisitaSeguimientoCasoSintomas v where v.pasive = '0' and v.codigoVisitaCaso.codigoParticipanteCaso.codigoCaso.inactiva = '0'");
         return query.list();
     }
     
