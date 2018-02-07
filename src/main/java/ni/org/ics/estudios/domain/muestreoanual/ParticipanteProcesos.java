@@ -52,6 +52,7 @@ public class ParticipanteProcesos {
     private String enCasaChf;
     private String enCasaSa;
     private String encPartSa;
+    private String tutor;
 
     private MovilInfo movilInfo;
 
@@ -351,6 +352,15 @@ public class ParticipanteProcesos {
 
     public void setEncPartSa(String encPartSa) {
         this.encPartSa = encPartSa;
+    }
+
+    @Column(name = "tutor", nullable = true, length = 255)
+    public String getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(String tutor) {
+        this.tutor = tutor;
     }
 
     public MovilInfo getMovilInfo() {

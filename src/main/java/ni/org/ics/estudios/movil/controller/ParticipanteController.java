@@ -35,12 +35,18 @@ public class ParticipanteController {
     @RequestMapping(value = "participantes", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     List<Participante> getParticipantes() {
-        logger.info("Descargando toda la informacion de Participante" );
-        List<Participante> respuestaList = participanteService.getParticipantes();
-        if (respuestaList == null){
-            logger.debug("Nulo");
+        try {
+            logger.info("Descargando toda la informacion de Participante");
+            List<Participante> respuestaList = participanteService.getParticipantes();
+            if (respuestaList == null) {
+                logger.debug("Nulo");
+            }
+            return respuestaList;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
         }
-        return respuestaList;
+
     }
 
     /**
@@ -113,12 +119,17 @@ public class ParticipanteController {
     @RequestMapping(value = "participantesprocesos", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     List<ParticipanteProcesos> descargarParticipantes() {
-        logger.info("Descargando toda la informacion de participantes");
-        List<ParticipanteProcesos> participantes = participanteProcesosService.getParticipantesProcesos();
-        if (participantes == null){
-            logger.debug(new Date() + " - Nulo");
+        try {
+            logger.info("Descargando toda la informacion de participantes");
+            List<ParticipanteProcesos> participantes = participanteProcesosService.getParticipantesProcesos();
+            if (participantes == null) {
+                logger.debug(new Date() + " - Nulo");
+            }
+            return participantes;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
         }
-        return participantes;
     }
 
     /**
