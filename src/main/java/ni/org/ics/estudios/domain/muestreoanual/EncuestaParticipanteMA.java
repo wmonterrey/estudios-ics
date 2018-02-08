@@ -1299,7 +1299,7 @@ public class EncuestaParticipanteMA {
         this.trabajaPadre = trabajaPadre;
     }
 
-    @Column(name = "MADRE_ESTUDIO", nullable = true, length = 2)
+    @Column(name = "MADRE_ESTUDIO", nullable = true, length = 3)
     public String getMadreEstudio() {
         return madreEstudio;
     }

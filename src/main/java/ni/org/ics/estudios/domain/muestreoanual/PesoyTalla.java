@@ -21,6 +21,8 @@ public class PesoyTalla {
 	 */
 	
 	private PesoyTallaId ptId;
+    private String tomoMedidaSn;
+    private String razonNoTomoMedidas;
 	private Double peso1;
 	private Double peso2;
 	private Double peso3;
@@ -171,4 +173,21 @@ public class PesoyTalla {
 		this.otrorecurso2 = otrorecurso2;
 	}
 
+    @Column(name = "TOMA_MEDIDAS", length = 1)
+    public String getTomoMedidaSn() {
+        return tomoMedidaSn;
+    }
+
+    public void setTomoMedidaSn(String tomoMedidaSn) {
+        this.tomoMedidaSn = tomoMedidaSn;
+    }
+
+    @Column(name = "RAZON_NO_TOMA_MEDIDAS")
+    public String getRazonNoTomoMedidas() {
+        return razonNoTomoMedidas;
+    }
+
+    public void setRazonNoTomoMedidas(String razonNoTomoMedidas) {
+        this.razonNoTomoMedidas = razonNoTomoMedidas;
+    }
 }

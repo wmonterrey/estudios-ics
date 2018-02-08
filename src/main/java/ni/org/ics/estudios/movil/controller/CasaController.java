@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,6 +49,20 @@ public class CasaController {
             }
         }
         return "Datos recibidos!";
+    }
+
+    /**
+     * Retorna casa. Acepta una solicitud GET para JSON
+     * @return participante JSON
+     */
+    @RequestMapping(value = "casa/{casa}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<Casa> descargarCasa(@PathVariable Integer casa) {
+        logger.info(new Date() + " - Descargando toda la informacion de la casa" + casa);
+        List<Casa> casaPar = casaService.getCasaParticipante(casa);
+        if (casaPar == null){
+            logger.debug(new Date() + " - Nulo");
+        }
+        return casaPar;
     }
 
 }

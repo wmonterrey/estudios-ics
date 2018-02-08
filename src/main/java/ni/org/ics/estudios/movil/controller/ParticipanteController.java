@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -105,9 +106,10 @@ public class ParticipanteController {
      */
     @RequestMapping(value = "participante/{codigo}", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    Participante descargarParticipante(@PathVariable Integer codigo) {
+    List<Participante> descargarParticipante(@PathVariable Integer codigo) {
         logger.info("Descargando toda la informacion del participante "+codigo);
-        Participante participantes = participanteService.getParticipanteByCodigo(codigo);
+        List<Participante> participantes = new ArrayList<Participante>();
+        participantes.add(participanteService.getParticipanteByCodigo(codigo));
         return participantes;
     }
 
@@ -150,5 +152,19 @@ public class ParticipanteController {
             }
         }
         return "Datos recibidos!";
+    }
+
+    /**
+     * Retorna participante_procesos. Acepta una solicitud GET para JSON
+     * @return participante JSON
+     */
+    @RequestMapping(value = "participanteprocesos/{codigo}", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<ParticipanteProcesos> descargarParticipanteProcesos(@PathVariable Integer codigo) {
+        logger.info("Descargando toda la informacion del participante "+codigo);
+        List<ParticipanteProcesos> participantes = new ArrayList<ParticipanteProcesos>();
+        participantes.add(participanteProcesosService.getParticipante(codigo));
+
+        return participantes;
     }
 }
