@@ -723,3 +723,13 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TRATAMIENTO_03', 'OSEL', 'CHF_CAT_TRATAMIENTO', NULL, '0', 3, '0', 'Oseltamivir');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TRATAMIENTO_04', 'ANTGRI', 'CHF_CAT_TRATAMIENTO', NULL, '0', 4, '0', 'Antigripales');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TRATAMIENTO_09', 'NING', 'CHF_CAT_TRATAMIENTO', NULL, '0', 4, '0', 'Ninguno');
+
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR', NULL, NULL, NULL, '1', 0, '0', 'Catalogo relacion familiar tutor cohorte pediatrica');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_01', '1', 'CP_CAT_RFTUTOR', NULL, '0', 1, '0', 'Madre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_02', '2', 'CP_CAT_RFTUTOR', NULL, '0', 2, '0', 'Padre');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_03', '3', 'CP_CAT_RFTUTOR', NULL, '0', 3, '0', 'Abuelo (a)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_04', '4', 'CP_CAT_RFTUTOR', NULL, '0', 4, '0', 'Tio (a)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_05', '5', 'CP_CAT_RFTUTOR', NULL, '0', 5, '0', 'Hermano (a)');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_06', '6', 'CP_CAT_RFTUTOR', NULL, '0', 6, '0', 'Otra relación familiar');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_07', '7', 'CP_CAT_RFTUTOR', NULL, '0', 7, '0', 'Sin Relación Familiar');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RFTUTOR_08', '8', 'CP_CAT_RFTUTOR', NULL, '0', 8, '0', 'Participante');
