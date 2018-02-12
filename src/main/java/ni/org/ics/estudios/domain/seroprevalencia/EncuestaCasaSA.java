@@ -19,6 +19,7 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
 
     private String codigo;
     private Casa casa;
+    private CasaCohorteFamilia casaChf;
     private String sedazoPuertasVentanas;
     private String compraProdEvitarZancudos;
     private String tienePatioJardin;
@@ -54,7 +55,7 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
         this.codigo = codigo;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "CODIGO_CASA", nullable = false)
     @ForeignKey(name = "FK_CASA_ENCUESTACASASA")
     public Casa getCasa() {
@@ -63,6 +64,17 @@ public class EncuestaCasaSA extends BaseMetaData implements Auditable {
 
     public void setCasa(Casa casa) {
         this.casa = casa;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_CASACHF", nullable = true)
+    @ForeignKey(name = "FK_CASACHF_ENCUESTACASASA")
+    public CasaCohorteFamilia getCasaChf() {
+        return casaChf;
+    }
+
+    public void setCasaChf(CasaCohorteFamilia casaChf) {
+        this.casaChf = casaChf;
     }
 
     @Column(name = "SEDAZOS", length = 1)
