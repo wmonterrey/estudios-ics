@@ -80,6 +80,7 @@ public class AdminUsuariosController {
     @RequestMapping(value = "editUser/{username}", method = RequestMethod.GET)
 	public String initUpdateUserForm(@PathVariable("username") String username, Model model) {
 		UserSistema usuarioEditar = this.usuarioService.getUser(username);
+        UserPermissions permissions = this.usuarioService.getUserPermissions(username);
 		if(usuarioEditar!=null){
 			model.addAttribute("user",usuarioEditar);
 			List<Rol> roles = usuarioService.getRoles();
@@ -88,6 +89,7 @@ public class AdminUsuariosController {
 	    	model.addAttribute("estudios", estudios);
 	    	List<Authority> rolesusuario = this.usuarioService.getRolesUsuario(username);
 	    	List<UserStudy> estudiosusuario = this.usuarioService.getEstudiosUsuario(username);
+            model.addAttribute("permisos", permissions);
 	    	model.addAttribute("rolesusuario", rolesusuario);
 	    	model.addAttribute("estudiosusuario", estudiosusuario);
 	    	model.addAttribute("editando",true);
@@ -108,6 +110,18 @@ public class AdminUsuariosController {
 	        , @RequestParam( value="email", required=true, defaultValue="" ) String email
 	        , @RequestParam( value="authorities", required=false, defaultValue="") List<String> authorities
 	        , @RequestParam( value="studies", required=false, defaultValue="") List<String> studies
+            , @RequestParam( value="chk_muestra", required=false, defaultValue="" ) String chkMuestra
+            , @RequestParam( value="chk_vacunas", required=false, defaultValue="" ) String chkVacunas
+            , @RequestParam( value="chk_consent", required=false, defaultValue="" ) String chkConsent
+            , @RequestParam( value="chk_recepcion", required=false, defaultValue="" ) String chkRecepcion
+            , @RequestParam( value="chk_visitas", required=false, defaultValue="" ) String chkVisitas
+            , @RequestParam( value="chk_obsequio", required=false, defaultValue="" ) String chkObsequio
+            , @RequestParam( value="chk_pesotalla", required=false, defaultValue="" ) String chkPesotalla
+            , @RequestParam( value="chk_datosparto", required=false, defaultValue="" ) String chkDatosparto
+            , @RequestParam( value="chk_ecasa", required=false, defaultValue="" ) String chkEcasa
+            , @RequestParam( value="chk_eparticipante", required=false, defaultValue="" ) String chkEparticipante
+            , @RequestParam( value="chk_elactancia", required=false, defaultValue="" ) String chkElactancia
+            , @RequestParam( value="chk_esatisfaccion", required=false, defaultValue="" ) String chkEsatisfaccion
 	        )
 	{
     	try{
@@ -127,6 +141,24 @@ public class AdminUsuariosController {
 	    		String encodedPass = encoder.encode(password);
 	    		user.setPassword(encodedPass);
 	    		this.usuarioService.saveUser(user);
+
+                //Permisos del usuario
+                UserPermissions permissions = new UserPermissions();
+                permissions.setUsername(user.getUsername());
+                permissions.setMuestra(!chkMuestra.isEmpty());
+                permissions.setVacunas(!chkVacunas.isEmpty());
+                permissions.setConsentimiento(!chkConsent.isEmpty());
+                permissions.setRecepcion(!chkRecepcion.isEmpty());
+                permissions.setVisitas(!chkVisitas.isEmpty());
+                permissions.setObsequio(!chkObsequio.isEmpty());
+                permissions.setPesoTalla(!chkPesotalla.isEmpty());
+                permissions.setDatosparto(!chkDatosparto.isEmpty());
+                permissions.setEncuestaCasa(!chkEcasa.isEmpty());
+                permissions.setEncuestaParticipante(!chkEparticipante.isEmpty());
+                permissions.setEncuestaLactancia(!chkElactancia.isEmpty());
+                permissions.setEncuestaSatisfaccion(!chkEsatisfaccion.isEmpty());
+                this.usuarioService.saveUserPermissions(permissions);
+
 	    		for(String a:authorities){
 	    			Authority auth = new Authority();
 	    			auth.setAuthId(new AuthorityId(userName,a));
@@ -149,6 +181,25 @@ public class AdminUsuariosController {
 				user.setEmail(email);
 				user.setModified(new Date());
 				this.usuarioService.saveUser(user);
+
+                //Permisos del usuario
+                UserPermissions permissions = usuarioService.getUserPermissions(userName);
+                if (permissions==null) permissions = new UserPermissions();
+                permissions.setUsername(user.getUsername());
+                permissions.setMuestra(!chkMuestra.isEmpty());
+                permissions.setVacunas(!chkVacunas.isEmpty());
+                permissions.setConsentimiento(!chkConsent.isEmpty());
+                permissions.setRecepcion(!chkRecepcion.isEmpty());
+                permissions.setVisitas(!chkVisitas.isEmpty());
+                permissions.setObsequio(!chkObsequio.isEmpty());
+                permissions.setPesoTalla(!chkPesotalla.isEmpty());
+                permissions.setDatosparto(!chkDatosparto.isEmpty());
+                permissions.setEncuestaCasa(!chkEcasa.isEmpty());
+                permissions.setEncuestaParticipante(!chkEparticipante.isEmpty());
+                permissions.setEncuestaLactancia(!chkElactancia.isEmpty());
+                permissions.setEncuestaSatisfaccion(!chkEsatisfaccion.isEmpty());
+                this.usuarioService.saveUserPermissions(permissions);
+
 				//Recupera los roles activos de este usuario de la base de datos y pone el username en una lista
 				List<String> rolesUsuario = new ArrayList<String>();
 				List<Authority> rolesusuario = this.usuarioService.getRolesUsuario(userName);

@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.movil.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
@@ -122,11 +123,12 @@ public class UsuariosMovilController {
      * @return barrios JSON
      */
     @RequestMapping(value = "permisos/{username}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<UserPermissions> descargarPermisossUsuario(@PathVariable String username) {
+    public @ResponseBody List<UserPermissions> descargarPermisosUsuario(@PathVariable String username) {
         logger.info("Descargando toda la informacion de los datos de los roles para el usuario "+username);
-        List<UserPermissions> permissions = usuarioService.getUserPermissions(username);
-        if (permissions == null){
-            logger.debug(new Date() + " - Nulo");
+        List<UserPermissions> permissions = new ArrayList<UserPermissions>();
+        permissions.add(usuarioService.getUserPermissions(username));
+        if (permissions.size() == 0){
+            logger.debug(new Date() + " - Sin Datos");
         }
         return permissions;
     }

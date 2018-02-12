@@ -118,6 +118,152 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label class="col-lg-3 form-control-label">
+                                            <spring:message code="permission" />
+                                        </label>
+                                        <div class="col-lg-9 col-md-9">
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.muestra}">
+                                                        <input type="checkbox" name="chk_muestra" id="chk_muestra" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_muestra" id="chk_muestra">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="muestra" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.vacunas}">
+                                                        <input type="checkbox" name="chk_vacunas" id="chk_vacunas" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_vacunas" id="chk_vacunas">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="vacunas" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.consentimiento}">
+                                                        <input type="checkbox" name="chk_consent" id="chk_consent" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_consent" id="chk_consent">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="consentimiento" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.recepcion}">
+                                                        <input type="checkbox" name="chk_recepcion" id="chk_recepcion" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_recepcion" id="chk_recepcion">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="recepcion" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.visitas}">
+                                                        <input type="checkbox" name="chk_visitas" id="chk_visitas" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_visitas" id="chk_visitas">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="visits" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.obsequio}">
+                                                        <input type="checkbox" name="chk_obsequio" id="chk_obsequio" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_obsequio" id="chk_obsequio">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="obsequio" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.pesoTalla}">
+                                                        <input type="checkbox" name="chk_pesotalla" id="chk_pesotalla" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_pesotalla" id="chk_pesotalla">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="pesotalla" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.datosparto}">
+                                                        <input type="checkbox" name="chk_datosparto" id="chk_datosparto" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" name="chk_datosparto" id="chk_datosparto">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="datosparto" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-lg-3 form-control-label">
+                                            <spring:message code="encuestas" />
+                                        </label>
+                                        <div class="col-lg-9">
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.encuestaCasa}">
+                                                        <input type="checkbox" id="chk_ecasa" name="chk_ecasa" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" id="chk_ecasa" name="chk_ecasa">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="ecasa" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.encuestaParticipante}">
+                                                        <input type="checkbox" id="chk_eparticipante" name="chk_eparticipante" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" id="chk_eparticipante" name="chk_eparticipante">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="participants" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.encuestaLactancia}">
+                                                        <input type="checkbox" id="chk_elactancia" name="chk_elactancia" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" id="chk_elactancia" name="chk_elactancia">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="elactancia" />
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <c:choose>
+                                                    <c:when test="${permisos.encuestaSatisfaccion}">
+                                                        <input type="checkbox" id="chk_esatisfaccion" name="chk_esatisfaccion" checked>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="checkbox" id="chk_esatisfaccion" name="chk_esatisfaccion">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <spring:message code="esatisfaccion" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="form-control-label col-md-3" for="authorities"><spring:message code="userroles" />
 										<span class="required">
 											 *

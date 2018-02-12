@@ -373,7 +373,7 @@ public class UsuarioService {
      */
 
     @SuppressWarnings("unchecked")
-    public List<UserPermissions> getUserPermissions(String username) {
+    public UserPermissions getUserPermissions(String username) {
         // Retrieve session from Hibernate
         Session session = sessionFactory.getCurrentSession();
         // Create a Hibernate query (HQL)
@@ -381,6 +381,15 @@ public class UsuarioService {
                 "where perm.username =:username");
         query.setParameter("username",username);
         // Retrieve all
-        return  query.list();
+        return (UserPermissions)query.uniqueResult();
+    }
+
+    /**
+     * Registra o actualiza los permisos de un usuario
+     * @param permissions
+     */
+    public void saveUserPermissions(UserPermissions permissions) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(permissions);
     }
 }
