@@ -7,6 +7,7 @@ import ni.org.ics.estudios.service.AuditTrailService;
 import ni.org.ics.estudios.service.UsuarioService;
 import ni.org.ics.estudios.users.model.Authority;
 import ni.org.ics.estudios.users.model.UserAccess;
+import ni.org.ics.estudios.users.model.UserPermissions;
 import ni.org.ics.estudios.users.model.UserSistema;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -61,7 +62,10 @@ public class UsuariosController {
         UserSistema user = this.usuarioService.getUser(authentication.getName());
         List<UserAccess> accesosUsuario = usuarioService.getUserAccess(authentication.getName());
         List<AuditTrail> bitacoraUsuario = auditTrailService.getBitacora(authentication.getName());
+        UserPermissions permissions = usuarioService.getUserPermissions(authentication.getName());
+
         mav.addObject("user",user);
+        mav.addObject("permisos",permissions);
         mav.addObject("accesses",accesosUsuario);
         mav.addObject("bitacora",bitacoraUsuario);
         List<Authority> rolesusuario = this.usuarioService.getRolesUsuarioTodos(authentication.getName());

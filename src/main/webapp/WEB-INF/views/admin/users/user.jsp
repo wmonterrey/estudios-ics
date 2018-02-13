@@ -280,6 +280,66 @@
                                 <!--/span-->
                             </div>
                             <!--/row-->
+                            <!--/row-->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3"><spring:message code="permission" />:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                <c:if test="${permisos.muestra}">
+                                                    <spring:message code="muestra" />,
+                                                </c:if>
+                                                <c:if test="${permisos.vacunas}">
+                                                    <spring:message code="vacunas" />,
+                                                </c:if>
+                                                <c:if test="${permisos.consentimiento}">
+                                                    <spring:message code="consentimiento" />,
+                                                </c:if>
+                                                <c:if test="${permisos.recepcion}">
+                                                    <spring:message code="recepcion" />,
+                                                </c:if>
+                                                <c:if test="${permisos.visitas}">
+                                                    <spring:message code="visits" />,
+                                                </c:if>
+                                                <c:if test="${permisos.obsequio}">
+                                                    <spring:message code="obsequio" />,
+                                                </c:if>
+                                                <c:if test="${permisos.pesoTalla}">
+                                                    <spring:message code="pesotalla" />,
+                                                </c:if>
+                                                <c:if test="${permisos.datosparto}">
+                                                    <spring:message code="datosparto" />
+                                                </c:if>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="control-label col-md-3"><spring:message code="encuestas" />:</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">
+                                                <c:if test="${permisos.encuestaCasa}">
+                                                    <spring:message code="ecasa" />,
+                                                </c:if>
+                                                <c:if test="${permisos.encuestaParticipante}">
+                                                    <spring:message code="participants" />,
+                                                </c:if>
+                                                <c:if test="${permisos.encuestaLactancia}">
+                                                    <spring:message code="elactancia" />,
+                                                </c:if>
+                                                <c:if test="${permisos.encuestaSatisfaccion}">
+                                                    <spring:message code="esatisfaccion" />
+                                                </c:if>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/span-->
+                            </div>
+                            <!--/row-->
                         </form>
                     </div>
                 </div>
@@ -301,8 +361,9 @@
                                 <c:forEach items="${rolesusuario}" var="rol">
                                     <tr>
                                         <td><spring:message code="${rol.rol.authority}" /></td>
+                                        <c:set var="pasiveAsString">${rol.pasive}</c:set>
                                         <c:choose>
-                                            <c:when test="${rol.pasive=='0'.charAt(0)}">
+                                            <c:when test="${pasiveAsString eq '0'}">
                                                 <td><span class="badge badge-success"><spring:message code="CHF_CAT_SINO_SI" /></span></td>
                                             </c:when>
                                             <c:otherwise>

@@ -408,7 +408,9 @@ public class AdminUsuariosController {
         	mav = new ModelAndView("admin/users/user");
             List<UserAccess> accesosUsuario = usuarioService.getUserAccess(username);
             List<AuditTrail> bitacoraUsuario = auditTrailService.getBitacora(username);
+            UserPermissions permissions = usuarioService.getUserPermissions(username);
             mav.addObject("user",user);
+            mav.addObject("permisos",permissions);
             mav.addObject("accesses",accesosUsuario);
             mav.addObject("bitacora",bitacoraUsuario);
             List<Authority> rolesusuario = this.usuarioService.getRolesUsuarioTodos(username);
