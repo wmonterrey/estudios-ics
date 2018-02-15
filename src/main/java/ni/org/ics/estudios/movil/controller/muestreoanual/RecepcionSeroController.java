@@ -47,7 +47,7 @@ public class RecepcionSeroController {
     
     /**
      * Acepta una solicitud POST con un parametro JSON
-     * @param muestra Objeto serializado de Muestras
+     * @param envio Objeto serializado de Muestras
      * @return una cadena con el resultado*/
      
     @RequestMapping(value = "seros", method = RequestMethod.POST, consumes = "application/json")
@@ -61,10 +61,10 @@ public class RecepcionSeroController {
         else{
         	List<RecepcionSero> seros = Arrays.asList(envio);
         	for (RecepcionSero tubo : seros){
-        		RecepcionSeroId tuboId = new RecepcionSeroId();
-        		tuboId.setCodigo(tubo.getRecSeroId().getCodigo());
-        		tuboId.setFechaRecSero(new Date(tubo.getRecSeroId().getFechaRecSero().getTime()));
-        		Boolean existe = seroService.checkRecepcionSero(tuboId);
+        		//RecepcionSeroId tuboId = new RecepcionSeroId();
+        		//tuboId.setCodigo(tubo.getRecSeroId().getCodigo());
+        		//tuboId.setFechaRecSero(new Date(tubo.getRecSeroId().getFechaRecSero().getTime()));
+        		Boolean existe = seroService.checkRecepcionSero(tubo.getId());
         		if (!existe){
         			seroService.addRecepcionSero(tubo);
         		}

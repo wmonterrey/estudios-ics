@@ -2,10 +2,7 @@ package ni.org.ics.estudios.domain.muestreoanual;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Simple objeto de dominio que representa los datos de la toma de muestra
@@ -20,8 +17,9 @@ public class RecepcionSero {
 	/**
 	 * 
 	 */
-	
-	private RecepcionSeroId recSeroId;
+	private String id;
+    private Integer codigo;
+    private Date fechaRecSero;
 	private Double volumen;
 	private String lugar;
 	private String observacion;
@@ -29,15 +27,33 @@ public class RecepcionSero {
 	private String estado;
 	private Date fecreg;
 
-	@EmbeddedId
-	public RecepcionSeroId getRecSeroId() {
-		return recSeroId;
-	}
+    @Id
+    @Column(name = "id", length = 50, nullable = false)
+    public String getId() {
+        return id;
+    }
 
-	public void setRecSeroId(RecepcionSeroId recSeroId) {
-		this.recSeroId = recSeroId;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
+    @Column(name = "codigo", nullable = false, length = 5)
+    public Integer getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Integer codigo) {
+        this.codigo = codigo;
+    }
+
+    @Column(name = "fecha_sero", nullable = false)
+    public Date getFechaRecSero() {
+        return fechaRecSero;
+    }
+
+    public void setFechaRecSero(Date fechaRecSero) {
+        this.fechaRecSero = fechaRecSero;
+    }
 
 	@Column(name="volbhc", nullable = true)
 	public Double getVolumen() {

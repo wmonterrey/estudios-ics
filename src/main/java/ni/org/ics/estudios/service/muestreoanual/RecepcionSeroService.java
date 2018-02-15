@@ -61,7 +61,7 @@ public class RecepcionSeroService {
 		}
 		Timestamp timeStamp = new Timestamp(dateWithoutTime.getTime());
 		// Create a Hibernate query (HQL)
-		Query query = session.createQuery("FROM RecepcionSero sero where sero.recSeroId.fechaRecSero = :fechaRecSero");
+		Query query = session.createQuery("FROM RecepcionSero sero where sero.fechaRecSero = :fechaRecSero");
 		query.setTimestamp("fechaRecSero", timeStamp);
 		// Retrieve all
 		return  query.list();
@@ -123,13 +123,11 @@ public class RecepcionSeroService {
 	 * @return un <code>RecepcionSero</code>
 	 */
 
-	public RecepcionSero getRecepcionSero(RecepcionSeroId seroId) {
+	public RecepcionSero getRecepcionSero(String seroId) {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
-		Timestamp timeStamp = new Timestamp(seroId.getFechaRecSero().getTime());
-		Query query = session.createQuery("FROM RecepcionSero sero where sero.recSeroId.codigo = "
-				+ seroId.getCodigo() +  " AND sero.recSeroId.fechaRecSero = :fechaSero");
-		query.setTimestamp("fechaSero", timeStamp);
+		Query query = session.createQuery("FROM RecepcionSero sero where sero.id = :id");
+        query.setParameter("id", seroId);
 		
 		RecepcionSero rSero = (RecepcionSero) query.uniqueResult();
 		return rSero;
@@ -141,14 +139,12 @@ public class RecepcionSeroService {
 	 * @return true or false
 	 */
 
-	public Boolean checkRecepcionSero(RecepcionSeroId seroId) {
+	public Boolean checkRecepcionSero(String seroId) {
 		// Retrieve session from Hibernate
 		Session session = sessionFactory.getCurrentSession();
 		
-		Timestamp timeStamp = new Timestamp(seroId.getFechaRecSero().getTime());
-		Query query = session.createQuery("FROM RecepcionSero sero where sero.recSeroId.codigo = "
-				+ seroId.getCodigo() +  " AND sero.recSeroId.fechaRecSero = :fechaSero");
-		query.setTimestamp("fechaSero", timeStamp);
+		Query query = session.createQuery("FROM RecepcionSero sero where sero.id = :id");
+		query.setParameter("id", seroId);
 		
 		RecepcionSero rSero = (RecepcionSero) query.uniqueResult();
 		if(rSero!=null){
