@@ -41,6 +41,7 @@ public class MuestraMA {
 	private MovilInfo movilInfo;
 	private Integer otrorecurso1;
 	private Integer otrorecurso2;
+    private String estudiosAct; // estudios actuales al momento de llenar la encuesta
 
 	@Column(name = "fiebre", nullable = true, length = 1)
 	public Integer getFiebreM() {
@@ -241,4 +242,13 @@ public class MuestraMA {
 	public void setOtrorecurso2(Integer otrorecurso2) {
 		this.otrorecurso2 = otrorecurso2;
 	}
+
+    @Column(name = "est_actuales", nullable = true, length = 255)
+    public String getEstudiosAct() {
+        return estudiosAct;
+    }
+
+    public void setEstudiosAct(String estudiosAct) {
+        this.estudiosAct = estudiosAct;
+    }
 }
