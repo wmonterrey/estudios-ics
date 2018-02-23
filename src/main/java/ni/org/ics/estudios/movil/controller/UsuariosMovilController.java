@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 
+import ni.org.ics.estudios.language.MessageResource;
+import ni.org.ics.estudios.service.MessageResourceService;
 import ni.org.ics.estudios.service.UsuarioService;
 import ni.org.ics.estudios.users.model.Authority;
 import ni.org.ics.estudios.users.model.UserPermissions;
@@ -32,6 +34,9 @@ public class UsuariosMovilController {
 
     @Resource(name="roleService")
     private RoleService roleService;
+
+    @Resource(name = "messageResourceService")
+    private MessageResourceService messageResourceService;
 
 	private static final Logger logger = LoggerFactory.getLogger(UsuariosMovilController.class);
 	
@@ -123,14 +128,18 @@ public class UsuariosMovilController {
      * @return barrios JSON
      */
     @RequestMapping(value = "permisos/{username}", method = RequestMethod.GET, produces = "application/json")
-    public @ResponseBody List<UserPermissions> descargarPermisosUsuario(@PathVariable String username) {
-        logger.info("Descargando toda la informacion de los datos de los roles para el usuario "+username);
-        List<UserPermissions> permissions = new ArrayList<UserPermissions>();
-        permissions.add(usuarioService.getUserPermissions(username));
-        if (permissions.size() == 0){
-            logger.debug(new Date() + " - Sin Datos");
-        }
-        return permissions;
+    public @ResponseBody UserPermissions descargarPermisosUsuario(@PathVariable String username) {
+        logger.info("Descargando toda la informacion de los permisos para el usuario "+username);
+        return  usuarioService.getUserPermissions(username);
     }
 
+    @RequestMapping(value = "pin/{pinUser}", method = RequestMethod.GET, produces = "text/plain")
+    public @ResponseBody String verificarPin(@PathVariable String pinUser) {
+        logger.info("Verificando pin de descarga " + pinUser);
+        MessageResource pinDownload = messageResourceService.getMensaje("PIN_DOWNLOAD");
+        if (pinDownload!=null && pinDownload.getSpanish().equalsIgnoreCase(pinUser))
+            return "OK";
+        else
+            return "NO";
+    }
 }
