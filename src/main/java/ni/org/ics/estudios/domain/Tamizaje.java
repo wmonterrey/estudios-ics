@@ -39,7 +39,18 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String razonNoAceptaParticipar;
     private String otraRazonNoAceptaParticipar;
     private String asentimientoVerbal;
-
+    //nuevo ingreso MA2018
+    private String pretermino;
+    private String cohorte;
+    private String enfermedadInmuno;
+    private String cualEnfermedad;
+    private String tratamiento;
+    private String cualTratamiento;
+    private String diagDengue;
+    private Date fechaDiagDengue;
+    private String hospDengue;
+    private Date fechaHospDengue;
+    private String tiempoResidencia;
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
     public String getCodigo() {
@@ -203,6 +214,105 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setOtraRazonNoAceptaParticipar(String otraRazonNoAceptaParticipar) {
         this.otraRazonNoAceptaParticipar = otraRazonNoAceptaParticipar;
+    }
+
+    @Column(name="PRETERMINO", nullable = true, length = 1)
+    public String getPretermino() {
+        return pretermino;
+    }
+
+    public void setPretermino(String pretermino) {
+        this.pretermino = pretermino;
+    }
+
+    @Column(name="COHORTE", nullable = true, length = 5)
+    public String getCohorte() {
+        return cohorte;
+    }
+
+    public void setCohorte(String cohorte) {
+        this.cohorte = cohorte;
+    }
+
+    @Column(name="ENFERMEDAD_INMUNO", nullable = true, length = 1)
+    public String getEnfermedadInmuno() {
+        return enfermedadInmuno;
+    }
+
+    public void setEnfermedadInmuno(String enfermedadInmuno) {
+        this.enfermedadInmuno = enfermedadInmuno;
+    }
+
+    @Column(name="CUAL_ENFERMEDAD", nullable = true, length = 255)
+    public String getCualEnfermedad() {
+        return cualEnfermedad;
+    }
+
+    public void setCualEnfermedad(String cualEnfermedad) {
+        this.cualEnfermedad = cualEnfermedad;
+    }
+
+    @Column(name="TRATAMIENTO", nullable = true, length = 1)
+    public String getTratamiento() {
+        return tratamiento;
+    }
+
+    public void setTratamiento(String tratamiento) {
+        this.tratamiento = tratamiento;
+    }
+
+    @Column(name="CUAL_TRATAMIENTO", nullable = true, length = 255)
+    public String getCualTratamiento() {
+        return cualTratamiento;
+    }
+
+    public void setCualTratamiento(String cualTratamiento) {
+        this.cualTratamiento = cualTratamiento;
+    }
+
+    @Column(name="DIAG_DENGUE", nullable = true, length = 1)
+    public String getDiagDengue() {
+        return diagDengue;
+    }
+
+    public void setDiagDengue(String diagDengue) {
+        this.diagDengue = diagDengue;
+    }
+
+    @Column(name="FECHA_DIAG_DENGUE", nullable = true)
+    public Date getFechaDiagDengue() {
+        return fechaDiagDengue;
+    }
+
+    public void setFechaDiagDengue(Date fechaDiagDengue) {
+        this.fechaDiagDengue = fechaDiagDengue;
+    }
+
+    @Column(name="HOSP_DENGUE", nullable = true, length = 1)
+    public String getHospDengue() {
+        return hospDengue;
+    }
+
+    public void setHospDengue(String hospDengue) {
+        this.hospDengue = hospDengue;
+    }
+
+    @Column(name="FECHA_HOSP_DENGUE", nullable = true)
+    public Date getFechaHospDengue() {
+        return fechaHospDengue;
+    }
+
+    public void setFechaHospDengue(Date fechaHospDengue) {
+        this.fechaHospDengue = fechaHospDengue;
+    }
+
+    @Column(name="TIEMPO_RESIDENCIA", nullable = true, length = 1)
+    public String getTiempoResidencia() {
+        return tiempoResidencia;
+    }
+
+    public void setTiempoResidencia(String tiempoResidencia) {
+        this.tiempoResidencia = tiempoResidencia;
     }
 
     @Override
