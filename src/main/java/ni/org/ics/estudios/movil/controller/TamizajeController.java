@@ -60,6 +60,8 @@ public class TamizajeController {
                     zp00Screening.setAsentimientoVerbal(null);
                 if (zp00Screening.getRazonNoAceptaParticipar()!=null && zp00Screening.getRazonNoAceptaParticipar().equalsIgnoreCase("null"))
                     zp00Screening.setRazonNoAceptaParticipar(null);
+                if (zp00Screening.getAceptaTamizajePersona()!=null && zp00Screening.getAceptaTamizajePersona().equalsIgnoreCase("null"))
+                    zp00Screening.setAceptaTamizajePersona("0");
             	tamizajeService.saveOrUpdateTamizaje(zp00Screening);
             }
         }
