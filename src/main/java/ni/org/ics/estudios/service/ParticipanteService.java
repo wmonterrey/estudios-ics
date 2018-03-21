@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.service;
 
+import ni.org.ics.estudios.domain.ContactoParticipante;
 import ni.org.ics.estudios.domain.Participante;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -90,5 +91,21 @@ public class ParticipanteService {
         Query query = session.createQuery("select p FROM Participante p, ParticipanteProcesos pp where p.codigo = pp.codigo and pp.estPart = 1");
         // Retrieve all
         return  query.list();
+    }
+
+    /**
+     * Crear o actualizar un ContactoParticipante
+     * @param contactoParticipante
+     */
+    public void saveOrUpdateContactoParticipante(ContactoParticipante contactoParticipante){
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(contactoParticipante);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<ContactoParticipante> getContactosParticipantes(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ContactoParticipante");
+        return query.list();
     }
 }

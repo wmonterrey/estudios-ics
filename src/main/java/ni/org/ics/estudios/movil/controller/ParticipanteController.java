@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.movil.controller;
 
+import ni.org.ics.estudios.domain.ContactoParticipante;
 import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.muestreoanual.ParticipanteProcesos;
 import ni.org.ics.estudios.service.ParticipanteService;
@@ -166,5 +167,45 @@ public class ParticipanteController {
         participantes.add(participanteProcesosService.getParticipante(codigo));
 
         return participantes;
+    }
+
+    /**
+     * Retorna participantes. Acepta una solicitud GET para JSON
+     * @return participantes JSON
+     */
+    @RequestMapping(value = "contactosparticipantes", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<ContactoParticipante> descargarContactosParticipantes() {
+        try {
+            logger.info("Descargando toda la informacion de contactosParticipantes");
+            List<ContactoParticipante> contactosParticipantes = participanteService.getContactosParticipantes();
+            if (contactosParticipantes == null) {
+                logger.debug(new Date() + " - Nulo");
+            }
+            return contactosParticipantes;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Acepta una solicitud POST con un parámetro JSON
+     * @param participantesArray Objeto serializado de Participante
+     * @return String con el resultado
+     */
+    @RequestMapping(value = "contactosparticipantes", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveContactoParticipantes(@RequestBody ContactoParticipante[] participantesArray){
+        logger.debug("Insertando/Actualizando datos contactos de participantes");
+        if (participantesArray == null){
+            logger.debug("Nulo");
+            return "No recibi nada!";
+        }else{
+            List<ContactoParticipante> contactoParticipantes = Arrays.asList(participantesArray);
+            for (ContactoParticipante contactoParticipante : contactoParticipantes){
+                participanteService.saveOrUpdateContactoParticipante(contactoParticipante);
+            }
+        }
+        return "Datos recibidos!";
     }
 }
