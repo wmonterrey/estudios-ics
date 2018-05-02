@@ -42,7 +42,8 @@ public class ParticipanteProcesos {
 	private String paxgene;
 	private String adn;
 	private String retoma;
-	private Double volRetoma;
+	private Double volRetoma; //rojo
+    private Double volRetomaPbmc;//pbmc
 	private String datosParto;
 	private String mi;
 	private String casaCHF;
@@ -228,7 +229,16 @@ public class ParticipanteProcesos {
 		this.volRetoma = volRetoma;
 	}
 
-	@Column(name = "recons_den", nullable = false, length = 2)
+    @Column(name = "vol_retoma_pbmc", nullable = true)
+    public Double getVolRetomaPbmc() {
+        return volRetomaPbmc;
+    }
+
+    public void setVolRetomaPbmc(Double volRetomaPbmc) {
+        this.volRetomaPbmc = volRetomaPbmc;
+    }
+
+    @Column(name = "recons_den", nullable = false, length = 2)
 	public String getReConsDeng() {
 		return reConsDeng;
 	}
