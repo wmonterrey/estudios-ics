@@ -54,6 +54,7 @@ public class ParticipanteProcesos {
     private String enCasaSa;
     private String encPartSa;
     private String tutor;
+    private String consSa;
 
     private MovilInfo movilInfo;
 
@@ -371,6 +372,15 @@ public class ParticipanteProcesos {
 
     public void setTutor(String tutor) {
         this.tutor = tutor;
+    }
+
+    @Column(name = "cons_sa", nullable = true, length = 2)
+    public String getConsSa() {
+        return consSa;
+    }
+
+    public void setConsSa(String consSa) {
+        this.consSa = consSa;
     }
 
     public MovilInfo getMovilInfo() {
