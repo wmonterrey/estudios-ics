@@ -43,6 +43,16 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     private String aceptaParteC; //Consentimiento adicional para estudios genéticos
     private String aceptaParteD; //Consentimiento adicional para ZIKA (Estudio Cohorte Dengue)
     private String version; //Indicar la versión actual al momento de registrar la carta
+    //reconsentimiento dengue 2018
+    private String otroMotivoRechazoParteA;
+    private String motivoRechazoParteDExt;
+    private String otroMotivoRechazoParteDExt;
+    private String mismoTutor;
+    private String motivoDifTutor;
+    private String otroMotivoDifTutor;
+    private String otraRelacionFamTutor;
+    private String verifTutor;
+    private String reconsentimiento; //indica si es carta por reconsentimiento del estudio
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -255,6 +265,87 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     public void setRelacionFamiliarTutor(String relacionFamiliar) {
         this.relacionFamiliarTutor = relacionFamiliar;
+    }
+
+    @Column(name = "OTRO_MOT_RECHAZO_PARTE_A", nullable = true)
+    public String getOtroMotivoRechazoParteA() {
+        return otroMotivoRechazoParteA;
+    }
+
+    public void setOtroMotivoRechazoParteA(String otroMotivoRechazoParteA) {
+        this.otroMotivoRechazoParteA = otroMotivoRechazoParteA;
+    }
+
+    @Column(name = "MOTIVO_RECHAZO_PARTE_D", nullable = true, length = 2)
+    public String getMotivoRechazoParteDExt() {
+        return motivoRechazoParteDExt;
+    }
+
+    public void setMotivoRechazoParteDExt(String motivoRechazoParteDExt) {
+        this.motivoRechazoParteDExt = motivoRechazoParteDExt;
+    }
+
+    @Column(name = "OTRO_MOT_RECHAZO_PARTE_D", nullable = true)
+    public String getOtroMotivoRechazoParteDExt() {
+        return otroMotivoRechazoParteDExt;
+    }
+
+    public void setOtroMotivoRechazoParteDExt(String otroMotivoRechazoParteDExt) {
+        this.otroMotivoRechazoParteDExt = otroMotivoRechazoParteDExt;
+    }
+
+    @Column(name = "MISMO_TUTOR", nullable = true, length = 2)
+    public String getMismoTutor() {
+        return mismoTutor;
+    }
+
+    public void setMismoTutor(String mismoTutor) {
+        this.mismoTutor = mismoTutor;
+    }
+
+    @Column(name = "MOTIVO_DIF_TUTOR", nullable = true, length = 2)
+    public String getMotivoDifTutor() {
+        return motivoDifTutor;
+    }
+
+    public void setMotivoDifTutor(String motivoDifTutor) {
+        this.motivoDifTutor = motivoDifTutor;
+    }
+
+    @Column(name = "OTRO_MOTIVO_DIF_TUTOR", nullable = true)
+    public String getOtroMotivoDifTutor() {
+        return otroMotivoDifTutor;
+    }
+
+    public void setOtroMotivoDifTutor(String otroMotivoDifTutor) {
+        this.otroMotivoDifTutor = otroMotivoDifTutor;
+    }
+
+    @Column(name = "OTRA_RELACION_FAMILIAR", nullable = true, length = 100)
+    public String getOtraRelacionFamTutor() {
+        return otraRelacionFamTutor;
+    }
+
+    public void setOtraRelacionFamTutor(String otraRelacionFamTutor) {
+        this.otraRelacionFamTutor = otraRelacionFamTutor;
+    }
+
+    @Column(name = "VERIFICA_TUTOR", nullable = true, length = 20)
+    public String getVerifTutor() {
+        return verifTutor;
+    }
+
+    public void setVerifTutor(String verifTutor) {
+        this.verifTutor = verifTutor;
+    }
+
+    @Column(name = "RECONSENTIMIENTO", length = 2)
+    public String getReconsentimiento() {
+        return reconsentimiento;
+    }
+
+    public void setReconsentimiento(String reconsentimiento) {
+        this.reconsentimiento = reconsentimiento;
     }
 
     @Override

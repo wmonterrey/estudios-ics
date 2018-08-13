@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.movil.controller;
 
 import ni.org.ics.estudios.domain.VisitaTerreno;
+import ni.org.ics.estudios.domain.VisitaTerrenoParticipante;
 import ni.org.ics.estudios.service.VisitaTerrenoService;
 
 import org.slf4j.Logger;
@@ -45,6 +46,31 @@ public class VisitaTerrenoController {
             List<VisitaTerreno> visitas = Arrays.asList(objetos);
             for(VisitaTerreno visita : visitas) {
             	visitaTerrenoService.saveOrUpdateVisitaTerreno(visita);
+            }
+        }
+        return "Datos recibidos!";
+    }
+
+    @RequestMapping(value = "visitasterrenoparti", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody List<VisitaTerrenoParticipante> getVisitasTerrenoParticipante(){
+        logger.info("Descargando toda la informacion de los datos de las VisitaTerrenoParticipante");
+        List<VisitaTerrenoParticipante> visitas = visitaTerrenoService.getVisitasTerrenoParticipante();
+        if (visitas == null){
+            logger.debug("Nulo");
+        }
+        return  visitas;
+    }
+
+    @RequestMapping(value = "visitasterrenoparti", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveVisitaTerrenoParticipante(@RequestBody VisitaTerrenoParticipante[] objetos){
+        logger.debug("Insertando/Actualizando VisitaTerrenoParticipante");
+        if (objetos == null){
+            logger.debug("Nulo");
+            return "No recibi nada!";
+        }else{
+            List<VisitaTerrenoParticipante> visitas = Arrays.asList(objetos);
+            for(VisitaTerrenoParticipante visita : visitas) {
+                visitaTerrenoService.saveOrUpdateVisitaTerrenoParticipante(visita);
             }
         }
         return "Datos recibidos!";

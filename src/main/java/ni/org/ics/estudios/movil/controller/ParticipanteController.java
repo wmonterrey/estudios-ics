@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.movil.controller;
 
+import ni.org.ics.estudios.domain.CambioDomicilio;
 import ni.org.ics.estudios.domain.ContactoParticipante;
 import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.muestreoanual.ParticipanteProcesos;
@@ -204,6 +205,46 @@ public class ParticipanteController {
             List<ContactoParticipante> contactoParticipantes = Arrays.asList(participantesArray);
             for (ContactoParticipante contactoParticipante : contactoParticipantes){
                 participanteService.saveOrUpdateContactoParticipante(contactoParticipante);
+            }
+        }
+        return "Datos recibidos!";
+    }
+
+    /**
+     * Retorna participantes. Acepta una solicitud GET para JSON
+     * @return participantes JSON
+     */
+    @RequestMapping(value = "cambiosdomicilio", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<CambioDomicilio> getCambiosDomicilio() {
+        try {
+            logger.info("Descargando toda la informacion de cambiosdomicilio");
+            List<CambioDomicilio> cambiosDomicilio = participanteService.getCambiosDomicilio();
+            if (cambiosDomicilio == null) {
+                logger.debug(new Date() + " - Nulo");
+            }
+            return cambiosDomicilio;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Acepta una solicitud POST con un parámetro JSON
+     * @param cambiosArray Objeto serializado de Participante
+     * @return String con el resultado
+     */
+    @RequestMapping(value = "cambiosdomicilio", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveCambioDomicilio(@RequestBody CambioDomicilio[] cambiosArray){
+        logger.debug("Insertando/Actualizando datos cambiosdomicilio");
+        if (cambiosArray == null){
+            logger.debug("Nulo");
+            return "No recibi nada!";
+        }else{
+            List<CambioDomicilio> cambioDomicilios = Arrays.asList(cambiosArray);
+            for (CambioDomicilio contactoParticipante : cambioDomicilios){
+                participanteService.saveOrUpdateCambioDomicilio(contactoParticipante);
             }
         }
         return "Datos recibidos!";

@@ -2,6 +2,7 @@ package ni.org.ics.estudios.service;
 
 import ni.org.ics.estudios.domain.VisitaTerreno;
 
+import ni.org.ics.estudios.domain.VisitaTerrenoParticipante;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,4 +38,21 @@ public class VisitaTerrenoService {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(visita);
     }
+
+    /**
+     * Crear o actualizar un VisitaTerrenoParticipante
+     * @param visitaTerrenoParticipante
+     */
+    public void saveOrUpdateVisitaTerrenoParticipante(VisitaTerrenoParticipante visitaTerrenoParticipante){
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(visitaTerrenoParticipante);
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<VisitaTerrenoParticipante> getVisitasTerrenoParticipante(){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from VisitaTerrenoParticipante ");
+        return query.list();
+    }
+
 }

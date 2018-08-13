@@ -51,6 +51,14 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String hospDengue;
     private Date fechaHospDengue;
     private String tiempoResidencia;
+    //reconsentimiento Dengue 2018
+    private String tipoVivienda;
+    private String otraEnfCronica;
+    private String enfCronicaAnio;
+    private String enfCronicaMes;
+    private String otroTx;
+    private String autorizaSupervisor;
+
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
     public String getCodigo() {
@@ -313,6 +321,60 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setTiempoResidencia(String tiempoResidencia) {
         this.tiempoResidencia = tiempoResidencia;
+    }
+
+    @Column(name="TIPO_VIVIENDA", nullable = true, length = 1)
+    public String getTipoVivienda() {
+        return tipoVivienda;
+    }
+
+    public void setTipoVivienda(String tipoVivienda) {
+        this.tipoVivienda = tipoVivienda;
+    }
+
+    @Column(name="OTRA_ENF_CRONICA", nullable = true)
+    public String getOtraEnfCronica() {
+        return otraEnfCronica;
+    }
+
+    public void setOtraEnfCronica(String otraEnfCronica) {
+        this.otraEnfCronica = otraEnfCronica;
+    }
+
+    @Column(name="ENF_CRONICA_ANIO", nullable = true, length = 4)
+    public String getEnfCronicaAnio() {
+        return enfCronicaAnio;
+    }
+
+    public void setEnfCronicaAnio(String enfCronicaAnio) {
+        this.enfCronicaAnio = enfCronicaAnio;
+    }
+
+    @Column(name="ENF_CRONICA_MES", nullable = true, length = 2)
+    public String getEnfCronicaMes() {
+        return enfCronicaMes;
+    }
+
+    public void setEnfCronicaMes(String enfCronicaMes) {
+        this.enfCronicaMes = enfCronicaMes;
+    }
+
+    @Column(name="OTRO_TX", nullable = true)
+    public String getOtroTx() {
+        return otroTx;
+    }
+
+    public void setOtroTx(String otroTx) {
+        this.otroTx = otroTx;
+    }
+
+    @Column(name="AUTORIZA_SUPERVISOR", nullable = true, length = 1)
+    public String getAutorizaSupervisor() {
+        return autorizaSupervisor;
+    }
+
+    public void setAutorizaSupervisor(String autorizaSupervisor) {
+        this.autorizaSupervisor = autorizaSupervisor;
     }
 
     @Override

@@ -30,6 +30,12 @@ public class ContactoParticipante extends BaseMetaData implements Auditable {
     private String numero2;
     private String operadora2;
     private String tipo2;
+    //reconsentimiento 2018
+    private String numero3;
+    private String operadora3;
+    private String tipo3;
+    private String esPropio;
+    private String otroBarrio;
 
     @Id
     @Column(name = "ID", nullable = false, length = 50)
@@ -52,7 +58,7 @@ public class ContactoParticipante extends BaseMetaData implements Auditable {
         this.participante = participante;
     }
 
-    @Column(name = "NOMBRE", nullable = false, length = 150)
+    @Column(name = "NOMBRE", nullable = true, length = 150)
     public String getNombre() {
         return nombre;
     }
@@ -61,7 +67,7 @@ public class ContactoParticipante extends BaseMetaData implements Auditable {
         this.nombre = nombre;
     }
 
-    @Column(name = "DIRECCION", nullable = false, length = 250)
+    @Column(name = "DIRECCION", nullable = true, length = 250)
     public String getDireccion() {
         return Direccion;
     }
@@ -135,6 +141,51 @@ public class ContactoParticipante extends BaseMetaData implements Auditable {
         this.tipo2 = tipo2;
     }
 
+    @Column(name = "NUMERO3", nullable = true, length = 32)
+    public String getNumero3() {
+        return numero3;
+    }
+
+    public void setNumero3(String numero3) {
+        this.numero3 = numero3;
+    }
+
+    @Column(name = "OPERADORA_NUM3", nullable = true, length = 2)
+    public String getOperadora3() {
+        return operadora3;
+    }
+
+    public void setOperadora3(String operadora3) {
+        this.operadora3 = operadora3;
+    }
+
+    @Column(name = "TIPOTEL_NUM3", nullable = true, length = 2)
+    public String getTipo3() {
+        return tipo3;
+    }
+
+    public void setTipo3(String tipo3) {
+        this.tipo3 = tipo3;
+    }
+
+    @Column(name = "PROPIO", nullable = true, length = 2)
+    public String getEsPropio() {
+        return esPropio;
+    }
+
+    public void setEsPropio(String esPropio) {
+        this.esPropio = esPropio;
+    }
+
+    @Column(name = "OTRO_BARRIO", nullable = true, length = 150)
+    public String getOtroBarrio() {
+        return otroBarrio;
+    }
+
+    public void setOtroBarrio(String otroBarrio) {
+        this.otroBarrio = otroBarrio;
+    }
+
     @Override
     public boolean isFieldAuditable(String fieldname) {
         return true;
@@ -142,7 +193,7 @@ public class ContactoParticipante extends BaseMetaData implements Auditable {
 
     @Override
     public String toString() {
-        return id.toString();
+        return id;
     }
 
     @Override
