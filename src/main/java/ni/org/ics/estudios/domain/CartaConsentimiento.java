@@ -24,7 +24,6 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     private Date fechaFirma;
     private Tamizaje tamizaje;
     private Participante participante;
-    private String emancipado;
     private String nombre1Tutor;
     private String nombre2Tutor;
     private String apellido1Tutor;
@@ -72,15 +71,6 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     public void setFechaFirma(Date fechaFirma) {
         this.fechaFirma = fechaFirma;
-    }
-
-    @Column(name = "EMANCIPADO", length = 1)
-    public String getEmancipado() {
-        return emancipado;
-    }
-
-    public void setEmancipado(String emancipado) {
-        this.emancipado = emancipado;
     }
 
     @Column(name = "NOMBRE1_TUTOR", length = 100)

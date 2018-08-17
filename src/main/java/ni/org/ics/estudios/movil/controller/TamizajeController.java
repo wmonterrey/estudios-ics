@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.movil.controller;
 
+import ni.org.ics.estudios.domain.EnfermedadCronica;
 import ni.org.ics.estudios.domain.Tamizaje;
 import ni.org.ics.estudios.service.TamizajeService;
 
@@ -63,6 +64,43 @@ public class TamizajeController {
                 if (zp00Screening.getAceptaTamizajePersona()!=null && zp00Screening.getAceptaTamizajePersona().equalsIgnoreCase("null"))
                     zp00Screening.setAceptaTamizajePersona("0");
             	tamizajeService.saveOrUpdateTamizaje(zp00Screening);
+            }
+        }
+        return "Datos recibidos!";
+    }
+
+    /**
+     * Acepta una solicitud GET para JSON
+     * @return JSON
+     */
+    @RequestMapping(value = "enfermedadescro", method = RequestMethod.GET, produces = "application/json")
+    public @ResponseBody
+    List<EnfermedadCronica> getEnfermedadesCronicas() {
+        logger.info("Descargando toda la informacion de formularios EnfermedadCronica" );
+        List<EnfermedadCronica> respuestaList = tamizajeService.getEnfermedadesCronicas();
+        if (respuestaList == null){
+            logger.debug("Nulo");
+        }
+        return respuestaList;
+    }
+
+
+    /**
+     * Acepta una solicitud POST con un par�metro JSON
+     * @param envio Objeto serializado de Tamizaje
+     * @return String con el resultado
+     */
+    @RequestMapping(value = "enfermedadescro", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveEnfermedadCronica(@RequestBody EnfermedadCronica[] envio) {
+        logger.debug("Insertando/Actualizando formularios EnfermedadCronica");
+        if (envio == null){
+            logger.debug("Nulo");
+            return "No recibi nada!";
+        }
+        else{
+            List<EnfermedadCronica> enfermedades = Arrays.asList(envio);
+            for (EnfermedadCronica enfermedadCronica : enfermedades){
+                tamizajeService.saveOrUpdateEnfermedadCronica(enfermedadCronica);
             }
         }
         return "Datos recibidos!";

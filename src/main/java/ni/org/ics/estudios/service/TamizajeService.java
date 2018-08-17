@@ -1,5 +1,6 @@
 package ni.org.ics.estudios.service;
 
+import ni.org.ics.estudios.domain.EnfermedadCronica;
 import ni.org.ics.estudios.domain.Tamizaje;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -48,5 +49,18 @@ public class TamizajeService {
     {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(tamizaje);
+    }
+
+    public List<EnfermedadCronica> getEnfermedadesCronicas()
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from EnfermedadCronica ");
+        return query.list();
+    }
+
+    public void saveOrUpdateEnfermedadCronica(EnfermedadCronica enfermedadCronica)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(enfermedadCronica);
     }
 }

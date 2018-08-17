@@ -43,7 +43,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String pretermino;
     private String cohorte;
     private String enfermedadInmuno;
-    private String cualEnfermedad;
+    //private String cualEnfermedad;
     private String tratamiento;
     private String cualTratamiento;
     private String diagDengue;
@@ -53,11 +53,14 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String tiempoResidencia;
     //reconsentimiento Dengue 2018
     private String tipoVivienda;
-    private String otraEnfCronica;
-    private String enfCronicaAnio;
-    private String enfCronicaMes;
+    //private String otraEnfCronica;
+    //private String enfCronicaAnio;
+    //private String enfCronicaMes;
     private String otroTx;
     private String autorizaSupervisor;
+    private String emancipado;
+    private String razonEmancipacion;
+    private String otraRazonEmancipacion;
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -250,7 +253,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     public void setEnfermedadInmuno(String enfermedadInmuno) {
         this.enfermedadInmuno = enfermedadInmuno;
     }
-
+/*
     @Column(name="CUAL_ENFERMEDAD", nullable = true, length = 255)
     public String getCualEnfermedad() {
         return cualEnfermedad;
@@ -259,7 +262,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     public void setCualEnfermedad(String cualEnfermedad) {
         this.cualEnfermedad = cualEnfermedad;
     }
-
+*/
     @Column(name="TRATAMIENTO", nullable = true, length = 1)
     public String getTratamiento() {
         return tratamiento;
@@ -331,7 +334,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     public void setTipoVivienda(String tipoVivienda) {
         this.tipoVivienda = tipoVivienda;
     }
-
+/*
     @Column(name="OTRA_ENF_CRONICA", nullable = true)
     public String getOtraEnfCronica() {
         return otraEnfCronica;
@@ -358,7 +361,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     public void setEnfCronicaMes(String enfCronicaMes) {
         this.enfCronicaMes = enfCronicaMes;
     }
-
+*/
     @Column(name="OTRO_TX", nullable = true)
     public String getOtroTx() {
         return otroTx;
@@ -375,6 +378,33 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setAutorizaSupervisor(String autorizaSupervisor) {
         this.autorizaSupervisor = autorizaSupervisor;
+    }
+
+    @Column(name = "EMANCIPADO", length = 1)
+    public String getEmancipado() {
+        return emancipado;
+    }
+
+    public void setEmancipado(String emancipado) {
+        this.emancipado = emancipado;
+    }
+
+    @Column(name = "RAZON_EMANCIPADO", length = 1)
+    public String getRazonEmancipacion() {
+        return razonEmancipacion;
+    }
+
+    public void setRazonEmancipacion(String razonEmancipacion) {
+        this.razonEmancipacion = razonEmancipacion;
+    }
+
+    @Column(name = "OTRA_RAZON_EMANCIPADO", length = 255)
+    public String getOtraRazonEmancipacion() {
+        return otraRazonEmancipacion;
+    }
+
+    public void setOtraRazonEmancipacion(String otraRazonEmancipacion) {
+        this.otraRazonEmancipacion = otraRazonEmancipacion;
     }
 
     @Override
