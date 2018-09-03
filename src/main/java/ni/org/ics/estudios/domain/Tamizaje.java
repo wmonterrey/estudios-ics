@@ -44,6 +44,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String cohorte;
     private String enfermedadInmuno;
     //private String cualEnfermedad;
+    private String enfermedadCronica;
     private String tratamiento;
     private String cualTratamiento;
     private String diagDengue;
@@ -253,16 +254,16 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     public void setEnfermedadInmuno(String enfermedadInmuno) {
         this.enfermedadInmuno = enfermedadInmuno;
     }
-/*
-    @Column(name="CUAL_ENFERMEDAD", nullable = true, length = 255)
-    public String getCualEnfermedad() {
-        return cualEnfermedad;
+
+    @Column(name="ENFERMEDAD_CRONICA", nullable = true, length = 1)
+    public String getEnfermedadCronica() {
+        return enfermedadCronica;
     }
 
-    public void setCualEnfermedad(String cualEnfermedad) {
-        this.cualEnfermedad = cualEnfermedad;
+    public void setEnfermedadCronica(String enfermedadCronica) {
+        this.enfermedadCronica = enfermedadCronica;
     }
-*/
+
     @Column(name="TRATAMIENTO", nullable = true, length = 1)
     public String getTratamiento() {
         return tratamiento;

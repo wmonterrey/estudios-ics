@@ -47,6 +47,7 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 	private String antibiotico;
 	private String cualAntibiotico;
 	private String prescritoMedico;
+    private String respiracionRapida;
     
 	@Id
     @Column(name = "CODIGO_SINTOMA_CASO", length = 50, nullable = false)
@@ -294,7 +295,16 @@ public class VisitaSeguimientoCasoSintomas extends BaseMetaData implements Audit
 		this.prescritoMedico = prescritoMedico;
 	}
 
-	@Override
+    @Column(name = "RESP_RAPIDA", length = 2, nullable = true)
+    public String getRespiracionRapida() {
+        return respiracionRapida;
+    }
+
+    public void setRespiracionRapida(String respiracionRapida) {
+        this.respiracionRapida = respiracionRapida;
+    }
+
+    @Override
 	public String toString(){
 		return codigoVisitaCaso.getCodigoParticipanteCaso().getCodigoCaso().getCasa().getCodigoCHF() + "-" + codigoVisitaCaso.getCodigoParticipanteCaso().getParticipante().getParticipante().getCodigo() + "-" + codigoVisitaCaso.getCodigoParticipanteCaso().getCodigoCaso().getFechaInicio();
 	}

@@ -1,6 +1,7 @@
 package ni.org.ics.estudios.service.cohortefamilia;
 
 import ni.org.ics.estudios.domain.cohortefamilia.Muestra;
+import ni.org.ics.estudios.web.utils.DateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -33,9 +35,12 @@ public class MuestraService {
     }
     
     @SuppressWarnings("unchecked")
-	public List<Muestra> getMuestrasTx(){
+	public List<Muestra> getMuestrasTx() throws Exception{
+        Calendar hoy = Calendar.getInstance();
+        int anioActual = hoy.get(Calendar.YEAR);
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Muestra where pasive = '0' and proposito = '3'");
+        Query query = session.createQuery("from Muestra where pasive = '0' and proposito = '3' and recordDate > :primerDia");
+        query.setParameter("primerDia", DateUtil.StringToDate("01/01/"+String.valueOf(anioActual), "dd/MM/yyyy"));
         return  query.list();
     }
     

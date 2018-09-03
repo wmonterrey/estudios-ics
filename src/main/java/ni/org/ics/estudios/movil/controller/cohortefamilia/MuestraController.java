@@ -60,7 +60,7 @@ public class MuestraController {
      */
     @RequestMapping(value = "mxstx", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Muestra> getMuestrasTX() {
+    List<Muestra> getMuestrasTX() throws Exception{
         logger.info("Descargando toda la informacion de formularios muestras para el usuario ");
         List<Muestra> respuestaList = muestraService.getMuestrasTx();
         if (respuestaList == null){
