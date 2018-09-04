@@ -62,6 +62,7 @@ public class Tamizaje extends BaseMetaData implements Auditable {
     private String emancipado;
     private String razonEmancipacion;
     private String otraRazonEmancipacion;
+    private Integer codigoParticipanteRecon;
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -406,6 +407,15 @@ public class Tamizaje extends BaseMetaData implements Auditable {
 
     public void setOtraRazonEmancipacion(String otraRazonEmancipacion) {
         this.otraRazonEmancipacion = otraRazonEmancipacion;
+    }
+
+    @Column(name = "CODIGO_PART_RECON", nullable = true)
+    public Integer getCodigoParticipanteRecon() {
+        return codigoParticipanteRecon;
+    }
+
+    public void setCodigoParticipanteRecon(Integer codigoParticipanteRecon) {
+        this.codigoParticipanteRecon = codigoParticipanteRecon;
     }
 
     @Override
