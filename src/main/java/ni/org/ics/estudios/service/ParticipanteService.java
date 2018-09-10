@@ -106,7 +106,7 @@ public class ParticipanteService {
     @SuppressWarnings("unchecked")
     public List<ContactoParticipante> getContactosParticipantes(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ContactoParticipante");
+        Query query = session.createQuery("from ContactoParticipante where pasive = '0'");
         return query.list();
     }
 
