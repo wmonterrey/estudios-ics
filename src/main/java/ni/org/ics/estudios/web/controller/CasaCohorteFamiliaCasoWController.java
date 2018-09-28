@@ -117,8 +117,8 @@ public class CasaCohorteFamiliaCasoWController {
             casaCasoExistente.setRecordDate(new Date());
             casaCasoExistente.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
             casaCasoExistente.setPasive('1');
-            this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCasoExistente);
             List<ParticipanteCohorteFamiliaCaso> participanteCohorteFamiliaCasos = this.participanteCohorteFamiliaCasoService.getParticipantesCohorteFamiliaCasoByCodigoCaso(codigo);
+            this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCasoExistente);
             for(ParticipanteCohorteFamiliaCaso participante : participanteCohorteFamiliaCasos){
                 participante.setRecordDate(new Date());
                 participante.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -166,7 +166,8 @@ public class CasaCohorteFamiliaCasoWController {
     {
         try{
             Date dFechaInicio = DateUtil.StringToDate(fechaInicio, "dd/MM/yyyy");
-            CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigoCasaFecha(codigoCasa,dFechaInicio);
+            CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasoByCodigoCasa(codigoCasa);
+            //CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigoCasaFecha(codigoCasa,dFechaInicio);
             CasaCohorteFamiliaCaso casaCaso = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigo);
             /*if (casaCasoExistente!=null && codigo.isEmpty())
                 return createJsonResponse("Ya existe un caso positivo para esta casa");
@@ -187,7 +188,10 @@ public class CasaCohorteFamiliaCasoWController {
 
                 this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCaso);
             }else {
-                casaCaso = casaCasoExistente;
+                if (casaCasoExistente.getFechaInicio().compareTo(dFechaInicio)!=0){
+                    return createJsonResponse("Ya existe un caso activo para esta casa con fecha de inicio: "+DateUtil.DateToString(casaCasoExistente.getFechaInicio(),"dd/MM/yyyy"));
+                }else
+                    casaCaso = casaCasoExistente;
             }
             //agregar paticipante positivo
             ParticipanteCohorteFamiliaCaso participanteCaso = this.participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByParticipante(codigoParticipante, casaCaso.getCodigoCaso());

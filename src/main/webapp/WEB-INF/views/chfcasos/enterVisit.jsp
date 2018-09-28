@@ -78,14 +78,16 @@
 	                                        <select name="visita" id="visita" class="form-control">
 		                                        <option selected value=""><spring:message code="select" />...</option>
 	                                            <c:forEach items="${visitas}" var="visitaCat">
-													<c:choose> 
-														<c:when test="${visitaCat.catKey eq visita.visita}">
-															<option selected value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
-														</c:when>
-														<c:otherwise>
-															<option value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
-														</c:otherwise>
-													</c:choose> 
+                                                    <c:if test="${visitaCat.messageKey ne 'CHF_CAT_VIS_MI_F'}">
+                                                        <c:choose>
+                                                            <c:when test="${visitaCat.catKey eq visita.visita}">
+                                                                <option selected value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <option value="${visitaCat.catKey}"><spring:message code="${visitaCat.spanish}" /></option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:if>
 												</c:forEach>
 	                                        </select>
 	                                    </div>
