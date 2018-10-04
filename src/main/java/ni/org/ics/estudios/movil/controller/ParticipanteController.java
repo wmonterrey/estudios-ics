@@ -1,6 +1,6 @@
 package ni.org.ics.estudios.movil.controller;
 
-import ni.org.ics.estudios.domain.CambioDomicilio;
+import ni.org.ics.estudios.domain.DatosCoordenadas;
 import ni.org.ics.estudios.domain.ContactoParticipante;
 import ni.org.ics.estudios.domain.Participante;
 import ni.org.ics.estudios.domain.muestreoanual.ParticipanteProcesos;
@@ -211,19 +211,19 @@ public class ParticipanteController {
     }
 
     /**
-     * Retorna participantes. Acepta una solicitud GET para JSON
-     * @return participantes JSON
+     * Retorna datoscoordenadas. Acepta una solicitud GET para JSON
+     * @return datoscoordenadas JSON
      */
-    @RequestMapping(value = "cambiosdomicilio", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "datoscoordenadas", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<CambioDomicilio> getCambiosDomicilio() {
+    List<DatosCoordenadas> getDatosCoordenadas() {
         try {
-            logger.info("Descargando toda la informacion de cambiosdomicilio");
-            List<CambioDomicilio> cambiosDomicilio = participanteService.getCambiosDomicilio();
-            if (cambiosDomicilio == null) {
+            logger.info("Descargando toda la informacion de datoscoordenadas");
+            List<DatosCoordenadas> coordenadas = participanteService.getDatosCoordenadas();
+            if (coordenadas == null) {
                 logger.debug(new Date() + " - Nulo");
             }
-            return cambiosDomicilio;
+            return coordenadas;
         }catch (Exception ex){
             ex.printStackTrace();
             return null;
@@ -232,19 +232,19 @@ public class ParticipanteController {
 
     /**
      * Acepta una solicitud POST con un parámetro JSON
-     * @param cambiosArray Objeto serializado de Participante
+     * @param datosArray Objeto serializado de coordenas gps
      * @return String con el resultado
      */
-    @RequestMapping(value = "cambiosdomicilio", method = RequestMethod.POST, consumes = "application/json")
-    public @ResponseBody String saveCambioDomicilio(@RequestBody CambioDomicilio[] cambiosArray){
-        logger.debug("Insertando/Actualizando datos cambiosdomicilio");
-        if (cambiosArray == null){
+    @RequestMapping(value = "datoscoordenadas", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody String saveDatosCoordenadas(@RequestBody DatosCoordenadas[] datosArray){
+        logger.debug("Insertando/Actualizando datos datoscoordenadas");
+        if (datosArray == null){
             logger.debug("Nulo");
             return "No recibi nada!";
         }else{
-            List<CambioDomicilio> cambioDomicilios = Arrays.asList(cambiosArray);
-            for (CambioDomicilio contactoParticipante : cambioDomicilios){
-                participanteService.saveOrUpdateCambioDomicilio(contactoParticipante);
+            List<DatosCoordenadas> datosCoordenadas = Arrays.asList(datosArray);
+            for (DatosCoordenadas coordenadas : datosCoordenadas){
+                participanteService.saveOrUpdateDatosCoordenadas(coordenadas);
             }
         }
         return "Datos recibidos!";

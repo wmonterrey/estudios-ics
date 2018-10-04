@@ -1,6 +1,6 @@
 package ni.org.ics.estudios.service;
 
-import ni.org.ics.estudios.domain.CambioDomicilio;
+import ni.org.ics.estudios.domain.DatosCoordenadas;
 import ni.org.ics.estudios.domain.ContactoParticipante;
 import ni.org.ics.estudios.domain.Participante;
 import org.hibernate.Query;
@@ -111,18 +111,18 @@ public class ParticipanteService {
     }
 
     /**
-     * Crear o actualizar un CambioDomicilio
-     * @param cambioDomicilio
+     * Crear o actualizar un DatosCoordenadas
+     * @param datosCoordenadas
      */
-    public void saveOrUpdateCambioDomicilio(CambioDomicilio cambioDomicilio){
+    public void saveOrUpdateDatosCoordenadas(DatosCoordenadas datosCoordenadas){
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(cambioDomicilio);
+        session.saveOrUpdate(datosCoordenadas);
     }
 
     @SuppressWarnings("unchecked")
-    public List<CambioDomicilio> getCambiosDomicilio(){
+    public List<DatosCoordenadas> getDatosCoordenadas(){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from CambioDomicilio ");
+        Query query = session.createQuery("from DatosCoordenadas ");
         return query.list();
     }
 

@@ -55,6 +55,7 @@ public class ParticipanteProcesos {
     private String encPartSa;
     private String tutor;
     private String consSa;
+    private String coordenadas; //cambio de domicilio
 
     private MovilInfo movilInfo;
 
@@ -381,6 +382,15 @@ public class ParticipanteProcesos {
 
     public void setConsSa(String consSa) {
         this.consSa = consSa;
+    }
+
+    @Column(name = "coordenada", nullable = true, length = 2)
+    public String getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(String camDom) {
+        this.coordenadas = camDom;
     }
 
     public MovilInfo getMovilInfo() {
