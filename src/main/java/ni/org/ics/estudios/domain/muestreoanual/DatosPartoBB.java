@@ -46,7 +46,16 @@ public class DatosPartoBB {
 	private MovilInfo movilInfo;
 	private Integer otrorecurso1;
 	private Integer otrorecurso2;
-
+    private String tallaBB_sndr;
+    private String tallaBB;
+    private String docMedTallaBB_sn;
+    private String docMedTallaBB;
+    private String otroDocMedTallaBB;
+    private String vacFluMadre_sn;
+    private Date fechaVacInf;
+    private String docMedFecVacInfMadre_sn;
+    private String docMedFecVacInfMadre;
+    private String otroDocMedFecVacInfMadre;
 
 	
 	@Column(name = "tipoParto", nullable = true, length = 1)
@@ -263,7 +272,94 @@ public class DatosPartoBB {
 	public void setFumFueraRango_razon(String fumFueraRango_razon) {
 		this.fumFueraRango_razon = fumFueraRango_razon;
 	}
-	
-	
 
+    @Column(name = "tallaBB_sndr", nullable = true, length = 1)
+    public String getTallaBB_sndr() {
+        return tallaBB_sndr;
+    }
+
+    public void setTallaBB_sndr(String tallaBB_sndr) {
+        this.tallaBB_sndr = tallaBB_sndr;
+    }
+
+    @Column(name = "tallabb", nullable = true, length = 5)
+    public String getTallaBB() {
+        return tallaBB;
+    }
+
+    public void setTallaBB(String tallaBB) {
+        this.tallaBB = tallaBB;
+    }
+
+    @Column(name = "docMedTallaBB_sn", nullable = true, length = 1)
+    public String getDocMedTallaBB_sn() {
+        return docMedTallaBB_sn;
+    }
+
+    public void setDocMedTallaBB_sn(String docMedTallaBB_sn) {
+        this.docMedTallaBB_sn = docMedTallaBB_sn;
+    }
+
+    @Column(name = "docMedTallaBB", nullable = true, length = 1)
+    public String getDocMedTallaBB() {
+        return docMedTallaBB;
+    }
+
+    public void setDocMedTallaBB(String docMedTallaBB) {
+        this.docMedTallaBB = docMedTallaBB;
+    }
+
+    @Column(name = "otroDocMedTallaBB", nullable = true, length = 500)
+    public String getOtroDocMedTallaBB() {
+        return otroDocMedTallaBB;
+    }
+
+    public void setOtroDocMedTallaBB(String otroDocMedTallaBB) {
+        this.otroDocMedTallaBB = otroDocMedTallaBB;
+    }
+
+    @Column(name = "vacflumadre_sn", nullable = true, length = 1)
+    public String getVacFluMadre_sn() {
+        return vacFluMadre_sn;
+    }
+
+    public void setVacFluMadre_sn(String vacFluMadre_sn) {
+        this.vacFluMadre_sn = vacFluMadre_sn;
+    }
+
+    @Column(name = "fechavacinf", nullable = true)
+    public Date getFechaVacInf() {
+        return fechaVacInf;
+    }
+
+    public void setFechaVacInf(Date fechaVacInf) {
+        this.fechaVacInf = fechaVacInf;
+    }
+
+    @Column(name = "docMedFecVacInfMadre_sn", nullable = true, length = 1)
+    public String getDocMedFecVacInfMadre_sn() {
+        return docMedFecVacInfMadre_sn;
+    }
+
+    public void setDocMedFecVacInfMadre_sn(String docMedFecVacInfMadre_sn) {
+        this.docMedFecVacInfMadre_sn = docMedFecVacInfMadre_sn;
+    }
+
+    @Column(name = "docMedFecVacInfMadre", nullable = true, length = 1)
+    public String getDocMedFecVacInfMadre() {
+        return docMedFecVacInfMadre;
+    }
+
+    public void setDocMedFecVacInfMadre(String docMedFecVacInfMadre) {
+        this.docMedFecVacInfMadre = docMedFecVacInfMadre;
+    }
+
+    @Column(name = "otroDocMedFecVacInfMadre", nullable = true, length = 500)
+    public String getOtroDocMedFecVacInfMadre() {
+        return otroDocMedFecVacInfMadre;
+    }
+
+    public void setOtroDocMedFecVacInfMadre(String otroDocMedFecVacInfMadre) {
+        this.otroDocMedFecVacInfMadre = otroDocMedFecVacInfMadre;
+    }
 }
