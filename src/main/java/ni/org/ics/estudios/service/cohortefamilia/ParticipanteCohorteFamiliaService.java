@@ -29,7 +29,8 @@ public class ParticipanteCohorteFamiliaService {
 
     public List<ParticipanteCohorteFamilia> getParticipantesCHFByCodigoCasa(String codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from ParticipanteCohorteFamilia where casaCHF.codigoCHF = :codigo and pasive = '0'");
+        Query query = session.createQuery("select pchf from ParticipanteCohorteFamilia pchf, ParticipanteProcesos p where pchf.participante.codigo = p.codigo and pchf.casaCHF.codigoCHF = :codigo and pchf.pasive = '0'" +
+                " and p.estPart = 1");
         query.setParameter("codigo", codigo);
         return query.list();
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +58,7 @@ public class CartaConsentimientoController {
         }else{
             List<CartaConsentimiento> cartaConsentimientos = Arrays.asList(objetos);
             for(CartaConsentimiento objeto : cartaConsentimientos){
+                objeto.setFechaRecibido(new Date());
                 cartaConsentimientoService.saveOrUpdateCartaConsentimiento(objeto);
             }
         }

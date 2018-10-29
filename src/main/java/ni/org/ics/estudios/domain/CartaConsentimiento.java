@@ -4,6 +4,7 @@ import ni.org.ics.estudios.domain.audit.Auditable;
 
 import javax.persistence.*;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.ForeignKey;
 
 import java.util.Date;
@@ -52,6 +53,7 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     private String otraRelacionFamTutor;
     private String verifTutor;
     private String reconsentimiento; //indica si es carta por reconsentimiento del estudio
+    private Date fechaRecibido;
 
     @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
@@ -336,6 +338,16 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
 
     public void setReconsentimiento(String reconsentimiento) {
         this.reconsentimiento = reconsentimiento;
+    }
+
+    @JsonIgnore
+    @Column(name = "FECHAENVIO")
+    public Date getFechaRecibido() {
+        return fechaRecibido;
+    }
+
+    public void setFechaRecibido(Date fechaEnvio) {
+        this.fechaRecibido = fechaEnvio;
     }
 
     @Override

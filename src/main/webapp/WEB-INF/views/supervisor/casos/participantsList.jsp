@@ -25,6 +25,7 @@
         </ol>
         <c:set var="exportar"><spring:message code="export" /></c:set>
         <c:set var="confirmar"><spring:message code="confirm" /></c:set>
+        <c:set var="deshabilitar"><spring:message code="disable" /></c:set>
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
@@ -53,9 +54,14 @@
                                 <th><spring:message code="age" /></th>
                                 <th><spring:message code="positive" /></th>
                                 <th><spring:message code="fif" /></th>
+                                <th><spring:message code="actions" /></th>
                             </tr>
                             </thead>
                             <c:forEach items="${participantes}" var="parti">
+                                <spring:url value="/super/casacaso/actions/disablepart/{codigo}"
+                                            var="disableUrl">
+                                    <spring:param name="codigo" value="${parti.codigoCasoParticipante}*${parti.participante.participante.codigo}" />
+                                </spring:url>
                                 <tr>
                                     <c:set var="edadParts" value="${fn:split(parti.participante.participante.edad, '/')}" />
                                     <td><c:out value="${parti.participante.participante.codigo}" /></td>
@@ -70,11 +76,41 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <td><fmt:formatDate value="${parti.fechaEnfermedad}" pattern="dd/MM/yyyy" /></td>
+                                    <td>
+                                        <c:choose>
+                                        <c:when test="${parti.codigoCaso.inactiva=='1' or parti.enfermo eq 'S'}">
+                                            <button title="<spring:message code="disable" />" class="btn btn-outline-primary btn-sm" disabled><i class="fa fa-trash-o"></i></button>
+                                        </c:when>
+                                            <c:otherwise>
+                                                <a title="<spring:message code="disable" />" data-toggle="modal" data-id="${fn:escapeXml(disableUrl)}" class="btn btn-outline-primary btn-sm desact"><i class="fa fa-trash-o"></i></a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="modal fade" id="basic" tabindex="-1" data-role="basic" data-backdrop="static" data-aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" data-aria-hidden="true"></button>
+                            <div id="titulo"></div>
+                        </div>
+                        <div class="modal-body">
+                            <input type=hidden id="accionUrl"/>
+                            <div id="cuerpo"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message code="cancel" /></button>
+                            <button type="button" id="btnOk" class="btn btn-info" onclick="ejecutarAccion()"><spring:message code="ok" /></button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
             </div>
         </div>
         <!-- /.conainer-fluid -->
@@ -140,6 +176,14 @@
         } );
 
         $( tt.fnContainer() ).insertBefore('div.table-toolbar');
+
+        $(".desact").click(function(){
+            $('#accionUrl').val($(this).data('id').substr(0,$(this).data('id').lastIndexOf("*")));
+            $('#titulo').html('<h2 class="modal-title">'+"${confirmar}"+'</h2>');
+            $('#cuerpo').html('<h3>'+"${deshabilitar}"+' '+decodeURIComponent($(this).data('id').substr($(this).data('id').lastIndexOf("*")+1))+'?</h3>');
+            $('#btnOk').show();
+            $('#basic').modal('show');
+        });
 
     });
 

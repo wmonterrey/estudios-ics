@@ -107,29 +107,39 @@ public class CasaCohorteFamiliaCasoWController {
         if (accion.matches("disable")){
             redirecTo = "redirect:/super/casacaso/";
             redirectAttributes.addFlashAttribute("deshabilitado", true);
+
+            //UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
+            CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigo);
+            if(casaCasoExistente!=null){
+                casaCasoExistente.setRecordDate(new Date());
+                casaCasoExistente.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+                casaCasoExistente.setPasive('1');
+                List<ParticipanteCohorteFamiliaCaso> participanteCohorteFamiliaCasos = this.participanteCohorteFamiliaCasoService.getParticipantesCohorteFamiliaCasoByCodigoCaso(codigo);
+                this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCasoExistente);
+                for(ParticipanteCohorteFamiliaCaso participante : participanteCohorteFamiliaCasos){
+                    participante.setRecordDate(new Date());
+                    participante.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+                    participante.setPasive('1');
+                    this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participante);
+                }
+                redirectAttributes.addFlashAttribute("casa", casaCasoExistente.getCasa().getCodigoCHF());
+            }
+            else{
+                redirecTo = "403";
+            }
+        } else if (accion.matches("disablepart")){
+            ParticipanteCohorteFamiliaCaso participanteCohorteFamiliaCaso = participanteCohorteFamiliaCasoService.getParticipanteCohorteFamiliaCasosByCodigo(codigo);
+            participanteCohorteFamiliaCaso.setRecordDate(new Date());
+            participanteCohorteFamiliaCaso.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
+            participanteCohorteFamiliaCaso.setPasive('1');
+            this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participanteCohorteFamiliaCaso);
+
+            redirecTo = "redirect:/super/casacaso/participants/"+participanteCohorteFamiliaCaso.getCodigoCaso().getCodigoCaso();
         }
         else{
             return redirecTo;
         }
-        //UserSistema usuarioActual = this.usuarioService.getUser(SecurityContextHolder.getContext().getAuthentication().getName());
-        CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigo);
-        if(casaCasoExistente!=null){
-            casaCasoExistente.setRecordDate(new Date());
-            casaCasoExistente.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
-            casaCasoExistente.setPasive('1');
-            List<ParticipanteCohorteFamiliaCaso> participanteCohorteFamiliaCasos = this.participanteCohorteFamiliaCasoService.getParticipantesCohorteFamiliaCasoByCodigoCaso(codigo);
-            this.casaCohorteFamiliaCasoService.saveOrUpdateCasaCohorteFamiliaCaso(casaCasoExistente);
-            for(ParticipanteCohorteFamiliaCaso participante : participanteCohorteFamiliaCasos){
-                participante.setRecordDate(new Date());
-                participante.setRecordUser(SecurityContextHolder.getContext().getAuthentication().getName());
-                participante.setPasive('1');
-                this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participante);
-            }
-            redirectAttributes.addFlashAttribute("casa", casaCasoExistente.getCasa().getCodigoCHF());
-        }
-        else{
-            redirecTo = "403";
-        }
+
         return redirecTo;
     }
 
@@ -229,7 +239,6 @@ public class CasaCohorteFamiliaCasoWController {
                     participanteCaso.setParticipante(participante);
                     participanteCaso.setCodigoCaso(casaCaso);
                     participanteCaso.setEstado('1');
-
 
                     this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participanteCaso);
                 }
