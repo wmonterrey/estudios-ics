@@ -341,7 +341,7 @@ public class CartaConsentimiento extends BaseMetaData implements Auditable {
     }
 
     @JsonIgnore
-    @Column(name = "FECHAENVIO")
+    @Column(name = "FECHA_RECIBIDO")
     public Date getFechaRecibido() {
         return fechaRecibido;
     }
