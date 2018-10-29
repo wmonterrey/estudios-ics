@@ -49,4 +49,12 @@ public class CartaConsentimientoService {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(cartaConsentimiento);
     }
+
+    public List<CartaConsentimiento> getCartaConsentimientoByCodParticipante(Integer codParticipante)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from CartaConsentimiento where participante.codigo = :codigo order by fechaFirma desc");
+        query.setParameter("codigo", codParticipante);
+        return query.list();
+    }
 }

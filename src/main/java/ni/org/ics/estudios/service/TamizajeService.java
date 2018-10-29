@@ -63,4 +63,12 @@ public class TamizajeService {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(enfermedadCronica);
     }
+
+    public List<EnfermedadCronica> getEnfermedadesCronicasByTamizaje(String tamizaje)
+    {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from EnfermedadCronica where tamizaje.codigo = :tamizaje ");
+        query.setParameter("tamizaje", tamizaje);
+        return query.list();
+    }
 }

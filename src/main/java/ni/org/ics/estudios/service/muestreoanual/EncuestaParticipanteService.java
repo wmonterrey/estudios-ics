@@ -60,6 +60,15 @@ public class EncuestaParticipanteService {
         EncuestaParticipanteMA encuestaParticipante = (EncuestaParticipanteMA) query.uniqueResult();
 	return encuestaParticipante;
 	}
+
+    public List<EncuestaParticipanteMA> getEncuestasParticipante (Integer codParticipante){
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("FROM EncuestaParticipanteMA encpar where encpar.epId.codigo = :codigo order by encpar.epId.fechaEncPar desc ");
+        query.setParameter("codigo",codParticipante);
+
+        return query.list();
+    }
 	
 	/**
 	 * Verifica una Encuesta de Participante

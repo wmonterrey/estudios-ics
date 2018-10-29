@@ -32,6 +32,8 @@ INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUE
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'laboratory', 'Laboratorio','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'print.codes', 'Impresi�n C�digos','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'logout', 'Salir','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'reports', 'Reportes','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'report.file.data', 'Datos Generales','0','0',0);
 
 
 /*Catalogos*/
@@ -179,6 +181,8 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TURNO', NULL, NULL, NULL, '1', 0, '0', 'Catalogo turnos de estudio CHF');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TURNO_01', '1', 'CHF_CAT_TURNO', NULL, '0', 1, '0', 'AM');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TURNO_02', '2', 'CHF_CAT_TURNO', NULL, '0', 2, '0', 'PM');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TURNO_03', '3', 'CHF_CAT_TURNO', NULL, '0', 3, '0', 'SAB');
+INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_TURNO_04', '4', 'CHF_CAT_TURNO', NULL, '0', 4, '0', 'DOM');
 
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CUIDAN_NINO', NULL, NULL, NULL, '1', 0, '0', 'Catalogo d�nde cuidad al niño si no va a la escuela CHF');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CHF_CAT_CUIDAN_NINO_01', '1', 'CHF_CAT_CUIDAN_NINO', NULL, '0', 1, '0', 'CDI');
@@ -824,3 +828,49 @@ INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RAZEMAN_02', '2', 'CP_CAT_RAZEMAN', NULL, '0', 2, '0', 'Casad@');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RAZEMAN_03', '3', 'CP_CAT_RAZEMAN', NULL, '0', 3, '0', 'Con hijos');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('CP_CAT_RAZEMAN_998', '4', 'CP_CAT_RAZEMAN', NULL, '0', 4, '0', 'Otro');
+
+/*Reportes*/
+/*Datos generales participante para expediente*/
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'title.report.file', 'Datos Generales del Participante del Estudio','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.code', 'Código:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.date', 'Fecha:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.general.data', '1. Datos Generales','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.family', 'Familia:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.family.boss', 'Jefe de Familia:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.tutor', 'Tutor:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.father', 'Padre:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.mother', 'Madre:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.family.relationship', 'Relación del tutor con el niño:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.housing.type', 'Vivienda:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.neighborhood', 'Barrio:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.block', 'Manzana:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.address', 'Dirección:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.phone', 'Teléfono:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.contact', 'Contacto:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.contact.explanation', 'Si no lo localizamos, a quién podemos contactar que no viva con Ud.:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.name', 'Nombre:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.child.data', '2. Datos del Niño','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.names.surnames', 'Nombres y Apellidos:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.age', 'Edad:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.birthdate', 'Fecha de Nacimiento:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.gender', 'Sexo:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.student', 'Estudiante:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.turn', 'Turno:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.school', 'Escuela:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.residence.time', 'Tiempo de Residencia:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.stay.area', 'Intensión de quedarse en el barrio por los tres años siguientes:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.where.child.attends', 'Donde asiste cuanto tiene problemas de salud el niño:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.health.unit.attends', 'Nombre de la unidad de salud a la que asiste su niño:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.willing.attends.cssf', 'Estaría dispuesto a asistir solamente al C/S Sócrates Flores si el niño se enferma:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.clinical.epi.data', '3. Datos clínicos y epidemiológicos del Niño:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.chronic disease', 'El nino padece de alguna enfermedad crónica:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.wich', 'Cuál:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.take.treatment', 'Toma algún tratamiento:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.diagnosed.dengue', 'Se le ha diagnosticado dengue en alguna ocasión:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.when', 'Cuándo:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.hospitalized.dengue', 'Ha sido hospitalizao por dengue:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.digitador', 'Digitador:','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.participant.not.found', 'Participante no encontrado','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.contact.not.found', 'No se encontró información de contacto','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.consent.not.found', 'No se encontró carta de consentimiento','0','0',0);
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.participant survey.not.found', 'No se encontro encuesta de participante','0','0',0);

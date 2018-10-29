@@ -29,12 +29,17 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	
+
+
 	<!-- Imports user-defined @Controller beans that process client requests -->
 	<beans:import resource="controllers.xml" />
 
 	<!-- Load Hibernate related configuration -->
 	<beans:import resource="hibernate-context.xml" />
+
+    <beans:bean id="viewResolver1" class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+        <beans:property name="order" value="1"/>
+        <beans:property name="basename" value="views"/>
+    </beans:bean>
 
 </beans:beans>

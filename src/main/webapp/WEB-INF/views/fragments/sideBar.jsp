@@ -45,6 +45,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item nav-dropdown reports">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-docs"></i><spring:message code="reports" /></a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item filedata">
+                        <a class="nav-link" href="<spring:url value="/reportes/pdf/fileData/" htmlEscape="true "/>"><i class="icon-doc"></i><spring:message code="report.file.data" /></a>
+                    </li>
+                </ul>
+            </li>
 	        <li class="nav-item">
                 <a class="nav-link" href="<spring:url value="/logout" htmlEscape="true" />"><i class="icon-lock"></i><spring:message code="logout" /></a>
             </li>

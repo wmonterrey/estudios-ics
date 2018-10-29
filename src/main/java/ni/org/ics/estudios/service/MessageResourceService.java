@@ -120,6 +120,47 @@ public class MessageResourceService {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(message);
 	}
-	
-	
+
+    @SuppressWarnings("unchecked")
+    public List<MessageResource> loadAllMessagesNoCatalogs() {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM MessageResource where isCat = '0' and catKey is null");
+        // Retrieve all
+        return  query.list();
+    }
+
+    public MessageResource getMensajeByCatalogAndCatKey(String catKey, String catalogo) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM MessageResource mens where mens.catRoot =:catalogo and mens.catKey =:catKey");
+        query.setParameter("catalogo",catalogo);
+        query.setParameter("catKey", catKey);
+        // Retrieve all
+        return  (MessageResource) query.uniqueResult();
+    }
+
+    public List<MessageResource> getMensajeByCatalogAndCatKeys(String catKeys, String catalogo) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("FROM MessageResource mens where mens.catRoot =:catalogo and mens.catKey in ('"+catKeys+"')");
+        query.setParameter("catalogo",catalogo);
+        // Retrieve all
+        return  query.list();
+    }
+
+    public List<MessageResource> getMensajeEnfCronByTamizaje(String tamizaje, String catalogo) {
+        // Retrieve session from Hibernate
+        Session session = sessionFactory.getCurrentSession();
+        // Create a Hibernate query (HQL)
+        Query query = session.createQuery("select mens FROM MessageResource mens, EnfermedadCronica ec inner join ec.tamizaje t " +
+                "where mens.catRoot =:catalogo and t.codigo = :tamizaje and ec.enfermedad = mens.catKey and ec.pasive ='0' ");
+        query.setParameter("catalogo", catalogo);
+        query.setParameter("tamizaje", tamizaje);
+        // Retrieve all
+        return  query.list();
+    }
 }

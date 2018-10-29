@@ -126,4 +126,10 @@ public class ParticipanteService {
         return query.list();
     }
 
+    public List<ContactoParticipante> getContactosParticipante(Integer codigoParticipante){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from ContactoParticipante where participante.codigo = :codigo and pasive = '0' order by recordDate desc");
+        query.setParameter("codigo", codigoParticipante);
+        return query.list();
+    }
 }

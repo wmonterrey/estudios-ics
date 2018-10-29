@@ -1,24 +1,31 @@
 package ni.org.ics.estudios.web.controller;
 
+import com.google.gson.Gson;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.CasaCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.ParticipanteCohorteFamiliaCaso;
 import ni.org.ics.estudios.language.MessageResource;
 import ni.org.ics.estudios.service.MessageResourceService;
 import ni.org.ics.estudios.service.cohortefamilia.ReportesService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.ParticipanteCohorteFamiliaCasoService;
+import ni.org.ics.estudios.service.reportes.ReportesPdfService;
 import ni.org.ics.estudios.web.utils.DateUtil;
+import ni.org.ics.estudios.web.utils.pdf.DatosGeneralesParticipante;
+import org.apache.commons.lang3.text.translate.UnicodeEscaper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Miguel Salinas on 9/8/2017.
@@ -33,6 +40,8 @@ public class ReportesController {
     private ReportesService reportesService;
     @Resource(name = "messageResourceService")
     private MessageResourceService messageResourceService;
+    @Resource(name = "reportesPdfService")
+    private ReportesPdfService reportesPdfService;
 
     @RequestMapping(value = "/super/visitas", method = RequestMethod.GET)
     public String obtenerVisitas(Model model) throws ParseException {
@@ -58,4 +67,23 @@ public class ReportesController {
         casas = reportesService.getHistorialVisitas(casa, codigoParticipante, DateUtil.StringToDate(fechaInicio, "dd/MM/yyyy"), DateUtil.StringToDate(fechaFin + " 23:59:59", "dd/MM/yyyy HH:mm:ss"));
         return casas;
     }
+
+    @RequestMapping(value = "/pdf/fileData", method = RequestMethod.GET)
+    public String fileDataReportForm(Model model) throws ParseException {
+        logger.debug("Mostrando formulario para generar datos generales para agregar al expediente");
+        return "/reportes/fileData";
+    }
+
+
+    @RequestMapping(value = "/downloadFileDataReport/{codigo}", method = RequestMethod.GET)
+    public ModelAndView downloadFilaDataReport(@PathVariable(value = "codigo") String codigo) throws Exception{
+        ModelAndView excelView = new ModelAndView("pdfView");
+
+        DatosGeneralesParticipante datosParticipante = reportesPdfService.getDatosGeneralesParticipante(Integer.valueOf(codigo));
+        List<MessageResource> messageReports = messageResourceService.loadAllMessagesNoCatalogs();
+        excelView.addObject("labels", messageReports);
+        excelView.addObject("datos", datosParticipante);
+        return excelView;
+    }
+
 }
