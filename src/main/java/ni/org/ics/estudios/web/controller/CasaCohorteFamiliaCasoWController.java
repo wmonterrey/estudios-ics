@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import ni.org.ics.estudios.domain.cohortefamilia.ParticipanteCohorteFamilia;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.CasaCohorteFamiliaCaso;
 import ni.org.ics.estudios.domain.cohortefamilia.casos.ParticipanteCohorteFamiliaCaso;
-import ni.org.ics.estudios.domain.scancarta.VersionCarta;
 import ni.org.ics.estudios.language.MessageResource;
 import ni.org.ics.estudios.service.MessageResourceService;
 import ni.org.ics.estudios.service.UsuarioService;
@@ -12,7 +11,6 @@ import ni.org.ics.estudios.service.cohortefamilia.CasaCohorteFamiliaService;
 import ni.org.ics.estudios.service.cohortefamilia.ParticipanteCohorteFamiliaService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.CasaCohorteFamiliaCasoService;
 import ni.org.ics.estudios.service.cohortefamilia.casos.ParticipanteCohorteFamiliaCasoService;
-import ni.org.ics.estudios.users.model.UserSistema;
 import ni.org.ics.estudios.web.utils.DateUtil;
 import org.apache.commons.lang3.text.translate.UnicodeEscaper;
 import org.slf4j.Logger;
@@ -31,7 +29,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -176,6 +173,13 @@ public class CasaCohorteFamiliaCasoWController {
     {
         try{
             Date dFechaInicio = DateUtil.StringToDate(fechaInicio, "dd/MM/yyyy");
+            Date dFIF = DateUtil.StringToDate(fif, "dd/MM/yyyy");
+            if (dFechaInicio.after(new Date())){
+                return createJsonResponse("Fecha de inicio es posterior a la fecha actual: "+DateUtil.DateToString(new Date(), "dd/MM/yyyy"));
+            }
+            if (dFIF.after(new Date())){
+                return createJsonResponse("FIF es posterior a la fecha actual: "+DateUtil.DateToString(new Date(), "dd/MM/yyyy"));
+            }
             CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasoByCodigoCasa(codigoCasa);
             //CasaCohorteFamiliaCaso casaCasoExistente = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigoCasaFecha(codigoCasa,dFechaInicio);
             CasaCohorteFamiliaCaso casaCaso = this.casaCohorteFamiliaCasoService.getCasaCohorteFamiliaCasosByCodigo(codigo);
@@ -216,7 +220,7 @@ public class CasaCohorteFamiliaCasoWController {
             participanteCaso.setCodigoCaso(casaCaso);
             participanteCaso.setEstado('1');
             participanteCaso.setEnfermo("S");
-            participanteCaso.setFechaEnfermedad(DateUtil.StringToDate(fif, "dd/MM/yyyy"));
+            participanteCaso.setFechaEnfermedad(dFIF);
 
 
             this.participanteCohorteFamiliaCasoService.saveOrUpdateParticipanteCohorteFamiliaCaso(participanteCaso);
