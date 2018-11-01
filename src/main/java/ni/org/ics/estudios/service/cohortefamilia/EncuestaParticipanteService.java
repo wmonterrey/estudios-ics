@@ -35,11 +35,11 @@ public class EncuestaParticipanteService {
         return query.list();
     }
 
-    public EncuestaParticipante getEncuestaParticipanteByCodigo(String codigo){
+    public List<EncuestaParticipante> getEncuestaParticipanteByCodigo(Integer codigo){
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from EncuestaParticipante where participante.participanteCHF = :codigo");
+        Query query = session.createQuery("from EncuestaParticipante where participante.participante.codigo = :codigo");
         query.setParameter("codigo", codigo);
-        return (EncuestaParticipante)query.uniqueResult();
+        return query.list();
     }
 
     public void saveOrUpdate(EncuestaParticipante encuestaParticipante){

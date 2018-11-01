@@ -29,7 +29,7 @@
         <spring:url value="/reportes/downloadFileDataReport/" var="pdfUrl"/>
         <c:set var="successMessage"><spring:message code="process.success" /></c:set>
         <c:set var="errorProcess"><spring:message code="process.error" /></c:set>
-        <div class="container-fluid">
+        <div class="container-fluid col-8">
             <div class="card">
                 <div class="card-header">
                     <h3 class="page-title">
@@ -38,23 +38,53 @@
                 </div>
                 <div class="card-block">
                     <div class="row">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-8">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-10">
                             <form autocomplete="off" id="search-participant-form" class="form-horizontal">
                                 <div class="form-group row">
-                                    <label class="form-control-label col-md-3" for="participantCode"><spring:message code="participant.code" />
-                                        <span class="required">*</span>
+                                    <label class="col-sm-3 form-control-label" for="estudio"><spring:message code="study"/><span class="required">*</span></label>
+                                    <div class="col-sm-6">
+                                        <select name="estudio" id="estudio" class="form-control select2-single">
+                                            <option selected value=""><spring:message code="select" />...</option>
+                                            <c:forEach items="${estudios}" var="estudio">
+                                                <option value="${estudio.codigo}">${estudio.nombre}</option>
+                                            </c:forEach>
+                                            <option value="0"><spring:message code="lbl.all" /></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="form-control-label col-md-3" for="fechaInicio"><spring:message code="start.date.registration" />
                                     </label>
-                                    <div class="input-group col-md-9">
+                                    <div class="input-group col-md-6">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                        <input name="fechaInicio" id="fechaInicio" class="form-control from_date" type="text" data-date-end-date="+0d"  />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="form-control-label col-md-3" for="fechaFin"><spring:message code="end.date.registration" />
+                                    </label>
+                                    <div class="input-group col-md-6">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                        <input name="fechaFin" id="fechaFin" class="form-control to_date" type="text" data-date-end-date="+0d"  />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="form-control-label col-md-3" for="codigoParticipante"><spring:message code="participant.code" />
+                                    </label>
+                                    <div class="input-group col-md-6">
                                                 <span class="input-group-addon">
 													<i class="fa fa-user"></i>
 												</span>
-                                        <input id="participantCode" name="participantCode" type="text" value="" class="form-control"/>
+                                        <input id="codigoParticipante" name="codigoParticipante" type="text" value="" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="form-actions fluid">
-                                    <div class="col-md-offset-6 col-md-8">
+                                    <div class="col-md-offset-6 col-md-10">
                                         <button id="toPdf" type="submit" class="btn btn-success btn-ladda" data-style="expand-right"><spring:message code="generate" /> <i class="fa fa-file-pdf-o"></i></button>
                                     </div>
                                 </div>
@@ -82,6 +112,12 @@
 <script src="${validateJs}" type="text/javascript"></script>
 <spring:url value="/resources/js/views/loading-buttons.js" var="loadingButtonsJs" />
 <script src="${loadingButtonsJs}" type="text/javascript"></script>
+<!-- bootstrap datepicker -->
+<spring:url value="/resources/js/libs/bootstrap-datepicker/bootstrap-datepicker.js" var="datepickerPlugin" />
+<script src="${datepickerPlugin}"></script>
+<spring:url value="/resources/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.{languagedt}.js" var="datePickerLoc">
+    <spring:param name="languagedt" value="${lenguaje}" /></spring:url>
+<script src="${datePickerLoc}"></script>
 <spring:url value="/resources/js/libs/jquery-validation/localization/messages_{language}.js" var="jQValidationLoc">
     <spring:param name="language" value="${lenguaje}" />
 </spring:url>
@@ -103,26 +139,36 @@
 </script>
 <script>
     jQuery(document).ready(function() {
-
+        handleDatePickers("${lenguaje}");
         var form1 = $('#search-participant-form');
         var $validator = form1.validate({
             errorElement: 'span', //default input error message container
             focusInvalid: false, // do not focus the last invalid input
             rules: {
-                participantCode: {
+                estudio: {
+                    required: true
+                },
+                codigoParticipante: {
                     pattern: /^\+?[0-9]*\.?[0-9]+$/,
-                    required: true,
                     maxlength: 5
-                }
+                },
+                fechaFin: {required: function () {
+                    return $('#fechaInicio').val().length > 0;
+                }},
+                fechaInicio: {required: function () {
+                    return $('#fechaFin').val().length > 0;
+                }}
             },
             errorPlacement: function ( error, element ) {
+                console.log(element.prop( 'type' ));
                 // Add the `help-block` class to the error element
                 error.addClass( 'form-control-feedback' );
                 if ( element.prop( 'type' ) === 'checkbox' ) {
                     error.insertAfter( element.parent( 'label' ) );
-                } else {
-                    //error.insertAfter( element ); //cuando no es input-group
+                }else if ( element.prop( 'type' ) === 'text' ){
                     error.insertAfter(element.parent('.input-group'));
+                } else {
+                    error.insertAfter( element ); //cuando no es input-group
                 }
             },
             highlight: function ( element, errorClass, validClass ) {
@@ -142,7 +188,7 @@
                     /*$(this).attr("href", "${pdfUrl}"+$('#participantCode').val());
                     event.preventDefault();
                     event.stopPropagation();*/
-                    window.open("${pdfUrl}"+$('#participantCode').val(), '_blank');
+                    window.open("${pdfUrl}?"+form1.serialize(), '_blank');
                 }
             }
         });
