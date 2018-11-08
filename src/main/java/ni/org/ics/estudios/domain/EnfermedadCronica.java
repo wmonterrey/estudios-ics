@@ -23,7 +23,7 @@ public class EnfermedadCronica extends BaseMetaData implements Serializable, Aud
     private String mesEnfermedad;
     private String otraEnfermedad;
 
-    @javax.persistence.Id
+    @Id
     @Column(name = "CODIGO", nullable = false, insertable = true, updatable = false, length = 36)
     public String getId() {
         return Id;

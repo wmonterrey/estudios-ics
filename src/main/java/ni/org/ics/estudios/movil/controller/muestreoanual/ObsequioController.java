@@ -24,7 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/movil/*")
 public class ObsequioController {
-	@Resource(name="obsequioService")
+	@Resource(name="obsequiosMAService")
 	private ObsequioService obsequioService;
 	private static final Logger logger = LoggerFactory.getLogger(ObsequioController.class);
 

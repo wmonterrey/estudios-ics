@@ -22,7 +22,7 @@ import java.util.List;
  * 
  **/
 
-@Service("obsequioService")
+@Service("obsequiosMAService")
 @Transactional
 public class ObsequioService {
 	

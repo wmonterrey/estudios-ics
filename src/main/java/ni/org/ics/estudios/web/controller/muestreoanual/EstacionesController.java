@@ -28,7 +28,7 @@ public class EstacionesController {
 	private MuestraService muestraService;
 	@Resource(name="reporteService")
 	private ReporteService reporteService;
-	@Resource(name="obsequioService")
+	@Resource(name="obsequiosMAService")
 	private ObsequioService obsequioService;
 	@Resource(name="reconsentimientoService")
 	private ReConsentimientoDenService reconsentimientoService;
