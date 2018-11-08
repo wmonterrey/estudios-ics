@@ -50,11 +50,16 @@ public class CartaConsentimientoService {
         session.saveOrUpdate(cartaConsentimiento);
     }
 
-    public List<CartaConsentimiento> getCartaConsentimientoByCodParticipante(Integer codParticipante)
+    public List<CartaConsentimiento> getCartaConsentimientoByCodParticipanteEstudio(Integer codParticipante, Integer estudio)
     {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from CartaConsentimiento where participante.codigo = :codigo order by fechaFirma desc");
+        String sqlQuery = "from CartaConsentimiento where participante.codigo = :codigo ";
+        if (estudio>0)  sqlQuery += " and tamizaje.estudio.codigo = :estudio";
+        sqlQuery += " order by fechaFirma asc";
+        Query query = session.createQuery(sqlQuery);
+
         query.setParameter("codigo", codParticipante);
+        if (estudio>0)  query.setParameter("estudio", estudio);
         return query.list();
     }
 }

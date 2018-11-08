@@ -874,7 +874,7 @@ INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUE
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.contact.not.found', 'No se encontró información de contacto','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.consent.not.found', 'No se encontró carta de consentimiento','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.participant survey.not.found', 'No se encontro encuesta de participante','0','0',0);
-
+INSERT INTO `mensajes` (`messageKey`, `es`, `catPasive`, `isCat`, `orden`) VALUES ( 'lbl.all', 'Todos','0','0',0);
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('MOTIVO_OBSEQUIO', NULL, NULL, NULL, '1', 0, '0', 'Motivo de entrega de obsequio');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('MOTIVO_OBSEQUIO_01', '1', 'MOTIVO_OBSEQUIO', NULL, '0', 1, '0', 'Seguimiento Inicial');
 INSERT INTO `mensajes` (`messageKey`, `catKey`, `catRoot`, `en`, `isCat`, `orden`, `catPasive`, `es`) VALUES ('MOTIVO_OBSEQUIO_02', '2', 'MOTIVO_OBSEQUIO', NULL, '0', 2, '0', 'Seguimiento Final');

@@ -60,7 +60,7 @@ public class EncuestaCasaMAController {
         	List<EncuestaCasaMA> casas = Arrays.asList(envio);
         	for (EncuestaCasaMA encuestaCasa: casas){
                 Integer codigo = encuestaCasa.getCodCasa();
-                if (codigo==null) codigo = Integer.valueOf(encuestaCasa.getCodCasaChf());
+                if (codigo==null && (encuestaCasa.getCodCasaChf()!=null && !encuestaCasa.getCodCasaChf().isEmpty())) codigo = Integer.valueOf(encuestaCasa.getCodCasaChf());
         		Boolean existe = encuestaCasaService.checkEncuestaCasa(codigo, encuestaCasa.getFechaEncCasa());
         		if (!existe){
         			encuestaCasaService.addEncuestaCasa(encuestaCasa);
