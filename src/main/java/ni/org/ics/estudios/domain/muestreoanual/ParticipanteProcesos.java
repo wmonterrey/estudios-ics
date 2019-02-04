@@ -56,7 +56,7 @@ public class ParticipanteProcesos {
     private String tutor;
     private String consSa;
     private String coordenadas; //cambio de domicilio
-
+    private String obsequioChf;
     private MovilInfo movilInfo;
 
 	@Id
@@ -391,6 +391,15 @@ public class ParticipanteProcesos {
 
     public void setCoordenadas(String camDom) {
         this.coordenadas = camDom;
+    }
+
+    @Column(name = "obsequio_chf", nullable = true, length = 2)
+    public String getObsequioChf() {
+        return obsequioChf;
+    }
+
+    public void setObsequioChf(String obsequioChf) {
+        this.obsequioChf = obsequioChf;
     }
 
     public MovilInfo getMovilInfo() {

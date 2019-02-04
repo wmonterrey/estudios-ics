@@ -20,9 +20,9 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/movil/*")
-public class ObsequiosController {
+public class ObsequiosGenController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ObsequiosController.class);
+    private static final Logger logger = LoggerFactory.getLogger(ObsequiosGenController.class);
 
     @Resource(name = "obsequioService")
     private ObsequioService obsequioService;

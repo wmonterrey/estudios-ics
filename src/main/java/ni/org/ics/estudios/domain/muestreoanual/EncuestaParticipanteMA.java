@@ -179,7 +179,12 @@ public class EncuestaParticipanteMA {
     private String rash6m;
     private String ojoRojo6m;
     private String estudiosAct; // estudios actuales al momento de llenar la encuesta
-
+    //MA 2019
+    private Integer vacunaInfluenzaMes;
+    private String vacunaInfluenzaCSSF;
+    private String vacunaInfluenzaOtro;
+    private String nombreCDI;
+    private String direccionCDI;
 	private MovilInfo movilInfo;
 
 	@EmbeddedId
@@ -1576,5 +1581,50 @@ public class EncuestaParticipanteMA {
 
     public void setEstudiosAct(String estudiosAct) {
         this.estudiosAct = estudiosAct;
+    }
+
+    @Column(name = "VACUNA_INFLUENZA_MES", nullable = true)
+    public Integer getVacunaInfluenzaMes() {
+        return vacunaInfluenzaMes;
+    }
+
+    public void setVacunaInfluenzaMes(Integer vacunaInfluenzaMes) {
+        this.vacunaInfluenzaMes = vacunaInfluenzaMes;
+    }
+
+    @Column(name = "VACUNA_INFLUENZA_CSSF", nullable = true, length = 2)
+    public String getVacunaInfluenzaCSSF() {
+        return vacunaInfluenzaCSSF;
+    }
+
+    public void setVacunaInfluenzaCSSF(String vacunaInfluenzaCSSF) {
+        this.vacunaInfluenzaCSSF = vacunaInfluenzaCSSF;
+    }
+
+    @Column(name = "VACUNA_INFLUENZA_OTRO", nullable = true, length = 255)
+    public String getVacunaInfluenzaOtro() {
+        return vacunaInfluenzaOtro;
+    }
+
+    public void setVacunaInfluenzaOtro(String vacunaInfluenzaOtro) {
+        this.vacunaInfluenzaOtro = vacunaInfluenzaOtro;
+    }
+
+    @Column(name = "NOMBRE_CDI", nullable = true, length = 255)
+    public String getNombreCDI() {
+        return nombreCDI;
+    }
+
+    public void setNombreCDI(String nombreCDI) {
+        this.nombreCDI = nombreCDI;
+    }
+
+    @Column(name = "DIRECCION_CDI", nullable = true, length = 255)
+    public String getDireccionCDI() {
+        return direccionCDI;
+    }
+
+    public void setDireccionCDI(String direccionCDI) {
+        this.direccionCDI = direccionCDI;
     }
 }
