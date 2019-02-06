@@ -57,6 +57,9 @@ public class ParticipanteProcesos {
     private String consSa;
     private String coordenadas; //cambio de domicilio
     private String obsequioChf;
+    private String cDatosParto;//completar datos parto campos que no se pedian antes del 2018
+    private String reConsChf18;//reconsentimiento a participantes de familia que cumplen 18 anios
+
     private MovilInfo movilInfo;
 
 	@Id
@@ -400,6 +403,24 @@ public class ParticipanteProcesos {
 
     public void setObsequioChf(String obsequioChf) {
         this.obsequioChf = obsequioChf;
+    }
+
+    @Column(name = "c_datos_parto", nullable = true, length = 2)
+    public String getcDatosParto() {
+        return cDatosParto;
+    }
+
+    public void setcDatosParto(String cDatosParto) {
+        this.cDatosParto = cDatosParto;
+    }
+
+    @Column(name = "recons_chf_18", nullable = true, length = 2)
+    public String getReConsChf18() {
+        return reConsChf18;
+    }
+
+    public void setReConsChf18(String reConsChf18) {
+        this.reConsChf18 = reConsChf18;
     }
 
     public MovilInfo getMovilInfo() {
