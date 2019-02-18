@@ -56,6 +56,7 @@ public class DatosPartoBB {
     private String docMedFecVacInfMadre_sn;
     private String docMedFecVacInfMadre;
     private String otroDocMedFecVacInfMadre;
+    private String docMedFUM_sn;
 
 	
 	@Column(name = "tipoParto", nullable = true, length = 1)
@@ -361,5 +362,14 @@ public class DatosPartoBB {
 
     public void setOtroDocMedFecVacInfMadre(String otroDocMedFecVacInfMadre) {
         this.otroDocMedFecVacInfMadre = otroDocMedFecVacInfMadre;
+    }
+
+    @Column(name = "docMedFUM_sn", nullable = true, length = 1)
+    public String getDocMedFUM_sn() {
+        return docMedFUM_sn;
+    }
+
+    public void setDocMedFUM_sn(String docMedFUM_sn) {
+        this.docMedFUM_sn = docMedFUM_sn;
     }
 }
