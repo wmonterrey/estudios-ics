@@ -42,6 +42,9 @@ public class MuestraMA {
 	private Integer otrorecurso1;
 	private Integer otrorecurso2;
     private String estudiosAct; // estudios actuales al momento de llenar la encuesta
+    //MA2019
+    private String hd_sn;
+    private String hdPorqueNo;
 
 	@Column(name = "fiebre", nullable = true, length = 1)
 	public Integer getFiebreM() {
@@ -250,5 +253,23 @@ public class MuestraMA {
 
     public void setEstudiosAct(String estudiosAct) {
         this.estudiosAct = estudiosAct;
+    }
+
+    @Column(name = "hd_sn", nullable = true, length = 2)
+    public String getHd_sn() {
+        return hd_sn;
+    }
+
+    public void setHd_sn(String hd_sn) {
+        this.hd_sn = hd_sn;
+    }
+
+    @Column(name = "hd_porque_no", nullable = true, length = 512)
+    public String getHdPorqueNo() {
+        return hdPorqueNo;
+    }
+
+    public void setHdPorqueNo(String hdPorqueNo) {
+        this.hdPorqueNo = hdPorqueNo;
     }
 }
