@@ -27,10 +27,13 @@ public class MuestraService {
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
-	public List<Muestra> getMuestras()
+	public List<Muestra> getMuestras() throws Exception
     {
+        Calendar hoy = Calendar.getInstance();
+        int anioActual = hoy.get(Calendar.YEAR);
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Muestra where pasive = '0' ");
+        Query query = session.createQuery("from Muestra where pasive = '0' and recordDate >= :primerDia");
+        query.setParameter("primerDia", DateUtil.StringToDate("01/01/"+String.valueOf(anioActual), "dd/MM/yyyy"));
         return  query.list();
     }
     

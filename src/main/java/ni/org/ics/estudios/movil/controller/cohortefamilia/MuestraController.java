@@ -45,7 +45,7 @@ public class MuestraController {
      */
     @RequestMapping(value = "muestras", method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
-    List<Muestra> getMuestras() {
+    List<Muestra> getMuestras() throws Exception{
         logger.info("Descargando toda la informacion de formularios muestras para el usuario ");
         List<Muestra> respuestaList = muestraService.getMuestras();
         if (respuestaList == null){
