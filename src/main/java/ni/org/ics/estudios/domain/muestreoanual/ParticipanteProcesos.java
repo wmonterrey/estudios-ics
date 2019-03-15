@@ -1,5 +1,7 @@
 package ni.org.ics.estudios.domain.muestreoanual;
 
+import ni.org.ics.estudios.domain.audit.Auditable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +16,7 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "participantes_procesos", catalog = "estudios_ics", uniqueConstraints = { @UniqueConstraint(columnNames = "codigo") })
-public class ParticipanteProcesos {
+public class ParticipanteProcesos implements Auditable {
 
 	/**
 	 * 
@@ -429,5 +431,33 @@ public class ParticipanteProcesos {
 
     public void setMovilInfo(MovilInfo movilInfo) {
         this.movilInfo = movilInfo;
+    }
+
+    @Override
+    public boolean isFieldAuditable(String fieldname) {
+        if (fieldname.matches("movilInfo")) return false;
+        else return true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ParticipanteProcesos)) return false;
+
+        ParticipanteProcesos procesos = (ParticipanteProcesos) o;
+
+        if (!codigo.equals(procesos.codigo)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return codigo.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "ParticipanteProcesos{" + codigo + '}';
     }
 }
