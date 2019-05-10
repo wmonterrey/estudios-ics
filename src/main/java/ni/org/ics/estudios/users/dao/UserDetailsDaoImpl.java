@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDetailsDaoImpl implements UserDetailsDao {
 	
-	private static final int MAX_ATTEMPTS = 5;
+	private static final int MAX_ATTEMPTS = 10;
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 

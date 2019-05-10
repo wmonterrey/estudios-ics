@@ -21,7 +21,8 @@ public class LoginAuthenticationProvider extends DaoAuthenticationProvider {
 			// reset the user_attempts
 			userDetailsDao.resetFailAttempts(auth.getName());
 			userDetailsDao.insertNewAccess(auth);
-			userDetailsDao.checkCredentialsDate(auth.getName());
+			//Se solicita que las credenciales no caduquen. 10-05-2019
+			//userDetailsDao.checkCredentialsDate(auth.getName());
 			return auth;
 
 		} catch (BadCredentialsException e) {

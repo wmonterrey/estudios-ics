@@ -232,7 +232,7 @@ public class ReportesPdfService {
                 String padre = participante.getNombre1Padre().toUpperCase();
                 if (participante.getNombre2Padre() != null)
                     padre = padre + " " + participante.getNombre2Padre().toUpperCase();
-                padre = padre + " " + participante.getApellido1().toUpperCase();
+                padre = padre + " " + participante.getApellido1Padre().toUpperCase();
                 if (participante.getApellido2Padre() != null)
                     padre = padre + " " + participante.getApellido2Padre().toUpperCase();
                 dgp.setPadre(padre);
